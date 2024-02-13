@@ -5,10 +5,10 @@ Room = 1
 global mapPos
 mapPos = [3,3]
 
-from rython import *
+#from rython import *
 global Firstmap
-Firstmap = Matrix.new(5)
-Firstmap.modifyPos([3,3],1)
+#Firstmap = Matrix.new(5)
+#Firstmap.modifyPos([3,3],1)
 
 from pynput.keyboard import Key, Listener
 
