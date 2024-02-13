@@ -1,4 +1,6 @@
 import pynput
+from pyscript import Element
+chart_element = Element("charts")
 
 global Zone
 Zone = 1
@@ -13,10 +15,12 @@ global Firstmap
 #Firstmap.modifyPos([3,3],1)
 
 def on_press(key):
+    chart_element.element.innerHTML = "This is <i>another</i> test."
     print('{0} pressed'.format(
         key))
 
 def on_release(key):
+    chart_element.element.innerHTML = "This is <i>yet another</i> test."
     print('{0} release'.format(
         key))
     if key == pynput.keyboard.Key.esc:
