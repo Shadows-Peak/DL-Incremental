@@ -1,35 +1,16 @@
-import pynput
-import pyscript
-chart_element = pyscript.document.getElementById("chart")
+from js import document
 
-global Zone
-Zone = 1
-global Room
-Room = 1
-global mapPos
-mapPos = [3,3]
+chart_element = document.getElementById("chart")
+chart_element.innerHTML = 'Press a key to see its code.'
 
-#from rython import *
-global Firstmap
-#Firstmap = Matrix.new(5)
-#Firstmap.modifyPos([3,3],1)
+def on_keydown(event):
+    # Modify the 'chart' div when a key is pressed
+    chart_element.innerHTML = f'Key {event.key} was pressed.'
 
-def on_press(key):
-    chart_element.innerHTML = "This is <i>another</i> test."
-    
-    print('{0} pressed'.format(
-        key))
+def on_keyup(event):
+    # Modify the 'chart' div when a key is released
+    chart_element.innerHTML = f'Key {event.key} was released.'
 
-def on_release(key):
-    chart_element.innerHTML = "This is <i>yet another</i> test."
-    print('{0} release'.format(
-        key))
-    if key == pynput.keyboard.Key.esc:
-        # Stop listener
-        return False
-
-# Collect events until released
-with pynput.keyboard.Listener(
-        on_press=on_press,
-        on_release=on_release) as listener:
-    listener.join()
+# Attach the event handlers to the 'keydown' and 'keyup' events
+document.addEventListener('keydown', on_keydown)
+document.addEventListener('keyup', on_keyup)
