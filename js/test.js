@@ -10,6 +10,6 @@ window.addEventListener('keydown', e=>{
 })
 
 document.getElementById('button1').onclick = function() {
-    click++;
-    document.getElementById('clicks').innerHTML = toString(click);
+    clicks++;
+    document.getElementById('counter').innerHTML = toString(clicks);
  }​;​
