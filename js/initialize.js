@@ -1,1 +1,1 @@
-var clicks = 0;
+var clicks = 0
