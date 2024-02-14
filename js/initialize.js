@@ -1,0 +1,1 @@
+var click = 0;

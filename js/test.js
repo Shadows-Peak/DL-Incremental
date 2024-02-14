@@ -1,5 +1,3 @@
-var clicks = 0;
-
 function changeText(text){
     document.getElementById("charts").innerHTML = text;
 }
@@ -12,6 +10,6 @@ window.addEventListener('keydown', e=>{
 })
 
 document.getElementById('button1').onclick = function() {
-    clicks++;
-    document.getElementById('clicks').innerHTML = toString(clicks);
+    click++;
+    document.getElementById('clicks').innerHTML = toString(click);
  }​;​
