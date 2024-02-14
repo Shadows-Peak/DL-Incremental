@@ -1,3 +1,5 @@
+var clicks = 0;
+
 function changeText(text){
     document.getElementById("charts").innerHTML = text;
 }
@@ -8,3 +10,8 @@ window.addEventListener('keydown', e=>{
     if (e.key == "s" || e.key == "S" || e.key == "ArrowDown") changeText("Thanks for pressing: "+e.key)
     if (e.key == "d" || e.key == "D" || e.key == "ArrowRight") changeText("Thanks for pressing: "+e.key)
 })
+
+document.getElementById('button1').onclick = function() {
+    clicks++;
+    document.getElementById('clicks').innerHTML = toString(clicks);
+ }​;​
