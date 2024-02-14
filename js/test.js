@@ -12,4 +12,4 @@ window.addEventListener('keydown', e=>{
 document.getElementById('button1').onclick = function() {
     clicks++;
     document.getElementById('counter').innerHTML = toString(clicks);
- }​;​
+ };
