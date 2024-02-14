@@ -11,5 +11,5 @@ window.addEventListener('keydown', e=>{
 
 document.getElementById('button1').onclick = function() {
     clicks++;
-    document.getElementById('counter').innerHTML = toString(clicks);
+    document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> clicks";
  };
