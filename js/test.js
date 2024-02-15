@@ -1,6 +1,3 @@
-import { runPythonScript } from './initialize.js';
-
-
 function changeText(text){
     document.getElementById("charts").innerHTML = text;
 };
@@ -16,11 +13,3 @@ document.getElementById('button1').onclick = function() {
     clicks++;
     document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> clicks";
  };
-
- fetch('http://localhost:3000/runPythonTest1')
- .then(response => response.text())
- .then(data => {
-   // 'data' is the output of the Python script
-   changeText(data)
-   console.log(data);
- });
