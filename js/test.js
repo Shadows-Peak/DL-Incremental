@@ -1,5 +1,6 @@
 import { runPythonScript } from './initialize.js.js';
 
+
 function changeText(text){
     document.getElementById("charts").innerHTML = text;
 };
