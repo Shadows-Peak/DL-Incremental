@@ -1,9 +1,9 @@
 var clicks = 0
 
-const { spawn } = require('child_process');
+const { spawn } = await import('child_process');
 
 // Run a Python script and return output
-global.runPythonScript = function(scriptPath, args) {
+export function runPythonScript(scriptPath, args) {
 
   // Use child_process.spawn method from 
   // child_process module and assign it to variable

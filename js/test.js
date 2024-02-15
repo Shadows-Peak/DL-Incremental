@@ -1,3 +1,5 @@
+import { runPythonScript } from './initialize.js.js';
+
 function changeText(text){
     document.getElementById("charts").innerHTML = text;
 };
@@ -14,7 +16,7 @@ document.getElementById('button1').onclick = function() {
     document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> clicks";
  };
 
-global.runPythonScript('../py/test1.py', [1,6])
+runPythonScript('../py/test1.py', [1,6])
  .then(data => {
    // 'data' is the result of the Python script
    let result = data;
