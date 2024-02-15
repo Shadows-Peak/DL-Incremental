@@ -13,3 +13,15 @@ document.getElementById('button1').onclick = function() {
     clicks++;
     document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> clicks";
  };
+
+global.runPythonScript('../py/test1.py', [1,6])
+ .then(data => {
+   // 'data' is the result of the Python script
+   let result = data;
+   changeText(result);
+   console.log(result);
+ })
+ .catch(error => {
+   // Handle any errors
+   console.error(error);
+ });
