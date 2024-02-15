@@ -1,4 +1,4 @@
-import { spawn } from 'node:child_process';
+const { spawn } = await import('child_process');
 
 var clicks = 0
 
