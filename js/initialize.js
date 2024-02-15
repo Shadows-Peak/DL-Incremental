@@ -1,9 +1,9 @@
-var clicks = 0
-
 import { spawn } from 'node:child_process';
 
+var clicks = 0
+
 // Run a Python script and return output
-export function runPythonScript(scriptPath, args) {
+export async function runPythonScript(scriptPath, args) {
 
   // Use child_process.spawn method from 
   // child_process module and assign it to variable
