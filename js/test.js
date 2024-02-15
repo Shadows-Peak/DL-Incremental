@@ -17,14 +17,10 @@ document.getElementById('button1').onclick = function() {
     document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> clicks";
  };
 
-runPythonScript('../py/test1.py', [1,6])
+ fetch('http://localhost:3000/runPythonTest1')
+ .then(response => response.text())
  .then(data => {
-   // 'data' is the result of the Python script
-   let result = data;
-   changeText(result);
-   console.log(result);
- })
- .catch(error => {
-   // Handle any errors
-   console.error(error);
+   // 'data' is the output of the Python script
+   changeText(data)
+   console.log(data);
  });

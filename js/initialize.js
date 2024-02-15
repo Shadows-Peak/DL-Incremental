@@ -1,32 +1,20 @@
-async () => {
-  const { spawn } = await import('child_process');
-}
+const express = require('express');
+const { spawn } = require('child_process');
+const app = express();
 
 var clicks = 0
 
-// Run a Python script and return output
-export async function runPythonScript(scriptPath, args) {
+app.get('/runPythonTest1', (req, res) => {
+  const python = spawn('python', ['../py/test1.py',1,2]);
+  let result = '';
 
-  // Use child_process.spawn method from 
-  // child_process module and assign it to variable
-  const pyProg = spawn('python', [scriptPath].concat(args));
-
-  // Collect data from script and return it
-  let data = '';
-  pyProg.stdout.on('data', (stdout) => {
-    data += stdout.toString();
+  python.stdout.on('data', (data) => {
+    result += data.toString();
   });
 
-  // Print errors to console, if any
-  pyProg.stderr.on('data', (stderr) => {
-    console.log(`stderr: ${stderr}`);
+  python.on('close', (code) => {
+    res.send(result);
   });
+});
 
-  // When script is finished, return collected data
-  return new Promise((resolve, reject) => {
-    pyProg.on('close', (code) => {
-      console.log(`child process exited with code ${code}`);
-      resolve(data);
-    });
-  });
-}
+app.listen(3000, () => console.log('Server started'));
