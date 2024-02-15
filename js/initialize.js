@@ -1,6 +1,6 @@
 var clicks = 0
 
-const { spawn } = await import('child_process');
+import { spawn } from 'node:child_process';
 
 // Run a Python script and return output
 export function runPythonScript(scriptPath, args) {
