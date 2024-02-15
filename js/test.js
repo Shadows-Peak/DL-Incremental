@@ -1,4 +1,4 @@
-import { runPythonScript } from './initialize.js.js';
+import { runPythonScript } from './initialize.js';
 
 
 function changeText(text){
