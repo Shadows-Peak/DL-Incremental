@@ -1,4 +1,6 @@
-const { spawn } = await import('child_process');
+async () => {
+  const { spawn } = await import('child_process');
+}
 
 var clicks = 0
 
@@ -28,4 +30,3 @@ export async function runPythonScript(scriptPath, args) {
     });
   });
 }
-
