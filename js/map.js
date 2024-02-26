@@ -51,7 +51,7 @@ function disables(FcurrentRoom) {
         "lMap": disablesList[0],
         "rMap": disablesList[1],
         "uMap": disablesList[2],
-        "dMap": disablesList[3],
+        "dMap": disablesList[3]
     };
     for (const [key, value] of Object.entries(DisableDict)) {
         setDisplay(key, value);
