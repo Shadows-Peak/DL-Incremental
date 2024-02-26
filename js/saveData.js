@@ -1,3 +1,5 @@
+import { updateVisuals } from './initialize.js';
+
 function saveData() {
     localStorage.setItem('mainClicks', clicks);
 }
