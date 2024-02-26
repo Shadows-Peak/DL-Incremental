@@ -17,7 +17,9 @@
     <button id="saveButton" type="button">Save Game</menu></button>
     <button id="resetButton" type="button">Reset Game</menu></button>
     <script>
-        import { updateVisuals } from './initialize.js';
+        function updateVisuals() {
+            document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> clicks";
+        }
         updateVisuals();
     </script>
     <script src="js/saveData.js"></script>

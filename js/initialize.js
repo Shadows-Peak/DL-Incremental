@@ -6,7 +6,7 @@ try{
     clicks = 0;
 }
 
-export function updateVisuals() {
+function updateVisuals() {
     document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> clicks";
 }
 

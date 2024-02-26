@@ -1,3 +1,7 @@
+function updateVisuals() {
+  document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> clicks";
+}
+
 function changeText(text){
     document.getElementById("charts").innerHTML = text;
 };

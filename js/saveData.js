@@ -1,4 +1,6 @@
-import { updateVisuals } from './initialize.js';
+function updateVisuals() {
+    document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> clicks";
+}
 
 function saveData() {
     localStorage.setItem('mainClicks', clicks);
