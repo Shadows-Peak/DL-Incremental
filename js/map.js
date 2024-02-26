@@ -20,19 +20,6 @@ window.addEventListener('keydown', e=>{
     if (e.key == "d" || e.key == "D" || e.key == "ArrowRight") move("rMap", currentRoom)
 });
 
-document.getElementById('uMap').onclick = function() {
-    move("uMap", currentRoom);
-};
-document.getElementById('lMap').onclick = function() {
-    move("lMap", currentRoom);
-};
-document.getElementById('dMap').onclick = function() {
-    move("dMap", currentRoom);
-};
-document.getElementById('rMap').onclick = function() {
-    move("rMap", currentRoom);
-};
-
 function move(direction, FcurrentRoom) {
     movement = {
         "lMap": -1,
@@ -49,6 +36,7 @@ function move(direction, FcurrentRoom) {
             FcurrentRoom = 1;
         }
     }
+    currentRoom = FcurrentRoom;
     disables(FcurrentRoom);
 }
 
