@@ -7,7 +7,6 @@ function changeText(text){
 };
 
 window.addEventListener('keydown', e=>{
-  if ((e.key == "w" || e.key == "W" || e.key == "ArrowUp") || (e.key == "a" || e.key == "A" || e.key == "ArrowLeft") || (e.key == "s" || e.key == "S" || e.key == "ArrowDown") || (e.key == "d" || e.key == "D" || e.key == "ArrowRight")) {(clicks += 0.1);}
   if (e.key == "w" || e.key == "W" || e.key == "ArrowUp") changeText("Thanks for pressing: "+e.key)
   if (e.key == "a" || e.key == "A" || e.key == "ArrowLeft") changeText("Thanks for pressing: "+e.key)
   if (e.key == "s" || e.key == "S" || e.key == "ArrowDown") changeText("Thanks for pressing: "+e.key)
