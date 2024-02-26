@@ -10,7 +10,7 @@ function setDisplay(object, value) {
     } else {
         finalVal = "initial";
     }
-    document.getElementById(object).style.display = value;
+    document.getElementById(object).style.display = finalVal;
 }
 
 window.addEventListener('keydown', e=>{
