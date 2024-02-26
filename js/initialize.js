@@ -5,4 +5,9 @@ try{
     console.error(error);
     clicks = 0;
 }
-localStorage.setItem('pageLoadCount', newPageLoadCountValue);
+
+function updateVisuals() {
+    document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> clicks";
+}
+
+updateVisuals();
