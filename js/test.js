@@ -20,7 +20,7 @@ window.addEventListener('keydown', e=>{
 });
 
 document.getElementById('button1').onclick = function() {
-    clicks += 1 + CountryClubs;
+    clicks += (1 + CountryClubs)*(1 + RiceWashers);
     document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> clicks";
  };
 
