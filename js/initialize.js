@@ -10,6 +10,7 @@ var RiceWashers = 0;
 var RiceWasherCost = Math.ceil(1500*Math.floor(1.5 ** RiceWashers) * Math.log(6 * ((RiceWashers + 1) ** 2.3)) * (RiceWashers + 1));
 
 
+
 try{
     clicks = Number(localStorage.getItem('mainClicks'));
     CountryClubs = Number(localStorage.getItem('CountryClubs'));
