@@ -1,4 +1,4 @@
-const map = [1,2];
+const map = [0,1,2];
 var currentRoom = 1;
 
 function updateVisuals() {
@@ -36,13 +36,17 @@ function move(direction, FcurrentRoom) {
         "uMap": 0,
         "dMap": 0,
     };
-    if (FcurrentRoom == 1) {
-        if (direction == "rMap") {
-            currentRoom = 2;
+    if (FcurrentRoom == 0) {
+        if (direction == "lMap") {
+            return
+        } else {
+            currentRoom = currentRoom + movement[direction];
         }
     } else if (FcurrentRoom == 2) {
-        if (direction == "lMap") {
-            currentRoom = 1;
+        if (direction == "rMap") {
+            return
+        } else {
+            currentRoom = currentRoom + movement[direction];
         }
     }
     updateVisuals();
@@ -52,15 +56,24 @@ function move(direction, FcurrentRoom) {
 function disables(FcurrentRoom) {
     var disablesList = [0,0,0,0]
     var extraDisables;
-    if (FcurrentRoom == 1) {
+    if (FcurrentRoom == 0) {
         disablesList = [0,1,0,0]
         extraDisables = {
+            "room0Stuff": 1,
+            "room1Stuff": 0,
+            "room2Stuff": 0
+        }
+    } else if (FcurrentRoom == 1) {
+        disablesList = [1,1,0,0]
+        extraDisables = {
+            "room0Stuff": 0,
             "room1Stuff": 1,
             "room2Stuff": 0
         }
     } else if (FcurrentRoom == 2) {
         disablesList = [1,0,0,0]
         extraDisables = {
+            "room0Stuff": 0,
             "room1Stuff": 0,
             "room2Stuff": 1
         }
