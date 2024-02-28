@@ -44,10 +44,15 @@ function disables(FcurrentRoom) {
     if (FcurrentRoom == 1) {
         disablesList = [0,1,0,0]
         extraDisables = {
-            "room1Stuff": 0
+            "room1Stuff": 1,
+            "room2Stuff": 0
         }
     } else if (FcurrentRoom == 2) {
         disablesList = [1,0,0,0]
+        extraDisables = {
+            "room1Stuff": 0,
+            "room2Stuff": 1
+        }
     }
     var DisableDict = {
         "lMap": disablesList[0],
