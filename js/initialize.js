@@ -6,7 +6,10 @@ try{
     clicks = 0;
 }
 
-window.onload = updateVisuals();
 function updateVisuals() {
-    document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> clicks";
+    try {
+        document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> clicks";
+    } catch(error) {
+        console.error(error);
+    }
 }

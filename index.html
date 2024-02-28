@@ -28,12 +28,8 @@
         <button id="dMap" onclick="move('dMap', currentRoom)">▼</button>
         <button id="spaceButton" onclick="tmp.space = !tmp.space">Go to Space</button>
     </div>
-    <script type="text/javascript">
-        function updateVisuals() {
-            document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> clicks";
-        }
-        updateVisuals();
-    </script>
+    <body onload="updateVisuals()">
+    <body onload="disables(currentRoom)">
     <script src="js/saveData.js"></script>
     <script src="js/test.js"></script>
 </body>
