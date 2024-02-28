@@ -19,7 +19,7 @@ function updateVisuals() {
 function saveData() {
     var basicIter = 0;
     for (const key of Object.keys(data)) {
-        data[key] = [clicks,CountryClubs,RandomValue5xUpgradesCost,RandomValue5xUpgrades][basicIter];
+        data[key] = [clicks,CountryClubs,RiceWashers,RandomValue5xUpgrades][basicIter];
         basicIter++;
     }
     for (const [key, value] of Object.entries(data)) {

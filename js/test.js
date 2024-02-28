@@ -14,6 +14,7 @@ function changeText(text){
 };
 
 window.addEventListener('keydown', e=>{
+  changeText("Thanks for pressing: "+e.key)
   if (e.key == "w" || e.key == "W" || e.key == "ArrowUp") changeText("Thanks for pressing: "+e.key)
   if (e.key == "a" || e.key == "A" || e.key == "ArrowLeft") changeText("Thanks for pressing: "+e.key)
   if (e.key == "s" || e.key == "S" || e.key == "ArrowDown") changeText("Thanks for pressing: "+e.key)
@@ -22,7 +23,7 @@ window.addEventListener('keydown', e=>{
 
 document.getElementById('button1').onclick = function() {
     var multiplier = 1;
-    var RandomNumber = Math.floor(Math.random() * 10)+1;
+    var RandomNumber = Math.floor(Math.random() * 100)+1;
     if (RandomNumber >= 100 - RandomValue5xUpgrades) {
       multiplier = 5;
     } else {

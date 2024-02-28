@@ -23,6 +23,8 @@ try{
     console.error(error);
     clicks = 0;
     CountryClubs = 0;
+    RiceWashers = 0;
+    RandomValue5xUpgrades = 0;
 }
 
 function updateVisuals() {
