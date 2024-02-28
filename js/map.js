@@ -1,5 +1,5 @@
 const map = [1,2];
-const currentRoom = 1;
+var currentRoom = 1;
 
 function setDisplay(object, value) {
     var finalVal
