@@ -7,8 +7,14 @@
     <title>Dilyan Lopez Incremental</title>
     <script src="js/initialize.js"></script>
     <script src="js/map.js"></script>
+    <script>
+        function bodyLoad() {
+            updateVisuals();
+            disables(currentRoom);
+        }
+    </script>
 </head>
-<body>
+<body onload="bodyLoad()">
     <div style="position: absolute; left: 5px; top: 5px;">
         <h1>SAY SOMETHINGS WRONG NOW</h1>
         <p id="charts">This is a <b>Test</b>.</p>
@@ -28,8 +34,6 @@
         <button id="dMap" onclick="move('dMap', currentRoom)">▼</button>
         <button id="spaceButton" onclick="tmp.space = !tmp.space">Go to Space</button>
     </div>
-    <body onload="updateVisuals()">
-    <body onload="disables(currentRoom)">
     <script src="js/saveData.js"></script>
     <script src="js/test.js"></script>
 </body>
