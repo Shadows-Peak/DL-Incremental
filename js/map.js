@@ -5,6 +5,7 @@ function updateVisuals() {
     try {
         document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> clicks";
         document.getElementById('CountryClubButton').innerHTML = "Buy Country Club ("+CountryClubs+"): Cost: <b>"+CountryClubCost+"</b>";
+        document.getElementById('RiceWasherButton').innerHTML = "Buy Rice Washer ("+RiceWashers+"): Cost: <b>"+RiceWasherCost+"</b>";
     } catch(error) {
         console.error(error);
     }
