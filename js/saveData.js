@@ -19,7 +19,7 @@ function updateVisuals() {
 function saveData() {
     var basicIter = 0;
     for (const key of Object.keys(data)) {
-        data[key] = [clicks,CountryClubs][basicIter];
+        data[key] = [clicks,CountryClubs,RandomValue5xUpgradesCost,RandomValue5xUpgrades][basicIter];
         basicIter++;
     }
     for (const [key, value] of Object.entries(data)) {
@@ -40,6 +40,7 @@ function resetData() {
     }
     CountryClubCost = Math.ceil(Math.floor(2.5 ** CountryClubs) * Math.log(5 * ((CountryClubs + 1) ** 2)) * (CountryClubs + 1));
     RiceWasherCost = RiceWasherCost = Math.ceil(1500*Math.floor(1.5 ** RiceWashers) * Math.log(6 * ((RiceWashers + 1) ** 2.3)) * (RiceWashers + 1));
+    RandomValue5xUpgradesCost = [5000,15000,50000,150000,30000000][RandomValue5xUpgrades];
     updateVisuals();
 }
 
