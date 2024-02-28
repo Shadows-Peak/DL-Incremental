@@ -27,15 +27,14 @@ function move(direction, FcurrentRoom) {
     };
     if (FcurrentRoom == 1) {
         if (direction == "rMap") {
-            FcurrentRoom = 2;
+            currentRoom = 2;
         }
     } else if (FcurrentRoom == 2) {
         if (direction == "lMap") {
-            FcurrentRoom = 1;
+            currentRoom = 1;
         }
     }
-    currentRoom = FcurrentRoom;
-    disables(FcurrentRoom);
+    disables(currentRoom);
 }
 
 function disables(FcurrentRoom) {
