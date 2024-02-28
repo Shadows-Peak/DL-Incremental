@@ -25,13 +25,14 @@ function saveData() {
 
 function resetData() {
     data = {
-        "mainClicks": 0,
+        "clicks": 0,
         "CountryClubs": 0
     }
     for (const [key, value] of Object.entries(data)) {
         eval(key + " = " + value);
         localStorage.setItem(key, value);
     }
+    CountryClubCost = Math.ceil(Math.floor(2.5 ** CountryClubs) * Math.log(5 * ((CountryClubs + 1) ** 2)) * (CountryClubs + 1));
     updateVisuals();
 }
 
