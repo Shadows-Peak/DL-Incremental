@@ -3,7 +3,7 @@ function cannotAfford(object) {
     document.getElementById(object).innerHTML = "You cannot afford this!";
     setTimeout(function() {
       document.getElementById(object).innerHTML = cur;
-    }, (3 * 1000));
+    }, (1 * 1000));
 }
 
 function updateVisuals() {

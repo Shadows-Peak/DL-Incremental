@@ -1,6 +1,15 @@
 const map = [1,2];
 var currentRoom = 1;
 
+function updateVisuals() {
+    try {
+        document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> clicks";
+        document.getElementById('CountryClubButton').innerHTML = "Buy Country Club ("+CountryClubs+"): Cost: <b>"+CountryClubCost+"</b>";
+    } catch(error) {
+        console.error(error);
+    }
+}
+
 function setDisplay(object, value) {
     var finalVal
     if (value == 0) {
@@ -34,6 +43,7 @@ function move(direction, FcurrentRoom) {
             currentRoom = 1;
         }
     }
+    updateVisuals();
     disables(currentRoom);
 }
 
