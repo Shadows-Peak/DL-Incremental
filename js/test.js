@@ -3,6 +3,7 @@ function updateVisuals() {
       document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> clicks";
       document.getElementById('CountryClubButton').innerHTML = "Buy Country Club ("+CountryClubs+"): Cost: <b>"+CountryClubCost+"</b>";
       document.getElementById('RiceWasherButton').innerHTML = "Buy Rice Washer ("+RiceWashers+"): Cost: <b>"+RiceWasherCost+"</b>";
+      document.getElementById('5xRandomValueUpgradeButton').innerHTML = "Buy 5x Random Value Upgrade ("+RandomValue5xUpgrades+"): Cost: <b>"+RandomValue5xUpgradesCost+"</b>";
   } catch(error) {
       console.error(error);
   }
@@ -20,7 +21,14 @@ window.addEventListener('keydown', e=>{
 });
 
 document.getElementById('button1').onclick = function() {
-    clicks += (1 + CountryClubs)*(1 + RiceWashers);
+    var multiplier;
+    var RandomNumber = Math.floor(Math.random() * 10)+1;
+    if (RandomNumber >= 100 - RandomValue5xUpgrades) {
+      multiplier = 5;
+    } else {
+      multiplier = 1;
+    }
+    clicks += multiplier*(1 + CountryClubs)*(1 + RiceWashers);
     document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> clicks";
  };
 
