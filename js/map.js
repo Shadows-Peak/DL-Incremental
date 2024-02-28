@@ -40,8 +40,12 @@ function move(direction, FcurrentRoom) {
 
 function disables(FcurrentRoom) {
     var disablesList = [0,0,0,0]
+    var extraDisables;
     if (FcurrentRoom == 1) {
         disablesList = [0,1,0,0]
+        extraDisables = {
+            "room1Stuff": 0
+        }
     } else if (FcurrentRoom == 2) {
         disablesList = [1,0,0,0]
     }
@@ -53,5 +57,12 @@ function disables(FcurrentRoom) {
     };
     for (const [key, value] of Object.entries(DisableDict)) {
         setDisplay(key, value);
+    }
+    try {
+        for (const [key, value] of Object.entries(extraDisables)) {
+            setDisplay(key, value);
+        }
+    } catch(error) {
+        console.log("No extra disables. Does room not have content?");
     }
 }
