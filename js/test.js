@@ -14,7 +14,7 @@ window.addEventListener('keydown', e=>{
 });
 
 document.getElementById('button1').onclick = function() {
-    clicks++;
+    clicks += 1 + CountryClubs;
     document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> clicks";
     if (document.getElementById('counter').style.display == "none") {
       document.getElementById('counter').style.display = "initial";
