@@ -21,14 +21,14 @@ window.addEventListener('keydown', e=>{
 });
 
 document.getElementById('button1').onclick = function() {
-    var multiplier;
+    var multiplier = 1;
     var RandomNumber = Math.floor(Math.random() * 10)+1;
     if (RandomNumber >= 100 - RandomValue5xUpgrades) {
       multiplier = 5;
     } else {
       multiplier = 1;
     }
-    clicks += multiplier*(1 + CountryClubs)*(1 + RiceWashers);
+    clicks += (multiplier)*(1 + CountryClubs)*(1 + RiceWashers);
     document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> clicks";
  };
 
