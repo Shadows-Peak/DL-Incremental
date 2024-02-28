@@ -1,4 +1,10 @@
 var clicks = 0;
+
+var CountryClubs = 0;
+var CountryClubCost = Math.ceil(Math.floor(2.5 ** CountryClubs) * Math.log(5 * ((CountryClubs + 1) ** 2)) * (CountryClubs + 1));
+
+
+
 try{
     clicks = Number(localStorage.getItem('mainClicks'));
 } catch(error) {
