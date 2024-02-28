@@ -1,7 +1,7 @@
 const map = [1,2];
 const currentRoom = 1;
 
-disables(currentRoom);
+window.onload = disables(currentRoom);
 
 function setDisplay(object, value) {
     var finalVal
