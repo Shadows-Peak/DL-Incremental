@@ -53,7 +53,6 @@ function disables(FcurrentRoom) {
             "room1Stuff": 0,
             "room2Stuff": 1
         }
-        document.getElementById("testR2").innerHTML = "You are in room "+toString(FcurrentRoom)+"/"+toString(currentRoom);
     }
     var DisableDict = {
         "lMap": disablesList[0],
