@@ -1,5 +1,10 @@
 function updateVisuals() {
-  document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> clicks";
+  try {
+      document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> clicks";
+      document.getElementById('CountryClubButton').innerHTML = "Buy Country Club ("+CountryClubs+"): Cost: <b>"+CountryClubCost+"</b>";
+  } catch(error) {
+      console.error(error);
+  }
 }
 
 function changeText(text){
