@@ -5,7 +5,7 @@ var RizzPointgain = Math.floor(Math.log(clicks/500000)/Math.log(1.05));
 
 function gameLoop() {
   // Rizz Point Gain
-  RizzPointgain = Math.floor(Math.log(clicks/500000)/Math.log(1.05));
+  RizzPointgain = Math.floor(Math.log(1+(clicks/500000))/Math.log(1.05));
 
   // Automatic Rizzer
   var multiplier = 1;
@@ -15,6 +15,6 @@ function gameLoop() {
   } else {
     multiplier = 1;
   }
-  clicks += (multiplier) * (AutomaticRizzers) * (1 + RiceWashers);
+  clicks += (multiplier) * (1+Rizzmaxxes) * (AutomaticRizzers) * (1 + RiceWashers);
   updateVisuals();
 }
