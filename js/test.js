@@ -45,3 +45,14 @@ function simulateClick() {
 document.getElementById('button1').onclick = function() {
     simulateClick();
 };
+
+document.getElementById('RizzmaxButton').onclick = function() {
+  RizzPointgain = Math.floor(Math.log(clicks/500000)/Math.log(1.05));
+  clicks = 0;
+  CountryClubs = 0;
+  RiceWashers = 0;
+  RandomValue5xUpgrades = 0;
+  AutomaticRizzers = 0;
+  RizzPoints += RizzPointgain;
+  updateVisuals();
+};

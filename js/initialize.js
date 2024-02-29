@@ -2,6 +2,9 @@ var backgroundToggle = 1;
 
 var clicks = 0;
 
+var Rizzmaxxes = 0;
+var RizzPoints = 0;
+
 var RandomValue5xUpgrades = 0;
 var RandomValue5xUpgradesCost = [5000,15000,50000,150000,30000000][RandomValue5xUpgrades];
 
@@ -68,6 +71,7 @@ function updateVisuals() {
         document.getElementById('2xRandomAutoUpgradeButton').innerHTML = "2x Random Auto Upgrade ("+RandomAuto2xUpgrades+"): Cost: <b>"+RandomAuto2xUpgradesCost+"</b>";
         document.getElementById('AutomaticRizzerButton').innerHTML = "Automatic Rizzer ("+AutomaticRizzers+"): Cost: <b>"+AutomaticRizzerCost+"</b>";
         document.getElementById('BackgroundToggleButton').innerHTML = "Toggle Backgrounds: "+["Off","On"][backgroundToggle];
+        document.getElementById('RizzmaxButton').innerHTML = "Rizzmax: <b>+"+RizzPointgain+" Points</b>";
     } catch(error) {
         console.error(error);
     }

@@ -5,6 +5,8 @@ data = {
     "RandomValue5xUpgrades": 0,
     "AutomaticRizzers": 0,
     "RandomAuto2xUpgrades": 0,
+    "Rizzmaxxes": 0,
+    "RizzPoints": 0,
     "backgroundToggle": 1,
 }
 
@@ -26,7 +28,7 @@ function updateVisuals() {
 function saveData() {
     var basicIter = 0;
     for (const key of Object.keys(data)) {
-        data[key] = [clicks,CountryClubs,RiceWashers,RandomValue5xUpgrades,AutomaticRizzers,RandomAuto2xUpgrades,backgroundToggle][basicIter];
+        data[key] = [clicks,CountryClubs,RiceWashers,RandomValue5xUpgrades,AutomaticRizzers,RandomAuto2xUpgrades,Rizzmaxxes,RizzPoints,backgroundToggle][basicIter];
         basicIter++;
     }
     for (const [key, value] of Object.entries(data)) {
@@ -41,6 +43,8 @@ function resetData() {
         "RiceWashers": 0,
         "RandomValue5xUpgrades": 0,
         "AutomaticRizzers": 0,
+        "Rizzmaxxes": 0,
+        "RizzPoints": 0,
         "RandomAuto2xUpgrades": 0
     }
     for (const [key, value] of Object.entries(data)) {
