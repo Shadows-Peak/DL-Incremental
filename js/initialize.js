@@ -1,3 +1,5 @@
+var backgroundToggle = 1;
+
 var clicks = 0;
 
 var RandomValue5xUpgrades = 0;
@@ -10,6 +12,14 @@ var RiceWashers = 0;
 var RiceWasherCost = Math.ceil(1500*Math.floor(1.5 ** RiceWashers) * Math.log(6 * ((RiceWashers + 1) ** 2.3)) * (RiceWashers + 1));
 
 
+
+try{
+    backgroundToggle = Number(localStorage.getItem('backgroundToggle'));
+    updateBackgrounds();
+} catch(error) {
+    console.error("Background was not found in local storage?: "+error);
+    backgroundToggle = 1;
+}
 
 try{
     clicks = Number(localStorage.getItem('mainClicks'));
@@ -25,6 +35,16 @@ try{
     CountryClubs = 0;
     RiceWashers = 0;
     RandomValue5xUpgrades = 0;
+}
+
+function updateBackgrounds() {
+    if (backgroundToggle == 1) {
+        document.body.style.backgroundImage = "url('images/dilyanLopez.jpg')";
+        document.body.style.backgroundSize = "cover";
+    } else {
+        document.body.style.backgroundImage = "none";
+        document.body.style.backgroundSize = "cover";
+    }
 }
 
 function updateVisuals() {
