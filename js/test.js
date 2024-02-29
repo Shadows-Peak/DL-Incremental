@@ -21,7 +21,7 @@ window.addEventListener('keydown', e=>{
 });
 
 window.addEventListener('keyup', e=>{
-  if ((e.code ="Space") && (currentRoom ==1)) {
+  if ((e.key =" ") && (currentRoom ==1)) {
     simulateClick();
   }
 });
