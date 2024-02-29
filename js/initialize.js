@@ -16,6 +16,7 @@ var RiceWasherCost = Math.ceil(1500*Math.floor(1.5 ** RiceWashers) * Math.log(6 
 function initialBackgroundDraw() {
     try{
         backgroundToggle = Number(localStorage.getItem('backgroundToggle'));
+        console.log(backgroundToggle)
         updateBackgrounds();
     } catch(error) {
         console.error("Background was not found in local storage?: "+error);
