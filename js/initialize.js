@@ -35,9 +35,15 @@ function updateBackgrounds() {
     if (backgroundToggle == 1) {
         document.body.style.backgroundImage = "url('images/dilyanLopez.jpg')";
         document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundRepeat = "no-repeat";
+        document.body.style.backgroundPositionX = "center";
+        document.body.style.backgroundPositionY = "center";
     } else {
         document.body.style.backgroundImage = "none";
         document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundRepeat = "no-repeat";
+        document.body.style.backgroundPositionX = "center";
+        document.body.style.backgroundPositionY = "center";
     }
 }
 
