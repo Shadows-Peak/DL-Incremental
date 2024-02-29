@@ -13,18 +13,8 @@ var RiceWasherCost = Math.ceil(1500*Math.floor(1.5 ** RiceWashers) * Math.log(6 
 
 
 
-function initialBackgroundDraw() {
-    try{
-        backgroundToggle = Number(localStorage.getItem('backgroundToggle'));
-        console.log(backgroundToggle)
-        updateBackgrounds();
-    } catch(error) {
-        console.error("Background was not found in local storage?: "+error);
-        backgroundToggle = 1;
-    }
-}
-
 try{
+    backgroundToggle = Number(localStorage.getItem('backgroundToggle'));
     clicks = Number(localStorage.getItem('mainClicks'));
     CountryClubs = Number(localStorage.getItem('CountryClubs'));
     CountryClubCost = Math.ceil(Math.floor(2.5 ** CountryClubs) * Math.log(5 * ((CountryClubs + 1) ** 2)) * (CountryClubs + 1));
@@ -38,6 +28,7 @@ try{
     CountryClubs = 0;
     RiceWashers = 0;
     RandomValue5xUpgrades = 0;
+    backgroundToggle = 1;
 }
 
 function updateBackgrounds() {
