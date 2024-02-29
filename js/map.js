@@ -48,6 +48,8 @@ function move(direction, FcurrentRoom) {
         } else {
             currentRoom = currentRoom + movement[direction];
         }
+    } else {
+        currentRoom = currentRoom + movement[direction];
     }
     console.log("Current Room: "+currentRoom)
     console.log("Direction: "+direction)
