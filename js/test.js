@@ -40,6 +40,7 @@ function simulateClick() {
   }
   clicks += (multiplier)*(1 + CountryClubs)*(1 + RiceWashers);
   document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> clicks";
+  updateVisuals();
 }
 
 document.getElementById('button1').onclick = function() {
