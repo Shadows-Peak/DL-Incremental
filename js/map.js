@@ -1,4 +1,4 @@
-const map = [0,1,2];
+const map = [0,1,2,3];
 var currentRoom = 1;
 
 /*
@@ -46,7 +46,7 @@ function move(direction, FcurrentRoom) {
         } else {
             currentRoom = currentRoom + movement[direction];
         }
-    } else if (FcurrentRoom == 2) {
+    } else if (FcurrentRoom == 3) {
         if (direction == "rMap") {
             return
         } else {
@@ -67,21 +67,32 @@ function disables(FcurrentRoom) {
         extraDisables = {
             "room0Stuff": 1,
             "room1Stuff": 0,
-            "room2Stuff": 0
+            "room2Stuff": 0,
+            "room3Stuff": 0
         }
     } else if (FcurrentRoom == 1) {
         disablesList = [1,1,0,0]
         extraDisables = {
             "room0Stuff": 0,
             "room1Stuff": 1,
-            "room2Stuff": 0
+            "room2Stuff": 0,
+            "room3Stuff": 0
         }
     } else if (FcurrentRoom == 2) {
+        disablesList = [1,1,0,0]
+        extraDisables = {
+            "room0Stuff": 0,
+            "room1Stuff": 0,
+            "room2Stuff": 1,
+            "room3Stuff": 0
+        }
+    } else if (FcurrentRoom == 3) {
         disablesList = [1,0,0,0]
         extraDisables = {
             "room0Stuff": 0,
             "room1Stuff": 0,
-            "room2Stuff": 1
+            "room2Stuff": 0,
+            "room3Stuff": 1
         }
     }
     var DisableDict = {
