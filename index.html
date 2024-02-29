@@ -12,8 +12,8 @@
         function bodyLoad() {
             updateBackgrounds();
             updateVisuals();
-            startLoop();
             disables(currentRoom);
+            setInterval(gameLoop, 1000 / gameTick);
         }
     </script>
 </head>

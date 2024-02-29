@@ -45,7 +45,7 @@ document.getElementById('AutomaticRizzerButton').onclick = function() {
     if (clicks >= AutomaticRizzerCost) {
         clicks -= AutomaticRizzerCost;
         AutomaticRizzers++;
-        AutomaticRizzerCost = Math.ceil(50000*Math.floor(1.5 ** AutomaticRizzers) * Math.log(6 * ((AutomaticRizzers + 1) ** 2.3)) * (AutomaticRizzers + 1));
+        AutomaticRizzerCost = 2500 + 500*(AutomaticRizzers) + Math.ceil(50*(Math.log(7*(AutomaticRizzers)+1)**1.4));
         updateVisuals();
     }
 }
