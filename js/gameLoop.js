@@ -15,6 +15,6 @@ function gameLoop() {
   } else {
     multiplier = 1;
   }
-  clicks += (multiplier) * (1+Rizzmaxxes) * (AutomaticRizzers) * (1 + RiceWashers);
+  clicks += (multiplier) * (AutomaticRizzers) * (1 + RiceWashers);
   updateVisuals();
 }

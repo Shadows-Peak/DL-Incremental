@@ -38,7 +38,7 @@ function simulateClick() {
   } else {
     multiplier = 1;
   }
-  clicks += (multiplier)*(1+Rizzmaxxes)*(1 + CountryClubs)*(1 + RiceWashers);
+  clicks += (multiplier)*(1 + CountryClubs)*(1 + RiceWashers);
   document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> clicks";
 }
 
