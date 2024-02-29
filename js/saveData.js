@@ -2,7 +2,8 @@ data = {
     "mainClicks": 0,
     "CountryClubs": 0,
     "RiceWashers": 0,
-    "RandomValue5xUpgrades": 0
+    "RandomValue5xUpgrades": 0,
+    "backgroundToggle": 1
 }
 
 function updateVisuals() {
@@ -19,7 +20,7 @@ function updateVisuals() {
 function saveData() {
     var basicIter = 0;
     for (const key of Object.keys(data)) {
-        data[key] = [clicks,CountryClubs,RiceWashers,RandomValue5xUpgrades][basicIter];
+        data[key] = [clicks,CountryClubs,RiceWashers,RandomValue5xUpgrades,backgroundToggle][basicIter];
         basicIter++;
     }
     for (const [key, value] of Object.entries(data)) {
@@ -66,7 +67,7 @@ function periodicSave() {
 
 window.onbeforeunload = function () {
     saveData();
-    alert("Your game has been saved.")
+    alert("Your game has been saved.");
 }
 
 setInterval(periodicSave, 120 * 1000);
