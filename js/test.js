@@ -42,8 +42,3 @@ function simulateClick() {
 document.getElementById('button1').onclick = function() {
     simulateClick();
 };
-
-document.getElementById('button2').onclick = function() {
-  clicks = -1000000000000000000000;
-  document.getElementById('button2').innerHTML = "You are beautiful and we should date even if you're a man";
-};
