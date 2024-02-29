@@ -1,3 +1,4 @@
+/*
 function updateVisuals() {
   try {
       document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> clicks";
@@ -10,6 +11,7 @@ function updateVisuals() {
       console.error(error);
   }
 }
+*/
 
 function changeText(text){
     document.getElementById("charts").innerHTML = text;

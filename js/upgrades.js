@@ -1,3 +1,4 @@
+/*
 function updateVisuals() {
     try {
         document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> clicks";
@@ -10,6 +11,7 @@ function updateVisuals() {
         console.error(error);
     }
 }
+*/
 
 // Country Clubs
 document.getElementById('CountryClubButton').onclick = function() {
@@ -47,5 +49,16 @@ document.getElementById('AutomaticRizzerButton').onclick = function() {
         AutomaticRizzers++;
         AutomaticRizzerCost = 2500 + 500*(AutomaticRizzers) + Math.ceil(50*(Math.log(7*(AutomaticRizzers)+1)**1.4));
         updateVisuals();
+    }
+}
+// Random x2 Auto Value
+document.getElementById('2xRandomAutoUpgradeButton').onclick = function() {
+    if (RandomAuto2xUpgrades < 5) {
+        if (clicks >= RandomAuto2xUpgradesCost) {
+            clicks -= RandomAuto2xUpgradesCost;
+            RandomAuto2xUpgrades++;
+            RandomAuto2xUpgradesCost = [25000,50000,150000,750000,15000000][RandomAuto2xUpgrades];
+            updateVisuals();
+        }
     }
 }

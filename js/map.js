@@ -1,6 +1,7 @@
 const map = [0,1,2];
 var currentRoom = 1;
 
+/*
 function updateVisuals() {
     try {
         document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> clicks";
@@ -13,6 +14,7 @@ function updateVisuals() {
         console.error(error);
     }
 }
+*/
 
 function setDisplay(object, value) {
     var finalVal
