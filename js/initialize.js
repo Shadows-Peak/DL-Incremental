@@ -22,8 +22,8 @@ function grabCost(Item) {
         "RandomValue5xUpgrades": [5000,15000,50000,150000,30000000][RandomValue5xUpgrades],
         "RandomAuto2xUpgrades": [25000,50000,150000,750000,15000000][RandomAuto2xUpgrades],
         "AutomaticRizzers": 2500 + 500*(AutomaticRizzers) + Math.ceil(50*(Math.log(7*(AutomaticRizzers)+1)**1.4)),
-        "CountryClubs": Math.ceil(Math.floor(2 ** CountryClubs) * Math.log(5 * ((CountryClubs + 1) ** 1.5)) * (CountryClubs + 1)),
-        "RiceWashers": Math.ceil(1500*Math.floor(1.35 ** RiceWashers) * Math.log(6 * ((RiceWashers + 1) ** 1.9)) * (RiceWashers + 1))
+        "CountryClubs": Math.ceil(Math.floor(1.75 ** CountryClubs) * Math.log(5 * ((CountryClubs + 1) ** 1.5)) * (CountryClubs + 1)),
+        "RiceWashers": Math.ceil(500*Math.floor(2 ** RiceWashers) * Math.log(7 * ((RiceWashers + 1) ** 1.5)) * (RiceWashers + 1))
     }
     return(allCosts[Item]);
 }
