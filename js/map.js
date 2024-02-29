@@ -49,6 +49,8 @@ function move(direction, FcurrentRoom) {
             currentRoom = currentRoom + movement[direction];
         }
     }
+    console.log("Current Room: "+currentRoom)
+    console.log("Direction: "+direction)
     updateVisuals();
     disables(currentRoom);
 }
