@@ -51,11 +51,6 @@ function resetData() {
         eval(key + " = " + value);
         localStorage.setItem(key, value);
     }
-    CountryClubCost = Math.ceil(Math.floor(2.5 ** CountryClubs) * Math.log(5 * ((CountryClubs + 1) ** 2)) * (CountryClubs + 1));
-    RiceWasherCost = RiceWasherCost = Math.ceil(1500*Math.floor(1.5 ** RiceWashers) * Math.log(6 * ((RiceWashers + 1) ** 2.3)) * (RiceWashers + 1));
-    RandomValue5xUpgradesCost = [5000,15000,50000,150000,30000000][RandomValue5xUpgrades];
-    RandomAuto2xUpgradesCost = [25000,50000,150000,750000,15000000][RandomAuto2xUpgrades];
-    AutomaticRizzerCost = 2500 + 500*(AutomaticRizzers) + Math.ceil(50*(Math.log(7*(AutomaticRizzers)+1)**1.4));
     updateVisuals();
 }
 

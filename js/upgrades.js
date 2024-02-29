@@ -15,49 +15,44 @@ function updateVisuals() {
 
 // Country Clubs
 document.getElementById('CountryClubButton').onclick = function() {
-    if (clicks >= CountryClubCost) {
-        clicks -= CountryClubCost;
+    if (clicks >= grabCost('CountryClubs')) {
+        clicks -= grabCost('CountryClubs');
         CountryClubs++;
-        CountryClubCost = Math.ceil(Math.floor(2.5 ** CountryClubs) * Math.log(5 * ((CountryClubs + 1) ** 2)) * (CountryClubs + 1));
         updateVisuals();
     }
 };
 // Rice Washers
 document.getElementById('RiceWasherButton').onclick = function() {
-    if (clicks >= RiceWasherCost) {
-        clicks -= RiceWasherCost;
+    if (clicks >= grabCost('RiceWashers')) {
+        clicks -= grabCost('RiceWashers');
         RiceWashers++;
-        RiceWasherCost = RiceWasherCost = Math.ceil(1500*Math.floor(1.5 ** RiceWashers) * Math.log(6 * ((RiceWashers + 1) ** 2.3)) * (RiceWashers + 1));
         updateVisuals();
     }
 }
 // Random x5 Value Upgrade
 document.getElementById('5xRandomValueUpgradeButton').onclick = function() {
     if (RandomValue5xUpgrades < 5) {
-        if (clicks >= RandomValue5xUpgradesCost) {
-            clicks -= RandomValue5xUpgradesCost;
+        if (clicks >= grabCost('RandomValue5xUpgrades')) {
+            clicks -= grabCost('RandomValue5xUpgrades');
             RandomValue5xUpgrades++;
-            RandomValue5xUpgradesCost = [5000,15000,50000,150000,30000000][RandomValue5xUpgrades]
             updateVisuals();
         }
     }
 }
 // Automatic Rizzers
 document.getElementById('AutomaticRizzerButton').onclick = function() {
-    if (clicks >= AutomaticRizzerCost) {
-        clicks -= AutomaticRizzerCost;
+    if (clicks >= grabCost('AutomaticRizzers')) {
+        clicks -= grabCost('AutomaticRizzers');
         AutomaticRizzers++;
-        AutomaticRizzerCost = 2500 + 500*(AutomaticRizzers) + Math.ceil(50*(Math.log(7*(AutomaticRizzers)+1)**1.4));
         updateVisuals();
     }
 }
 // Random x2 Auto Value
 document.getElementById('2xRandomAutoUpgradeButton').onclick = function() {
     if (RandomAuto2xUpgrades < 5) {
-        if (clicks >= RandomAuto2xUpgradesCost) {
-            clicks -= RandomAuto2xUpgradesCost;
+        if (clicks >= grabCost('RandomAuto2xUpgrades')) {
+            clicks -= grabCost('RandomAuto2xUpgrades');
             RandomAuto2xUpgrades++;
-            RandomAuto2xUpgradesCost = [25000,50000,150000,750000,15000000][RandomAuto2xUpgrades];
             updateVisuals();
         }
     }
