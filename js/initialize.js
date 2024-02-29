@@ -18,17 +18,14 @@ var RiceWashers = 0;
 
 
 function grabCost(Item) {
-    if (Item == "RandomValue5xUpgrades") {
-        return([5000,15000,50000,150000,30000000][RandomValue5xUpgrades]);
-    } else if (Item == "RandomAuto2xUpgrades") {
-        return([25000,50000,150000,750000,15000000][RandomAuto2xUpgrades]);
-    } else if (Item == "AutomaticRizzers") {
-        return(2500 + 500*(AutomaticRizzers) + Math.ceil(50*(Math.log(7*(AutomaticRizzers)+1)**1.4)));
-    } else if (Item == "CountryClubs") {
-        return(Math.ceil(Math.floor(2.5 ** CountryClubs) * Math.log(5 * ((CountryClubs + 1) ** 2)) * (CountryClubs + 1)));
-    } else if (Item == "RiceWashers") {
-        return(Math.ceil(1500*Math.floor(1.5 ** RiceWashers) * Math.log(6 * ((RiceWashers + 1) ** 2.3)) * (RiceWashers + 1)));
+    var allCosts = {
+        "RandomValue5xUpgrades": [5000,15000,50000,150000,30000000][RandomValue5xUpgrades],
+        "RandomAuto2xUpgrades": [25000,50000,150000,750000,15000000][RandomAuto2xUpgrades],
+        "AutomaticRizzers": 2500 + 500*(AutomaticRizzers) + Math.ceil(50*(Math.log(7*(AutomaticRizzers)+1)**1.4)),
+        "CountryClubs": Math.ceil(Math.floor(2 ** CountryClubs) * Math.log(5 * ((CountryClubs + 1) ** 1.5)) * (CountryClubs + 1)),
+        "RiceWashers": Math.ceil(1500*Math.floor(1.35 ** RiceWashers) * Math.log(6 * ((RiceWashers + 1) ** 1.9)) * (RiceWashers + 1))
     }
+    return(allCosts[Item]);
 }
 
 try{
