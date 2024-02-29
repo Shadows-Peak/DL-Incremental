@@ -46,6 +46,16 @@ try{
     backgroundToggle = 1;
 }
 
+function setDisplay(object, value) {
+    var finalVal
+    if (value == 0) {
+        finalVal = "none";
+    } else {
+        finalVal = "initial";
+    }
+    document.getElementById(object).style.display = finalVal;
+}
+
 function updateBackgrounds() {
     if (backgroundToggle == 1) {
         document.body.style.backgroundImage = "url('images/dilyanLopez.jpg')";
@@ -64,6 +74,13 @@ function updateBackgrounds() {
 
 function updateVisuals() {
     try {
+        if (Rizzmaxxes > 0) {
+            document.getElementById('currencyCounter').innerHTML = "<b>"+clicks+"</b> Dilyan Points <b>"+RizzPoints+"</b> Rizz Points";
+            setDisplay('2xRandomAutoUpgradeButton', 1);
+        } else {
+            document.getElementById('currencyCounter').innerHTML = "<b>"+clicks+"</b> Dilyan Points";
+            setDisplay('2xRandomAutoUpgradeButton', 0);
+        }
         document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> clicks";
         document.getElementById('CountryClubButton').innerHTML = "Buy Country Club ("+CountryClubs+"): Cost: <b>"+CountryClubCost+"</b>";
         document.getElementById('RiceWasherButton').innerHTML = "Buy Rice Washer ("+RiceWashers+"): Cost: <b>"+RiceWasherCost+"</b>";

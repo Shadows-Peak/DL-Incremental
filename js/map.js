@@ -16,16 +16,6 @@ function updateVisuals() {
 }
 */
 
-function setDisplay(object, value) {
-    var finalVal
-    if (value == 0) {
-        finalVal = "none";
-    } else {
-        finalVal = "initial";
-    }
-    document.getElementById(object).style.display = finalVal;
-}
-
 window.addEventListener('keydown', e=>{
     if (e.key == "w" || e.key == "W" || e.key == "ArrowUp") move("uMap", currentRoom)
     if (e.key == "a" || e.key == "A" || e.key == "ArrowLeft") move("lMap", currentRoom)

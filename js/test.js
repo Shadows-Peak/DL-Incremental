@@ -47,12 +47,14 @@ document.getElementById('button1').onclick = function() {
 };
 
 document.getElementById('RizzmaxButton').onclick = function() {
-  RizzPointgain = Math.floor(Math.log(clicks/500000)/Math.log(1.05));
-  clicks = 0;
-  CountryClubs = 0;
-  RiceWashers = 0;
-  RandomValue5xUpgrades = 0;
-  AutomaticRizzers = 0;
-  RizzPoints += RizzPointgain;
-  updateVisuals();
+  RizzPointgain = Math.floor(Math.log(1+Math.floor(clicks/500000))/Math.log(1.05));
+  if (clicks >= 500000) {
+    clicks = 0;
+    CountryClubs = 0;
+    RiceWashers = 0;
+    RandomValue5xUpgrades = 0;
+    AutomaticRizzers = 0;
+    RizzPoints += RizzPointgain;
+    updateVisuals();
+  }
 };
