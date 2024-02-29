@@ -7,10 +7,12 @@
     <title>Dilyan Lopez Incremental</title>
     <script src="js/initialize.js"></script>
     <script src="js/map.js"></script>
+    <script src="js/idle.js"></script>
     <script>
         function bodyLoad() {
             updateBackgrounds();
             updateVisuals();
+            startLoop();
             disables(currentRoom);
         }
     </script>
@@ -30,7 +32,8 @@
         <button id="button1" type="button">Main Button Click</button>
         <h><br />no se</h>
         <button id="5xRandomValueUpgradeButton" type="button">Random x5 Value Upgrade (0): Cost: 0</button>
-        <p>WE LOVE YOU!!!</p>
+        <p><br></p>
+        <button id="AutomaticRizzerButton" type="button">Automatic Rizzer (0): Cost: 0</button>
     </div>
     <div id="room2Stuff" style="position: absolute; left: 5px; top: 5px;">
         <h1 id="testR2">Room 2 Test</h1>

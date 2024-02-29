@@ -4,6 +4,7 @@ function updateVisuals() {
         document.getElementById('CountryClubButton').innerHTML = "Buy Country Club ("+CountryClubs+"): Cost: <b>"+CountryClubCost+"</b>";
         document.getElementById('RiceWasherButton').innerHTML = "Buy Rice Washer ("+RiceWashers+"): Cost: <b>"+RiceWasherCost+"</b>";
         document.getElementById('5xRandomValueUpgradeButton').innerHTML = "Buy 5x Random Value Upgrade ("+RandomValue5xUpgrades+"): Cost: <b>"+RandomValue5xUpgradesCost+"</b>";
+        document.getElementById('AutomaticRizzerButton').innerHTML = "Buy Automatic Rizzer ("+AutomaticRizzers+"): Cost: <b>"+AutomaticRizzerCost+"</b>";
         document.getElementById('BackgroundToggleButton').innerHTML = "Toggle Backgrounds: "+["Off","On"][backgroundToggle];
     } catch(error) {
         console.error(error);
@@ -37,5 +38,14 @@ document.getElementById('5xRandomValueUpgradeButton').onclick = function() {
             RandomValue5xUpgradesCost = [5000,15000,50000,150000,30000000][RandomValue5xUpgrades]
             updateVisuals();
         }
+    }
+}
+// Automatic Rizzers
+document.getElementById('AutomaticRizzerButton').onclick = function() {
+    if (clicks >= AutomaticRizzerCost) {
+        clicks -= AutomaticRizzerCost;
+        AutomaticRizzers++;
+        AutomaticRizzerCost = Math.ceil(50000*Math.floor(1.5 ** AutomaticRizzers) * Math.log(6 * ((AutomaticRizzers + 1) ** 2.3)) * (AutomaticRizzers + 1));
+        updateVisuals();
     }
 }
