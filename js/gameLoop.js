@@ -1,11 +1,11 @@
 var gameTick = 1;
 
 // Game Variables that need constant updating
-var RizzPointgain = Math.floor(Math.log(1+(clicks/25000))/Math.log(1.05));
+var RizzPointgain = Math.floor(Math.log(1+Math.floor(clicks/25000))/Math.log(1.05));
 
 function gameLoop() {
   // Rizz Point Gain
-  RizzPointgain = Math.floor(Math.log(1+(clicks/25000))/Math.log(1.05));
+  RizzPointgain = Math.floor(Math.log(1+Math.floor(clicks/25000))/Math.log(1.05));
 
   // Automatic Rizzer
   var multiplier = 1;
