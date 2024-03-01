@@ -7,7 +7,11 @@ data = {
     "RandomAuto2xUpgrades": 0,
     "Rizzmaxxes": 0,
     "RizzPoints": 0,
+    "OfflineProdHrs": 0,
+    "RizzmaxClickWorth": 0,
+    "LooksmaxxingChallengesUpgradeUnlocked": 0,
     "backgroundToggle": 1,
+    "lastOfflineTime": 0
 }
 
 /*
@@ -28,7 +32,7 @@ function updateVisuals() {
 function saveData() {
     var basicIter = 0;
     for (const key of Object.keys(data)) {
-        data[key] = [clicks,CountryClubs,RiceWashers,RandomValue5xUpgrades,AutomaticRizzers,RandomAuto2xUpgrades,Rizzmaxxes,RizzPoints,backgroundToggle][basicIter];
+        data[key] = [clicks,CountryClubs,RiceWashers,RandomValue5xUpgrades,AutomaticRizzers,RandomAuto2xUpgrades,Rizzmaxxes,RizzPoints,OfflineProdHrs,RizzmaxClickWorth,LooksmaxxingChallengesUpgradeUnlocked,backgroundToggle,lastOfflineTime][basicIter];
         basicIter++;
     }
     for (const [key, value] of Object.entries(data)) {
@@ -45,7 +49,11 @@ function resetData() {
         "AutomaticRizzers": 0,
         "Rizzmaxxes": 0,
         "RizzPoints": 0,
-        "RandomAuto2xUpgrades": 0
+        "RandomAuto2xUpgrades": 0,
+        "OfflineProdHrs": 0,
+        "RizzmaxClickWorth": 0,
+        "LooksmaxxingChallengesUpgradeUnlocked": 0,
+        "lastOfflineTime": 0
     }
     for (const [key, value] of Object.entries(data)) {
         eval(key + " = " + value);
@@ -75,6 +83,7 @@ function periodicSave() {
 }
 
 window.onbeforeunload = function () {
+    lastOfflineTime = Date.now();
     saveData();
     alert("Your game has been saved.");
 }

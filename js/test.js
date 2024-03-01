@@ -38,7 +38,7 @@ function simulateClick() {
   } else {
     multiplier = 1;
   }
-  clicks += (multiplier)*(1 + CountryClubs)*(1 + RiceWashers);
+  clicks += Math.floor((multiplier)*(1 + CountryClubs)*(1 + RiceWashers)*(1+RizzmaxClickWorth/100));
   document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> clicks";
   updateVisuals();
 }
@@ -58,3 +58,11 @@ document.getElementById('RizzmaxButton').onclick = function() {
     updateVisuals();
   }
 };
+
+document.addEventListener("visibilitychange", (event) => {
+  if (document.visibilityState == "visible") {
+    offlineProgress();
+  } else {
+    lastOfflineTime = Date.now();
+  }
+});

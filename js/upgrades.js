@@ -57,3 +57,29 @@ document.getElementById('2xRandomAutoUpgradeButton').onclick = function() {
         }
     }
 }
+// Offline Progress +1 Hr Upgrade
+document.getElementById('OfflineProdHrsButton').onclick = function() {
+    if (RizzPoints >= grabCost('OfflineProdHrs')) {
+        RizzPoints -= grabCost('OfflineProdHrs');
+        OfflineProdHrs++;
+        updateVisuals();
+    }
+}
+// Extra Click Worth Upgrade
+document.getElementById('RizzmaxClickWorthButton').onclick = function() {
+    if (RizzPoints >= grabCost('RizzmaxClickWorth')) {
+        RizzPoints -= grabCost('RizzmaxClickWorth');
+        RizzmaxClickWorth++;
+        updateVisuals();
+    }
+}
+// Looksmaxxing Challenges Upgrade
+document.getElementById('LooksmaxxingChallengesUpgradeButton').onclick = function() {
+    if (grabCost('LooksmaxxingChallengesUpgradeUnlocked') != -1) {
+        if (RizzPoints >= grabCost('LooksmaxxingChallengesUpgradeUnlocked')) {
+            RizzPoints -= grabCost('LooksmaxxingChallengesUpgradeUnlocked');
+            LooksmaxxingChallengesUpgradeUnlocked++;
+            updateVisuals();
+        }
+    }
+}

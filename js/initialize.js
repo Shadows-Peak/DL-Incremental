@@ -1,3 +1,5 @@
+var lastOfflineTime = 0;
+
 var backgroundToggle = 1;
 
 var clicks = 0;
@@ -15,6 +17,10 @@ var CountryClubs = 0;
 
 var RiceWashers = 0;
 
+var OfflineProdHrs = 0;
+var RizzmaxClickWorth = 0;
+var LooksmaxxingChallengesUpgradeUnlocked = 0;
+
 
 
 function grabCost(Item) {
@@ -24,7 +30,9 @@ function grabCost(Item) {
         "AutomaticRizzers": 2500 + 500*(AutomaticRizzers) + Math.ceil(50*(Math.log(7*(AutomaticRizzers)+1)**1.4)),
         "CountryClubs": Math.ceil(Math.floor(1.75 ** CountryClubs) * Math.log(5 * ((CountryClubs + 1) ** 1.5)) * (CountryClubs + 1)),
         "RiceWashers": Math.ceil(500*Math.floor(2 ** RiceWashers) * Math.log(7 * ((RiceWashers + 1) ** 1.5)) * (RiceWashers + 1)),
-        
+        "OfflineProdHrs": Math.ceil(1.5*((OfflineProdHrs)**3.5))+1,
+        "RizzmaxClickWorth": (2**(Math.floor(RizzmaxClickWorth/50)))*(Math.ceil(Math.ceil(2/3*((RizzmaxClickWorth)**1.5))*(Math.log(RizzmaxClickWorth+1)))+1),
+        "LooksmaxxingChallengesUpgradeUnlocked": Boolean(LooksmaxxingChallengesUpgradeUnlocked) ? -1 : 100,
     }
     return(allCosts[Item]);
 }
@@ -45,6 +53,10 @@ try{
     RandomValue5xUpgrades = Number(localStorage.getItem('RandomValue5xUpgrades'));
     RandomAuto2xUpgrades = Number(localStorage.getItem('RandomAuto2xUpgrades'));
     AutomaticRizzers = Number(localStorage.getItem('AutomaticRizzers'));
+    OfflineProdHrs = Number(localStorage.getItem('OfflineProdHrs'));
+    RizzmaxClickWorth = Number(localStorage.getItem('RizzmaxClickWorth'));
+    LooksmaxxingChallengesUpgradeUnlocked = Number(localStorage.getItem('LooksmaxxingChallengesUpgradeUnlocked'));
+    lastOfflineTime = Number(localStorage.getItem('lastOfflineTime'));
 } catch(error) {
     console.error(error);
     clicks = 0;
@@ -54,6 +66,10 @@ try{
     RandomAuto2xUpgrades = 0;
     AutomaticRizzers = 0;
     backgroundToggle = 1;
+    OfflineProdHrs = 0;
+    RizzmaxClickWorth = 0;
+    LooksmaxxingChallengesUpgradeUnlocked = 0;
+    lastOfflineTime = 0;
 }
 
 function setDisplay(object, value) {
@@ -99,7 +115,31 @@ function updateVisuals() {
         document.getElementById('AutomaticRizzerButton').innerHTML = "Automatic Rizzer ("+AutomaticRizzers+"): Cost: <b>"+grabCost('AutomaticRizzers')+"</b>";
         document.getElementById('BackgroundToggleButton').innerHTML = "Toggle Backgrounds: "+["Off","On"][backgroundToggle];
         document.getElementById('RizzmaxButton').innerHTML = "Rizzmax: <b>+"+RizzPointgain()+" Points</b>";
+        document.getElementById('OfflineProduction1Button').innerHTML = "Offline Production (+"+OfflineProdHrs+" hr(s)): Cost: <b>"+grabCost('OfflineProdHrs')+"</b> RP";
+        document.getElementById('RizzmaxClickWorthButton').innerHTML = "Click Worth (+"+RizzmaxClickWorth+"%): Cost: <b>"+grabCost('RizzmaxClickWorth')+"</b> RP";
+        if (grabCost('LooksmaxxingChallengesUpgradeUnlocked') == -1) {
+            document.getElementById('LooksmaxxingChallengesUpgradeButton').innerHTML = "Looksmaxxing Challenges: <b>Unlocked</b>";
+        } else {
+            document.getElementById('LooksmaxxingChallengesUpgradeButton').innerHTML = "Looksmaxxing Challenges: Cost: <b>"+grabCost('LooksmaxxingChallengesUpgradeUnlocked')+"</b> RP";
+        }
     } catch(error) {
         console.error(error);
+    }
+}
+
+function offlineProgress() {
+    if (OfflineProdHrs > 0) {
+        var currentTime = Date.now();
+        var timeDifference = currentTime - lastOfflineTime;
+        if (timeDifference/3600000 <= OfflineProdHrs) {
+            var timeDifferenceSeconds = timeDifference / 1000;
+        } else {
+            var timeDifferenceSeconds = OfflineProdHrs*360;
+        }
+        clicks += (timeDifferenceSeconds) * (gameTick) * (AutomaticRizzers) * (1 + RiceWashers);
+        lastOfflineTime = 0;
+
+        alert("You gained "+((timeDifferenceSeconds) * (AutomaticRizzers) * (1 + RiceWashers))+" clicks while you were gone!");
+        updateVisuals();
     }
 }
