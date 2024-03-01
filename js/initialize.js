@@ -23,10 +23,19 @@ function grabCost(Item) {
         "RandomAuto2xUpgrades": [15000,35000,75000,150000,500000][RandomAuto2xUpgrades],
         "AutomaticRizzers": 2500 + 500*(AutomaticRizzers) + Math.ceil(50*(Math.log(7*(AutomaticRizzers)+1)**1.4)),
         "CountryClubs": Math.ceil(Math.floor(1.75 ** CountryClubs) * Math.log(5 * ((CountryClubs + 1) ** 1.5)) * (CountryClubs + 1)),
-        "RiceWashers": Math.ceil(500*Math.floor(2 ** RiceWashers) * Math.log(7 * ((RiceWashers + 1) ** 1.5)) * (RiceWashers + 1))
+        "RiceWashers": Math.ceil(500*Math.floor(2 ** RiceWashers) * Math.log(7 * ((RiceWashers + 1) ** 1.5)) * (RiceWashers + 1)),
+        
     }
     return(allCosts[Item]);
 }
+
+function RizzPointgain() {
+    if (clicks > 25000) {
+      return Math.floor(Math.log(clicks/25000)/Math.log(1.05));
+    } else {
+      return 0;
+    }
+  }
 
 try{
     backgroundToggle = Number(localStorage.getItem('backgroundToggle'));
@@ -89,7 +98,7 @@ function updateVisuals() {
         document.getElementById('2xRandomAutoUpgradeButton').innerHTML = "2x Random Auto Upgrade ("+RandomAuto2xUpgrades+"): Cost: <b>"+grabCost('RandomAuto2xUpgrades')+"</b>";
         document.getElementById('AutomaticRizzerButton').innerHTML = "Automatic Rizzer ("+AutomaticRizzers+"): Cost: <b>"+grabCost('AutomaticRizzers')+"</b>";
         document.getElementById('BackgroundToggleButton').innerHTML = "Toggle Backgrounds: "+["Off","On"][backgroundToggle];
-        document.getElementById('RizzmaxButton').innerHTML = "Rizzmax: <b>+"+RizzPointgain+" Points</b>";
+        document.getElementById('RizzmaxButton').innerHTML = "Rizzmax: <b>+"+RizzPointgain()+" Points</b>";
     } catch(error) {
         console.error(error);
     }
