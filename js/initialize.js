@@ -103,9 +103,11 @@ function updateVisuals() {
         if (Rizzmaxxes > 0) {
             document.getElementById('currencyCounter').innerHTML = "<b>"+clicks+"</b> Dilyan Points <b>"+RizzPoints+"</b> Rizz Points";
             setDisplay('2xRandomAutoUpgradeButton', 1);
+            setDisplay('RizzmaxUpgrades', 1);
         } else {
             document.getElementById('currencyCounter').innerHTML = "<b>"+clicks+"</b> Dilyan Points";
             setDisplay('2xRandomAutoUpgradeButton', 0);
+            setDisplay('RizzmaxUpgrades', 0);
         }
         document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> clicks";
         document.getElementById('CountryClubButton').innerHTML = "Buy Country Club ("+CountryClubs+"): Cost: <b>"+grabCost('CountryClubs')+"</b>";
