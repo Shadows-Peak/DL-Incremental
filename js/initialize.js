@@ -38,10 +38,10 @@ function grabCost(Item) {
 }
 
 function RizzPointgain() {
-    if (clicks > 25000) {
-      return Math.floor(Math.log(clicks/25000)/Math.log(1.05));
+    if (clicks >= 25000) {
+      return(Math.floor(Math.log(clicks/25000)/Math.log(1.05)));
     } else {
-      return 0;
+      return(0);
     }
   }
 

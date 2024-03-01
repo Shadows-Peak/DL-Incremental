@@ -50,6 +50,7 @@ document.getElementById('button1').onclick = function() {
 document.getElementById('RizzmaxButton').onclick = function() {
   if (clicks >= 25000) {
     RizzPoints += RizzPointgain();
+    Rizzmaxxes++;
     clicks = 0;
     CountryClubs = 0;
     RiceWashers = 0;
