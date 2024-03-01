@@ -116,11 +116,11 @@ function updateVisuals() {
         document.getElementById('BackgroundToggleButton').innerHTML = "Toggle Backgrounds: "+["Off","On"][backgroundToggle];
         document.getElementById('RizzmaxButton').innerHTML = "Rizzmax: <b>+"+RizzPointgain()+" Points</b>";
         document.getElementById('OfflineProduction1Button').innerHTML = "Offline Production (+"+OfflineProdHrs+" hr(s)): Cost: <b>"+grabCost('OfflineProdHrs')+"</b> RP";
-        document.getElementById('RizzmaxClickWorthButton').innerHTML = "Click Worth (+"+RizzmaxClickWorth+"%): Cost: <b>"+grabCost('RizzmaxClickWorth')+"</b> RP";
+        document.getElementById('RizzClickWorthButton').innerHTML = "Click Worth (+"+RizzmaxClickWorth+"%): Cost: <b>"+grabCost('RizzmaxClickWorth')+"</b> RP";
         if (grabCost('LooksmaxxingChallengesUpgradeUnlocked') == -1) {
-            document.getElementById('LooksmaxxingChallengesUpgradeButton').innerHTML = "Looksmaxxing Challenges: <b>Unlocked</b>";
+            document.getElementById('UnlockLooksmaxxingButton').innerHTML = "Looksmaxxing Challenges: <b>Unlocked</b>";
         } else {
-            document.getElementById('LooksmaxxingChallengesUpgradeButton').innerHTML = "Looksmaxxing Challenges: Cost: <b>"+grabCost('LooksmaxxingChallengesUpgradeUnlocked')+"</b> RP";
+            document.getElementById('UnlockLooksmaxxingButton').innerHTML = "Looksmaxxing Challenges: Cost: <b>"+grabCost('LooksmaxxingChallengesUpgradeUnlocked')+"</b> RP";
         }
     } catch(error) {
         console.error(error);
