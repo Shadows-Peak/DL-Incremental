@@ -3,3 +3,12 @@ document.getElementById('BackgroundToggleButton').onclick = function() {
     document.getElementById('BackgroundToggleButton').innerHTML = "Toggle Backgrounds: "+["Off","On"][backgroundToggle];
     updateBackgrounds();
 };
+
+document.getElementById('ThemeChangeButton').onclick = function() {
+    if (chosenBackground == 1) {
+        chosenBackground = 2;
+    } else if (chosenBackground == 2) {
+        chosenBackground = 1;
+    }
+    updateBackgrounds();
+};

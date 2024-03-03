@@ -1,6 +1,7 @@
 var lastOfflineTime = 0;
 
 var backgroundToggle = 1;
+var chosenBackground = 1; // 1 for Light, 2 for Dark
 
 var clicks = 0;
 
@@ -47,6 +48,7 @@ function RizzPointgain() {
 
 try{
     backgroundToggle = Number(localStorage.getItem('backgroundToggle'));
+    chosenBackground = Number(localStorage.getItem('chosenBackground'));
     clicks = Number(localStorage.getItem('mainClicks'));
     CountryClubs = Number(localStorage.getItem('CountryClubs'));
     RiceWashers = Number(localStorage.getItem('RiceWashers'));
@@ -68,6 +70,7 @@ try{
     RandomAuto2xUpgrades = 0;
     AutomaticRizzers = 0;
     backgroundToggle = 1;
+    chosenBackground = 1;
     Rizzmaxxes = 0;
     RizzPoints = 0;
     OfflineProdHrs = 0;
@@ -87,6 +90,19 @@ function setDisplay(object, value) {
 }
 
 function updateBackgrounds() {
+    if (chosenBackground == 1) {
+        themedButtons = document.getElementsByClassName("themed1");
+        for(var i = 0; i < themedButtons.length; i++)
+        {
+            themedButtons[i].style.backgroundColor = rgb(240, 240, 240);
+        }
+    } else if (chosenBackground == 2) {
+        themedButtons = document.getElementsByClassName("themed1");
+        for(var i = 0; i < themedButtons.length; i++)
+        {
+            themedButtons[i].style.backgroundColor = rgb(64, 66, 71);
+        }
+    }
     if (backgroundToggle == 1) {
         document.body.style.backgroundImage = "url('images/dilyanLopez.jpg')";
         document.body.style.backgroundSize = "cover";
@@ -94,6 +110,11 @@ function updateBackgrounds() {
         document.body.style.backgroundPositionX = "center";
         document.body.style.backgroundPositionY = "center";
     } else {
+        if (chosenBackground == 1) {
+            document.body.style.backgroundColor = rgb(255, 255, 255);
+        } else if (chosenBackground == 2) {
+            document.body.style.backgroundColor = rgb(42, 44, 48);
+        }
         document.body.style.backgroundImage = "none";
         document.body.style.backgroundSize = "cover";
         document.body.style.backgroundRepeat = "no-repeat";

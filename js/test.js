@@ -55,6 +55,7 @@ document.getElementById('RizzmaxButton').onclick = function() {
     CountryClubs = 0;
     RiceWashers = 0;
     RandomValue5xUpgrades = 0;
+    RandomAuto2xUpgrades = 0;
     AutomaticRizzers = 0;
     updateVisuals();
   }

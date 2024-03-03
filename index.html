@@ -21,48 +21,49 @@
 <body onload="bodyLoad()">
     <div id="room0Stuff" style="position: absolute; left: 5px; top: 5px;">
         <h1>Settings</h1>
-        <button id="BackgroundToggleButton" type="button">Toggle Backgrounds: On</button>
-        <button id="saveButton" type="button">Save Game</menu></button>
-        <button id="resetButton" type="button">Reset Game</menu></button>
+        <button id="BackgroundToggleButton" type="button" class="themed1">Toggle Backgrounds: On</button>
+        <button id="ThemeChangeButton" type="button" class="themed1">Current Theme: Light</button>
+        <button id="saveButton" type="button" class="themed1">Save Game</menu></button>
+        <button id="resetButton" type="button" class="themed1">Reset Game</menu></button>
     </div>
     <div id="room1Stuff" style="position: absolute; left: 5px; top: 5px;">
         <h1>SAY SOMETHINGS WRONG NOW</h1>
         <p id="charts">This is a <b>Test</b>.</p>
         <h1 id="counter">You have <b>Test</b> clicks.</h1>
         <p>Stop changing the wrong stuff!!</p>
-        <button id="button1" type="button">Main Button Click</button>
+        <button id="button1" type="button" class="themed1">Main Button Click</button>
         <h><br />no se</h>
-        <button id="5xRandomValueUpgradeButton" type="button">Random x5 Value Upgrade (0): Cost: 0</button>
-        <button id="2xRandomAutoUpgradeButton" type="button">Random x2 Auto Value (0): Cost: 0</button>
+        <button id="5xRandomValueUpgradeButton" type="button" class="themed1">Random x5 Value Upgrade (0): Cost: 0</button>
+        <button id="2xRandomAutoUpgradeButton" type="button" class="themed1">Random x2 Auto Value (0): Cost: 0</button>
         <p><br></p>
-        <button id="AutomaticRizzerButton" type="button">Automatic Rizzer (0): Cost: 0</button>
+        <button id="AutomaticRizzerButton" type="button" class="themed1">Automatic Rizzer (0): Cost: 0</button>
     </div>
     <div id="room2Stuff" style="position: absolute; left: 5px; top: 5px;">
         <h1 id="testR2">Room 2 Test</h1>
-        <button id="CountryClubButton" type="button">Buy Country Club (0): Cost: 0</button>
-        <button id="RiceWasherButton" type="button">Buy Rice Washer (0): Cost: 0</button>
+        <button id="CountryClubButton" type="button" class="themed1">Buy Country Club (0): Cost: 0</button>
+        <button id="RiceWasherButton" type="button" class="themed1">Buy Rice Washer (0): Cost: 0</button>
     </div>
     <div id="room3Stuff" style="position: absolute; left: 5px; top: 5px;">
         <h1 id="testR2">Rizzmax</h1>
         <p>Base rizzmax requires 25k Dilyan Points. From there, you gain more points in correspondence to how many Dilyan points you have.<br></p>
         <p>Your first rizzmax will unlock new upgrades.<br></p>
-        <button id="RizzmaxButton" type="button">Rizzmax: +0 Rizz Points</button>
+        <button id="RizzmaxButton" type="button" class="themed1">Rizzmax: +0 Rizz Points</button>
         <div id="RizzmaxUpgrades">
             <p>Offline production is 10% the production.</p>
             <h2>Rizzmax Upgrades:<br></h2>
-            <button id="OfflineProduction1Button" type="button">Offline Production (+0 hr(s)): Cost: 0 RP</button>
-            <button id="RizzClickWorthButton" type="button">Click Worth (+0%): Cost: 0 RP</button>
-            <button id="UnlockLooksmaxxingButton" type="button">Looksmaxxing Challenges [NOT IMPLEMENTED YET]: Cost: 1000 RP</button>
+            <button id="OfflineProduction1Button" type="button" class="themed1">Offline Production (+0 hr(s)): Cost: 0 RP</button>
+            <button id="RizzClickWorthButton" type="button" class="themed1">Click Worth (+0%): Cost: 0 RP</button>
+            <button id="UnlockLooksmaxxingButton" type="button" class="themed1">Looksmaxxing Challenges [NOT IMPLEMENTED YET]: Cost: 1000 RP</button>
         </div>
     </div>
     <div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);">
         <h2 id="currencyCounter">0 Dilyan Points</p>
     </div>
     <div style="position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%);">
-        <button id="lMap" onclick="move('lMap', currentRoom)">◀</button>
-        <button id="rMap" onclick="move('rMap', currentRoom)">▶</button>
-        <button id="uMap" onclick="move('uMap', currentRoom)">▲</button>
-        <button id="dMap" onclick="move('dMap', currentRoom)">▼</button>
+        <button id="lMap" onclick="move('lMap', currentRoom)" class="themed1">◀</button>
+        <button id="rMap" onclick="move('rMap', currentRoom)" class="themed1">▶</button>
+        <button id="uMap" onclick="move('uMap', currentRoom)" class="themed1">▲</button>
+        <button id="dMap" onclick="move('dMap', currentRoom)" class="themed1">▼</button>
         <button id="spaceButton" onclick="tmp.space = !tmp.space">Go to Space</button>
     </div>
     <script>
