@@ -1,4 +1,38 @@
 <html lang="en">
+<style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .row {
+      margin-left:-5px;
+      margin-right:-5px;
+    }
+    
+    .column {
+      float: left;
+      width: 50%;
+      padding: 5px;
+    }
+
+    /* Clearfix (clear floats) */
+    .row::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+      width: 100%;
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 16px;
+    }
+</style>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -58,6 +92,30 @@
     </div>
     <div id="room4Stuff" style="position: absolute; left: 5px; top: 5px;">
         <h1>Looksmaxxing Challenges</h1>
+        <div class="row">
+            <div class="column">
+                <table style="width:100%">
+                  <tr><th><b>Bye Bye!</b></th></tr>
+                  <tr>
+                  <td>Rizzmax for at least 10 points without using any Rice Washers.</td>
+                  </tr>
+                  <tr><td>Current Bonus: +0% Dilyan Point Multiplier</td></tr>
+                  <tr><td>Completions: 0/10</td></tr>
+                  <tr><th><button>Begin</button></th></tr>
+                </table>
+            </div>
+            <div class="column">
+                <table style="width:100%">
+                  <tr><th><b>Bye Bye!</b></th></tr>
+                  <tr>
+                  <td>Rizzmax for at least 10 points without using any Rice Washers.</td>
+                  </tr>
+                  <tr><td>Current Bonus: +0% Dilyan Point Multiplier</td></tr>
+                  <tr><td>Completions: 0/10</td></tr>
+                  <tr><th><button>Begin</button></th></tr>
+                </table>
+            </div>
+        </div>
     </div>
     <div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);">
         <h2 id="currencyCounter">0 Dilyan Points</p>
