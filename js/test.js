@@ -60,10 +60,25 @@ document.getElementById('RizzmaxButton').onclick = function() {
   }
 };
 
+var timeout;
+var GiveOfflineTime = 0;
+
 document.addEventListener("visibilitychange", (event) => {
   if (document.visibilityState == "visible") {
-    offlineProgress();
+    try {
+      clearTimeout(timeout);
+    } catch(error) {
+      console.error(error); 
+    }
+    if (GiveOfflineTime == true) {
+      offlineProgress();
+    }
+    GiveOfflineTime = false;
   } else {
-    lastOfflineTime = Date.now();
+    lastOfflineTime = 0;
+    timeout = setTimeout(function () {
+      GiveOfflineTime = true;
+      lastOfflineTime = Date.now();
+    }, 10*1000);
   }
 });
