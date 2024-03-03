@@ -1,7 +1,7 @@
 var lastOfflineTime = 0;
 
 var backgroundToggle = 1;
-var chosenBackground = 1; // 1 for Light, 2 for Dark
+var chosenBackground = 1; // 1 for Light, 2 for Dark, 3 for Cream
 
 var clicks = 0;
 
@@ -90,6 +90,7 @@ function setDisplay(object, value) {
 }
 
 function updateBackgrounds() {
+    alert(chosenBackground)
     if (chosenBackground == 1) {
         themedButtons = document.getElementsByClassName("themed1");
         for(var i = 0; i < themedButtons.length; i++)
@@ -101,6 +102,12 @@ function updateBackgrounds() {
         for(var i = 0; i < themedButtons.length; i++)
         {
             themedButtons[i].style.backgroundColor = "rgb(64, 66, 71)";
+        }
+    } else if (chosenBackground == 3) {
+        themedButtons = document.getElementsByClassName("themed1");
+        for(var i = 0; i < themedButtons.length; i++)
+        {
+            themedButtons[i].style.backgroundColor = "rgb(240, 222, 187)";
         }
     }
     if (backgroundToggle == 1) {
@@ -114,6 +121,8 @@ function updateBackgrounds() {
             document.body.style.backgroundColor = "rgb(255, 255, 255)";
         } else if (chosenBackground == 2) {
             document.body.style.backgroundColor = "rgb(42, 44, 48)";
+        } else if (chosenBackground == 3) {
+            document.body.style.backgroundColor = "rgb(209, 193, 161)";
         }
         document.body.style.backgroundImage = "none";
         document.body.style.backgroundSize = "cover";
@@ -141,7 +150,7 @@ function updateVisuals() {
         document.getElementById('2xRandomAutoUpgradeButton').innerHTML = "2x Random Auto Upgrade ("+RandomAuto2xUpgrades+"): Cost: <b>"+grabCost('RandomAuto2xUpgrades')+"</b>";
         document.getElementById('AutomaticRizzerButton').innerHTML = "Automatic Rizzer ("+AutomaticRizzers+"): Cost: <b>"+grabCost('AutomaticRizzers')+"</b>";
         document.getElementById('BackgroundToggleButton').innerHTML = "Toggle Backgrounds: "+["Off","On"][backgroundToggle];
-        document.getElementById('ThemeChangeButton').innerHTML = "Current Theme: "+["Light","Dark"][chosenBackground-1];
+        document.getElementById('ThemeChangeButton').innerHTML = "Current Theme: "+["Light","Dark","Cream"][chosenBackground-1];
         document.getElementById('RizzmaxButton').innerHTML = "Rizzmax: <b>+"+RizzPointgain()+" Points</b>";
         document.getElementById('OfflineProduction1Button').innerHTML = "Offline Production (+"+OfflineProdHrs+" hr(s)): Cost: <b>"+grabCost('OfflineProdHrs')+"</b> RP";
         document.getElementById('RizzClickWorthButton').innerHTML = "Click Worth (+"+RizzmaxClickWorth+"%): Cost: <b>"+grabCost('RizzmaxClickWorth')+"</b> RP";

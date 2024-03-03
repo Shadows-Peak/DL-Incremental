@@ -8,8 +8,10 @@ document.getElementById('ThemeChangeButton').onclick = function() {
     if (chosenBackground == 1) {
         chosenBackground = 2;
     } else if (chosenBackground == 2) {
+        chosenBackground = 3;
+    } else if (chosenBackground == 3) {
         chosenBackground = 1;
     }
-    document.getElementById('ThemeChangeButton').innerHTML = "Current Theme: "+["Light","Dark"][chosenBackground-1];
+    document.getElementById('ThemeChangeButton').innerHTML = "Current Theme: "+["Light","Dark","Cream"][chosenBackground-1];
     updateBackgrounds();
 };
