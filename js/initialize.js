@@ -1,7 +1,9 @@
 var lastOfflineTime = 0;
 
 var backgroundToggle = 1;
+alert("Alert 1: "+chosenBackground);
 var chosenBackground = 1; // 1 for Light, 2 for Dark, 3 for Cream
+alert("Alert 2: "+chosenBackground);
 
 var clicks = 0;
 
@@ -49,6 +51,7 @@ function RizzPointgain() {
 try{
     backgroundToggle = Number(localStorage.getItem('backgroundToggle'));
     chosenBackground = Number(localStorage.getItem('chosenBackground'));
+    alert("Alert 3: "+chosenBackground);
     clicks = Number(localStorage.getItem('mainClicks'));
     CountryClubs = Number(localStorage.getItem('CountryClubs'));
     RiceWashers = Number(localStorage.getItem('RiceWashers'));
@@ -90,7 +93,7 @@ function setDisplay(object, value) {
 }
 
 function updateBackgrounds() {
-    alert(chosenBackground)
+    alert("Alert 4: "+chosenBackground);
     if (chosenBackground == 1) {
         themedButtons = document.getElementsByClassName("themed1");
         for(var i = 0; i < themedButtons.length; i++)
