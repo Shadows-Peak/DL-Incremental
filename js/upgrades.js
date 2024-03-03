@@ -58,7 +58,7 @@ document.getElementById('2xRandomAutoUpgradeButton').onclick = function() {
     }
 }
 // Offline Progress +1 Hr Upgrade
-document.getElementById('OfflineProdHrsButton').onclick = function() {
+document.getElementById('OfflineProduction1Button').onclick = function() {
     if (RizzPoints >= grabCost('OfflineProdHrs')) {
         RizzPoints -= grabCost('OfflineProdHrs');
         OfflineProdHrs++;
@@ -66,7 +66,7 @@ document.getElementById('OfflineProdHrsButton').onclick = function() {
     }
 }
 // Extra Click Worth Upgrade
-document.getElementById('RizzmaxClickWorthButton').onclick = function() {
+document.getElementById('RizzClickWorthButton').onclick = function() {
     if (RizzPoints >= grabCost('RizzmaxClickWorth')) {
         RizzPoints -= grabCost('RizzmaxClickWorth');
         RizzmaxClickWorth++;
@@ -74,7 +74,7 @@ document.getElementById('RizzmaxClickWorthButton').onclick = function() {
     }
 }
 // Looksmaxxing Challenges Upgrade
-document.getElementById('LooksmaxxingChallengesUpgradeButton').onclick = function() {
+document.getElementById('UnlockLooksmaxxingButton').onclick = function() {
     if (grabCost('LooksmaxxingChallengesUpgradeUnlocked') != -1) {
         if (RizzPoints >= grabCost('LooksmaxxingChallengesUpgradeUnlocked')) {
             RizzPoints -= grabCost('LooksmaxxingChallengesUpgradeUnlocked');
