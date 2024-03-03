@@ -45,6 +45,7 @@ function move(direction, FcurrentRoom) {
     } else {
         currentRoom = currentRoom + movement[direction];
     }
+    updateBackgrounds();
     updateVisuals();
     disables(currentRoom);
 }
