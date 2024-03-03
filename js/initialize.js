@@ -94,13 +94,13 @@ function updateBackgrounds() {
         themedButtons = document.getElementsByClassName("themed1");
         for(var i = 0; i < themedButtons.length; i++)
         {
-            themedButtons[i].style.backgroundColor = rgb(240, 240, 240);
+            themedButtons[i].style.backgroundColor = "rgb(240, 240, 240)";
         }
     } else if (chosenBackground == 2) {
         themedButtons = document.getElementsByClassName("themed1");
         for(var i = 0; i < themedButtons.length; i++)
         {
-            themedButtons[i].style.backgroundColor = rgb(64, 66, 71);
+            themedButtons[i].style.backgroundColor = "rgb(64, 66, 71)";
         }
     }
     if (backgroundToggle == 1) {
@@ -111,9 +111,9 @@ function updateBackgrounds() {
         document.body.style.backgroundPositionY = "center";
     } else {
         if (chosenBackground == 1) {
-            document.body.style.backgroundColor = rgb(255, 255, 255);
+            document.body.style.backgroundColor = "rgb(255, 255, 255)";
         } else if (chosenBackground == 2) {
-            document.body.style.backgroundColor = rgb(42, 44, 48);
+            document.body.style.backgroundColor = "rgb(42, 44, 48)";
         }
         document.body.style.backgroundImage = "none";
         document.body.style.backgroundSize = "cover";
