@@ -107,7 +107,7 @@ function updateBackgrounds() {
         themedButtons = document.getElementsByClassName("themed1");
         for(var i = 0; i < themedButtons.length; i++)
         {
-            themedButtons[i].style.backgroundColor = "rgb(240, 222, 187)";
+            themedButtons[i].style.backgroundColor = "rgb(209, 193, 161)";
         }
     }
     if (backgroundToggle == 1) {
@@ -122,7 +122,7 @@ function updateBackgrounds() {
         } else if (chosenBackground == 2) {
             document.body.style.backgroundColor = "rgb(42, 44, 48)";
         } else if (chosenBackground == 3) {
-            document.body.style.backgroundColor = "rgb(209, 193, 161)";
+            document.body.style.backgroundColor = "rgb(240, 222, 187)";
         }
         document.body.style.backgroundImage = "none";
         document.body.style.backgroundSize = "cover";
