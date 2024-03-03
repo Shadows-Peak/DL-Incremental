@@ -31,38 +31,38 @@ function move(direction, FcurrentRoom) {
         "dMap": [0,0,0,-1][currentRoom],
     };
     // Can't go too far left or right
-    if (FcurrentRoom == 0) {
-        if (direction == "lMap") {
-            return
+    if (direction == "rMap" || direction == "lMap") {
+        if (FcurrentRoom == 0) {
+            if (direction == "lMap") {
+                return
+            } else {
+                currentRoom = currentRoom + movement[direction];
+            }
+        } else if (FcurrentRoom == 3) {
+            if (direction == "rMap") {
+                return
+            } else {
+                currentRoom = currentRoom + movement[direction];
+            }
         } else {
-            currentRoom = currentRoom + movement[direction];
-        }
-    } else if (FcurrentRoom == 3) {
-        if (direction == "rMap") {
-            return
-        } else {
-            currentRoom = currentRoom + movement[direction];
-        }
-    } else {
-        if (direction == "rMap" || direction == "lMap") {
             currentRoom = currentRoom + movement[direction];
         }
     }
     // Can't go too far up or down
-    if ([0,1,2,4].includes(FcurrentRoom)) {
-        if (direction == "uMap") {
-            return
+    if (direction == "uMap" || direction == "dMap") {
+        if ([0,1,2,4].includes(FcurrentRoom)) {
+            if (direction == "uMap") {
+                return
+            } else {
+                currentRoom = currentRoom + movement[direction];
+            }
+        } else if ([0,1,2,3].includes(FcurrentRoom)) {
+            if (direction == "dMap") {
+                return
+            } else {
+                currentRoom = currentRoom + movement[direction];
+            }
         } else {
-            currentRoom = currentRoom + movement[direction];
-        }
-    } else if ([0,1,2,3].includes(FcurrentRoom)) {
-        if (direction == "dMap") {
-            return
-        } else {
-            currentRoom = currentRoom + movement[direction];
-        }
-    } else {
-        if (direction == "uMap" || direction == "dMap") {
             currentRoom = currentRoom + movement[direction];
         }
     }
