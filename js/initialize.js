@@ -43,7 +43,7 @@ function RizzPointgain() {
     } else {
       return(0);
     }
-  }
+}
 
 try{
     backgroundToggle = Number(localStorage.getItem('backgroundToggle'));
@@ -53,6 +53,8 @@ try{
     RandomValue5xUpgrades = Number(localStorage.getItem('RandomValue5xUpgrades'));
     RandomAuto2xUpgrades = Number(localStorage.getItem('RandomAuto2xUpgrades'));
     AutomaticRizzers = Number(localStorage.getItem('AutomaticRizzers'));
+    Rizzmaxxes = Number(localStorage.getItem('Rizzmaxxes'));
+    RizzPoints = Number(localStorage.getItem('RizzPoints'));
     OfflineProdHrs = Number(localStorage.getItem('OfflineProdHrs'));
     RizzmaxClickWorth = Number(localStorage.getItem('RizzmaxClickWorth'));
     LooksmaxxingChallengesUpgradeUnlocked = Number(localStorage.getItem('LooksmaxxingChallengesUpgradeUnlocked'));
@@ -66,6 +68,8 @@ try{
     RandomAuto2xUpgrades = 0;
     AutomaticRizzers = 0;
     backgroundToggle = 1;
+    Rizzmaxxes = 0;
+    RizzPoints = 0;
     OfflineProdHrs = 0;
     RizzmaxClickWorth = 0;
     LooksmaxxingChallengesUpgradeUnlocked = 0;
