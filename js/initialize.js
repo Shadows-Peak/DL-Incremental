@@ -51,6 +51,9 @@ function RizzPointgain() {
 try{
     backgroundToggle = Number(localStorage.getItem('backgroundToggle'));
     chosenBackground = Number(localStorage.getItem('chosenBackground'));
+    if (chosenBackground == 0) {
+        chosenBackground = 1;
+    }
     alert("Alert 3: "+chosenBackground);
     clicks = Number(localStorage.getItem('mainClicks'));
     CountryClubs = Number(localStorage.getItem('CountryClubs'));
