@@ -1,4 +1,4 @@
-const map = [0,1,2,3];
+const map = [0,1,2,3,4];
 var currentRoom = 1;
 
 /*
@@ -27,9 +27,10 @@ function move(direction, FcurrentRoom) {
     movement = {
         "lMap": -1,
         "rMap": 1,
-        "uMap": 0,
-        "dMap": 0,
+        "uMap": [0,0,0,1][currentRoom],
+        "dMap": [0,0,0,-1][currentRoom],
     };
+    // Can't go too far left or right
     if (FcurrentRoom == 0) {
         if (direction == "lMap") {
             return
@@ -43,7 +44,27 @@ function move(direction, FcurrentRoom) {
             currentRoom = currentRoom + movement[direction];
         }
     } else {
-        currentRoom = currentRoom + movement[direction];
+        if (direction == "rMap" || direction == "lMap") {
+            currentRoom = currentRoom + movement[direction];
+        }
+    }
+    // Can't go too far up or down
+    if ([0,1,2,4].includes(FcurrentRoom)) {
+        if (direction == "uMap") {
+            return
+        } else {
+            currentRoom = currentRoom + movement[direction];
+        }
+    } else if ([0,1,2,3].includes(FcurrentRoom)) {
+        if (direction == "dMap") {
+            return
+        } else {
+            currentRoom = currentRoom + movement[direction];
+        }
+    } else {
+        if (direction == "uMap" || direction == "dMap") {
+            currentRoom = currentRoom + movement[direction];
+        }
     }
     updateBackgrounds();
     updateVisuals();
@@ -59,7 +80,8 @@ function disables(FcurrentRoom) {
             "room0Stuff": 1,
             "room1Stuff": 0,
             "room2Stuff": 0,
-            "room3Stuff": 0
+            "room3Stuff": 0,
+            "room4Stuff": 0
         }
     } else if (FcurrentRoom == 1) {
         disablesList = [1,1,0,0]
@@ -67,7 +89,8 @@ function disables(FcurrentRoom) {
             "room0Stuff": 0,
             "room1Stuff": 1,
             "room2Stuff": 0,
-            "room3Stuff": 0
+            "room3Stuff": 0,
+            "room4Stuff": 0
         }
     } else if (FcurrentRoom == 2) {
         disablesList = [1,1,0,0]
@@ -75,15 +98,26 @@ function disables(FcurrentRoom) {
             "room0Stuff": 0,
             "room1Stuff": 0,
             "room2Stuff": 1,
-            "room3Stuff": 0
+            "room3Stuff": 0,
+            "room4Stuff": 0
         }
     } else if (FcurrentRoom == 3) {
-        disablesList = [1,0,0,0]
+        disablesList = [1,0,0,1]
         extraDisables = {
             "room0Stuff": 0,
             "room1Stuff": 0,
             "room2Stuff": 0,
-            "room3Stuff": 1
+            "room3Stuff": 1,
+            "room4Stuff": 0
+        }
+    } else if (FcurrentRoom == 4) {
+        disablesList = [0,0,1,0]
+        extraDisables = {
+            "room0Stuff": 0,
+            "room1Stuff": 0,
+            "room2Stuff": 0,
+            "room3Stuff": 0,
+            "room4Stuff": 1
         }
     }
     var DisableDict = {
