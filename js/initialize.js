@@ -141,6 +141,7 @@ function updateVisuals() {
         document.getElementById('2xRandomAutoUpgradeButton').innerHTML = "2x Random Auto Upgrade ("+RandomAuto2xUpgrades+"): Cost: <b>"+grabCost('RandomAuto2xUpgrades')+"</b>";
         document.getElementById('AutomaticRizzerButton').innerHTML = "Automatic Rizzer ("+AutomaticRizzers+"): Cost: <b>"+grabCost('AutomaticRizzers')+"</b>";
         document.getElementById('BackgroundToggleButton').innerHTML = "Toggle Backgrounds: "+["Off","On"][backgroundToggle];
+        document.getElementById('ThemeChangeButton').innerHTML = "Current Theme: "+["Light","Dark"][chosenBackground-1];
         document.getElementById('RizzmaxButton').innerHTML = "Rizzmax: <b>+"+RizzPointgain()+" Points</b>";
         document.getElementById('OfflineProduction1Button').innerHTML = "Offline Production (+"+OfflineProdHrs+" hr(s)): Cost: <b>"+grabCost('OfflineProdHrs')+"</b> RP";
         document.getElementById('RizzClickWorthButton').innerHTML = "Click Worth (+"+RizzmaxClickWorth+"%): Cost: <b>"+grabCost('RizzmaxClickWorth')+"</b> RP";
