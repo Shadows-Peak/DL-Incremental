@@ -1,9 +1,7 @@
 var lastOfflineTime = 0;
 
 var backgroundToggle = 1;
-alert("Alert 1: "+chosenBackground);
 var chosenBackground = 1; // 1 for Light, 2 for Dark, 3 for Cream
-alert("Alert 2: "+chosenBackground);
 
 var clicks = 0;
 
@@ -54,7 +52,6 @@ try{
     if (chosenBackground == 0) {
         chosenBackground = 1;
     }
-    alert("Alert 3: "+chosenBackground);
     clicks = Number(localStorage.getItem('mainClicks'));
     CountryClubs = Number(localStorage.getItem('CountryClubs'));
     RiceWashers = Number(localStorage.getItem('RiceWashers'));
@@ -96,7 +93,6 @@ function setDisplay(object, value) {
 }
 
 function updateBackgrounds() {
-    alert("Alert 4: "+chosenBackground);
     if (chosenBackground == 1) {
         themedButtons = document.getElementsByClassName("themed1");
         for(var i = 0; i < themedButtons.length; i++)
@@ -117,7 +113,15 @@ function updateBackgrounds() {
         }
     }
     if (backgroundToggle == 1) {
-        document.body.style.backgroundImage = "url('images/dilyanLopez.jpg')";
+        if (currentRoom == 0) {
+            document.body.style.backgroundImage = "url('images/otherDilyanLopez.jpg')";
+        } else if (currentRoom == 1) {
+            document.body.style.backgroundImage = "url('images/dilyanLopez.jpg')";
+        } else if (currentRoom == 2) {
+            document.body.style.backgroundImage = "url('images/CountryClub.jpg')";
+        } else if (currentRoom = 3) {
+            document.body.style.backgroundImage = "url('images/dilyanLopez2.jpg')";
+        }
         document.body.style.backgroundSize = "cover";
         document.body.style.backgroundRepeat = "no-repeat";
         document.body.style.backgroundPositionX = "center";
