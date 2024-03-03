@@ -27,8 +27,8 @@ function move(direction, FcurrentRoom) {
     movement = {
         "lMap": -1,
         "rMap": 1,
-        "uMap": [0,0,0,1][currentRoom],
-        "dMap": [0,0,0,-1][currentRoom],
+        "uMap": [0,0,0,1,0][currentRoom],
+        "dMap": [0,0,0,0,-1][currentRoom],
     };
     // Can't go too far left or right
     if (direction == "rMap" || direction == "lMap") {
@@ -103,7 +103,7 @@ function disables(FcurrentRoom) {
             "room4Stuff": 0
         }
     } else if (FcurrentRoom == 3) {
-        disablesList = [1,0,0,1]
+        disablesList = [1,0,1,0]
         extraDisables = {
             "room0Stuff": 0,
             "room1Stuff": 0,
@@ -112,7 +112,7 @@ function disables(FcurrentRoom) {
             "room4Stuff": 0
         }
     } else if (FcurrentRoom == 4) {
-        disablesList = [0,0,1,0]
+        disablesList = [0,0,0,1]
         extraDisables = {
             "room0Stuff": 0,
             "room1Stuff": 0,
