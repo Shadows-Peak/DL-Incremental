@@ -118,7 +118,7 @@ function updateBackgrounds() {
         } else if (currentRoom == 1) {
             document.body.style.backgroundImage = "url('images/dilyanLopez.jpg')";
         } else if (currentRoom == 2) {
-            document.body.style.backgroundImage = "url('images/CountryClub.jpg')";
+            document.body.style.backgroundImage = "url('images/CountryClub.png')";
         } else if (currentRoom = 3) {
             document.body.style.backgroundImage = "url('images/dilyanLopez2.jpg')";
         }
