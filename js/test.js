@@ -32,7 +32,7 @@ window.addEventListener('keyup', e=>{
 
 function simulateClick() {
   var multiplier = 1;
-  var RandomNumber = Math.floor(Math.random() * 100)+1;
+  var RandomNumber = Math.floor(Math.random() * 100);
   if (RandomNumber >= 100 - RandomValue5xUpgrades) {
     multiplier = 5;
   } else {
