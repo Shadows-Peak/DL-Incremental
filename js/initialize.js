@@ -38,6 +38,10 @@ function grabCost(Item) {
     return(allCosts[Item]);
 }
 
+function grabVisualCost(Item) {
+    return(abbrev(grabCost(Item)));
+}
+
 function RizzPointgain() {
     if (clicks >= 25000) {
       return(Math.floor(Math.log(clicks/25000)/Math.log(1.05)));
@@ -211,20 +215,20 @@ function updateVisuals() {
             setDisplay('RizzmaxUpgrades', 0);
         }
         document.getElementById('counter').innerHTML = "You have: <b>"+abbrev(clicks)+"</b> Dilyan Points";
-        document.getElementById('CountryClubButton').innerHTML = "Buy Country Club ("+abbrev(CountryClubs)+"): Cost: <b>"+grabCost('CountryClubs')+"</b>";
-        document.getElementById('RiceWasherButton').innerHTML = "Buy Rice Washer ("+abbrev(RiceWashers)+"): Cost: <b>"+grabCost('RiceWashers')+"</b>";
-        document.getElementById('5xRandomValueUpgradeButton').innerHTML = "5x Random Value Upgrade ("+abbrev(RandomValue5xUpgrades)+"): Cost: <b>"+grabCost('RandomValue5xUpgrades')+"</b>";
-        document.getElementById('2xRandomAutoUpgradeButton').innerHTML = "2x Random Auto Upgrade ("+abbrev(RandomAuto2xUpgrades)+"): Cost: <b>"+grabCost('RandomAuto2xUpgrades')+"</b>";
-        document.getElementById('AutomaticRizzerButton').innerHTML = "Automatic Rizzer ("+abbrev(AutomaticRizzers)+"): Cost: <b>"+grabCost('AutomaticRizzers')+"</b>";
+        document.getElementById('CountryClubButton').innerHTML = "Buy Country Club ("+abbrev(CountryClubs)+"): Cost: <b>"+grabVisualCost('CountryClubs')+"</b>";
+        document.getElementById('RiceWasherButton').innerHTML = "Buy Rice Washer ("+abbrev(RiceWashers)+"): Cost: <b>"+grabVisualCost('RiceWashers')+"</b>";
+        document.getElementById('5xRandomValueUpgradeButton').innerHTML = "5x Random Value Upgrade ("+abbrev(RandomValue5xUpgrades)+"): Cost: <b>"+grabVisualCost('RandomValue5xUpgrades')+"</b>";
+        document.getElementById('2xRandomAutoUpgradeButton').innerHTML = "2x Random Auto Upgrade ("+abbrev(RandomAuto2xUpgrades)+"): Cost: <b>"+grabVisualCost('RandomAuto2xUpgrades')+"</b>";
+        document.getElementById('AutomaticRizzerButton').innerHTML = "Automatic Rizzer ("+abbrev(AutomaticRizzers)+"): Cost: <b>"+grabVisualCost('AutomaticRizzers')+"</b>";
         document.getElementById('BackgroundToggleButton').innerHTML = "Toggle Backgrounds: "+["Off","On"][backgroundToggle];
         document.getElementById('ThemeChangeButton').innerHTML = "Current Theme: "+["Light","Dark","Cream"][chosenBackground-1];
         document.getElementById('RizzmaxButton').innerHTML = "Rizzmax: <b>+"+abbrev(RizzPointgain())+" Points</b>";
-        document.getElementById('OfflineProduction1Button').innerHTML = "Offline Production (+"+abbrev(OfflineProdHrs)+" hr(s)): Cost: <b>"+grabCost('OfflineProdHrs')+"</b> RP";
-        document.getElementById('RizzClickWorthButton').innerHTML = "Click Worth (+"+abbrev(RizzmaxClickWorth)+"%): Cost: <b>"+grabCost('RizzmaxClickWorth')+"</b> RP";
+        document.getElementById('OfflineProduction1Button').innerHTML = "Offline Production (+"+abbrev(OfflineProdHrs)+" hr(s)): Cost: <b>"+grabVisualCost('OfflineProdHrs')+"</b> RP";
+        document.getElementById('RizzClickWorthButton').innerHTML = "Click Worth (+"+abbrev(RizzmaxClickWorth)+"%): Cost: <b>"+grabVisualCost('RizzmaxClickWorth')+"</b> RP";
         if (grabCost('LooksmaxxingChallengesUpgradeUnlocked') == -1) {
             document.getElementById('UnlockLooksmaxxingButton').innerHTML = "Looksmaxxing Challenges: <b>Unlocked</b>";
         } else {
-            document.getElementById('UnlockLooksmaxxingButton').innerHTML = "Looksmaxxing Challenges: Cost: <b>"+grabCost('LooksmaxxingChallengesUpgradeUnlocked')+"</b> RP";
+            document.getElementById('UnlockLooksmaxxingButton').innerHTML = "Looksmaxxing Challenges: Cost: <b>"+grabVisualCost('LooksmaxxingChallengesUpgradeUnlocked')+"</b> RP";
         }
     } catch(error) {
         console.error(error);
