@@ -50,13 +50,13 @@ function move(direction, FcurrentRoom) {
     }
     // Can't go too far up or down
     if (direction == "uMap" || direction == "dMap") {
+        if (LooksmaxxingChallengesUpgradeUnlocked == 0 && FcurrentRoom == 3 && direction == "uMap") {
+            return
+        }
         if ([0,1,2,4].includes(FcurrentRoom)) {
             if (direction == "uMap") {
                 return
             } else {
-                if (LooksmaxxingChallengesUpgradeUnlocked == 0 && FcurrentRoom == 3) {
-                    return
-                }
                 currentRoom = currentRoom + movement[direction];
             }
         } else if ([0,1,2,3].includes(FcurrentRoom)) {
