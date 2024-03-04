@@ -87,7 +87,11 @@ try{
 }
 
 function abbrev(number) {
-    var zeros = (3*Math.floor(Math.floor(Math.log10(number))/3));
+    if (number == 0) {
+        return(number)
+    } else {
+        var zeros = (3*Math.floor(Math.floor(Math.log10(number))/3));
+    }
     if (Math.abs(zeros) < 3) {
         return(number);
     }
