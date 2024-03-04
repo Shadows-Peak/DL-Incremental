@@ -39,7 +39,7 @@ function simulateClick() {
     multiplier = 1;
   }
   clicks += Math.floor((multiplier)*(1 + CountryClubs)*(1 + RiceWashers)*(1+RizzmaxClickWorth/100));
-  document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> Dilyan Points";
+  document.getElementById('counter').innerHTML = "You have: <b>"+abbrev(clicks)+"</b> Dilyan Points";
   updateVisuals();
 }
 
