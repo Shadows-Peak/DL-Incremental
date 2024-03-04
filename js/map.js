@@ -54,6 +54,9 @@ function move(direction, FcurrentRoom) {
             if (direction == "uMap") {
                 return
             } else {
+                if (LooksmaxxingChallengesUpgradeUnlocked == 0 && FcurrentRoom == 3) {
+                    return
+                }
                 currentRoom = currentRoom + movement[direction];
             }
         } else if ([0,1,2,3].includes(FcurrentRoom)) {
@@ -107,7 +110,6 @@ function disables(FcurrentRoom) {
             disablesList = [1,0,0,0]
         } else {
             disablesList = [1,0,1,0]
-        
         }
         extraDisables = {
             "room0Stuff": 0,
