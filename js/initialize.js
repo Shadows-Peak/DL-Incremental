@@ -186,7 +186,7 @@ function offlineProgress() {
         clicks += Math.floor(0.2*(Math.floor(timeDifferenceSeconds) * (gameTick) * (AutomaticRizzers) * (1 + RiceWashers)));
         lastOfflineTime = 0;
 
-        alert("You gained "+Math.floor(0.2*(Math.floor(timeDifferenceSeconds) * (AutomaticRizzers) * (1 + RiceWashers)))+" clicks while you were gone! ");
+        alert("You gained "+Math.floor(0.2*(Math.floor(timeDifferenceSeconds) * (AutomaticRizzers) * (1 + RiceWashers)))+" clicks while you were gone! "+timeDifferenceSeconds);
         updateVisuals();
     }
 }
