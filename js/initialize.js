@@ -153,7 +153,7 @@ function updateVisuals() {
             setDisplay('2xRandomAutoUpgradeButton', 0);
             setDisplay('RizzmaxUpgrades', 0);
         }
-        document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> clicks";
+        document.getElementById('counter').innerHTML = "You have: <b>"+clicks+"</b> Dilyan Points";
         document.getElementById('CountryClubButton').innerHTML = "Buy Country Club ("+CountryClubs+"): Cost: <b>"+grabCost('CountryClubs')+"</b>";
         document.getElementById('RiceWasherButton').innerHTML = "Buy Rice Washer ("+RiceWashers+"): Cost: <b>"+grabCost('RiceWashers')+"</b>";
         document.getElementById('5xRandomValueUpgradeButton').innerHTML = "5x Random Value Upgrade ("+RandomValue5xUpgrades+"): Cost: <b>"+grabCost('RandomValue5xUpgrades')+"</b>";
