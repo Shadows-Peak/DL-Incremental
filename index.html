@@ -32,6 +32,13 @@
     th, td {
       padding: 12px;
     }
+
+    .info{
+            display: none;
+        }
+    .icon:hover ~ .info{
+            display: block;
+    }
 </style>
 <head>
     <meta charset="UTF-8">
@@ -67,13 +74,15 @@
         <p>Stop changing the wrong stuff!!</p>
         <button id="button1" type="button" class="themed1">Main Button Click</button>
         <h><br />no se</h>
-        <button id="5xRandomValueUpgradeButton" type="button" class="themed1">Random x5 Value Upgrade (0): Cost: 0</button>
-        <button id="2xRandomAutoUpgradeButton" type="button" class="themed1">Random x2 Auto Value (0): Cost: 0</button>
+        <button id="5xRandomValueUpgradeButton" type="button" class="themed1">Random x5 Value Upgrade (0): Cost: 0</button><div class="icon">!</div>
+        <button id="2xRandomAutoUpgradeButton" type="button" class="themed1">Random x2 Auto Value (0): Cost: 0</button><div class="icon">!</div>
+        <div class="info">These upgrades add a 10% chance for each upgrade to make it so that: a click would be worth (base: 5x) more or a automatic rizzer tick would be worth (base: 2x) more.</div>
         <p><br></p>
         <button id="AutomaticRizzerButton" type="button" class="themed1">Automatic Rizzer (0): Cost: 0</button>
     </div>
     <div id="room2Stuff" style="position: absolute; left: 5px; top: 5px;">
         <h1>Room 2 Test</h1>
+        <p>Country Clubs add +1 Per Click. Rice Washers multiply everything by +1 per upgrade.</p>
         <button id="CountryClubButton" type="button" class="themed1">Buy Country Club (0): Cost: 0</button>
         <button id="RiceWasherButton" type="button" class="themed1">Buy Rice Washer (0): Cost: 0</button>
     </div>
