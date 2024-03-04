@@ -103,7 +103,12 @@ function disables(FcurrentRoom) {
             "room4Stuff": 0
         }
     } else if (FcurrentRoom == 3) {
-        disablesList = [1,0,1,0]
+        if (LooksmaxxingChallengesUpgradeUnlocked == 0) {
+            disablesList = [1,0,0,0]
+        } else {
+            disablesList = [1,0,1,0]
+        
+        }
         extraDisables = {
             "room0Stuff": 0,
             "room1Stuff": 0,

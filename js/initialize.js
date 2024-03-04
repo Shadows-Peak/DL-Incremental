@@ -119,8 +119,10 @@ function updateBackgrounds() {
             document.body.style.backgroundImage = "url('images/dilyanLopez.jpg')";
         } else if (currentRoom == 2) {
             document.body.style.backgroundImage = "url('images/RiceWashFacility.png')";
-        } else if (currentRoom = 3) {
+        } else if (currentRoom == 3) {
             document.body.style.backgroundImage = "url('images/dilyanLopez2.jpg')";
+        } else if (currentRoom == 4) {
+            document.body.style.backgroundImage = "url('images/dilyanLopez3.jpg')";
         }
         document.body.style.backgroundSize = "cover";
         document.body.style.backgroundRepeat = "no-repeat";
