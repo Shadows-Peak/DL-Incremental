@@ -134,7 +134,7 @@ function abbrev(number) {
     if (typeof finalAbbrev === "undefined") {
         finalAbbrev = "E"+zeros;
     }
-    return(toString(Math.floor((number/(10**zeros))*100)/100)+finalAbbrev);
+    return((Math.floor((number/(10**zeros))*100)/100).toString()+finalAbbrev);
 }
 
 function setDisplay(object, value) {
