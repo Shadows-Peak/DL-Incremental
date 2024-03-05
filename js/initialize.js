@@ -222,6 +222,12 @@ function isEqual(a,b) {
     }
 }
 
+function listSum(list) {
+    var sum = 0;
+    for (var i = 0; i < list.length; sum += list[i++]);
+    return(sum);
+}
+
 function updateVisuals() {
     try {
         if (Rizzmaxxes > 0) {
@@ -233,6 +239,16 @@ function updateVisuals() {
             document.getElementById('currencyCounter').innerHTML = "<b>"+abbrev(clicks)+"</b> Dilyan Points";
             setDisplay('2xRandomAutoUpgradeButton', 0);
             setDisplay('RizzmaxUpgrades', 0);
+        }
+        if (LooksmaxxingChallengesUpgradeUnlocked == 1 && listSum(LooksmaxxingChallengesCompleted) < 5) {
+            setDisplay('RizzmaxUpg2Indicator', 1);
+            setDisplay('RizzmaxUpgrades2',0);
+        } else if (LooksmaxxingChallengesUpgradeUnlocked == 1 && listSum(LooksmaxxingChallengesCompleted) >= 5) {
+            setDisplay('RizzmaxUpg2Indicator', 0);
+            setDisplay('RizzmaxUpgrades2',1);
+        } else {
+            setDisplay('RizzmaxUpg2Indicator', 0);
+            setDisplay('RizzmaxUpgrades2', 0);
         }
         document.getElementById('counter').innerHTML = "You have: <b>"+abbrev(clicks)+"</b> Dilyan Points";
         document.getElementById('CountryClubButton').innerHTML = "Buy Country Club ("+abbrev(CountryClubs)+"): Cost: <b>"+grabVisualCost('CountryClubs')+"</b>";
