@@ -14,7 +14,23 @@ function ChallengeStart(num, alertMsg) {
         updateVisuals();
 
         alert(alertMsg);
-    } 
+    }  else if (inLooksmaxxingChallenge == num) {
+        if (confirm("Do you wish to leave this challenge?") == true) {
+            inLooksmaxxingChallenge = 0;
+
+            // Rizzmax reset
+            clicks = 0;
+            CountryClubs = 0;
+            RiceWashers = 0;
+            RandomValue5xUpgrades = 0;
+            RandomAuto2xUpgrades = 0;
+            AutomaticRizzers = 0;
+
+            setRoom(1);
+            updateBackgrounds();
+            updateVisuals();
+        }
+    }
 }
 
 document.getElementById('LMC1Button').onclick = function() {

@@ -214,6 +214,14 @@ function updateBackgrounds() {
     }
 }
 
+function isEqual(a,b) {
+    if (a == b) {
+        return(true);
+    } else {
+        return(false);
+    }
+}
+
 function updateVisuals() {
     try {
         if (Rizzmaxxes > 0) {
@@ -248,6 +256,18 @@ function updateVisuals() {
             document.getElementById('UnlockLooksmaxxingButton').innerHTML = "Looksmaxxing Challenges: <b>Unlocked</b>";
         } else {
             document.getElementById('UnlockLooksmaxxingButton').innerHTML = "Looksmaxxing Challenges: Cost: <b>"+grabVisualCost('LooksmaxxingChallengesUpgradeUnlocked')+"</b> RP";
+        }
+        // Looksmaxxing Challenges
+        if (inLooksmaxxingChallenge != 0) {
+            document.getElementById('LMC1Button').innerHTML = (isEqual(inLooksmaxxingChallenge,1) ? "End Challenge" : "Cannot Start");
+            document.getElementById('LMC2Button').innerHTML = (isEqual(inLooksmaxxingChallenge,2) ? "End Challenge" : "Cannot Start");
+            document.getElementById('LMC3Button').innerHTML = (isEqual(inLooksmaxxingChallenge,3) ? "End Challenge" : "Cannot Start");
+            document.getElementById('LMC4Button').innerHTML = (isEqual(inLooksmaxxingChallenge,4) ? "End Challenge" : "Cannot Start");
+        } else {
+            document.getElementById('LMC1Button').innerHTML = "Begin";
+            document.getElementById('LMC2Button').innerHTML = "Begin";
+            document.getElementById('LMC3Button').innerHTML = "Begin";
+            document.getElementById('LMC4Button').innerHTML = "Begin";
         }
     } catch(error) {
         console.error(error);
