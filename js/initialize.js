@@ -225,7 +225,8 @@ function isEqual(a,b) {
 function updateVisuals() {
     try {
         if (Rizzmaxxes > 0) {
-            document.getElementById('currencyCounter').innerHTML = "<b>"+abbrev(clicks)+"</b> Dilyan Points <b>"+RizzPoints+"</b> Rizz Points";
+            var LooksmaxChallengeText = [""," <b><em>Bye Bye!</em></b>"," <b><em>Edging Maestro</em></b>"," <b><em>Stone-Faced Mogging</em></b>"," <b><em>Rags to Riches</em></b>"][inLooksmaxxingChallenge];
+            document.getElementById('currencyCounter').innerHTML = "<b>"+abbrev(clicks)+"</b> Dilyan Points <b>"+RizzPoints+"</b> Rizz Points"+LooksmaxChallengeText;
             setDisplay('2xRandomAutoUpgradeButton', 1);
             setDisplay('RizzmaxUpgrades', 1);
         } else {
