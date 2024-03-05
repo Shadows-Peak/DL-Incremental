@@ -11,7 +11,7 @@ data = {
     "RizzmaxClickWorth": 0,
     "LooksmaxxingChallengesUpgradeUnlocked": 0,
     "inLooksmaxxingChallenge": 0,
-    "LooksmaxxingChallengesCompleted": JSON.stringify([0,0,0,0]),
+    "LooksmaxxingChallengesCompleted": [0,0,0,0],
     "backgroundToggle": 1,
     "chosenBackground": 1,
     "lastOfflineTime": 0
@@ -39,7 +39,11 @@ function saveData() {
         basicIter++;
     }
     for (const [key, value] of Object.entries(data)) {
-        localStorage.setItem(key, value);
+        if (key == "LooksmaxxingChallengesCompleted") {
+            localStorage.setItem(key, JSON.stringify(value));
+        } else {
+            localStorage.setItem(key, value);
+        }
     }
 }
 
@@ -57,12 +61,16 @@ function resetData() {
         "RizzmaxClickWorth": 0,
         "LooksmaxxingChallengesUpgradeUnlocked": 0,
         "inLooksmaxxingChallenge": 0,
-        "LooksmaxxingChallengesCompleted": JSON.stringify([0,0,0,0]),
+        "LooksmaxxingChallengesCompleted": [0,0,0,0],
         "lastOfflineTime": 0
     }
     for (const [key, value] of Object.entries(data)) {
         eval(key + " = " + value);
-        localStorage.setItem(key, value);
+        if (key == "LooksmaxxingChallengesCompleted") {
+            localStorage.setItem(key, JSON.stringify(value));
+        } else {
+            localStorage.setItem(key, value);
+        }
     }
     updateVisuals();
 }
