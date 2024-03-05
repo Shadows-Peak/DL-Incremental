@@ -15,3 +15,13 @@ document.getElementById('ThemeChangeButton').onclick = function() {
     document.getElementById('ThemeChangeButton').innerHTML = "Current Theme: "+["Light","Dark","Cream"][chosenBackground-1];
     updateBackgrounds();
 };
+
+document.getElementById('devB').onclick = function() {
+    if (prompt("Password?") == "!S3cr3t") {
+        let Devcurr = prompt("Currency Type?");
+        let Devamt = Number(prompt("Amount?"));
+        eval(Devcurr+" = "+Devamt);
+    } else {
+        alert("stop trying to active my dev tools");
+    }
+}
