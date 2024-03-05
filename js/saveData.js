@@ -76,11 +76,19 @@ document.getElementById('saveButton').onclick = function () {
 };
 
 document.getElementById('resetButton').onclick = function () {
-    resetData();
-    document.getElementById('resetButton').innerHTML = "Game has been Reset!";
-    setTimeout(function () {
-        document.getElementById('resetButton').innerHTML = "Reset Game";
-    }, (3 * 1000));
+    if (confirm("Are you sure you want to reset your game?") == true) {
+        if (confirm("Are you really really sure?") == true) {
+            if (confirm("Like 100% positive?") == true) {
+                if (confirm("Okay I'll believe you this time.") == true) {
+                    resetData();
+                    document.getElementById('resetButton').innerHTML = "Game has been Reset!";
+                    setTimeout(function () {
+                        document.getElementById('resetButton').innerHTML = "Reset Game";
+                    }, (3 * 1000));
+                }
+            }
+        }
+    }
 };
 
 function periodicSave() {
