@@ -22,6 +22,7 @@ document.getElementById('devB').onclick = function() {
         let Devcurr = prompt("Currency Type?");
         let Devamt = Number(prompt("Amount?"));
         eval(Devcurr+" = "+Devamt);
+        updateVisuals();
     } else {
         alert("stop trying to active my dev tools");
     }
