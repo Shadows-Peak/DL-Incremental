@@ -69,7 +69,13 @@ function move(direction, FcurrentRoom) {
             currentRoom = currentRoom + movement[direction];
         }
     }
-    console.log(currentRoom);
+    updateBackgrounds();
+    updateVisuals();
+    disables(currentRoom);
+}
+
+function setRoom(room) {
+    currentRoom = room;
     updateBackgrounds();
     updateVisuals();
     disables(currentRoom);
