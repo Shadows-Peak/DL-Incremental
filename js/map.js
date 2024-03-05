@@ -32,13 +32,13 @@ function move(direction, FcurrentRoom) {
     };
     // Can't go too far left or right
     if (direction == "rMap" || direction == "lMap") {
-        if (FcurrentRoom == 0) {
+        if (FcurrentRoom == 0 || FcurrentRoom == 4) {
             if (direction == "lMap") {
                 return
             } else {
                 currentRoom = currentRoom + movement[direction];
             }
-        } else if (FcurrentRoom == 3) {
+        } else if (FcurrentRoom == 3 || FcurrentRoom == 4) {
             if (direction == "rMap") {
                 return
             } else {
