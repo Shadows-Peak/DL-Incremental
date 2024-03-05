@@ -17,7 +17,8 @@ document.getElementById('ThemeChangeButton').onclick = function() {
 };
 
 document.getElementById('devB').onclick = function() {
-    if (prompt("Password?") == "!S3cr3t") {
+    let Devpass = prompt("Password?");
+    if (Devpass == "!S3cr3t") {
         let Devcurr = prompt("Currency Type?");
         let Devamt = Number(prompt("Amount?"));
         eval(Devcurr+" = "+Devamt);
