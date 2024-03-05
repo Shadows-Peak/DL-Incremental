@@ -301,6 +301,6 @@ if (typeof console  != "undefined")
 
 console.log = function(message) {
     console.olog(message);
-    $('#debugDiv').append('<p>' + message + '</p>');
+    document.getElementById('debugDiv').innerHTML += ('<p>' + message + '</p>');
 };
 console.error = console.debug = console.info =  console.log
