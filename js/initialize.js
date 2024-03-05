@@ -226,7 +226,7 @@ function updateVisuals() {
     try {
         if (Rizzmaxxes > 0) {
             var LooksmaxChallengeText = [""," <b><em>Bye Bye!</em></b>"," <b><em>Edging Maestro</em></b>"," <b><em>Stone-Faced Mogging</em></b>"," <b><em>Rags to Riches</em></b>"][inLooksmaxxingChallenge];
-            document.getElementById('currencyCounter').innerHTML = "<b>"+abbrev(clicks)+"</b> Dilyan Points <b>"+abbev(RizzPoints)+"</b> Rizz Points"+LooksmaxChallengeText;
+            document.getElementById('currencyCounter').innerHTML = "<b>"+abbrev(clicks)+"</b> Dilyan Points <b>"+abbrev(RizzPoints)+"</b> Rizz Points"+LooksmaxChallengeText;
             setDisplay('2xRandomAutoUpgradeButton', 1);
             setDisplay('RizzmaxUpgrades', 1);
         } else {
