@@ -15,7 +15,7 @@ function updateVisuals() {
 
 // Country Clubs
 document.getElementById('CountryClubButton').onclick = function() {
-    if (clicks >= grabCost('CountryClubs')) {
+    if (clicks >= grabCost('CountryClubs') && inLooksmaxxingChallenge != 4) {
         clicks -= grabCost('CountryClubs');
         CountryClubs++;
         updateVisuals();
@@ -23,7 +23,7 @@ document.getElementById('CountryClubButton').onclick = function() {
 };
 // Rice Washers
 document.getElementById('RiceWasherButton').onclick = function() {
-    if (clicks >= grabCost('RiceWashers')) {
+    if (clicks >= grabCost('RiceWashers') && inLooksmaxxingChallenge != 1 && inLooksmaxxingChallenge != 4) {
         clicks -= grabCost('RiceWashers');
         RiceWashers++;
         updateVisuals();
@@ -31,7 +31,7 @@ document.getElementById('RiceWasherButton').onclick = function() {
 }
 // Random x5 Value Upgrade
 document.getElementById('5xRandomValueUpgradeButton').onclick = function() {
-    if (RandomValue5xUpgrades < 5) {
+    if (RandomValue5xUpgrades < 5 && inLooksmaxxingChallenge != 3 && inLooksmaxxingChallenge != 4) {
         if (clicks >= grabCost('RandomValue5xUpgrades')) {
             clicks -= grabCost('RandomValue5xUpgrades');
             RandomValue5xUpgrades++;
@@ -41,7 +41,7 @@ document.getElementById('5xRandomValueUpgradeButton').onclick = function() {
 }
 // Automatic Rizzers
 document.getElementById('AutomaticRizzerButton').onclick = function() {
-    if (clicks >= grabCost('AutomaticRizzers')) {
+    if (clicks >= grabCost('AutomaticRizzers') && inLooksmaxxingChallenge != 3 && inLooksmaxxingChallenge != 4) {
         clicks -= grabCost('AutomaticRizzers');
         AutomaticRizzers++;
         updateVisuals();
@@ -49,7 +49,7 @@ document.getElementById('AutomaticRizzerButton').onclick = function() {
 }
 // Random x2 Auto Value
 document.getElementById('2xRandomAutoUpgradeButton').onclick = function() {
-    if (RandomAuto2xUpgrades < 5) {
+    if (RandomAuto2xUpgrades < 5 && inLooksmaxxingChallenge != 3 && inLooksmaxxingChallenge != 4) {
         if (clicks >= grabCost('RandomAuto2xUpgrades')) {
             clicks -= grabCost('RandomAuto2xUpgrades');
             RandomAuto2xUpgrades++;
@@ -59,7 +59,7 @@ document.getElementById('2xRandomAutoUpgradeButton').onclick = function() {
 }
 // Offline Progress +1 Hr Upgrade
 document.getElementById('OfflineProduction1Button').onclick = function() {
-    if (RizzPoints >= grabCost('OfflineProdHrs')) {
+    if (RizzPoints >= grabCost('OfflineProdHrs') && inLooksmaxxingChallenge == 0) {
         RizzPoints -= grabCost('OfflineProdHrs');
         OfflineProdHrs++;
         updateVisuals();
@@ -67,7 +67,7 @@ document.getElementById('OfflineProduction1Button').onclick = function() {
 }
 // Extra Click Worth Upgrade
 document.getElementById('RizzClickWorthButton').onclick = function() {
-    if (RizzPoints >= grabCost('RizzmaxClickWorth')) {
+    if (RizzPoints >= grabCost('RizzmaxClickWorth') && inLooksmaxxingChallenge == 0) {
         RizzPoints -= grabCost('RizzmaxClickWorth');
         RizzmaxClickWorth++;
         updateVisuals();

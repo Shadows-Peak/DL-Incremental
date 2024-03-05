@@ -31,16 +31,24 @@ window.addEventListener('keyup', e=>{
 });
 
 function simulateClick() {
-  var multiplier = 1;
-  var RandomNumber = Math.floor(Math.random() * 100);
-  if (RandomNumber >= 100 - RandomValue5xUpgrades) {
-    multiplier = 5;
-  } else {
-    multiplier = 1;
+  if (inLooksmaxxingChallenge != 2) {
+    var multiplier = 1;
+    var RandomNumber = Math.floor(Math.random() * 100);
+    if (RandomNumber >= 100 - RandomValue5xUpgrades) {
+      multiplier = 5;
+    } else {
+      multiplier = 1;
+    }
+    var mult2 = 0;
+    if (inLooksmaxxingChallenge == 4) {
+      mult2 = 1;
+    } else {
+      mult2 = (Boolean(inLooksmaxxingChallenge) ? 0 : 1);
+    }
+    clicks += Math.floor((multiplier)*(1 + CountryClubs)*(1 + RiceWashers)*(1+(mult2*RizzmaxClickWorth)/100));
+    document.getElementById('counter').innerHTML = "You have: <b>"+abbrev(clicks)+"</b> Dilyan Points";
+    updateVisuals();
   }
-  clicks += Math.floor((multiplier)*(1 + CountryClubs)*(1 + RiceWashers)*(1+RizzmaxClickWorth/100));
-  document.getElementById('counter').innerHTML = "You have: <b>"+abbrev(clicks)+"</b> Dilyan Points";
-  updateVisuals();
 }
 
 document.getElementById('button1').onclick = function() {

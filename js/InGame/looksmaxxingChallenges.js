@@ -16,19 +16,21 @@ function ChallengeStart(num, alertMsg) {
         alert(alertMsg);
     }  else if (inLooksmaxxingChallenge == num) {
         if (confirm("Do you wish to leave this challenge?") == true) {
-            inLooksmaxxingChallenge = 0;
+            if (confirm("Ending it this way makes you lose your attempt, if you have the requirements, you should Rizzmax instead. Press OK to end it anyways.")) {
+                inLooksmaxxingChallenge = 0;
 
-            // Rizzmax reset
-            clicks = 0;
-            CountryClubs = 0;
-            RiceWashers = 0;
-            RandomValue5xUpgrades = 0;
-            RandomAuto2xUpgrades = 0;
-            AutomaticRizzers = 0;
-
-            setRoom(1);
-            updateBackgrounds();
-            updateVisuals();
+                // Rizzmax reset
+                clicks = 0;
+                CountryClubs = 0;
+                RiceWashers = 0;
+                RandomValue5xUpgrades = 0;
+                RandomAuto2xUpgrades = 0;
+                AutomaticRizzers = 0;
+                
+                setRoom(1);
+                updateBackgrounds();
+                updateVisuals();
+            }
         }
     }
 }
