@@ -76,7 +76,7 @@ function resetData() {
 }
 
 document.getElementById('saveButton').onclick = function () {
-    localStorage.setItem('mainClicks', clicks);
+    saveData();
     document.getElementById('saveButton').innerHTML = "Saved!";
     setTimeout(function () {
         document.getElementById('saveButton').innerHTML = "Save Game";
