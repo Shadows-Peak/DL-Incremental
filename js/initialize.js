@@ -22,6 +22,9 @@ var OfflineProdHrs = 0;
 var RizzmaxClickWorth = 0;
 var LooksmaxxingChallengesUpgradeUnlocked = 0;
 
+var inLooksmaxxingChallenge = 0;
+var LooksmaxxingChallengesCompleted = [0,0,0,0];
+
 
 
 function grabCost(Item) {
@@ -67,6 +70,8 @@ try{
     OfflineProdHrs = Number(localStorage.getItem('OfflineProdHrs'));
     RizzmaxClickWorth = Number(localStorage.getItem('RizzmaxClickWorth'));
     LooksmaxxingChallengesUpgradeUnlocked = Number(localStorage.getItem('LooksmaxxingChallengesUpgradeUnlocked'));
+    inLooksmaxxingChallenge = Number(localStorage.getItem('inLooksmaxxingChallenge'));
+    LooksmaxxingChallengesCompleted = JSON.parse(localStorage.getItem('LooksmaxxingChallengesCompleted'));
     lastOfflineTime = Number(localStorage.getItem('lastOfflineTime'));
 } catch(error) {
     console.error(error);
@@ -83,6 +88,8 @@ try{
     OfflineProdHrs = 0;
     RizzmaxClickWorth = 0;
     LooksmaxxingChallengesUpgradeUnlocked = 0;
+    inLooksmaxxingChallenge = 0;
+    LooksmaxxingChallengesCompleted = [0,0,0,0];
     lastOfflineTime = 0;
 }
 
