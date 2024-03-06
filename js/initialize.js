@@ -85,7 +85,7 @@ try{
     inLooksmaxxingChallenge = Number(localStorage.getItem('inLooksmaxxingChallenge'));
     LooksmaxxingChallengesCompleted = JSON.parse(localStorage.getItem('LooksmaxxingChallengesCompleted'));
     try {
-        if (LooksmaxxingChallengesCompleted.length != 4) {
+        if (LooksmaxxingChallengesCompleted.length == null) {
             LooksmaxxingChallengesCompleted = [0,0,0,0];
         }
     } catch(error) {

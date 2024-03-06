@@ -65,6 +65,7 @@ document.getElementById('RizzmaxButton').onclick = function() {
         alert("You need to be able to gain least "+LooksmaxCosts(inLooksmaxxingChallenge)+" Rizz Points to end this challenge.");
         return;
       } else {
+        inLooksmaxxingChallenge = 0;
         LooksmaxxingChallengesCompleted[inLooksmaxxingChallenge-1] += 1;
         RizzPoints += RizzPointgain();
         Rizzmaxxes++;
@@ -76,6 +77,7 @@ document.getElementById('RizzmaxButton').onclick = function() {
         AutomaticRizzers = 0;
         alert("You have completed the '"+['Bye Bye!','Edging Maestro','Stone-Faced Mogging','Rags to Riches'][inLooksmaxxingChallenge-1]+"' Looksmaxxing Challenge. Aside from the benefits of completion, you have also recieved the Rizz Points from your Rizzmax.")
         setRoom(1);
+        updateBackgrounds();
         updateVisuals();
         return;
       }
