@@ -43,8 +43,6 @@ function move(direction, FcurrentRoom) {
         } else {
             currentRoom = currentRoom + movement[direction];
         }
-    } else {
-        currentRoom = currentRoom + movement[direction];
     }
     // Can't go too far up or down
     if (direction == "uMap" || direction == "dMap") {
