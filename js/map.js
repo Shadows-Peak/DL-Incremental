@@ -34,10 +34,14 @@ function move(direction, FcurrentRoom) {
     if (direction == "rMap") {
         if (FcurrentRoom == 3 || FcurrentRoom == 4) {
             return
+        } else {
+            currentRoom = currentRoom + movement[direction];
         }
     } else if (direction == "lMap") {
         if (FcurrentRoom == 0 || FcurrentRoom == 4) {
             return
+        } else {
+            currentRoom = currentRoom + movement[direction];
         }
     } else {
         currentRoom = currentRoom + movement[direction];
