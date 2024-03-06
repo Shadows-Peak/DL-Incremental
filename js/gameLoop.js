@@ -11,6 +11,7 @@ function gameLoop() {
   } else {
     multiplier = 1;
   }
+  console.log(Math.floor((multiplier) * (AutomaticRizzers) * (1 + RiceWashers) * (1+(5*listSum(LooksmaxxingChallengesCompleted))/100) * (1+mult3*(LooksmaxxingChallengesCompleted[0]/10)) ));
   clicks += Math.floor((multiplier) * (AutomaticRizzers) * (1 + RiceWashers) * (1+(5*listSum(LooksmaxxingChallengesCompleted))/100) * (1+mult3*(LooksmaxxingChallengesCompleted[0]/10)) );
   updateVisuals();
 }
