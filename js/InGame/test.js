@@ -32,7 +32,7 @@ window.addEventListener('keyup', e=>{
 
 function simulateClick() {
   if (inLooksmaxxingChallenge != 2) {
-    var mult3 = Boolean(inLooksmaxxingChallenge) ? 0 : 1;
+    var mult3 = (Boolean(inLooksmaxxingChallenge) ? 0 : 1);
 
     var multiplier = 1;
     var RandomNumber = Math.floor(Math.random() * 100);
@@ -47,8 +47,8 @@ function simulateClick() {
     } else {
       mult2 = (Boolean(inLooksmaxxingChallenge) ? 0 : 1);
     }
-    console.log(Math.floor((multiplier)*(1 + (1+mult3*LooksmaxxingChallengesCompleted[3])*CountryClubs)*(1 + RiceWashers)*(1+(mult2*RizzmaxClickWorth)/100)*(1+(5*listSum(LooksmaxxingChallengesCompleted))/100)*(1+mult3*(LooksmaxxingChallengesCompleted[0]/10)) ));
-    clicks += Math.floor((multiplier)*(1 + (1+mult3*LooksmaxxingChallengesCompleted[3])*CountryClubs)*(1 + RiceWashers)*(1+(mult2*RizzmaxClickWorth)/100)*(1+(5*listSum(LooksmaxxingChallengesCompleted))/100)*(1+mult3*(LooksmaxxingChallengesCompleted[0]/10)) );
+    console.log(Math.floor((multiplier)*(1 + (1+mult3*Number(LooksmaxxingChallengesCompleted[3]))*CountryClubs)*(1 + RiceWashers)*(1+(mult2*RizzmaxClickWorth)/100)*(1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100)*(1+mult3*(Number(LooksmaxxingChallengesCompleted[0])/10)) ));
+    clicks += Math.floor((multiplier)*(1 + (1+mult3*Number(LooksmaxxingChallengesCompleted[3]))*CountryClubs)*(1 + RiceWashers)*(1+(mult2*RizzmaxClickWorth)/100)*(1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100)*(1+mult3*(Number(LooksmaxxingChallengesCompleted[0])/10)) );
     document.getElementById('counter').innerHTML = "You have: <b>"+abbrev(clicks)+"</b> Dilyan Points";
     updateVisuals();
   }
