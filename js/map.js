@@ -32,15 +32,21 @@ function move(direction, FcurrentRoom) {
     };
     // Can't go too far left or right
     if (direction == "rMap") {
+        console.log(FcurrentRoom);
         if (FcurrentRoom == 3 || FcurrentRoom == 4) {
+            console.log("bad run");
             return
         } else {
+            console.log("good run");
             currentRoom = currentRoom + movement[direction];
         }
     } else if (direction == "lMap") {
+        console.log(FcurrentRoom);
         if (FcurrentRoom == 0 || FcurrentRoom == 4) {
+            console.log("bad run");
             return
         } else {
+            console.log("good run");
             currentRoom = currentRoom + movement[direction];
         }
     }
