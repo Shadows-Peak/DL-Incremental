@@ -36,9 +36,21 @@ function grabCost(Item) {
         "RiceWashers": Math.ceil(500*Math.floor(2 ** RiceWashers) * Math.log(7 * ((RiceWashers + 1) ** 1.5)) * (RiceWashers + 1)),
         "OfflineProdHrs": Math.ceil(1.5*((OfflineProdHrs)**3.5))+1,
         "RizzmaxClickWorth": (2**(Math.floor(RizzmaxClickWorth/50)))*(Math.ceil(Math.ceil(2/3*((RizzmaxClickWorth)**0.5))*(Math.log(RizzmaxClickWorth+1)))+1),
-        "LooksmaxxingChallengesUpgradeUnlocked": Boolean(LooksmaxxingChallengesUpgradeUnlocked) ? -1 : 100,
+        "LooksmaxxingChallengesUpgradeUnlocked": Boolean(LooksmaxxingChallengesUpgradeUnlocked) ? -1 : 100
     }
     return(allCosts[Item]);
+}
+
+function LooksmaxCosts(Looksmax) {
+    if (Looksmax == 1) {
+        return(10 + 5*LooksmaxxingChallengesCompleted[0]*Math.floor(1.25**LooksmaxxingChallengesCompleted[0]));
+    } else if (Looksmax == 2) {
+        return(1 + 2*LooksmaxxingChallengesCompleted[1]*Math.floor(1.75**LooksmaxxingChallengesCompleted[1]));
+    } else if (Looksmax == 3) {
+        return(50 + 50*LooksmaxxingChallengesCompleted[2]*Math.floor(2**LooksmaxxingChallengesCompleted[2]));
+    } else if (Looksmax == 4) {
+        return(10 + 10*LooksmaxxingChallengesCompleted[3]*Math.floor(3**LooksmaxxingChallengesCompleted[3]));
+    }
 }
 
 function grabVisualCost(Item) {
@@ -275,6 +287,7 @@ function updateVisuals() {
             document.getElementById('UnlockLooksmaxxingButton').innerHTML = "Looksmaxxing Challenges: Cost: <b>"+grabVisualCost('LooksmaxxingChallengesUpgradeUnlocked')+"</b> RP";
         }
         // Looksmaxxing Challenges
+        document.getElementById('LMCDPMVisual').innerHTML = "Current Dilyan Point Multiplier: +<b>"+5*listSum(LooksmaxxingChallengesCompleted)+"</b>%"
         if (inLooksmaxxingChallenge != 0) {
             document.getElementById('LMC1Button').innerHTML = (isEqual(inLooksmaxxingChallenge,1) ? "End Challenge" : "Cannot Start");
             document.getElementById('LMC2Button').innerHTML = (isEqual(inLooksmaxxingChallenge,2) ? "End Challenge" : "Cannot Start");
@@ -286,13 +299,25 @@ function updateVisuals() {
             document.getElementById('LMC3Button').innerHTML = "Begin";
             document.getElementById('LMC4Button').innerHTML = "Begin";
         }
+        document.getElementById('LMC1D').innerHTML = "Rizzmax for at least "+abbrev(LooksmaxCosts(1))+" points without using any Rice Washers.";
+        document.getElementById('LMC1B').innerHTML = "Current Bonus: +"+abbrev(10*LooksmaxxingChallengesCompleted[0])+"% Dilyan Point Multiplier";
+        document.getElementById('LMC1C').innerHTML = "Completions: "+abbrev(LooksmaxxingChallengesCompleted[0])+"/10";
+        document.getElementById('LMC2D').innerHTML = "Rizzmax for at least "+abbrev(LooksmaxCosts(2))+" point without clicking the main button and starting with 1 Automatic Rizzer.";
+        document.getElementById('LMC2B').innerHTML = "Current Bonus: +"+abbrev(LooksmaxxingChallengesCompleted[1])+"% Offline Value";
+        document.getElementById('LMC2C').innerHTML = "Completions: "+abbrev(LooksmaxxingChallengesCompleted[1])+"/90";
+        document.getElementById('LMC3D').innerHTML = "Rizzmax for at least "+abbrev(LooksmaxCosts(3))+" points without any random chance triggers or Automatic Rizzers.";
+        document.getElementById('LMC3B').innerHTML = "Current Bonus: +"+abbrev(LooksmaxxingChallengesCompleted[2])+"x On All Random Multipliers";
+        document.getElementById('LMC3C').innerHTML = "Completions: "+abbrev(LooksmaxxingChallengesCompleted[2])+"/5";
+        document.getElementById('LMC4D').innerHTML = "In this challenge, you can use your rizzmax click worth upgrade. Everything is disabled aside from the clicking of the main button. Rizzmax for at least "+abbrev(LooksmaxCosts(4))+" points.";
+        document.getElementById('LMC4B').innerHTML = "Current Bonus: +"+abbrev(LooksmaxxingChallengesCompleted[3])+" Dilyan Point Worth Per Country Club";
+        document.getElementById('LMC4C').innerHTML = "Completions: "+abbrev(LooksmaxxingChallengesCompleted[3])+"/9";
     } catch(error) {
         console.error(error);
     }
 }
 
 function offlineProgress() {
-    if (OfflineProdHrs > 0) {
+    if (OfflineProdHrs > 0 && inLooksmaxxingChallenge == 0) {
         var currentTime = Date.now();
         var timeDifference = currentTime - lastOfflineTime;
         if (timeDifference/3600000 <= OfflineProdHrs) {
@@ -300,10 +325,10 @@ function offlineProgress() {
         } else {
             var timeDifferenceSeconds = OfflineProdHrs*360;
         }
-        clicks += Math.floor(0.1*(Math.floor(timeDifferenceSeconds) * (gameTick) * (AutomaticRizzers) * (1 + RiceWashers)));
+        clicks += Math.floor(((10+LooksmaxxingChallengesCompleted[1])/100)*(Math.floor(timeDifferenceSeconds) * (gameTick) * (AutomaticRizzers) * (1 + RiceWashers) * (1+(5*listSum(LooksmaxxingChallengesCompleted)/100)) * (1+(LooksmaxxingChallengesCompleted[0]/10)) ));
         lastOfflineTime = 0;
 
-        alert("You gained "+Math.floor(0.1*(Math.floor(timeDifferenceSeconds) * (AutomaticRizzers) * (1 + RiceWashers)))+" clicks while you were gone! "+timeDifferenceSeconds);
+        alert("You gained "+Math.floor(((10+LooksmaxxingChallengesCompleted[1])/100)*(Math.floor(timeDifferenceSeconds) * (gameTick) * (AutomaticRizzers) * (1 + RiceWashers) * (1+(5*listSum(LooksmaxxingChallengesCompleted)/100)) * (1+(LooksmaxxingChallengesCompleted[0]/10)) ))+" clicks while you were gone! "+timeDifferenceSeconds);
         updateVisuals();
     }
 }

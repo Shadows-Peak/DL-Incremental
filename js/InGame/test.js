@@ -32,10 +32,12 @@ window.addEventListener('keyup', e=>{
 
 function simulateClick() {
   if (inLooksmaxxingChallenge != 2) {
+    var mult3 = Boolean(inLooksmaxxingChallenge) ? 0 : 1;
+
     var multiplier = 1;
     var RandomNumber = Math.floor(Math.random() * 100);
     if (RandomNumber >= 100 - RandomValue5xUpgrades) {
-      multiplier = 5;
+      multiplier = 5+mult3*LooksmaxxingChallengesCompleted[2];
     } else {
       multiplier = 1;
     }
@@ -45,7 +47,7 @@ function simulateClick() {
     } else {
       mult2 = (Boolean(inLooksmaxxingChallenge) ? 0 : 1);
     }
-    clicks += Math.floor((multiplier)*(1 + CountryClubs)*(1 + RiceWashers)*(1+(mult2*RizzmaxClickWorth)/100));
+    clicks += Math.floor((multiplier)*(1 + (1+mult3*LooksmaxxingChallengesCompleted[3])*CountryClubs)*(1 + RiceWashers)*(1+(mult2*RizzmaxClickWorth)/100)*(1+(5*listSum(LooksmaxxingChallengesCompleted))/100)*(1+mult3*(LooksmaxxingChallengesCompleted[0]/10)) );
     document.getElementById('counter').innerHTML = "You have: <b>"+abbrev(clicks)+"</b> Dilyan Points";
     updateVisuals();
   }
@@ -57,6 +59,26 @@ document.getElementById('button1').onclick = function() {
 
 document.getElementById('RizzmaxButton').onclick = function() {
   if (clicks >= 25000) {
+    if (inLooksmaxxingChallenge > 0) {
+      if (RizzPointgain() < LooksmaxCosts(inLooksmaxxingChallenge)) {
+        alert("You need to be able to gain least "+LooksmaxCosts(inLooksmaxxingChallenge)+" Rizz Points to end this challenge.");
+        return;
+      } else {
+        LooksmaxxingChallengesCompleted[inLooksmaxxingChallenge-1] += 1;
+        RizzPoints += RizzPointgain();
+        Rizzmaxxes++;
+        clicks = 0;
+        CountryClubs = 0;
+        RiceWashers = 0;
+        RandomValue5xUpgrades = 0;
+        RandomAuto2xUpgrades = 0;
+        AutomaticRizzers = 0;
+        alert("You have completed the '"+['Bye Bye!','Edging Maestro','Stone-Faced Mogging','Rags to Riches'][inLooksmaxxingChallenge-1]+"' Looksmaxxing Challenge. Aside from the benefits of completion, you have also recieved the Rizz Points from your Rizzmax.")
+        setRoom(1);
+        updateVisuals();
+        return;
+      }
+    }
     RizzPoints += RizzPointgain();
     Rizzmaxxes++;
     clicks = 0;
