@@ -31,22 +31,16 @@ function move(direction, FcurrentRoom) {
         "dMap": [0,0,0,0,-1][currentRoom],
     };
     // Can't go too far left or right
-    if (direction == "rMap" || direction == "lMap") {
-        if (FcurrentRoom == 0 || FcurrentRoom == 4) {
-            if (direction == "lMap") {
-                return
-            } else {
-                currentRoom = currentRoom + movement[direction];
-            }
-        } else if (FcurrentRoom == 3 || FcurrentRoom == 4) {
-            if (direction == "rMap") {
-                return
-            } else {
-                currentRoom = currentRoom + movement[direction];
-            }
-        } else {
-            currentRoom = currentRoom + movement[direction];
+    if (direction == "rMap") {
+        if (FcurrentRoom == 3 || FcurrentRoom == 4) {
+            return
         }
+    } else if (direction == "lMap") {
+        if (FcurrentRoom == 0 || FcurrentRoom == 4) {
+            return
+        }
+    } else {
+        currentRoom = currentRoom + movement[direction];
     }
     // Can't go too far up or down
     if (direction == "uMap" || direction == "dMap") {
