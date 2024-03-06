@@ -84,6 +84,13 @@ try{
     LooksmaxxingChallengesUpgradeUnlocked = Number(localStorage.getItem('LooksmaxxingChallengesUpgradeUnlocked'));
     inLooksmaxxingChallenge = Number(localStorage.getItem('inLooksmaxxingChallenge'));
     LooksmaxxingChallengesCompleted = JSON.parse(localStorage.getItem('LooksmaxxingChallengesCompleted'));
+    try {
+        if (LooksmaxxingChallengesCompleted.length != 4) {
+            LooksmaxxingChallengesCompleted = [0,0,0,0];
+        }
+    } catch(error) {
+        console.log(error);
+    }
     lastOfflineTime = Number(localStorage.getItem('lastOfflineTime'));
 } catch(error) {
     console.error(error);
