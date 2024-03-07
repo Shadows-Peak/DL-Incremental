@@ -65,7 +65,7 @@ function resetData() {
         "lastOfflineTime": 0
     }
     for (const [key, value] of Object.entries(data)) {
-        eval(key + " = " + value);
+        window[key] = value;
         if (key == "LooksmaxxingChallengesCompleted") {
             localStorage.setItem(key, JSON.stringify(value));
         } else {
