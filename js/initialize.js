@@ -318,6 +318,8 @@ function updateVisuals() {
         document.getElementById('LMC4D').innerHTML = "In this challenge, you can use your rizzmax click worth upgrade. Everything is disabled aside from the clicking of the main button. Rizzmax for at least "+abbrev(LooksmaxCosts(4))+" points.";
         document.getElementById('LMC4B').innerHTML = "Current Bonus: +"+abbrev(LooksmaxxingChallengesCompleted[3])+" Dilyan Point Worth Per Country Club";
         document.getElementById('LMC4C').innerHTML = "Completions: "+abbrev(LooksmaxxingChallengesCompleted[3])+"/9";
+
+        document.getElementById('RandomValueExplanatory').innerHTML = "The previous 'Random Value Upgrade/Auto Value' upgrades work as such: For each time you upgrade them, you recieve an extra +10% chance to gain "+abbrev(5+LooksmaxxingChallengesCompleted[2])+"x what you would've on click or +10% chance to gain "+abbrev(2+LooksmaxxingChallengesCompleted[2])+"x what you would've on an automatic rizzer's click depending on the purchased upgrade.";
     } catch(error) {
         console.error(error);
     }

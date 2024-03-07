@@ -8,6 +8,10 @@ function ChallengeStart(num, alertMsg) {
         RandomValue5xUpgrades = 0;
         RandomAuto2xUpgrades = 0;
         AutomaticRizzers = 0;
+
+        if (num == 2) {
+            AutomaticRizzers = 1;
+        }
         
         setRoom(1);
         updateBackgrounds();

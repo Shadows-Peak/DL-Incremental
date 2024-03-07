@@ -68,6 +68,8 @@ function resetData() {
         window[key] = value;
         if (key == "LooksmaxxingChallengesCompleted") {
             localStorage.setItem(key, JSON.stringify(value));
+        } else if (key == "clicks") {
+            localStorage.setItem("mainClicks", value);
         } else {
             localStorage.setItem(key, value);
         }
