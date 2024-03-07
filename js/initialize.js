@@ -48,11 +48,11 @@ function LooksmaxCosts(Looksmax) {
     if (Looksmax == 1) {
         return(10 + 5*LooksmaxxingChallengesCompleted[0]*Math.floor(1.25**LooksmaxxingChallengesCompleted[0]));
     } else if (Looksmax == 2) {
-        return(1 + 2*LooksmaxxingChallengesCompleted[1]*Math.floor(1.75**LooksmaxxingChallengesCompleted[1]));
+        return(1 + 2*LooksmaxxingChallengesCompleted[1]*Math.floor(1.01**LooksmaxxingChallengesCompleted[1]));
     } else if (Looksmax == 3) {
-        return(50 + 50*LooksmaxxingChallengesCompleted[2]*Math.floor(2**LooksmaxxingChallengesCompleted[2]));
+        return(50 + 50*LooksmaxxingChallengesCompleted[2]*Math.floor(1.25**LooksmaxxingChallengesCompleted[2]));
     } else if (Looksmax == 4) {
-        return(10 + 10*LooksmaxxingChallengesCompleted[3]*Math.floor(3**LooksmaxxingChallengesCompleted[3]));
+        return(10 + 20*LooksmaxxingChallengesCompleted[3]*Math.floor(1.5**LooksmaxxingChallengesCompleted[3]));
     }
 }
 
@@ -316,7 +316,7 @@ function updateVisuals() {
         document.getElementById('LMC1D').innerHTML = "Rizzmax for at least "+abbrev(LooksmaxCosts(1))+" points without using any Rice Washers.";
         document.getElementById('LMC1B').innerHTML = "Current Bonus: +"+abbrev(10*LooksmaxxingChallengesCompleted[0])+"% Dilyan Point Multiplier";
         document.getElementById('LMC1C').innerHTML = "Completions: "+abbrev(LooksmaxxingChallengesCompleted[0])+"/10";
-        document.getElementById('LMC2D').innerHTML = "Rizzmax for at least "+abbrev(LooksmaxCosts(2))+" point without clicking the main button and starting with 1 Automatic Rizzer.";
+        document.getElementById('LMC2D').innerHTML = "Rizzmax for at least "+abbrev(LooksmaxCosts(2))+" point without clicking the main button and starting with 1 Automatic Rizzer.  Offline Progress is enabled at 50%.";
         document.getElementById('LMC2B').innerHTML = "Current Bonus: +"+abbrev(LooksmaxxingChallengesCompleted[1])+"% Offline Value";
         document.getElementById('LMC2C').innerHTML = "Completions: "+abbrev(LooksmaxxingChallengesCompleted[1])+"/90";
         document.getElementById('LMC3D').innerHTML = "Rizzmax for at least "+abbrev(LooksmaxCosts(3))+" points without any random chance triggers or Automatic Rizzers.";
@@ -350,6 +350,19 @@ function offlineProgress() {
         lastOfflineTime = 0;
 
         alert("You gained "+Math.floor(((10+Number(LooksmaxxingChallengesCompleted[1]))/100)*(Math.floor(timeDifferenceSeconds) * (gameTick) * (AutomaticRizzers) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) * (1+(Number(LooksmaxxingChallengesCompleted[0])/10)) ))+" clicks while you were gone! "+timeDifferenceSeconds);
+        updateVisuals();
+    } else if (inLooksmaxxingChallenge == 2) {
+        var currentTime = Date.now();
+        var timeDifference = currentTime - lastOfflineTime;
+        if (timeDifference/3600000 <= OfflineProdHrs) {
+            var timeDifferenceSeconds = timeDifference / 1000;
+        } else {
+            var timeDifferenceSeconds = OfflineProdHrs*360;
+        }
+        clicks += Math.floor((0.5)*(Math.floor(timeDifferenceSeconds) * (gameTick) * (AutomaticRizzers) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) ));
+        lastOfflineTime = 0;
+
+        alert("You gained "+Math.floor((0.5)*(Math.floor(timeDifferenceSeconds) * (gameTick) * (AutomaticRizzers) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) ))+" clicks while you were gone! "+timeDifferenceSeconds);
         updateVisuals();
     }
 }
