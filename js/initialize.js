@@ -359,10 +359,10 @@ function offlineProgress() {
         } else {
             var timeDifferenceSeconds = OfflineProdHrs*360;
         }
-        clicks += Math.floor((0.5)*(Math.floor(timeDifferenceSeconds) * (gameTick) * (AutomaticRizzers) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) ));
+        clicks += Math.floor((0.5)*(Math.floor(timeDifferenceSeconds) * (gameTick) * (AutomaticRizzers) * (1 + CountryClubs) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) ));
         lastOfflineTime = 0;
 
-        alert("You gained "+Math.floor((0.5)*(Math.floor(timeDifferenceSeconds) * (gameTick) * (AutomaticRizzers) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) ))+" clicks while you were gone! "+timeDifferenceSeconds);
-        updateVisuals();
+        alert("You gained "+Math.floor((0.5)*(Math.floor(timeDifferenceSeconds) * (gameTick) * (AutomaticRizzers) * (1 + CountryClubs) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) ))+" clicks while you were gone! "+timeDifferenceSeconds);
+        updateVisuals(); 
     }
 }
