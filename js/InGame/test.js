@@ -60,7 +60,7 @@ document.getElementById('button1').onclick = function() {
 document.getElementById('RizzmaxButton').onclick = function() {
   if (clicks >= 25000) {
     if (inLooksmaxxingChallenge > 0) {
-      if (RizzPointgain() < LooksmaxCosts(inLooksmaxxingChallenge)) {
+      if (RizzPointgain()+1 < LooksmaxCosts(inLooksmaxxingChallenge)) {
         alert("You need to be able to gain least "+LooksmaxCosts(inLooksmaxxingChallenge)+" Rizz Points to end this challenge.");
         return;
       } else {
