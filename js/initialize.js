@@ -25,6 +25,8 @@ var LooksmaxxingChallengesUpgradeUnlocked = 0;
 var inLooksmaxxingChallenge = 0;
 var LooksmaxxingChallengesCompleted = [0,0,0,0];
 
+var RizzmaxExtraChance = 0;
+
 
 
 function grabCost(Item) {
@@ -36,7 +38,8 @@ function grabCost(Item) {
         "RiceWashers": Math.ceil(500*Math.floor(2 ** RiceWashers) * Math.log(7 * ((RiceWashers + 1) ** 1.5)) * (RiceWashers + 1)),
         "OfflineProdHrs": Math.ceil(1.5*((OfflineProdHrs)**3.5))+1,
         "RizzmaxClickWorth": (2**(Math.floor(RizzmaxClickWorth/50)))*(Math.ceil(Math.ceil(2/3*((RizzmaxClickWorth)**0.5))*(Math.log(RizzmaxClickWorth+1)))+1),
-        "LooksmaxxingChallengesUpgradeUnlocked": Boolean(LooksmaxxingChallengesUpgradeUnlocked) ? -1 : 100
+        "LooksmaxxingChallengesUpgradeUnlocked": (Boolean(LooksmaxxingChallengesUpgradeUnlocked) ? -1 : 100),
+        "RizzmaxExtraChance": (4*Math.floor(2.3**RizzmaxExtraChance)+(2**RizzmaxExtraChance))
     }
     return(allCosts[Item]);
 }
@@ -319,7 +322,8 @@ function updateVisuals() {
         document.getElementById('LMC4B').innerHTML = "Current Bonus: +"+abbrev(LooksmaxxingChallengesCompleted[3])+" Dilyan Point Worth Per Country Club";
         document.getElementById('LMC4C').innerHTML = "Completions: "+abbrev(LooksmaxxingChallengesCompleted[3])+"/9";
 
-        document.getElementById('RandomValueExplanatory').innerHTML = "The previous 'Random Value Upgrade/Auto Value' upgrades work as such: For each time you upgrade them, you recieve an extra +10% chance to gain "+abbrev(5+LooksmaxxingChallengesCompleted[2])+"x what you would've on click or +10% chance to gain "+abbrev(2+LooksmaxxingChallengesCompleted[2])+"x what you would've on an automatic rizzer's click depending on the purchased upgrade.";
+        document.getElementById('RandomValueExplanatory').innerHTML = "The earlier upgrades labeled as 'Random Value Upgrade/Auto Value' function as follows: Each time you upgrade them, you gain an additional 10% chance to either receive "+abbrev(5+LooksmaxxingChallengesCompleted[2])+" times the usual value upon manual click or "+abbrev(2+LooksmaxxingChallengesCompleted[2])+" times the usual value upon automatic generation by a rizzer, depending on the specific upgrade purchased.";
+        document.getElementById('RmU2Upg3').innerHTML = "Extra Odds to All Random Chance Upgrades (+"+abbrev(5*RizzmaxExtraChance)+"%): Cost "+grabVisualCost('RizzmaxExtraChance')+" RP";
     } catch(error) {
         console.error(error);
     }

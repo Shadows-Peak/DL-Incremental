@@ -36,7 +36,7 @@ function simulateClick() {
 
     var multiplier = 1;
     var RandomNumber = Math.floor(Math.random() * 100);
-    if (RandomNumber >= 100 - RandomValue5xUpgrades) {
+    if (RandomNumber >= 100 - RandomValue5xUpgrades-mult3*5*RizzmaxExtraChance) {
       multiplier = 5+mult3*LooksmaxxingChallengesCompleted[2];
     } else {
       multiplier = 1;
@@ -65,7 +65,7 @@ document.getElementById('RizzmaxButton').onclick = function() {
         return;
       } else {
         LooksmaxxingChallengesCompleted[inLooksmaxxingChallenge-1] += 1;
-        RizzPoints += RizzPointgain();
+        RizzPoints += RizzPointgain() + 1;
         Rizzmaxxes++;
         clicks = 0;
         CountryClubs = 0;
@@ -81,7 +81,7 @@ document.getElementById('RizzmaxButton').onclick = function() {
         return;
       }
     }
-    RizzPoints += RizzPointgain();
+    RizzPoints += RizzPointgain() + 1;
     Rizzmaxxes++;
     clicks = 0;
     CountryClubs = 0;

@@ -6,7 +6,7 @@ function gameLoop() {
 
   var multiplier = 1;
   var RandomNumber = Math.floor(Math.random() * 100);
-  if (RandomNumber >= 100 - RandomAuto2xUpgrades) {
+  if (RandomNumber >= 100 - RandomAuto2xUpgrades-mult3*5*RizzmaxExtraChance) {
     multiplier = 2+mult3*LooksmaxxingChallengesCompleted[2];
   } else {
     multiplier = 1;
