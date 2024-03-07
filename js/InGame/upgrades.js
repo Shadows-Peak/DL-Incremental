@@ -87,7 +87,7 @@ document.getElementById('UnlockLooksmaxxingButton').onclick = function() {
 // Coming Soon 2
 // +5% Chance to All Random Chance Upgrades
 document.getElementById('RmU2Upg3').onclick = function() {
-    if (RizzPoints >= grabCost('RizzmaxExtraChance') && inLooksmaxxingChallenge == 0) {
+    if (RizzmaxExtraChance < 10 && RizzPoints >= grabCost('RizzmaxExtraChance') && inLooksmaxxingChallenge == 0) {
         RizzPoints -= grabCost('RizzmaxExtraChance');
         RizzmaxExtraChance++;
         updateVisuals();
