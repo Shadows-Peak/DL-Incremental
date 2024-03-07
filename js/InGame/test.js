@@ -36,7 +36,7 @@ function simulateClick() {
 
     var multiplier = 1;
     var RandomNumber = Math.floor(Math.random() * 100);
-    if (RandomNumber >= 100 - RandomValue5xUpgrades-mult3*5*RizzmaxExtraChance) {
+    if (RandomNumber >= 100 - 10*RandomValue5xUpgrades-mult3*5*RizzmaxExtraChance) {
       multiplier = 5+mult3*LooksmaxxingChallengesCompleted[2];
     } else {
       multiplier = 1;
