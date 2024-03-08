@@ -25,10 +25,10 @@ window.addEventListener('keydown', e=>{
 
 function move(direction, FcurrentRoom) {
     movement = {
-        "lMap": -1,
-        "rMap": 1,
-        "uMap": [0,0,0,1,0][currentRoom],
-        "dMap": [0,0,0,0,-1][currentRoom],
+        "lMap": [-1,-1,-1,-1,1,0][currentRoom],
+        "rMap": [1,1,1,1,0,-1][currentRoom],
+        "uMap": [0,0,1,1,0,0][currentRoom],
+        "dMap": [0,0,0,0,-1,-1][currentRoom],
     };
     // Can't go too far left or right
     if (direction == "rMap") {
@@ -38,7 +38,7 @@ function move(direction, FcurrentRoom) {
             currentRoom = currentRoom + movement[direction];
         }
     } else if (direction == "lMap") {
-        if (FcurrentRoom == 0 || FcurrentRoom == 4) {
+        if (FcurrentRoom == 0 || FcurrentRoom == 5) {
             return
         } else {
             currentRoom = currentRoom + movement[direction];
@@ -49,7 +49,10 @@ function move(direction, FcurrentRoom) {
         if (LooksmaxxingChallengesUpgradeUnlocked == 0 && FcurrentRoom == 3 && direction == "uMap") {
             return
         }
-        if ([0,1,2,4].includes(FcurrentRoom)) {
+        if ((MineOfRizzUnlocked == 0 && FcurrentRoom == 4 && direction == "lMap") || (MineOfRizzUnlocked == 0 && FcurrentRoom == 2 && direction == "uMap")) {
+            return
+        }
+        if ([0,1,4,5].includes(FcurrentRoom)) {
             if (direction == "uMap") {
                 return
             } else {
@@ -87,7 +90,8 @@ function disables(FcurrentRoom) {
             "room1Stuff": 0,
             "room2Stuff": 0,
             "room3Stuff": 0,
-            "room4Stuff": 0
+            "room4Stuff": 0,
+            "room5Stuff": 0
         }
     } else if (FcurrentRoom == 1) {
         disablesList = [1,1,0,0]
@@ -96,16 +100,22 @@ function disables(FcurrentRoom) {
             "room1Stuff": 1,
             "room2Stuff": 0,
             "room3Stuff": 0,
-            "room4Stuff": 0
+            "room4Stuff": 0,
+            "room5Stuff": 0
         }
     } else if (FcurrentRoom == 2) {
-        disablesList = [1,1,0,0]
+        if (MineOfRizzUnlocked == 0) {
+            disablesList = [1,1,0,0]
+        } else {
+            disablesList = [1,1,1,0];
+        }
         extraDisables = {
             "room0Stuff": 0,
             "room1Stuff": 0,
             "room2Stuff": 1,
             "room3Stuff": 0,
-            "room4Stuff": 0
+            "room4Stuff": 0,
+            "room5Stuff": 0
         }
     } else if (FcurrentRoom == 3) {
         if (LooksmaxxingChallengesUpgradeUnlocked == 0) {
@@ -118,16 +128,32 @@ function disables(FcurrentRoom) {
             "room1Stuff": 0,
             "room2Stuff": 0,
             "room3Stuff": 1,
-            "room4Stuff": 0
+            "room4Stuff": 0,
+            "room5Stuff": 0
         }
     } else if (FcurrentRoom == 4) {
-        disablesList = [0,0,0,1]
+        if (MineOfRizzUnlocked == 0) {
+            disablesList = [0,0,0,1];
+        } else {
+            disablesList = [1,0,0,1];
+        }
         extraDisables = {
             "room0Stuff": 0,
             "room1Stuff": 0,
             "room2Stuff": 0,
             "room3Stuff": 0,
-            "room4Stuff": 1
+            "room4Stuff": 1,
+            "room5Stuff": 0
+        }
+    } else if (FcurrentRoom == 5) {
+        disablesList = [0,1,0,1];
+        extraDisables = {
+            "room0Stuff": 0,
+            "room1Stuff": 0,
+            "room2Stuff": 0,
+            "room3Stuff": 0,
+            "room4Stuff": 0,
+            "room5Stuff": 1
         }
     }
     var DisableDict = {

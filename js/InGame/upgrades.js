@@ -83,7 +83,16 @@ document.getElementById('UnlockLooksmaxxingButton').onclick = function() {
         }
     }
 }
-// Coming Soon 1
+// Mine of Rizz Unlock
+document.getElementById('RmU2Upg1').onclick = function() {
+    if (grabCost('MineOfRizzUnlocked') != -1) {
+        if (RizzPoints >= grabCost('MineOfRizzUnlocked')) {
+            RizzPoints -= grabCost('MineOfRizzUnlocked');
+            MineOfRizzUnlocked++;
+            updateVisuals();
+        }
+    }
+}
 // Coming Soon 2
 // +5% Chance to All Random Chance Upgrades
 document.getElementById('RmU2Upg3').onclick = function() {

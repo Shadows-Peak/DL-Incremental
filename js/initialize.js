@@ -25,6 +25,7 @@ var LooksmaxxingChallengesUpgradeUnlocked = 0;
 var inLooksmaxxingChallenge = 0;
 var LooksmaxxingChallengesCompleted = [0,0,0,0];
 
+var MineOfRizzUnlocked = 0;
 var RizzmaxExtraChance = 0;
 
 
@@ -39,7 +40,8 @@ function grabCost(Item) {
         "OfflineProdHrs": Math.ceil(1.5*((OfflineProdHrs)**3.5))+1,
         "RizzmaxClickWorth": (2**(Math.floor(RizzmaxClickWorth/50)))*(Math.ceil(Math.ceil(2/3*((RizzmaxClickWorth)**0.5))*(Math.log(RizzmaxClickWorth+1)))+1),
         "LooksmaxxingChallengesUpgradeUnlocked": (Boolean(LooksmaxxingChallengesUpgradeUnlocked) ? -1 : 100),
-        "RizzmaxExtraChance": (4*Math.floor(2.3**RizzmaxExtraChance)+(2**RizzmaxExtraChance))
+        "RizzmaxExtraChance": (4*Math.floor(2.3**RizzmaxExtraChance)+(2**RizzmaxExtraChance)),
+        "MineOfRizzUnlocked": (Boolean(MineOfRizzUnlocked) ? -1 : 250)
     }
     return(allCosts[Item]);
 }
@@ -87,6 +89,7 @@ try{
     LooksmaxxingChallengesUpgradeUnlocked = Number(localStorage.getItem('LooksmaxxingChallengesUpgradeUnlocked'));
     inLooksmaxxingChallenge = Number(localStorage.getItem('inLooksmaxxingChallenge'));
     LooksmaxxingChallengesCompleted = JSON.parse(localStorage.getItem('LooksmaxxingChallengesCompleted'));
+    MineOfRizzUnlocked = Number(localStorage.getItem('MineOfRizzUnlocked'));
     RizzmaxExtraChance = Number(localStorage.getItem('RizzmaxExtraChance'));
     try {
         if (LooksmaxxingChallengesCompleted == null || LooksmaxxingChallengesCompleted == 0) {
@@ -345,10 +348,17 @@ function updateVisuals() {
         } else {
             document.getElementById('RandomValueExplanatory').innerHTML = "The earlier upgrades labeled as 'Random Value Upgrade/Auto Value' function as follows: Each time you upgrade them, you gain an additional 10% chance to either receive 2 times the usual value upon manual click or 5 times the usual value upon automatic generation by a rizzer, depending on the specific upgrade purchased.";
         }
+        if (MineOfRizzUnlocked == 0) {
+            document.getElementById('RmU2Upg1').innerHTML = "Unlock Mine of Rizz: Cost: 250 RP";
+            document.getElementById('RmU2Upg2').innerHTML = "Unlock the Mine of Rizz to See This Upgrade";
+        } else { 
+            document.getElementById('RmU2Upg1').innerHTML = "Mine of Rizz: <b>UNLOCKED</b>";
+            document.getElementById('RmU2Upg2').innerHTML = "Unlock the Rizzalurgy: Cost: 5 Rizzite [NOT IMPLEMENTED YET]";
+        }
         if (RizzmaxExtraChance >= 10) {
             document.getElementById('RmU2Upg3').innerHTML = "Extra Odds to All Random Chance Upgrades (+"+abbrev(5*RizzmaxExtraChance)+"%): <b>MAXED</b>";
         } else {
-            document.getElementById('RmU2Upg3').innerHTML = "Extra Odds to All Random Chance Upgrades (+"+abbrev(5*RizzmaxExtraChance)+"%): Cost "+grabVisualCost('RizzmaxExtraChance')+" RP";
+            document.getElementById('RmU2Upg3').innerHTML = "Extra Odds to All Random Chance Upgrades (+"+abbrev(5*RizzmaxExtraChance)+"%): Cost: "+grabVisualCost('RizzmaxExtraChance')+" RP";
         }
     } catch(error) {
         console.error(error);

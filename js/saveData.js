@@ -15,6 +15,7 @@ data = {
     "backgroundToggle": 1,
     "chosenBackground": 1,
     "lastOfflineTime": 0,
+    "MineOfRizzUnlocked": 0,
     "RizzmaxExtraChance": 0
 }
 
@@ -36,7 +37,7 @@ function updateVisuals() {
 function saveData() {
     var basicIter = 0;
     for (const key of Object.keys(data)) {
-        data[key] = [clicks,CountryClubs,RiceWashers,RandomValue5xUpgrades,AutomaticRizzers,RandomAuto2xUpgrades,Rizzmaxxes,RizzPoints,OfflineProdHrs,RizzmaxClickWorth,LooksmaxxingChallengesUpgradeUnlocked,inLooksmaxxingChallenge,LooksmaxxingChallengesCompleted,backgroundToggle,chosenBackground,lastOfflineTime,RizzmaxExtraChance][basicIter];
+        data[key] = [clicks,CountryClubs,RiceWashers,RandomValue5xUpgrades,AutomaticRizzers,RandomAuto2xUpgrades,Rizzmaxxes,RizzPoints,OfflineProdHrs,RizzmaxClickWorth,LooksmaxxingChallengesUpgradeUnlocked,inLooksmaxxingChallenge,LooksmaxxingChallengesCompleted,backgroundToggle,chosenBackground,lastOfflineTime,MineOfRizzUnlocked,RizzmaxExtraChance][basicIter];
         basicIter++;
     }
     for (const [key, value] of Object.entries(data)) {
@@ -64,6 +65,7 @@ function resetData() {
         "inLooksmaxxingChallenge": 0,
         "LooksmaxxingChallengesCompleted": [0,0,0,0],
         "lastOfflineTime": 0,
+        "MineOfRizzUnlocked": 0,
         "RizzmaxExtraChance": 0
     }
     for (const [key, value] of Object.entries(data)) {
