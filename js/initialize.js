@@ -87,6 +87,7 @@ try{
     LooksmaxxingChallengesUpgradeUnlocked = Number(localStorage.getItem('LooksmaxxingChallengesUpgradeUnlocked'));
     inLooksmaxxingChallenge = Number(localStorage.getItem('inLooksmaxxingChallenge'));
     LooksmaxxingChallengesCompleted = JSON.parse(localStorage.getItem('LooksmaxxingChallengesCompleted'));
+    RizzmaxExtraChance = Number(localStorage.getItem('RizzmaxExtraChance'));
     try {
         if (LooksmaxxingChallengesCompleted == null || LooksmaxxingChallengesCompleted == 0) {
             LooksmaxxingChallengesCompleted = [0,0,0,0];
