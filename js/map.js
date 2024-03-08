@@ -41,6 +41,9 @@ function move(direction, FcurrentRoom) {
         if (FcurrentRoom == 0 || FcurrentRoom == 5) {
             return
         } else {
+            if (FcurrentRoom == 4 && MineOfRizzUnlocked == 0) {
+                return;
+            }
             currentRoom = currentRoom + movement[direction];
         }
     }
