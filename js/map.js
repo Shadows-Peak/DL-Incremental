@@ -27,8 +27,8 @@ function move(direction, FcurrentRoom) {
     movement = {
         "lMap": [-1,-1,-1,-1,1,0][currentRoom],
         "rMap": [1,1,1,1,0,-1][currentRoom],
-        "uMap": [0,0,1,1,0,0][currentRoom],
-        "dMap": [0,0,0,0,-1,-1][currentRoom],
+        "uMap": [0,0,3,1,0,0][currentRoom],
+        "dMap": [0,0,0,0,-1,-3][currentRoom],
     };
     // Can't go too far left or right
     if (direction == "rMap") {
