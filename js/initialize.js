@@ -205,10 +205,9 @@ function setDisplay(object, value) {
     } else {
         finalVal = "initial";
     }
-    if (document.getElementsByName(object) === Array) {
-        document.getElementsByName(object).forEach(function(element) {
-            element.style.display = finalVal;
-        });
+    if (object == "room5Stuff") {
+        document.getElementsByName(object)[0].style.display = finalVal;
+        document.getElementsByName(object)[1].style.display = finalVal;
     } else {
         document.getElementById(object).style.display = finalVal;
     }
