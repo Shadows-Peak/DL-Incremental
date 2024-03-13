@@ -1,7 +1,62 @@
-/*html { 
-    background: url(images/dilyanLopez.jpg) no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-  }*/
+.MoRTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+td {
+  border: 1px solid black;
+  border-left: 0;
+  padding: 15px;
+}
+
+button {
+  background: yellow;
+  border: 0;
+  padding: 15px;
+  height: 100%;
+  width: 100%;
+}
+
+.pad-0 {
+  padding: 0 !important;
+}
+
+/* Other Stuff */
+
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  margin-left:20px;
+  margin-right:0px;
+}
+
+.column {
+  float: left;
+  width: 50%;
+  padding: 15px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 5px solid #000000;
+}
+/*
+.MoR {
+  padding: 0px;
+}
+*/
+.LmCCellStuff {
+  padding: 8px;
+}
