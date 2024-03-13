@@ -117,17 +117,6 @@
     </div>
     <div id="room5Stuff" style="position: absolute; left: 5px; top: 5px;">
       <h1>Mine of Rizz</h1>
-      <div style="position: absolute; right: 5px; top: 5px">
-        <h1>Information</h1>
-        <p>Attempt to click the highlighted square.<br>
-        Repeat this 10 times to gain 1 Rizzite.<br>
-        Each click takes 10M DP and 50 RP.<br>
-        [(Dilyan Points) & (Rizz Points)]</p>
-        <h2>Rizzite Collection Progress:</h2>
-        <p id="RizziteCollectionProgress">0/10</p>
-        <h2>Current Rizzite:</h2>
-        <p id="RizziteCounter"><b>0</b></p>
-      </div>
       <table class="MoRTable">
         <tr>
           <td class="pad-0" style="height:60px"><button type="button" class="MoR" id="MoRCellR1C1" onclick="clickedMoRCell([1,1]);"></button></td>
@@ -151,7 +140,18 @@
           }
         }).call(this);
       </script>
-  </div>
+    </div>
+    <div id="room5Stuff" style="position: absolute; right: 5px; top: 5px">
+      <h1>Information</h1>
+      <p>Attempt to click the highlighted square.<br>
+      Repeat this 10 times to gain 1 Rizzite.<br>
+      Each click takes 10M DP and 50 RP.<br>
+      [(Dilyan Points) & (Rizz Points)]</p>
+      <h2>Rizzite Collection Progress:</h2>
+      <p id="RizziteCollectionProgress">0/10</p>
+      <h2>Current Rizzite:</h2>
+      <p id="RizziteCounter"><b>0</b></p>
+    </div>
     <div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);">
         <h2 id="currencyCounter">0 Dilyan Points</p>
     </div>
