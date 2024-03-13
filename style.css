@@ -59,8 +59,3 @@ button:not(.freeButton) {
   height: 100%;
   width: 100%;
 }
-
-.MoRCell {
-  width: 20px;
-  height: 20px;
-}
