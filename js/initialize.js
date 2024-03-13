@@ -357,16 +357,16 @@ function updateVisuals() {
             document.getElementById('RandomValueExplanatory').innerHTML = "The earlier upgrades labeled as 'Random Value Upgrade/Auto Value' function as follows: Each time you upgrade them, you gain an additional 10% chance to either receive 2 times the usual value upon manual click or 5 times the usual value upon automatic generation by a rizzer, depending on the specific upgrade purchased.";
         }
         if (MineOfRizzUnlocked == 0) {
-            document.getElementById('RmU2Upg1').innerHTML = "Unlock Mine of Rizz: Cost: 250 RP";
+            document.getElementById('RmU2Upg1').innerHTML = "Unlock Mine of Rizz: Cost: <b>250</b> RP";
             document.getElementById('RmU2Upg2').innerHTML = "Unlock the Mine of Rizz to See This Upgrade";
         } else { 
             document.getElementById('RmU2Upg1').innerHTML = "Mine of Rizz: <b>UNLOCKED</b>";
-            document.getElementById('RmU2Upg2').innerHTML = "Unlock the Rizzalurgy: Cost: 5 Rizzite [NOT IMPLEMENTED YET]";
+            document.getElementById('RmU2Upg2').innerHTML = "Unlock the Rizzalurgy: Cost: <b>5</b> Rizzite [NOT IMPLEMENTED YET]";
         }
         if (RizzmaxExtraChance >= 10) {
             document.getElementById('RmU2Upg3').innerHTML = "Extra Odds to All Random Chance Upgrades (+"+abbrev(5*RizzmaxExtraChance)+"%): <b>MAXED</b>";
         } else {
-            document.getElementById('RmU2Upg3').innerHTML = "Extra Odds to All Random Chance Upgrades (+"+abbrev(5*RizzmaxExtraChance)+"%): Cost: "+grabVisualCost('RizzmaxExtraChance')+" RP";
+            document.getElementById('RmU2Upg3').innerHTML = "Extra Odds to All Random Chance Upgrades (+"+abbrev(5*RizzmaxExtraChance)+"%): Cost: <b>"+grabVisualCost('RizzmaxExtraChance')+"</b> RP";
         }
     } catch(error) {
         console.error(error);
