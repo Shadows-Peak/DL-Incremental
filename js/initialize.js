@@ -33,15 +33,6 @@ var RizziteNRizzium = [0,0,0]; // Rizzite Progress, Rizzite, Rizzium
 
 
 
-$(document).ready(function() {
-    $(window).keydown(function(event){
-      if(event.keyCode == 13) {
-        event.preventDefault();
-        return false;
-      }
-    });
-});
-
 function grabCost(Item) {
     var allCosts = {
         "RandomValue5xUpgrades": [2500,5000,15000,50000,150000][RandomValue5xUpgrades],
@@ -205,12 +196,7 @@ function setDisplay(object, value) {
     } else {
         finalVal = "initial";
     }
-    if (object == "room5Stuff") {
-        document.getElementsByName(object)[0].style.display = finalVal;
-        document.getElementsByName(object)[1].style.display = finalVal;
-    } else {
-        document.getElementById(object).style.display = finalVal;
-    }
+    document.getElementById(object).style.display = finalVal;
 }
 
 function updateBackgrounds() {
