@@ -16,7 +16,9 @@ data = {
     "chosenBackground": 1,
     "lastOfflineTime": 0,
     "MineOfRizzUnlocked": 0,
-    "RizzmaxExtraChance": 0
+    "RizzmaxExtraChance": 0,
+    "MoRCellHighlight": [1,1],
+    "RizziteNRizzium": [0,0,0]
 }
 
 /*
@@ -37,11 +39,11 @@ function updateVisuals() {
 function saveData() {
     var basicIter = 0;
     for (const key of Object.keys(data)) {
-        data[key] = [clicks,CountryClubs,RiceWashers,RandomValue5xUpgrades,AutomaticRizzers,RandomAuto2xUpgrades,Rizzmaxxes,RizzPoints,OfflineProdHrs,RizzmaxClickWorth,LooksmaxxingChallengesUpgradeUnlocked,inLooksmaxxingChallenge,LooksmaxxingChallengesCompleted,backgroundToggle,chosenBackground,lastOfflineTime,MineOfRizzUnlocked,RizzmaxExtraChance][basicIter];
+        data[key] = [clicks,CountryClubs,RiceWashers,RandomValue5xUpgrades,AutomaticRizzers,RandomAuto2xUpgrades,Rizzmaxxes,RizzPoints,OfflineProdHrs,RizzmaxClickWorth,LooksmaxxingChallengesUpgradeUnlocked,inLooksmaxxingChallenge,LooksmaxxingChallengesCompleted,backgroundToggle,chosenBackground,lastOfflineTime,MineOfRizzUnlocked,RizzmaxExtraChance,MoRCellHighlight,RizziteNRizzium][basicIter];
         basicIter++;
     }
     for (const [key, value] of Object.entries(data)) {
-        if (key == "LooksmaxxingChallengesCompleted") {
+        if (key == "LooksmaxxingChallengesCompleted" || key == "MoRCellHighlight" || key == "RizziteNRizzium") {
             localStorage.setItem(key, JSON.stringify(value));
         } else {
             localStorage.setItem(key, value);
@@ -66,11 +68,13 @@ function resetData() {
         "LooksmaxxingChallengesCompleted": [0,0,0,0],
         "lastOfflineTime": 0,
         "MineOfRizzUnlocked": 0,
-        "RizzmaxExtraChance": 0
+        "RizzmaxExtraChance": 0,
+        "MoRCellHighlight": [1,1],
+        "RizziteNRizzium": [0,0,0]
     }
     for (const [key, value] of Object.entries(data)) {
         window[key] = value;
-        if (key == "LooksmaxxingChallengesCompleted") {
+        if (key == "LooksmaxxingChallengesCompleted" || key == "MoRCellHighlight" || key == "RizziteNRizzium") {
             localStorage.setItem(key, JSON.stringify(value));
         } else if (key == "clicks") {
             localStorage.setItem("mainClicks", value);

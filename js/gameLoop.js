@@ -1,6 +1,15 @@
 var gameTick = 1;
+var MoRCellChangeCount = 0;
 
 function gameLoop() {
+  // Move Mine of Rizz Highlight
+  if (MoRCellChangeCount == 0) {
+    MoRCellChangeCount = gameTick;
+    MoRCellHighlight = [Math.floor(5*Math.random())+1,Math.floor(5*Math.random())+1];
+  } else {
+    MoRCellChangeCount--;
+  }
+
   // Automatic Rizzer
   if (inLooksmaxxingChallenge != 2) {
     var multiplier = 1;

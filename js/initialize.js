@@ -28,6 +28,9 @@ var LooksmaxxingChallengesCompleted = [0,0,0,0];
 var MineOfRizzUnlocked = 0;
 var RizzmaxExtraChance = 0;
 
+var MoRCellHighlight = [1,1];
+var RizziteNRizzium = [0,0,0]; // Rizzite Progress, Rizzite, Rizzium
+
 
 
 function grabCost(Item) {
@@ -91,9 +94,17 @@ try{
     LooksmaxxingChallengesCompleted = JSON.parse(localStorage.getItem('LooksmaxxingChallengesCompleted'));
     MineOfRizzUnlocked = Number(localStorage.getItem('MineOfRizzUnlocked'));
     RizzmaxExtraChance = Number(localStorage.getItem('RizzmaxExtraChance'));
+    MoRCellHighlight = JSON.parse(localStorage.getItem('MoRCellHighlight'));
+    RizziteNRizzium = JSON.parse(localStorage.getItem('RizziteNRizzium'));
     try {
         if (LooksmaxxingChallengesCompleted == null || LooksmaxxingChallengesCompleted == 0) {
             LooksmaxxingChallengesCompleted = [0,0,0,0];
+        }
+        if (MoRCellHighlight == null || MoRCellHighlight == 0) {
+            MoRCellHighlight = [0,0];
+        }
+        if (RizziteNRizzium == null || RizziteNRizzium == 0) {
+            LooksmaxxingChallengesCompleted = [0,0,0];
         }
     } catch(error) {
         console.log(error);
@@ -326,7 +337,7 @@ function updateVisuals() {
             document.getElementById('UnlockLooksmaxxingButton').innerHTML = "Looksmaxxing Challenges: Cost: <b>"+grabVisualCost('LooksmaxxingChallengesUpgradeUnlocked')+"</b> RP";
         }
         // Looksmaxxing Challenges
-        document.getElementById('LMCDPMVisual').innerHTML = "Current Dilyan Point Multiplier: +<b>"+5*listSum(LooksmaxxingChallengesCompleted)+"</b>%"
+        document.getElementById('LMCDPMVisual').innerHTML = "Current Dilyan Point Multiplier: +<b>"+Abbrev(5*listSum(LooksmaxxingChallengesCompleted))+"</b>%"
         if (inLooksmaxxingChallenge != 0) {
             document.getElementById('LMC1Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[0],10) ? (isEqual(inLooksmaxxingChallenge,1) ? "End Challenge" : "Cannot Start") : "<b>MAXED</b>");;
             document.getElementById('LMC2Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[0],90) ? (isEqual(inLooksmaxxingChallenge,1) ? "End Challenge" : "Cannot Start") : "<b>MAXED</b>");;
@@ -368,6 +379,10 @@ function updateVisuals() {
         } else {
             document.getElementById('RmU2Upg3').innerHTML = "Extra Odds to All Random Chance Upgrades (+"+abbrev(5*RizzmaxExtraChance)+"%): Cost: <b>"+grabVisualCost('RizzmaxExtraChance')+"</b> RP";
         }
+
+        // Mine of Rizz
+        document.getElementById('RizziteCollectionProgress').innerHTML = RizziteNRizzium[0]+"/10"
+        document.getElementById('RizziteCounter').innerHTML = "<b>"+abbrev(RizziteNRizzium[1])+"</b>"
     } catch(error) {
         console.error(error);
     }
