@@ -60,3 +60,7 @@ table {
 .LmCCellStuff {
   padding: 8px;
 }
+
+button:not(.freeButton) {
+  padding: 5px 0px;
+}
