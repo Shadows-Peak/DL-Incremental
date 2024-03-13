@@ -20,7 +20,7 @@ document.getElementById('devB').onclick = function() {
     let Devpass = prompt("Password?");
     if (Devpass == "!S3cr3t") {
         let Devcurr = prompt("Currency Type?");
-        let Devamt = Number(prompt("Amount?"));
+        let Devamt = prompt("Amount?");
         eval(Devcurr+" = "+Devamt);
         updateVisuals();
     } else {
