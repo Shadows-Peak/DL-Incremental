@@ -130,7 +130,9 @@
       </table>
       <script>
         (function() {
-          $("button:not(.freeButton)").css('height', $('button').parent('td').height());
+          if ($("button:not(.freeButton)").parent('td').length) {
+            $("button:not(.freeButton)").css('height', $('button').parent('td').height());
+          }
         }).call(this);
       </script>
   </div>
