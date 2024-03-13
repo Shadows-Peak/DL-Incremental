@@ -196,7 +196,13 @@ function setDisplay(object, value) {
     } else {
         finalVal = "initial";
     }
-    document.getElementById(object).style.display = finalVal;
+    if (document.getElementsByName(object) === Array) {
+        document.getElementsByName(object).forEach(function(element) {
+            element.style.display = finalVal;
+        });
+    } else {
+        document.getElementById.style.display = finalVal;
+    }
 }
 
 function updateBackgrounds() {
