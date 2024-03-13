@@ -10,14 +10,6 @@ td {
   padding: 15px;
 }
 
-button {
-  background: yellow;
-  border: 0;
-  padding: 15px;
-  height: 100%;
-  width: 100%;
-}
-
 .pad-0 {
   padding: 0 !important;
 }
@@ -62,5 +54,8 @@ table {
 }
 
 button:not(.freeButton) {
+  border: 0;
   padding: 5px 0px;
+  height: 100%;
+  width: 100%;
 }
