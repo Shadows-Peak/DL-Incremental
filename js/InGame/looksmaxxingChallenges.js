@@ -1,5 +1,5 @@
 function ChallengeStart(num, alertMsg) {
-    if (LooksmaxxingChallengesCompleted[num-1] < [10,90,9,5][num-1]) {
+    if (LooksmaxxingChallengesCompleted[num-1] < [10,90,5,9][num-1]) {
         if (inLooksmaxxingChallenge == 0) {
             inLooksmaxxingChallenge = num;
             // Rizzmax reset
