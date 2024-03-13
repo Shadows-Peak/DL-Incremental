@@ -106,10 +106,6 @@ document.addEventListener("visibilitychange", (event) => {
 });
 
 // Mine of Rizz
-// add event listener to each cell
-let Cells = document.getElementsByClassName("MoR");
-Cells.forEach(function(elem) {
-  elem.addEventListener('click',function() {
-    console.log("It counted as a click");
-  });
-});
+function clickedMoRCell([x,y]) {
+
+}
