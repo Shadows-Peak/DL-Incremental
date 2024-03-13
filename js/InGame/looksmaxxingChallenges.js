@@ -1,39 +1,41 @@
 function ChallengeStart(num, alertMsg) {
-    if (inLooksmaxxingChallenge == 0) {
-        inLooksmaxxingChallenge = num;
-        // Rizzmax reset
-        clicks = 0;
-        CountryClubs = 0;
-        RiceWashers = 0;
-        RandomValue5xUpgrades = 0;
-        RandomAuto2xUpgrades = 0;
-        AutomaticRizzers = 0;
-
-        if (num == 2) {
-            AutomaticRizzers = 1;
-        }
-        
-        setRoom(1);
-        updateBackgrounds();
-        updateVisuals();
-
-        alert(alertMsg);
-    }  else if (inLooksmaxxingChallenge == num) {
-        if (confirm("Do you wish to leave this challenge?") == true) {
-            if (confirm("Ending it this way makes you lose your attempt, if you have the requirements, you should Rizzmax instead. Press OK to end it anyways.")) {
-                inLooksmaxxingChallenge = 0;
-
-                // Rizzmax reset
-                clicks = 0;
-                CountryClubs = 0;
-                RiceWashers = 0;
-                RandomValue5xUpgrades = 0;
-                RandomAuto2xUpgrades = 0;
-                AutomaticRizzers = 0;
-                
-                setRoom(1);
-                updateBackgrounds();
-                updateVisuals();
+    if (LooksmaxxingChallengesCompleted[num-1] < [10,90,9,5][num-1]) {
+        if (inLooksmaxxingChallenge == 0) {
+            inLooksmaxxingChallenge = num;
+            // Rizzmax reset
+            clicks = 0;
+            CountryClubs = 0;
+            RiceWashers = 0;
+            RandomValue5xUpgrades = 0;
+            RandomAuto2xUpgrades = 0;
+            AutomaticRizzers = 0;
+    
+            if (num == 2) {
+                AutomaticRizzers = 1;
+            }
+            
+            setRoom(1);
+            updateBackgrounds();
+            updateVisuals();
+    
+            alert(alertMsg);
+        }  else if (inLooksmaxxingChallenge == num) {
+            if (confirm("Do you wish to leave this challenge?") == true) {
+                if (confirm("Ending it this way makes you lose your attempt, if you have the requirements, you should Rizzmax instead. Press OK to end it anyways.")) {
+                    inLooksmaxxingChallenge = 0;
+    
+                    // Rizzmax reset
+                    clicks = 0;
+                    CountryClubs = 0;
+                    RiceWashers = 0;
+                    RandomValue5xUpgrades = 0;
+                    RandomAuto2xUpgrades = 0;
+                    AutomaticRizzers = 0;
+                    
+                    setRoom(1);
+                    updateBackgrounds();
+                    updateVisuals();
+                }
             }
         }
     }
