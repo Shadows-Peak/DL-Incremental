@@ -201,7 +201,7 @@ function setDisplay(object, value) {
             element.style.display = finalVal;
         });
     } else {
-        document.getElementById.style.display = finalVal;
+        document.getElementById(object).style.display = finalVal;
     }
 }
 
