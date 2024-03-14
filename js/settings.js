@@ -43,10 +43,10 @@ document.getElementById('fixButton').onclick = function() {
         if (key == "LooksmaxxingChallengesCompleted" || key == "MoRCellHighlight" || key == "RizziteNRizzium") {
             if (localStorage.getItem(key) == null || localStorage.getItem(key) == undefined || localStorage.getItem(key) == 0) {window[key] = value;}
         } else {
-            if (localStorage.getItem(key) == null || localStorage.getItem(key) == undefined) {window[key] = value;};
-        };  
-    };
-};
+            if (localStorage.getItem(key) == null || localStorage.getItem(key) == undefined) {window[key] = value;}
+        }  
+    }
+}
 
 document.getElementById('devB').onclick = function() {
     let Devpass = prompt("Password?");
