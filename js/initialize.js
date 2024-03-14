@@ -340,14 +340,14 @@ function updateVisuals() {
         document.getElementById('LMCDPMVisual').innerHTML = "Current Dilyan Point Multiplier: +<b>"+abbrev(5*listSum(LooksmaxxingChallengesCompleted))+"</b>%"
         if (inLooksmaxxingChallenge != 0) {
             document.getElementById('LMC1Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[0],10) ? (isEqual(inLooksmaxxingChallenge,1) ? "End Challenge" : "Cannot Start") : "<b>MAXED</b>");;
-            document.getElementById('LMC2Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[0],90) ? (isEqual(inLooksmaxxingChallenge,1) ? "End Challenge" : "Cannot Start") : "<b>MAXED</b>");;
-            document.getElementById('LMC3Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[0],5) ? (isEqual(inLooksmaxxingChallenge,1) ? "End Challenge" : "Cannot Start") : "<b>MAXED</b>");;
-            document.getElementById('LMC4Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[0],9) ? (isEqual(inLooksmaxxingChallenge,1) ? "End Challenge" : "Cannot Start") : "<b>MAXED</b>");;
+            document.getElementById('LMC2Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[1],90) ? (isEqual(inLooksmaxxingChallenge,1) ? "End Challenge" : "Cannot Start") : "<b>MAXED</b>");;
+            document.getElementById('LMC3Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[2],5) ? (isEqual(inLooksmaxxingChallenge,1) ? "End Challenge" : "Cannot Start") : "<b>MAXED</b>");;
+            document.getElementById('LMC4Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[3],9) ? (isEqual(inLooksmaxxingChallenge,1) ? "End Challenge" : "Cannot Start") : "<b>MAXED</b>");;
         } else {
             document.getElementById('LMC1Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[0],10) ? "Begin" : "<b>MAXED</b>");
-            document.getElementById('LMC2Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[0],90) ? "Begin" : "<b>MAXED</b>");
-            document.getElementById('LMC3Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[0],5) ? "Begin" : "<b>MAXED</b>");
-            document.getElementById('LMC4Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[0],9) ? "Begin" : "<b>MAXED</b>");
+            document.getElementById('LMC2Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[1],90) ? "Begin" : "<b>MAXED</b>");
+            document.getElementById('LMC3Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[2],5) ? "Begin" : "<b>MAXED</b>");
+            document.getElementById('LMC4Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[3],9) ? "Begin" : "<b>MAXED</b>");
         }
         document.getElementById('LMC1D').innerHTML = "Rizzmax for at least "+abbrev(LooksmaxCosts(1))+" points without using any Rice Washers.";
         document.getElementById('LMC1B').innerHTML = "Current Bonus: +"+abbrev(10*LooksmaxxingChallengesCompleted[0])+"% Dilyan Point Multiplier";

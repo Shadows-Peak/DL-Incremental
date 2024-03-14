@@ -8,8 +8,8 @@ function gameLoop() {
     MoRCellChangeCount = gameTick;
     lastHighlight = MoRCellHighlight;
     MoRCellHighlight = [Math.floor(5*Math.random())+1,Math.floor(5*Math.random())+1];
-    document.getElementById('MoRCellR'+lastHighlight[0]+'C'+lastHighlight[1]).style.background = "initial"
-    document.getElementById('MoRCellR'+MoRCellHighlight[0]+'C'+MoRCellHighlight[1]).style.background = "rgb(255, 255, 0)"
+    document.getElementById('MoRCellR'+lastHighlight[0]+'C'+lastHighlight[1]).style.background = "rgb(240,240,240)";
+    document.getElementById('MoRCellR'+MoRCellHighlight[0]+'C'+MoRCellHighlight[1]).style.background = "rgb(255, 255, 0)";
   } else {
     MoRCellChangeCount--;
   }
