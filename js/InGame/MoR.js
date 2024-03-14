@@ -26,7 +26,9 @@ MoRCellR5C4.onclick = clickedMoRCell([5,4]);
 MoRCellR5C5.onclick = clickedMoRCell([5,5]);
 
 function clickedMoRCell(x) {
+  alert("begeg");
   if (MoRCellHighlight == x) {
+    alert("VGETGWG");
     if (clicks >= 10000000 && RizzPoints >= 50 && RizziteNRizzium[0] < 10) {
       clicks -= 10000000;
       RizzPoints -= 50;
@@ -39,3 +41,4 @@ function clickedMoRCell(x) {
     updateVisuals();
   }
 }
+
