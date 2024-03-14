@@ -104,7 +104,7 @@ try{
             MoRCellHighlight = [0,0];
         }
         if (RizziteNRizzium == null || RizziteNRizzium == 0) {
-            LooksmaxxingChallengesCompleted = [0,0,0];
+            RizziteNRizzium = [0,0,0];
         }
     } catch(error) {
         console.log(error);
@@ -273,6 +273,8 @@ function listSum(list) {
     return(sum);
 }
 
+var lastHighlight = [1,1];
+
 function updateVisuals() {
     try {
         if (Rizzmaxxes > 0) {
@@ -383,6 +385,8 @@ function updateVisuals() {
         // Mine of Rizz
         document.getElementById('RizziteCollectionProgress').innerHTML = RizziteNRizzium[0]+"/10"
         document.getElementById('RizziteCounter').innerHTML = "<b>"+abbrev(RizziteNRizzium[1])+"</b>"
+        lastHighlight = MoRCellHighlight;
+        document.getElementById('MoRCellR'+MoRCellHighlight[0]+'C'+MoRCellHighlight[1]).backgroundColor = "rgb(255, 255, 0)"
     } catch(error) {
         console.error(error);
     }
