@@ -1,4 +1,23 @@
 // Mine of Rizz
+function clickedMoRCell(x) {
+  alert("begeg");
+  if (MoRCellHighlight[0] == x[0] && MoRCellHighlight[1] == x[1]) {
+    alert("VGETGWG");
+    if (clicks >= 10000000 && RizzPoints >= 50 && RizziteNRizzium[0] < 10) {
+      clicks -= 10000000;
+      RizzPoints -= 50;
+      RizziteNRizzium[0] += 1;
+    }
+    if (RizziteNRizzium[0] == 10) {
+      RizziteNRizzium[0] = 0;
+      RizziteNRizzium[1] += 1;
+    }
+    updateVisuals();
+  } else {
+    alert(MoRCellHighlight[0]+" "+MoRCellHighlight[1]+" : "+x[0]+" "+x[1]);
+  }
+}
+
 document.getElementById('MoRCellR1C1').onclick = function(){clickedMoRCell([1,1]);};
 document.getElementById('MoRCellR1C2').onclick = function(){clickedMoRCell([1,2]);};
 document.getElementById('MoRCellR1C3').onclick = function(){clickedMoRCell([1,3]);};
@@ -24,21 +43,3 @@ document.getElementById('MoRCellR5C2').onclick = function(){clickedMoRCell([5,2]
 document.getElementById('MoRCellR5C3').onclick = function(){clickedMoRCell([5,3]);};
 document.getElementById('MoRCellR5C4').onclick = function(){clickedMoRCell([5,4]);};
 document.getElementById('MoRCellR5C5').onclick = function(){clickedMoRCell([5,5]);};
-
-function clickedMoRCell(x) {
-  alert("begeg");
-  if (MoRCellHighlight == x) {
-    alert("VGETGWG");
-    if (clicks >= 10000000 && RizzPoints >= 50 && RizziteNRizzium[0] < 10) {
-      clicks -= 10000000;
-      RizzPoints -= 50;
-      RizziteNRizzium[0] += 1;
-    }
-    if (RizziteNRizzium[0] == 10) {
-      RizziteNRizzium[0] = 0;
-      RizziteNRizzium[1] += 1;
-    }
-    updateVisuals();
-  }
-}
-
