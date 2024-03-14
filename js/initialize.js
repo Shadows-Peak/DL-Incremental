@@ -385,8 +385,9 @@ function updateVisuals() {
         // Mine of Rizz
         document.getElementById('RizziteCollectionProgress').innerHTML = RizziteNRizzium[0]+"/10"
         document.getElementById('RizziteCounter').innerHTML = "<b>"+abbrev(RizziteNRizzium[1])+"</b>"
-        lastHighlight = MoRCellHighlight;
+        document.getElementById('MoRCellR'+lastHighlight[0]+'C'+lastHighlight[1]).backgroundColor = "rgb(255, 255, 0)"
         document.getElementById('MoRCellR'+MoRCellHighlight[0]+'C'+MoRCellHighlight[1]).backgroundColor = "rgb(255, 255, 0)"
+        lastHighlight = MoRCellHighlight;
     } catch(error) {
         console.error(error);
     }
