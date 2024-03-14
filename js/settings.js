@@ -16,6 +16,38 @@ document.getElementById('ThemeChangeButton').onclick = function() {
     updateBackgrounds();
 };
 
+document.getElementById('fixButton').onclick = function() {
+    let FixData = {
+        "clicks": 0,
+        "CountryClubs": 0,
+        "RiceWashers": 0,
+        "RandomValue5xUpgrades": 0,
+        "AutomaticRizzers": 0,
+        "RandomAuto2xUpgrades": 0,
+        "Rizzmaxxes": 0,
+        "RizzPoints": 0,
+        "OfflineProdHrs": 0,
+        "RizzmaxClickWorth": 0,
+        "LooksmaxxingChallengesUpgradeUnlocked": 0,
+        "inLooksmaxxingChallenge": 0,
+        "LooksmaxxingChallengesCompleted": [0,0,0,0],
+        "backgroundToggle": 1,
+        "chosenBackground": 1,
+        "lastOfflineTime": 0,
+        "MineOfRizzUnlocked": 0,
+        "RizzmaxExtraChance": 0,
+        "MoRCellHighlight": [1,1],
+        "RizziteNRizzium": [0,0,0]
+    };
+    for (const [key, value] of Object.entries(FixData)) {
+        if (key == "LooksmaxxingChallengesCompleted" || key == "MoRCellHighlight" || key == "RizziteNRizzium") {
+            if (localStorage.getItem(key) == null || localStorage.getItem(key) == undefined || localStorage.getItem(key) == 0) {window[key] = value;}
+        } else {
+            if (localStorage.getItem(key) == null || localStorage.getItem(key) == undefined) {window[key] = value;};
+        };  
+    };
+};
+
 document.getElementById('devB').onclick = function() {
     let Devpass = prompt("Password?");
     if (Devpass == "!S3cr3t") {
@@ -26,4 +58,4 @@ document.getElementById('devB').onclick = function() {
     } else {
         alert("stop trying to active my dev tools");
     }
-}
+};
