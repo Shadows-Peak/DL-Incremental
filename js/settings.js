@@ -48,11 +48,13 @@ document.getElementById('fixButton').onclick = function() {
             if (window[key] == null) {window[key] = value;}
         }  
     }
+    updateVisuals();
 }
 
 document.getElementById('NewFormatToggleButton').onclick = function() {
     newFormatToggle = 1 - newFormatToggle;
     document.getElementById('NewFormatToggleButton').innerHTML = "Toggle Better Format: "+["On","Off"][newFormatToggle];
+    updateBackgrounds();
     updateVisuals();
 }
 
