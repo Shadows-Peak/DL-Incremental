@@ -347,7 +347,7 @@ function updateVisuals() {
         document.getElementById('AutomaticRizzerButton').innerHTML = "Automatic Rizzer ("+abbrev(AutomaticRizzers)+"): Cost: <b>"+grabVisualCost('AutomaticRizzers')+"</b>";
         document.getElementById('BackgroundToggleButton').innerHTML = "Toggle Backgrounds: "+["Off","On"][backgroundToggle];
         document.getElementById('ThemeChangeButton').innerHTML = "Current Theme: "+["Light","Dark","Cream"][chosenBackground-1];
-        document.getElementById('NewFormatToggleButton').innerHTML = "Toggle Better Format: "+["On","Off"][newFormatToggle];
+        document.getElementById('NewFormatToggleButton').innerHTML = "Toggle Better Format: "+["Off","On"][newFormatToggle];
         if (clicks >= 25000) {
             document.getElementById('RizzmaxButton').innerHTML = "Rizzmax: <b>+"+abbrev(RizzPointgain()+1)+" Points</b>";
         } else {
