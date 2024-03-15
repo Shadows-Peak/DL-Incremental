@@ -1,6 +1,9 @@
-var gameTick = 1;
-var MoRCellChangeCount = 0;
-var lastHighlight = [1,1];
+var gameTick = 1;/*WHAT IS THIS!!!!!!!
+askdjfhaksjdfhalksjdfhalksjdfhalksdjfhalksdjfha
+dsfaksjdfhlaksjdfhalksjdfha;skdjfhalskdjfh
+lkasdjfhlaksdjfhaslkdfjhasdkfj*/
+var MoRCellChangeCount = 0;//what is this
+var lastHighlight = [1,1];//what is this
 
 function gameLoop() {
   // Move Mine of Rizz Highlight
