@@ -61,7 +61,7 @@ function move(direction, FcurrentRoom) {
         if ((FcurrentRoom == 5 && RizzalurgyUnlocked == 0 && direction == "lMap") || (FcurrentRoom == 1 && RizzalurgyUnlocked == 0 && direction == "uMap")) {
             return;
         }
-        if ([0,1,4,5].includes(FcurrentRoom)) {
+        if ([0,4,5,6].includes(FcurrentRoom)) {
             if (direction == "uMap") {
                 return
             } else {
@@ -105,7 +105,11 @@ function disables(FcurrentRoom) {
             "room6Stuff": 0
         }
     } else if (FcurrentRoom == 1) {
-        disablesList = [1,1,0,0]
+        if (RizzalurgyUnlocked == 0) {
+            disablesList = [1,1,0,0]
+        } else {
+            disablesList = [1,1,1,0]
+        }
         extraDisables = {
             "room0Stuff": 0,
             "room1Stuff": 1,
@@ -165,7 +169,11 @@ function disables(FcurrentRoom) {
             "room6Stuff": 0
         }
     } else if (FcurrentRoom == 5) {
-        disablesList = [0,1,0,1];
+        if (RizzalurgyUnlocked == 0) {
+            disablesList = [0,1,0,1]
+        } else {
+            disablesList = [1,1,0,1]
+        }
         extraDisables = {
             "room0Stuff": 0,
             "room1Stuff": 0,
@@ -175,6 +183,18 @@ function disables(FcurrentRoom) {
             "room5Stuff": 1,
             "room5Stuff2": 1,
             "room6Stuff": 0
+        }
+    } else if (FcurrentRoom == 6) {
+        disablesList = [0,1,0,1]
+        extraDisables = {
+            "room0Stuff": 0,
+            "room1Stuff": 0,
+            "room2Stuff": 0,
+            "room3Stuff": 0,
+            "room4Stuff": 0,
+            "room5Stuff": 0,
+            "room5Stuff2": 0,
+            "room6Stuff": 1
         }
     }
     var DisableDict = {
