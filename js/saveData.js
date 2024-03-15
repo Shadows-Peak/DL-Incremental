@@ -19,6 +19,7 @@ data = {
     "RizzmaxExtraChance": 0,
     "MoRCellHighlight": [1,1],
     "RizziteNRizzium": [0,0,0],
+    "RizzalurgyUnlocked": 0,
     "newFormatToggle": 0
 }
 
@@ -40,7 +41,7 @@ function updateVisuals() {
 function saveData() {
     var basicIter = 0;
     for (const key of Object.keys(data)) {
-        data[key] = [clicks,CountryClubs,RiceWashers,RandomValue5xUpgrades,AutomaticRizzers,RandomAuto2xUpgrades,Rizzmaxxes,RizzPoints,OfflineProdHrs,RizzmaxClickWorth,LooksmaxxingChallengesUpgradeUnlocked,inLooksmaxxingChallenge,LooksmaxxingChallengesCompleted,backgroundToggle,chosenBackground,lastOfflineTime,MineOfRizzUnlocked,RizzmaxExtraChance,MoRCellHighlight,RizziteNRizzium,newFormatToggle][basicIter];
+        data[key] = [clicks,CountryClubs,RiceWashers,RandomValue5xUpgrades,AutomaticRizzers,RandomAuto2xUpgrades,Rizzmaxxes,RizzPoints,OfflineProdHrs,RizzmaxClickWorth,LooksmaxxingChallengesUpgradeUnlocked,inLooksmaxxingChallenge,LooksmaxxingChallengesCompleted,backgroundToggle,chosenBackground,lastOfflineTime,MineOfRizzUnlocked,RizzmaxExtraChance,MoRCellHighlight,RizziteNRizzium,RizzalurgyUnlocked,newFormatToggle][basicIter];
         basicIter++;
     }
     for (const [key, value] of Object.entries(data)) {
@@ -71,7 +72,8 @@ function resetData() {
         "MineOfRizzUnlocked": 0,
         "RizzmaxExtraChance": 0,
         "MoRCellHighlight": [1,1],
-        "RizziteNRizzium": [0,0,0]
+        "RizziteNRizzium": [0,0,0],
+        "RizzalurgyUnlocked": 0
     }
     for (const [key, value] of Object.entries(data)) {
         window[key] = value;
