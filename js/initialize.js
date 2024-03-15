@@ -385,9 +385,13 @@ function updateVisuals() {
         if (MineOfRizzUnlocked == 0) {
             document.getElementById('RmU2Upg1').innerHTML = "Unlock Mine of Rizz: Cost: <b>250</b> RP";
             document.getElementById('RmU2Upg2').innerHTML = "Unlock the Mine of Rizz to See This Upgrade";
-        } else { 
+        } else {
             document.getElementById('RmU2Upg1').innerHTML = "Mine of Rizz: <b>UNLOCKED</b>";
-            document.getElementById('RmU2Upg2').innerHTML = "Unlock the Rizzalurgy: Cost: <b>5</b> Rizzite [NOT IMPLEMENTED YET]";
+            if (RizzalurgyUnlocked == 0) {
+                document.getElementById('RmU2Upg2').innerHTML = "Unlock the Rizzalurgy: Cost: <b>5</b> Rizzite";
+            } else {
+                document.getElementById('RmU2Upg2').innerHTML = "Unlock the Rizzalurgy: <b>UNLOCKED</b>";
+            }
         }
         if (RizzmaxExtraChance >= 10) {
             document.getElementById('RmU2Upg3').innerHTML = "Extra Odds to All Random Chance Upgrades (+"+abbrev(5*RizzmaxExtraChance)+"%): <b>MAXED</b>";
