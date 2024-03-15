@@ -79,6 +79,7 @@ function RizzPointgain() {
 try{
     backgroundToggle = Number(localStorage.getItem('backgroundToggle'));
     chosenBackground = Number(localStorage.getItem('chosenBackground'));
+    newFormatToggle = Number(localStorage.getItem('newFormatToggle'));
     if (chosenBackground == 0) {
         chosenBackground = 1;
     }
@@ -204,11 +205,14 @@ function setDisplay(object, value) {
 }
 
 function updateBackgrounds() {
-    if (newFormatToggle == 0) {
-        document.querySelectorAll('.edit').forEach(function(button) {
-            // Now do something with my button
+    if (newFormatToggle == 1) {
+        document.querySelectorAll('button.freeButton').forEach(function(elem) {
+            elem.classList.remove("freeButton");
         });
-        document.getElementById("div1").classList.add("classToBeAdded");
+    } else {
+        document.querySelectorAll('button:not(.freeButton .freeButtonPersist)').forEach(function(elem) {
+            elem.classList.add("freeButton");
+        });
     }
     if (chosenBackground == 1) {
         themedButtons = document.getElementsByClassName("themed1");
