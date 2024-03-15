@@ -43,6 +43,9 @@ document.getElementById('fixButton').onclick = function() {
         if (key == "LooksmaxxingChallengesCompleted" || key == "MoRCellHighlight" || key == "RizziteNRizzium") {
             if (localStorage.getItem(key) == null || localStorage.getItem(key) == 0) {window[key] = value;}
             if (window[key] == null || window[key] == 0) {window[key] = value;}
+            if (key == "LooksmaxxingChallengesCompleted" && window[key].length < 4) {window[key].push(0);}
+            if (key == "MoRCellHighlight" && window[key].length < 2) {window[key].push(1);}
+            if (key == "RizziteNRizzium" && window[key].length < 3) {window[key].push(0);}
         } else {
             if (localStorage.getItem(key) == null) {window[key] = value;}
             if (window[key] == null) {window[key] = value;}

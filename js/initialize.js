@@ -210,7 +210,7 @@ function updateBackgrounds() {
             elem.classList.remove("freeButton");
         });
     } else {
-        document.querySelectorAll('button:not(:is(.freeButton, .freeButtonPersist))').forEach(function(elem) {
+        document.querySelectorAll('button:not(:is(.freeButton, .freeButtonPersist, .MoR))').forEach(function(elem) {
             elem.classList.add("freeButton");
         });
     }
