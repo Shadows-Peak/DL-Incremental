@@ -1,20 +1,18 @@
 // Mine of Rizz
 function clickedMoRCell(x) {
-  alert("begeg");
-  if (MoRCellHighlight[0] == x[0] && MoRCellHighlight[1] == x[1]) {
-    alert("VGETGWG");
-    if (clicks >= 10000000 && RizzPoints >= 50 && RizziteNRizzium[0] < 10) {
-      clicks -= 10000000;
-      RizzPoints -= 50;
-      RizziteNRizzium[0] += 1;
+  if (inLooksmaxxingChallenge == 0) {
+    if (MoRCellHighlight[0] == x[0] && MoRCellHighlight[1] == x[1]) {
+      if (clicks >= 10000000 && RizzPoints >= 50 && RizziteNRizzium[0] < 10) {
+        clicks -= 10000000;
+        RizzPoints -= 50;
+        RizziteNRizzium[0] += 1;
+      }
+      if (RizziteNRizzium[0] == 10) {
+        RizziteNRizzium[0] = 0;
+        RizziteNRizzium[1] += 1;
+      }
+      updateVisuals();
     }
-    if (RizziteNRizzium[0] == 10) {
-      RizziteNRizzium[0] = 0;
-      RizziteNRizzium[1] += 1;
-    }
-    updateVisuals();
-  } else {
-    alert(MoRCellHighlight[0]+" "+MoRCellHighlight[1]+" : "+x[0]+" "+x[1]);
   }
 }
 

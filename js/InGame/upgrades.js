@@ -93,7 +93,14 @@ document.getElementById('RmU2Upg1').onclick = function() {
         }
     }
 }
-// Coming Soon 2
+// Rizzalurgy Unlock
+document.getElementById('RmU2Upg2').onclick = function() {
+    if (RizziteNRizzium[0] >= grabCost('RizzalurgyUnlocked') && inLooksmaxxingChallenge == 0) {
+        RizziteNRizzium[0] -= grabCost('RizzalurgyUnlocked');
+        RizzalurgyUnlocked++;
+        updateVisuals();
+    }
+}
 // +5% Chance to All Random Chance Upgrades
 document.getElementById('RmU2Upg3').onclick = function() {
     if (RizzmaxExtraChance < 10 && RizzPoints >= grabCost('RizzmaxExtraChance') && inLooksmaxxingChallenge == 0) {

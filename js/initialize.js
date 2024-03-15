@@ -1,6 +1,7 @@
 var lastOfflineTime = 0;
 
 var backgroundToggle = 1;
+var newFormatToggle = 0;
 var chosenBackground = 1; // 1 for Light, 2 for Dark, 3 for Cream
 
 var clicks = 0;
@@ -26,6 +27,7 @@ var inLooksmaxxingChallenge = 0;
 var LooksmaxxingChallengesCompleted = [0,0,0,0];
 
 var MineOfRizzUnlocked = 0;
+var RizzalurgyUnlocked = 0;
 var RizzmaxExtraChance = 0;
 
 var MoRCellHighlight = [1,1];
@@ -44,7 +46,8 @@ function grabCost(Item) {
         "RizzmaxClickWorth": (2**(Math.floor(RizzmaxClickWorth/50)))*(Math.ceil(Math.ceil(2/3*((RizzmaxClickWorth)**0.5))*(Math.log(RizzmaxClickWorth+1)))+1),
         "LooksmaxxingChallengesUpgradeUnlocked": (Boolean(LooksmaxxingChallengesUpgradeUnlocked) ? -1 : 100),
         "RizzmaxExtraChance": (4*Math.floor(2.3**RizzmaxExtraChance)+(2**RizzmaxExtraChance)),
-        "MineOfRizzUnlocked": (Boolean(MineOfRizzUnlocked) ? -1 : 250)
+        "MineOfRizzUnlocked": (Boolean(MineOfRizzUnlocked) ? -1 : 250),
+        "RizzalurgyUnlocked": (Boolean(RizzalurgyUnlocked) ? -1 : 5)
     }
     return(allCosts[Item]);
 }
@@ -96,6 +99,7 @@ try{
     RizzmaxExtraChance = Number(localStorage.getItem('RizzmaxExtraChance'));
     MoRCellHighlight = JSON.parse(localStorage.getItem('MoRCellHighlight'));
     RizziteNRizzium = JSON.parse(localStorage.getItem('RizziteNRizzium'));
+    RizzalurgyUnlocked = Number(localStorage.getItem('RizzalurgyUnlocked'));
     try {
         if (LooksmaxxingChallengesCompleted == null || LooksmaxxingChallengesCompleted == 0) {
             LooksmaxxingChallengesCompleted = [0,0,0,0];
@@ -200,6 +204,12 @@ function setDisplay(object, value) {
 }
 
 function updateBackgrounds() {
+    if (newFormatToggle == 0) {
+        document.querySelectorAll('.edit').forEach(function(button) {
+            // Now do something with my button
+        });
+        document.getElementById("div1").classList.add("classToBeAdded");
+    }
     if (chosenBackground == 1) {
         themedButtons = document.getElementsByClassName("themed1");
         for(var i = 0; i < themedButtons.length; i++)
@@ -324,6 +334,7 @@ function updateVisuals() {
         document.getElementById('AutomaticRizzerButton').innerHTML = "Automatic Rizzer ("+abbrev(AutomaticRizzers)+"): Cost: <b>"+grabVisualCost('AutomaticRizzers')+"</b>";
         document.getElementById('BackgroundToggleButton').innerHTML = "Toggle Backgrounds: "+["Off","On"][backgroundToggle];
         document.getElementById('ThemeChangeButton').innerHTML = "Current Theme: "+["Light","Dark","Cream"][chosenBackground-1];
+        document.getElementById('NewFormatToggleButton').innerHTML = "Toggle Better Format: "+["On","Off"][newFormatToggle];
         if (clicks >= 25000) {
             document.getElementById('RizzmaxButton').innerHTML = "Rizzmax: <b>+"+abbrev(RizzPointgain()+1)+" Points</b>";
         } else {

@@ -50,6 +50,12 @@ document.getElementById('fixButton').onclick = function() {
     }
 }
 
+document.getElementById('NewFormatToggleButton').onclick = function() {
+    newFormatToggle = 1 - newFormatToggle;
+    document.getElementById('NewFormatToggleButton').innerHTML = "Toggle Better Format: "+["On","Off"][newFormatToggle];
+    updateVisuals();
+}
+
 document.getElementById('devB').onclick = function() {
     let Devpass = prompt("Password?");
     if (Devpass == "!S3cr3t") {

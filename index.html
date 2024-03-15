@@ -22,6 +22,7 @@
     <div id="room0Stuff" style="position: absolute; left: 5px; top: 5px;">
         <h1>Settings</h1>
         <button id="BackgroundToggleButton" type="button" class="themed1">Toggle Backgrounds: On</button>
+        <button id="NewFormatToggleButton" type="button" class="themed1">Toggle Better Format: On</button>
         <button id="ThemeChangeButton" type="button" class="themed1">Current Theme: Light</button>
         <button id="fixButton" type="button" class="themed1">Fix</menu></button>
         <button id="saveButton" type="button" class="themed1">Save Game</menu></button>
@@ -62,6 +63,7 @@
             <p id="RizzmaxUpg2Indicator">Unlock more upgrades after completing 5 Looksmaxxing Challenges</p>
             <div id="RizzmaxUpgrades2">
               <h2>Looksmaxxed Rizz Upgrades:<br></h2>
+              <p>These don't work in Looksmaxxing Challenges either, despite the name.</p>
               <button id="RmU2Upg1" type="button" class="themed1">Unlock Mine of Rizz: Cost: 250 RP</button>
               <button id="RmU2Upg2" type="button" class="themed1">Unlock the Mine of Rizz to See This Upgrade</button> <!---Unlock Rizzalurgy-->
               <button id="RmU2Upg3" type="button" class="themed1">Extra Odds to All Random Chance Upgrades (+0%): Cost: 0 RP</button>
@@ -178,10 +180,10 @@
       <h2>Current Rizzite:</h2>
       <p id="RizziteCounter"><b>0</b></p>
     </div>
-    <div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);">
+    <div style="position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%);">
         <h2 id="currencyCounter">0 Dilyan Points</p>
     </div>
-    <div style="position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%);">
+    <div style="position: fixed; bottom: 5px; left: 50%; transform: translateX(-50%);">
         <button id="lMap" onclick="move('lMap', currentRoom)" class="themed1 freeButton">◀</button>
         <button id="rMap" onclick="move('rMap', currentRoom)" class="themed1 freeButton">▶</button>
         <button id="uMap" onclick="move('uMap', currentRoom)" class="themed1 freeButton">▲</button>
@@ -190,8 +192,13 @@
     </div>
     <div id="debugDiv"></div>
     <script>
+        document.getElementById("room0Stuff").style.display = "none";
         document.getElementById("room1Stuff").style.display = "none";
         document.getElementById("room2Stuff").style.display = "none";
+        document.getElementById("room3Stuff").style.display = "none";
+        document.getElementById("room4Stuff").style.display = "none";
+        document.getElementById("room5Stuff").style.display = "none";
+        document.getElementById("room5Stuff2").style.display = "none";
     </script>
     <script src="js/InGame/MoR.js"></script>
     <script src="js/settings.js"></script>
