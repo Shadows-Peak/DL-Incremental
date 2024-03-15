@@ -41,9 +41,11 @@ document.getElementById('fixButton').onclick = function() {
     };
     for (const [key, value] of Object.entries(FixData)) {
         if (key == "LooksmaxxingChallengesCompleted" || key == "MoRCellHighlight" || key == "RizziteNRizzium") {
-            if (localStorage.getItem(key) == null || localStorage.getItem(key) == undefined || localStorage.getItem(key) == 0) {window[key] = value;}
+            if (localStorage.getItem(key) == null || localStorage.getItem(key) == 0) {window[key] = value;}
+            if (window[key] == null || window[key] == 0) {window[key] = value;}
         } else {
-            if (localStorage.getItem(key) == null || localStorage.getItem(key) == undefined) {window[key] = value;}
+            if (localStorage.getItem(key) == null) {window[key] = value;}
+            if (window[key] == null) {window[key] = value;}
         }  
     }
 }
