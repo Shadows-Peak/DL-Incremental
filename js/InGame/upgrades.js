@@ -95,8 +95,8 @@ document.getElementById('RmU2Upg1').onclick = function() {
 }
 // Rizzalurgy Unlock
 document.getElementById('RmU2Upg2').onclick = function() {
-    if (RizziteNRizzium[0] >= grabCost('RizzalurgyUnlocked') && inLooksmaxxingChallenge == 0) {
-        RizziteNRizzium[0] -= grabCost('RizzalurgyUnlocked');
+    if (RizziteNRizzium[1] >= grabCost('RizzalurgyUnlocked') && inLooksmaxxingChallenge == 0) {
+        RizziteNRizzium[1] -= grabCost('RizzalurgyUnlocked');
         RizzalurgyUnlocked++;
         updateVisuals();
     }
