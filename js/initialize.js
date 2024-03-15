@@ -210,8 +210,10 @@ function updateBackgrounds() {
             elem.classList.remove("freeButton");
         });
     } else {
-        document.querySelectorAll('button:not(.freeButton .freeButtonPersist)').forEach(function(elem) {
-            elem.classList.add("freeButton");
+        document.querySelectorAll('button:not(.freeButton)').forEach(function(elem) {
+            elem.querySelectorAll('button:not(.freeButtonPersist)').forEach(function(elem2) {
+                elem2.classList.add("freeButton");
+            });
         });
     }
     if (chosenBackground == 1) {
