@@ -105,8 +105,8 @@ try{
         if (LooksmaxxingChallengesCompleted == null || LooksmaxxingChallengesCompleted == 0) {
             LooksmaxxingChallengesCompleted = [0,0,0,0];
         }
-        if (LooksmaxxingChallengesUpgradeUnlocked.length < 4) {
-            LooksmaxxingChallengesUpgradeUnlocked.push(0);
+        if (LooksmaxxingChallengesCompleted.length < 4) {
+            LooksmaxxingChallengesCompleted.push(0);
         }
         if (MoRCellHighlight == null || MoRCellHighlight == 0) {
             MoRCellHighlight = [0,0];
