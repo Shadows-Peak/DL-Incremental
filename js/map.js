@@ -102,7 +102,8 @@ function disables(FcurrentRoom) {
             "room4Stuff": 0,
             "room5Stuff": 0,
             "room5Stuff2": 0,
-            "room6Stuff": 0
+            "room6Stuff": 0,
+            "room6Stuff2": 0
         }
     } else if (FcurrentRoom == 1) {
         if (RizzalurgyUnlocked == 0) {
@@ -118,7 +119,8 @@ function disables(FcurrentRoom) {
             "room4Stuff": 0,
             "room5Stuff": 0,
             "room5Stuff2": 0,
-            "room6Stuff": 0
+            "room6Stuff": 0,
+            "room6Stuff2": 0
         }
     } else if (FcurrentRoom == 2) {
         if (MineOfRizzUnlocked == 0) {
@@ -134,7 +136,8 @@ function disables(FcurrentRoom) {
             "room4Stuff": 0,
             "room5Stuff": 0,
             "room5Stuff2": 0,
-            "room6Stuff": 0
+            "room6Stuff": 0,
+            "room6Stuff2": 0
         }
     } else if (FcurrentRoom == 3) {
         if (LooksmaxxingChallengesUpgradeUnlocked == 0) {
@@ -150,7 +153,8 @@ function disables(FcurrentRoom) {
             "room4Stuff": 0,
             "room5Stuff": 0,
             "room5Stuff2": 0,
-            "room6Stuff": 0
+            "room6Stuff": 0,
+            "room6Stuff2": 0
         }
     } else if (FcurrentRoom == 4) {
         if (MineOfRizzUnlocked == 0) {
@@ -166,7 +170,8 @@ function disables(FcurrentRoom) {
             "room4Stuff": 1,
             "room5Stuff": 0,
             "room5Stuff2": 0,
-            "room6Stuff": 0
+            "room6Stuff": 0,
+            "room6Stuff2": 0
         }
     } else if (FcurrentRoom == 5) {
         if (RizzalurgyUnlocked == 0) {
@@ -182,7 +187,8 @@ function disables(FcurrentRoom) {
             "room4Stuff": 0,
             "room5Stuff": 1,
             "room5Stuff2": 1,
-            "room6Stuff": 0
+            "room6Stuff": 0,
+            "room6Stuff2": 0
         }
     } else if (FcurrentRoom == 6) {
         disablesList = [0,1,0,1]
@@ -194,7 +200,8 @@ function disables(FcurrentRoom) {
             "room4Stuff": 0,
             "room5Stuff": 0,
             "room5Stuff2": 0,
-            "room6Stuff": 1
+            "room6Stuff": 1,
+            "room6Stuff2": 1
         }
     }
     var DisableDict = {
