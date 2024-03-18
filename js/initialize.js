@@ -40,6 +40,8 @@ data2 = {
 };
 
 let translatedData = {};
+let encodedDict = {};
+let encodedData = "";
 
 for (const [key, value] of Object.entries(data2)) {
     if (typeof window[key] !== "undefined") {
@@ -47,7 +49,17 @@ for (const [key, value] of Object.entries(data2)) {
     }
 }
 
-console.log(translatedData);
+for (const [key, value] of Object.entries(translatedData)) {
+    encodedDict[btoa(key)] = btoa(value);
+}
+
+for (const [key, value] of Object.entries(encodedDict)) {
+    encodedData += key + "|" + value + "|";
+}
+
+encodedData = encodedData.slice(0, -1)
+
+console.log(encodedData);
 
 
 
