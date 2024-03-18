@@ -1,6 +1,6 @@
-const { google } = require('googleapis');
-const { join } = require('path');
-const { createReadStream } = require('fs');
+import { google } from 'googleapis';
+import { join } from 'path';
+import { createReadStream } from 'fs';
 
 const CLIENT_ID = '271762087593-8v8c5fmtf48719m7csr592iphlstmibh.apps.googleusercontent.com';
 const CLIENT_SECRET = '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';
