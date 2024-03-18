@@ -33,6 +33,23 @@ var RizzmaxExtraChance = 0;
 var MoRCellHighlight = [1,1];
 var RizziteNRizzium = [0,0,0]; // Rizzite Progress, Rizzite, Rizzium
 
+data2 = {
+    "clicks" : clicks,
+    "RizzalurgyUnlocked" : RizzalurgyUnlocked,
+    "RizzmaxExtraChance" : RizzmaxExtraChance
+};
+
+translatedData = {};
+
+for (const [key, value] of Object.entries(data2)) {
+    if (window[key]) {
+        translatedData.push({
+            key: value
+        })
+    }
+}
+
+console.log(translatedData);
 
 
 function grabCost(Item) {
