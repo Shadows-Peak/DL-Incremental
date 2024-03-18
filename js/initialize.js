@@ -39,13 +39,11 @@ data2 = {
     "RizzmaxExtraChance" : RizzmaxExtraChance
 };
 
-translatedData = {};
+let translatedData = {};
 
 for (const [key, value] of Object.entries(data2)) {
-    if (window[key]) {
-        translatedData.push({
-            key: value
-        })
+    if (typeof window[key] !== "undefined") {
+        translatedData[key] = value;
     }
 }
 
