@@ -6,6 +6,13 @@
     <link rel="stylesheet" href="style.css">
     <title>Dilyan Lopez Incremental</title>
     <script type="module" src="api.js"></script>
+    <script src="js/data/database.js"></script>
+    <script src="js/api/signup.js"></script>
+    <script src="js/api/login.js"></script>
+    <script src="js/data/hasher.js"></script>
+    <script src="js/menu/main_menu.js"></script>
+    <script src="js/menu/menuLoad.js"></script>
+    <script src="js/menu/gameLoad.js"></script>
     <script src="js/initialize.js"></script>
     <script src="js/map.js"></script>
     <script src="js/gameLoop.js"></script>
@@ -20,6 +27,15 @@
     </script>
 </head>
 <body onload="bodyLoad()">
+    <div id="menuStuff" style="position: absolute; left: 5px; top: 5px;">
+        <h1>Dilyan Lopez Incremental (Remastered?)</h1>
+        <hr>
+        <button data-room-id=0 id="signUp">Sign Up</button>
+        <button data-room-id=0 id="login">Login</button>
+        <div data-room-id=0 id="value-container">Loading...</div>
+        <h1 id="version">1.0.0.1</h1>
+        <h2>testing data saves with accounts</h2>
+    </div>
     <div id="room0Stuff" style="position: absolute; left: 5px; top: 5px;">
         <h1>Settings</h1>
         <button id="BackgroundToggleButton" type="button" class="themed1">Toggle Backgrounds: On</button>
@@ -258,3 +274,4 @@
     <script src="js/InGame/test.js"></script>
 </body>
 </html>
+

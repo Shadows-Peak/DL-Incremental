@@ -62,9 +62,6 @@ encodedData = encodedData.slice(0, -1)
 console.log(encodedData);
 
 
-uploadFile();
-
-
 function grabCost(Item) {
     var allCosts = {
         "RandomValue5xUpgrades": [2500,5000,15000,50000,150000][RandomValue5xUpgrades],

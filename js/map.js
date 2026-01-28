@@ -1,5 +1,5 @@
-const map = [0,1,2,3,4];
-var currentRoom = 1;
+const map = [0,1,2,3,4,5];
+var currentRoom = 7;
 
 /*
 function updateVisuals() {
@@ -25,10 +25,10 @@ window.addEventListener('keydown', e=>{
 
 function move(direction, FcurrentRoom) {
     movement = {
-        "lMap": [-1,-1,-1,-1,1,1,0][currentRoom],
-        "rMap": [1,1,1,1,0,-1,-1][currentRoom],
-        "uMap": [0,5,3,1,0,0,0][currentRoom],
-        "dMap": [0,0,0,0,-1,-3,-5][currentRoom],
+        "lMap": [-1,-1,-1,-1,1,1,0,0][currentRoom],
+        "rMap": [1,1,1,1,0,-1,-1,0][currentRoom],
+        "uMap": [0,5,3,1,0,0,0,0][currentRoom],
+        "dMap": [0,0,0,0,-1,-3,-5,0][currentRoom],
     };
     // Can't go too far left or right
     if (direction == "rMap") {
@@ -92,9 +92,25 @@ function setRoom(room) {
 function disables(FcurrentRoom) {
     var disablesList = [0,0,0,0]
     var extraDisables;
+    if (FcurrentRoom == 7) {
+        disablesList = [0,0,0,0]
+        extraDisables = {
+            "menuStuff": 1,
+            "room0Stuff": 0,
+            "room1Stuff": 0,
+            "room2Stuff": 0,
+            "room3Stuff": 0,
+            "room4Stuff": 0,
+            "room5Stuff": 0,
+            "room5Stuff2": 0,
+            "room6Stuff": 0,
+            "room6Stuff2": 0
+        }
+    }
     if (FcurrentRoom == 0) {
         disablesList = [0,1,0,0]
         extraDisables = {
+            "menuStuff": 0,
             "room0Stuff": 1,
             "room1Stuff": 0,
             "room2Stuff": 0,
@@ -112,6 +128,7 @@ function disables(FcurrentRoom) {
             disablesList = [1,1,1,0]
         }
         extraDisables = {
+            "menuStuff": 0,
             "room0Stuff": 0,
             "room1Stuff": 1,
             "room2Stuff": 0,
@@ -129,6 +146,7 @@ function disables(FcurrentRoom) {
             disablesList = [1,1,1,0];
         }
         extraDisables = {
+            "menuStuff": 0,
             "room0Stuff": 0,
             "room1Stuff": 0,
             "room2Stuff": 1,
@@ -146,6 +164,7 @@ function disables(FcurrentRoom) {
             disablesList = [1,0,1,0]
         }
         extraDisables = {
+            "menuStuff": 0,
             "room0Stuff": 0,
             "room1Stuff": 0,
             "room2Stuff": 0,
@@ -163,6 +182,7 @@ function disables(FcurrentRoom) {
             disablesList = [1,0,0,1];
         }
         extraDisables = {
+            "menuStuff": 0,
             "room0Stuff": 0,
             "room1Stuff": 0,
             "room2Stuff": 0,
@@ -180,6 +200,7 @@ function disables(FcurrentRoom) {
             disablesList = [1,1,0,1]
         }
         extraDisables = {
+            "menuStuff": 0,
             "room0Stuff": 0,
             "room1Stuff": 0,
             "room2Stuff": 0,
@@ -193,6 +214,7 @@ function disables(FcurrentRoom) {
     } else if (FcurrentRoom == 6) {
         disablesList = [0,1,0,1]
         extraDisables = {
+            "menuStuff": 0,
             "room0Stuff": 0,
             "room1Stuff": 0,
             "room2Stuff": 0,
