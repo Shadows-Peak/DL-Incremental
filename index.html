@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Dilyan Lopez Incremental</title>
-    <script type="module" src="api.js"></script>
     <script src="js/data/database.js"></script>
     <script src="js/api/signup.js"></script>
     <script src="js/api/login.js"></script>
@@ -18,11 +17,14 @@
     <script src="js/gameLoop.js"></script>
     <script>
         function bodyLoad() {
-            offlineProgress();
+            //offlineProgress();
             updateBackgrounds();
             updateVisuals();
             disables(currentRoom);
             setInterval(gameLoop, 1000 / gameTick);
+            if (gameActive == true) {
+              allInitialize();
+            }
         }
     </script>
 </head>
@@ -245,6 +247,9 @@
           <tr><th><button type="button" class="themed1">Infuse</button></th></tr>
         </table>
       </div>
+    </div>
+    <div id="toolbar" z-index="1000" style="position: absolute; right: 10px; top: 5px;">
+        <button id="logoutButton">Logout</button>
     </div>
     <div style="position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%);">
         <h2 id="currencyCounter"><span style="border: white 3px solid">0 Dilyan Points</span></h2>

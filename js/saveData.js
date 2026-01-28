@@ -88,29 +88,31 @@ function resetData() {
     updateVisuals();
 }
 
-document.getElementById('saveButton').onclick = function () {
-    saveData();
-    document.getElementById('saveButton').innerHTML = "Saved!";
-    setTimeout(function () {
-        document.getElementById('saveButton').innerHTML = "Save Game";
-    }, (3 * 1000));
-};
-
-document.getElementById('resetButton').onclick = function () {
-    if (confirm("Are you sure you want to reset your game?") == true) {
-        if (confirm("Are you really really sure?") == true) {
-            if (confirm("Like 100% positive?") == true) {
-                if (confirm("Okay I'll believe you this time.") == true) {
-                    resetData();
-                    document.getElementById('resetButton').innerHTML = "Game has been Reset!";
-                    setTimeout(function () {
-                        document.getElementById('resetButton').innerHTML = "Reset Game";
-                    }, (3 * 1000));
+function setClickProcesses0andahalf() {
+    document.getElementById('saveButton').onclick = function () {
+        saveData();
+        document.getElementById('saveButton').innerHTML = "Saved!";
+        setTimeout(function () {
+            document.getElementById('saveButton').innerHTML = "Save Game";
+        }, (3 * 1000));
+    };
+    
+    document.getElementById('resetButton').onclick = function () {
+        if (confirm("Are you sure you want to reset your game?") == true) {
+            if (confirm("Are you really really sure?") == true) {
+                if (confirm("Like 100% positive?") == true) {
+                    if (confirm("Okay I'll believe you this time.") == true) {
+                        resetData();
+                        document.getElementById('resetButton').innerHTML = "Game has been Reset!";
+                        setTimeout(function () {
+                            document.getElementById('resetButton').innerHTML = "Reset Game";
+                        }, (3 * 1000));
+                    }
                 }
             }
         }
-    }
-};
+    };
+}
 
 function periodicSave() {
     saveData();

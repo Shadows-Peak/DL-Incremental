@@ -10,6 +10,7 @@ async function signUpRun() {
             <button type="button" id="backButton">Back</button>
         </form>
     `;
+    updateBackgrounds();
     document.getElementById('backButton').addEventListener('click', backButtonRun);
 }
 async function backButtonRun() {
@@ -27,6 +28,7 @@ async function loginRun() {
             <button type="button" id="backButton">Back</button>
         </form>
     `;
+    updateBackgrounds();
     document.getElementById('backButton').addEventListener('click', backButtonRun);
     
 }

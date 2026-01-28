@@ -6,6 +6,7 @@ var MoRCellChangeCount = 0;//what is this
 var lastHighlight = [1,1];//what is this
 
 function gameLoop() {
+  if (gameActive == false) {return;}
   // Move Mine of Rizz Highlight
   if (MoRCellChangeCount == 0) {
     MoRCellChangeCount = gameTick;

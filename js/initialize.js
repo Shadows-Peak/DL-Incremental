@@ -33,33 +33,6 @@ var RizzmaxExtraChance = 0;
 var MoRCellHighlight = [1,1];
 var RizziteNRizzium = [0,0,0]; // Rizzite Progress, Rizzite, Rizzium
 
-data2 = {
-    "clicks" : "clicks",
-    "RizzalurgyUnlocked" : "RizzalurgyUnlocked",
-    "RizzmaxExtraChance" : "RizzmaxExtraChance"
-};
-
-let translatedData = {};
-let encodedDict = {};
-let encodedData = "";
-
-for (const [key, value] of Object.entries(data2)) {
-    if (typeof window[key] !== "undefined") {
-        translatedData[key] = window[value];
-    }
-}
-
-for (const [key, value] of Object.entries(translatedData)) {
-    encodedDict[btoa(key)] = btoa(value);
-}
-
-for (const [key, value] of Object.entries(encodedDict)) {
-    encodedData += key + "|" + value + "|";
-}
-
-encodedData = encodedData.slice(0, -1)
-
-console.log(encodedData);
 
 
 function grabCost(Item) {
@@ -101,74 +74,6 @@ function RizzPointgain() {
     } else {
       return(0);
     }
-}
-
-try{
-    backgroundToggle = Number(localStorage.getItem('backgroundToggle'));
-    chosenBackground = Number(localStorage.getItem('chosenBackground'));
-    newFormatToggle = Number(localStorage.getItem('newFormatToggle'));
-    if (chosenBackground == 0) {
-        chosenBackground = 1;
-    }
-    clicks = Number(localStorage.getItem('mainClicks'));
-    CountryClubs = Number(localStorage.getItem('CountryClubs'));
-    RiceWashers = Number(localStorage.getItem('RiceWashers'));
-    RandomValue5xUpgrades = Number(localStorage.getItem('RandomValue5xUpgrades'));
-    RandomAuto2xUpgrades = Number(localStorage.getItem('RandomAuto2xUpgrades'));
-    AutomaticRizzers = Number(localStorage.getItem('AutomaticRizzers'));
-    Rizzmaxxes = Number(localStorage.getItem('Rizzmaxxes'));
-    RizzPoints = Number(localStorage.getItem('RizzPoints'));
-    OfflineProdHrs = Number(localStorage.getItem('OfflineProdHrs'));
-    RizzmaxClickWorth = Number(localStorage.getItem('RizzmaxClickWorth'));
-    LooksmaxxingChallengesUpgradeUnlocked = Number(localStorage.getItem('LooksmaxxingChallengesUpgradeUnlocked'));
-    inLooksmaxxingChallenge = Number(localStorage.getItem('inLooksmaxxingChallenge'));
-    LooksmaxxingChallengesCompleted = JSON.parse(localStorage.getItem('LooksmaxxingChallengesCompleted'));
-    MineOfRizzUnlocked = Number(localStorage.getItem('MineOfRizzUnlocked'));
-    RizzmaxExtraChance = Number(localStorage.getItem('RizzmaxExtraChance'));
-    MoRCellHighlight = JSON.parse(localStorage.getItem('MoRCellHighlight'));
-    RizziteNRizzium = JSON.parse(localStorage.getItem('RizziteNRizzium'));
-    RizzalurgyUnlocked = Number(localStorage.getItem('RizzalurgyUnlocked'));
-    try {
-        if (LooksmaxxingChallengesCompleted == null || LooksmaxxingChallengesCompleted == 0) {
-            LooksmaxxingChallengesCompleted = [0,0,0,0];
-        }
-        if (LooksmaxxingChallengesCompleted.length < 4) {
-            LooksmaxxingChallengesCompleted.push(0);
-        }
-        if (MoRCellHighlight == null || MoRCellHighlight == 0) {
-            MoRCellHighlight = [0,0];
-        }
-        if (MoRCellHighlight.length < 2) {
-            MoRCellHighlight.push(1);
-        }
-        if (RizziteNRizzium == null || RizziteNRizzium == 0) {
-            RizziteNRizzium = [0,0,0];
-        }
-        if (RizziteNRizzium.length < 3) {
-            RizziteNRizzium.push(0);
-        }
-    } catch(error) {
-        console.log(error);
-    }
-    lastOfflineTime = Number(localStorage.getItem('lastOfflineTime'));
-} catch(error) {
-    console.error(error);
-    clicks = 0;
-    CountryClubs = 0;
-    RiceWashers = 0;
-    RandomValue5xUpgrades = 0;
-    RandomAuto2xUpgrades = 0;
-    AutomaticRizzers = 0;
-    backgroundToggle = 1;
-    chosenBackground = 1;
-    Rizzmaxxes = 0;
-    RizzPoints = 0;
-    OfflineProdHrs = 0;
-    RizzmaxClickWorth = 0;
-    LooksmaxxingChallengesUpgradeUnlocked = 0;
-    inLooksmaxxingChallenge = 0;
-    LooksmaxxingChallengesCompleted = [0,0,0,0];
-    lastOfflineTime = 0;
 }
 
 function abbrev(number) {
@@ -237,7 +142,11 @@ function setDisplay(object, value) {
     } else {
         finalVal = "initial";
     }
-    document.getElementById(object).style.display = finalVal;
+    try{
+        document.getElementById(object).style.display = finalVal;
+    } catch(error) {
+        console.log(error);
+    }
 }
 
 function updateBackgrounds() {
@@ -280,6 +189,13 @@ function updateBackgrounds() {
             document.body.style.backgroundImage = "url('images/dilyanLopez2.jpg')";
         } else if (currentRoom == 4) {
             document.body.style.backgroundImage = "url('images/dilyanLopez3.jpg')";
+        } else if (currentRoom == 7) {
+            document.body.style.backgroundColor = "rgb(228, 210, 178)";
+            document.body.style.backgroundImage = "none";
+            document.body.style.backgroundSize = "cover";
+            document.body.style.backgroundRepeat = "no-repeat";
+            document.body.style.backgroundPositionX = "center";
+            document.body.style.backgroundPositionY = "center";
         }
         document.body.style.backgroundSize = "cover";
         document.body.style.backgroundRepeat = "no-repeat";
@@ -292,6 +208,9 @@ function updateBackgrounds() {
             document.body.style.backgroundColor = "rgb(42, 44, 48)";
         } else if (chosenBackground == 3) {
             document.body.style.backgroundColor = "rgb(240, 222, 187)";
+        }
+        if (currentRoom == 7) {
+            document.body.style.backgroundColor = "rgb(228, 210, 178)";
         }
         document.body.style.backgroundImage = "none";
         document.body.style.backgroundSize = "cover";
@@ -324,6 +243,7 @@ function listSum(list) {
 }
 
 function updateVisuals() {
+    if (gameActive == false) {return;}
     try {
         if (Rizzmaxxes > 0) {
             var LooksmaxChallengeText = [""," <b><em>Bye Bye!</em></b>"," <b><em>Edging Maestro</em></b>"," <b><em>Stone-Faced Mogging</em></b>"," <b><em>Rags to Riches</em></b>"][inLooksmaxxingChallenge];
@@ -471,4 +391,111 @@ function offlineProgress() {
         alert("You gained "+Math.floor((0.5)*(Math.floor(timeDifferenceSeconds) * (gameTick) * (AutomaticRizzers) * (1 + CountryClubs) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) ))+" clicks while you were gone! "+timeDifferenceSeconds);
         updateVisuals(); 
     }
+}
+
+
+
+function allInitialize() {
+    data2 = {
+        "clicks" : "clicks",
+        "RizzalurgyUnlocked" : "RizzalurgyUnlocked",
+        "RizzmaxExtraChance" : "RizzmaxExtraChance"
+    };
+
+    let translatedData = {};
+    let encodedDict = {};
+    let encodedData = "";
+
+    for (const [key, value] of Object.entries(data2)) {
+        if (typeof window[key] !== "undefined") {
+            translatedData[key] = window[value];
+        }
+    }
+
+    for (const [key, value] of Object.entries(translatedData)) {
+        encodedDict[btoa(key)] = btoa(value);
+    }
+
+    for (const [key, value] of Object.entries(encodedDict)) {
+        encodedData += key + "|" + value + "|";
+    }
+
+    encodedData = encodedData.slice(0, -1)
+
+    console.log(encodedData);
+
+    try{
+        backgroundToggle = Number(localStorage.getItem('backgroundToggle'));
+        chosenBackground = Number(localStorage.getItem('chosenBackground'));
+        newFormatToggle = Number(localStorage.getItem('newFormatToggle'));
+        if (chosenBackground == 0) {
+            chosenBackground = 1;
+        }
+        clicks = Number(localStorage.getItem('mainClicks'));
+        CountryClubs = Number(localStorage.getItem('CountryClubs'));
+        RiceWashers = Number(localStorage.getItem('RiceWashers'));
+        RandomValue5xUpgrades = Number(localStorage.getItem('RandomValue5xUpgrades'));
+        RandomAuto2xUpgrades = Number(localStorage.getItem('RandomAuto2xUpgrades'));
+        AutomaticRizzers = Number(localStorage.getItem('AutomaticRizzers'));
+        Rizzmaxxes = Number(localStorage.getItem('Rizzmaxxes'));
+        RizzPoints = Number(localStorage.getItem('RizzPoints'));
+        OfflineProdHrs = Number(localStorage.getItem('OfflineProdHrs'));
+        RizzmaxClickWorth = Number(localStorage.getItem('RizzmaxClickWorth'));
+        LooksmaxxingChallengesUpgradeUnlocked = Number(localStorage.getItem('LooksmaxxingChallengesUpgradeUnlocked'));
+        inLooksmaxxingChallenge = Number(localStorage.getItem('inLooksmaxxingChallenge'));
+        LooksmaxxingChallengesCompleted = JSON.parse(localStorage.getItem('LooksmaxxingChallengesCompleted'));
+        MineOfRizzUnlocked = Number(localStorage.getItem('MineOfRizzUnlocked'));
+        RizzmaxExtraChance = Number(localStorage.getItem('RizzmaxExtraChance'));
+        MoRCellHighlight = JSON.parse(localStorage.getItem('MoRCellHighlight'));
+        RizziteNRizzium = JSON.parse(localStorage.getItem('RizziteNRizzium'));
+        RizzalurgyUnlocked = Number(localStorage.getItem('RizzalurgyUnlocked'));
+        try {
+            if (LooksmaxxingChallengesCompleted == null || LooksmaxxingChallengesCompleted == 0) {
+                LooksmaxxingChallengesCompleted = [0,0,0,0];
+            }
+            if (LooksmaxxingChallengesCompleted.length < 4) {
+                LooksmaxxingChallengesCompleted.push(0);
+            }
+            if (MoRCellHighlight == null || MoRCellHighlight == 0) {
+                MoRCellHighlight = [0,0];
+            }
+            if (MoRCellHighlight.length < 2) {
+                MoRCellHighlight.push(1);
+            }
+            if (RizziteNRizzium == null || RizziteNRizzium == 0) {
+                RizziteNRizzium = [0,0,0];
+            }
+            if (RizziteNRizzium.length < 3) {
+                RizziteNRizzium.push(0);
+            }
+        } catch(error) {
+            console.log(error);
+        }
+        lastOfflineTime = Number(localStorage.getItem('lastOfflineTime'));
+    } catch(error) {
+        console.error(error);
+        clicks = 0;
+        CountryClubs = 0;
+        RiceWashers = 0;
+        RandomValue5xUpgrades = 0;
+        RandomAuto2xUpgrades = 0;
+        AutomaticRizzers = 0;
+        backgroundToggle = 1;
+        chosenBackground = 1;
+        Rizzmaxxes = 0;
+        RizzPoints = 0;
+        OfflineProdHrs = 0;
+        RizzmaxClickWorth = 0;
+        LooksmaxxingChallengesUpgradeUnlocked = 0;
+        inLooksmaxxingChallenge = 0;
+        LooksmaxxingChallengesCompleted = [0,0,0,0];
+        lastOfflineTime = 0;
+    }
+
+    setClickProcesses0();
+    setClickProcesses0andahalf();
+    setClickProcesses1();
+    setClickProcesses2();
+    setClickProcesses3();
+    setClickProcesses4();
 }

@@ -14,10 +14,52 @@ function updateVisuals() {
 */
 
 window.addEventListener('keyup', e=>{
-  if ((e.key == " ") && (currentRoom == 1)) {
+  if ((e.key == " ") && (currentRoom == 1 || currentRoom == 2)) {
     simulateClick();
   }
 });
+
+function setClickProcesses1() {
+  document.getElementById('button1').onclick = function() {
+      simulateClick();
+  };
+
+  document.getElementById('RizzmaxButton').onclick = function() {
+    if (clicks >= 25000) {
+      if (inLooksmaxxingChallenge > 0) {
+        if (RizzPointgain()+1 < LooksmaxCosts(inLooksmaxxingChallenge)) {
+          alert("You need to be able to gain least "+LooksmaxCosts(inLooksmaxxingChallenge)+" Rizz Points to end this challenge.");
+          return;
+        } else {
+          LooksmaxxingChallengesCompleted[inLooksmaxxingChallenge-1] += 1;
+          RizzPoints += RizzPointgain() + 1;
+          Rizzmaxxes++;
+          clicks = 0;
+          CountryClubs = 0;
+          RiceWashers = 0;
+          RandomValue5xUpgrades = 0;
+          RandomAuto2xUpgrades = 0;
+          AutomaticRizzers = 0;
+          alert("You have completed the '"+['Bye Bye!','Edging Maestro','Stone-Faced Mogging','Rags to Riches'][inLooksmaxxingChallenge-1]+"' Looksmaxxing Challenge. Aside from the benefits of completion, you have also recieved the Rizz Points from your Rizzmax.")
+          inLooksmaxxingChallenge = 0;
+          setRoom(1);
+          updateBackgrounds();
+          updateVisuals();
+          return;
+        }
+      }
+      RizzPoints += RizzPointgain() + 1;
+      Rizzmaxxes++;
+      clicks = 0;
+      CountryClubs = 0;
+      RiceWashers = 0;
+      RandomValue5xUpgrades = 0;
+      RandomAuto2xUpgrades = 0;
+      AutomaticRizzers = 0;
+      updateVisuals();
+    }
+  };
+} 
 
 function simulateClick() {
   if (inLooksmaxxingChallenge != 2) {
@@ -42,45 +84,6 @@ function simulateClick() {
   }
 }
 
-document.getElementById('button1').onclick = function() {
-    simulateClick();
-};
-
-document.getElementById('RizzmaxButton').onclick = function() {
-  if (clicks >= 25000) {
-    if (inLooksmaxxingChallenge > 0) {
-      if (RizzPointgain()+1 < LooksmaxCosts(inLooksmaxxingChallenge)) {
-        alert("You need to be able to gain least "+LooksmaxCosts(inLooksmaxxingChallenge)+" Rizz Points to end this challenge.");
-        return;
-      } else {
-        LooksmaxxingChallengesCompleted[inLooksmaxxingChallenge-1] += 1;
-        RizzPoints += RizzPointgain() + 1;
-        Rizzmaxxes++;
-        clicks = 0;
-        CountryClubs = 0;
-        RiceWashers = 0;
-        RandomValue5xUpgrades = 0;
-        RandomAuto2xUpgrades = 0;
-        AutomaticRizzers = 0;
-        alert("You have completed the '"+['Bye Bye!','Edging Maestro','Stone-Faced Mogging','Rags to Riches'][inLooksmaxxingChallenge-1]+"' Looksmaxxing Challenge. Aside from the benefits of completion, you have also recieved the Rizz Points from your Rizzmax.")
-        inLooksmaxxingChallenge = 0;
-        setRoom(1);
-        updateBackgrounds();
-        updateVisuals();
-        return;
-      }
-    }
-    RizzPoints += RizzPointgain() + 1;
-    Rizzmaxxes++;
-    clicks = 0;
-    CountryClubs = 0;
-    RiceWashers = 0;
-    RandomValue5xUpgrades = 0;
-    RandomAuto2xUpgrades = 0;
-    AutomaticRizzers = 0;
-    updateVisuals();
-  }
-};
 
 var timeout;
 var GiveOfflineTime = 0;
