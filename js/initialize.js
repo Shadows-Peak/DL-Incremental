@@ -396,22 +396,14 @@ function offlineProgress() {
 
 async function loadData(username, password) {
     try {
-        // 1️⃣ Get encrypted data from API
         const encryptedData = await readData(username, password);
-        
-        // 2️⃣ Decrypt it
         const decryptedMegaData = fullDecrypt(encryptedData, "8675309");
-
-        // 3️⃣ Split it into individual entries
         const entries = decryptedMegaData.split("||");
-
-        // 4️⃣ Parse JSON where needed
         const parsedEntries = entries.map(e => {
             try { return JSON.parse(e); } 
             catch { return e; }
         });
 
-        // 5️⃣ The keys, in the same order as saveData
         const keys = [
             "clicks",
             "CountryClubs",
@@ -437,16 +429,14 @@ async function loadData(username, password) {
             "newFormatToggle"
         ];
 
-        // 6️⃣ Restore the original variables globally
         keys.forEach((key, i) => {
-            window[key] = parsedEntries[i]; // or `this[key]` if in a module
+            window[key] = parsedEntries[i];
         });
 
-        // 7️⃣ Optional: Rebuild `data` object like before
         const data = {};
         keys.forEach((key) => data[key] = window[key]);
 
-        // 8️⃣ Restore localStorage
+        // prob not needed anymore
         keys.forEach(key => {
             if (key === "LooksmaxxingChallengesCompleted" || key === "MoRCellHighlight" || key === "RizziteNRizzium") {
                 localStorage.setItem(key, JSON.stringify(window[key]));
