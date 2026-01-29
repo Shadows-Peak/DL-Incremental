@@ -38,10 +38,12 @@ function updateVisuals() {
 }
 */
 
-function saveData() {
+async function saveData() {
+    var megaData = "";
     var basicIter = 0;
     for (const key of Object.keys(data)) {
         data[key] = [clicks,CountryClubs,RiceWashers,RandomValue5xUpgrades,AutomaticRizzers,RandomAuto2xUpgrades,Rizzmaxxes,RizzPoints,OfflineProdHrs,RizzmaxClickWorth,LooksmaxxingChallengesUpgradeUnlocked,inLooksmaxxingChallenge,LooksmaxxingChallengesCompleted,backgroundToggle,chosenBackground,lastOfflineTime,MineOfRizzUnlocked,RizzmaxExtraChance,MoRCellHighlight,RizziteNRizzium,RizzalurgyUnlocked,newFormatToggle][basicIter];
+        megaData += JSON.stringify(data[key]) + "||";
         basicIter++;
     }
     for (const [key, value] of Object.entries(data)) {
@@ -51,6 +53,17 @@ function saveData() {
             localStorage.setItem(key, value);
         }
     }
+    megaData = megaData.slice(0, -2); // Remove last ||
+    var encryptedData = fullEncrypt(megaData, "8675309");
+    await dataReplace(
+        USERNAME,
+        PASSWORD,
+        encryptedData
+    ).then(() => {
+        console.log("Data saved successfully!");
+    }).catch(err => {
+        console.error("Failed to save data:", err);
+    });
 }
 
 function resetData() {
@@ -96,7 +109,7 @@ function setClickProcesses0andahalf() {
             document.getElementById('saveButton').innerHTML = "Save Game";
         }, (3 * 1000));
     };
-    
+
     document.getElementById('resetButton').onclick = function () {
         if (confirm("Are you sure you want to reset your game?") == true) {
             if (confirm("Are you really really sure?") == true) {

@@ -1,3 +1,6 @@
+var USERNAME = '';
+var PASSWORD = '';
+
 async function signUpRun() {
     document.body.innerHTML = `
         <h1>Sign Up</h1>
@@ -58,6 +61,8 @@ async function submitRun(event) {
                     } else {
                         alert('Sign Up Successful (we dont store passwords in plaintext, if you forget your password, make a new account (or pay me like 5 bucks and I will reset it for you))');
                         localStorage.setItem('made_account', 'true');
+                        USERNAME = data.username;
+                        PASSWORD = data.password;
                         gameLoad();
                     }
                 } else {
@@ -80,6 +85,8 @@ async function submitRun(event) {
                 if (enteredPasswordHash === userRecord.fields.password) {
                     alert('Login Successful');
                     localStorage.setItem('logged_in', 'true');
+                    USERNAME = data.username;
+                    PASSWORD = data.password;
                     gameLoad();
                 } else {
                     alert('Incorrect password. Login failed.');
@@ -106,6 +113,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Check if the user is logged in
         if (localStorage.getItem('logged_in') === 'true') {
             console.log('User is logged in.');
+            try {
+                USERNAME = localStorage.getItem('username');
+                PASSWORD = localStorage.getItem('password');
+            } catch (error) {
+                console.error('Error retrieving credentials from localStorage:', error);
+                return;
+            }
             gameLoad();
         } else {
             console.log('User is not logged in.');

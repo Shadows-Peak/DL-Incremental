@@ -18,6 +18,7 @@ async function gameLoad() {
         currentRoom = 1;
         gameActive = true;
         bodyLoad();
+        updateBackgrounds();
 
         console.log("I ran!")
         
