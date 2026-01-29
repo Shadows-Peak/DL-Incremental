@@ -2,6 +2,7 @@ data = {
     "mainClicks": 0,
     "CountryClubs": 0,
     "RiceWashers": 0,
+    "Cars": 0,
     "RandomValue5xUpgrades": 0,
     "AutomaticRizzers": 0,
     "RandomAuto2xUpgrades": 0,
@@ -42,7 +43,7 @@ async function saveData(silent=false) {
     var megaData = "";
     var basicIter = 0;
     for (const key of Object.keys(data)) {
-        data[key] = [clicks,CountryClubs,RiceWashers,RandomValue5xUpgrades,AutomaticRizzers,RandomAuto2xUpgrades,Rizzmaxxes,RizzPoints,OfflineProdHrs,RizzmaxClickWorth,LooksmaxxingChallengesUpgradeUnlocked,inLooksmaxxingChallenge,LooksmaxxingChallengesCompleted,backgroundToggle,chosenBackground,lastOfflineTime,MineOfRizzUnlocked,RizzmaxExtraChance,MoRCellHighlight,RizziteNRizzium,RizzalurgyUnlocked,newFormatToggle][basicIter];
+        data[key] = [clicks,CountryClubs,RiceWashers,Cars,RandomValue5xUpgrades,AutomaticRizzers,RandomAuto2xUpgrades,Rizzmaxxes,RizzPoints,OfflineProdHrs,RizzmaxClickWorth,LooksmaxxingChallengesUpgradeUnlocked,inLooksmaxxingChallenge,LooksmaxxingChallengesCompleted,backgroundToggle,chosenBackground,lastOfflineTime,MineOfRizzUnlocked,RizzmaxExtraChance,MoRCellHighlight,RizziteNRizzium,RizzalurgyUnlocked,newFormatToggle][basicIter];
         megaData += JSON.stringify(data[key]) + "||";
         basicIter++;
     }
@@ -74,6 +75,7 @@ function resetData() {
         "clicks": 0,
         "CountryClubs": 0,
         "RiceWashers": 0,
+        "Cars": 0,
         "RandomValue5xUpgrades": 0,
         "AutomaticRizzers": 0,
         "Rizzmaxxes": 0,

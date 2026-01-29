@@ -6,6 +6,7 @@ function ChallengeStart(num, alertMsg) {
             clicks = 0;
             CountryClubs = 0;
             RiceWashers = 0;
+            Cars = 0;
             RandomValue5xUpgrades = 0;
             RandomAuto2xUpgrades = 0;
             AutomaticRizzers = 0;
@@ -28,6 +29,7 @@ function ChallengeStart(num, alertMsg) {
                     clicks = 0;
                     CountryClubs = 0;
                     RiceWashers = 0;
+                    Cars = 0;
                     RandomValue5xUpgrades = 0;
                     RandomAuto2xUpgrades = 0;
                     AutomaticRizzers = 0;
@@ -43,7 +45,7 @@ function ChallengeStart(num, alertMsg) {
 
 function setClickProcesses3() {
     document.getElementById('LMC1Button').onclick = function() {
-        ChallengeStart(1,"You have begun the 'Bye Bye!' Looksmaxxing Challenge. You are unable to purchase any Rice Washers."); 
+        ChallengeStart(1,"You have begun the 'Bye Bye!' Looksmaxxing Challenge. You are unable to purchase any Rice Washers or Cars."); 
     }
 
     document.getElementById('LMC2Button').onclick = function() {

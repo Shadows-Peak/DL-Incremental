@@ -16,8 +16,8 @@ var RandomAuto2xUpgrades = 0;
 var AutomaticRizzers = 0;
 
 var CountryClubs = 0;
-
 var RiceWashers = 0;
+var Cars = 0;
 
 var OfflineProdHrs = 0;
 var RizzmaxClickWorth = 0;
@@ -42,6 +42,7 @@ function grabCost(Item) {
         "AutomaticRizzers": 2500 + 500*(AutomaticRizzers) + Math.ceil(50*(Math.log(7*(AutomaticRizzers)+1)**1.4)),
         "CountryClubs": Math.ceil(Math.floor(1.75 ** CountryClubs) * Math.log(5 * ((CountryClubs + 1) ** 1.5)) * (CountryClubs + 1)),
         "RiceWashers": Math.ceil(500*Math.floor(2 ** RiceWashers) * Math.log(7 * ((RiceWashers + 1) ** 1.5)) * (RiceWashers + 1)),
+        "Cars": 12000 + 10000*Cars + Math.ceil(100*Math.floor(2.3 ** Cars)*Math.ceil(Math.log(Cars*Cars+1))+((Cars+1)**3)*Math.log(Cars+1)),
         "OfflineProdHrs": Math.ceil(1.5*((OfflineProdHrs)**3.5))+1,
         "RizzmaxClickWorth": (2**(Math.floor(RizzmaxClickWorth/50)))*(Math.ceil(Math.ceil(2/3*((RizzmaxClickWorth)**0.5))*(Math.log(RizzmaxClickWorth+1)))+1),
         "LooksmaxxingChallengesUpgradeUnlocked": (Boolean(LooksmaxxingChallengesUpgradeUnlocked) ? -1 : 100),
@@ -268,6 +269,7 @@ function updateVisuals() {
         document.getElementById('counter').innerHTML = "You have: <b>"+abbrev(clicks)+"</b> Dilyan Points";
         document.getElementById('CountryClubButton').innerHTML = "Buy Country Club ("+abbrev(CountryClubs)+"): Cost: <b>"+grabVisualCost('CountryClubs')+"</b>";
         document.getElementById('RiceWasherButton').innerHTML = "Buy Rice Washer ("+abbrev(RiceWashers)+"): Cost: <b>"+grabVisualCost('RiceWashers')+"</b>";
+        document.getElementById('Cars').innerHTML = "Buy "+(Cars>0 ? "Another " : "")+"Car ("+abbrev(Cars)+"): Cost: <b>"+grabVisualCost('Cars')+"</b>";
         if (inLooksmaxxingChallenge == 0) {
             if (typeof grabCost("RandomValue5xUpgrades") === "undefined") {
                 document.getElementById('5xRandomValueUpgradeButton').innerHTML = abbrev(5+LooksmaxxingChallengesCompleted[2])+"x Random Value Upgrade ("+abbrev(RandomValue5xUpgrades)+"): <b>MAXED</b>";

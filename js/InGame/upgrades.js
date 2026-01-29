@@ -30,6 +30,14 @@ function setClickProcesses2() {
             updateVisuals();
         }
     }
+    // Cars
+    document.getElementById('CarButton').onclick = function() {
+        if (clicks >= grabCost('Cars') && inLooksmaxxingChallenge != 1 && inLooksmaxxingChallenge != 4) {
+            clicks -= grabCost('Cars');
+            Cars++
+            updateVisuals();
+        }
+    }
     // Random x5 Value Upgrade
     document.getElementById('5xRandomValueUpgradeButton').onclick = function() {
         if (RandomValue5xUpgrades < 5 && inLooksmaxxingChallenge != 3 && inLooksmaxxingChallenge != 4) {
