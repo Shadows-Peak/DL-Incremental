@@ -394,36 +394,78 @@ function offlineProgress() {
 }
 
 
+async function loadData(username, password) {
+    try {
+        // 1️⃣ Get encrypted data from API
+        const encryptedData = await readData(username, password);
+        
+        // 2️⃣ Decrypt it
+        const decryptedMegaData = fullDecrypt(encryptedData, "8675309");
 
-function allInitialize() {
-    data2 = {
-        "clicks" : "clicks",
-        "RizzalurgyUnlocked" : "RizzalurgyUnlocked",
-        "RizzmaxExtraChance" : "RizzmaxExtraChance"
-    };
+        // 3️⃣ Split it into individual entries
+        const entries = decryptedMegaData.split("||");
 
-    let translatedData = {};
-    let encodedDict = {};
-    let encodedData = "";
+        // 4️⃣ Parse JSON where needed
+        const parsedEntries = entries.map(e => {
+            try { return JSON.parse(e); } 
+            catch { return e; }
+        });
 
-    for (const [key, value] of Object.entries(data2)) {
-        if (typeof window[key] !== "undefined") {
-            translatedData[key] = window[value];
-        }
+        // 5️⃣ The keys, in the same order as saveData
+        const keys = [
+            "clicks",
+            "CountryClubs",
+            "RiceWashers",
+            "RandomValue5xUpgrades",
+            "AutomaticRizzers",
+            "RandomAuto2xUpgrades",
+            "Rizzmaxxes",
+            "RizzPoints",
+            "OfflineProdHrs",
+            "RizzmaxClickWorth",
+            "LooksmaxxingChallengesUpgradeUnlocked",
+            "inLooksmaxxingChallenge",
+            "LooksmaxxingChallengesCompleted",
+            "backgroundToggle",
+            "chosenBackground",
+            "lastOfflineTime",
+            "MineOfRizzUnlocked",
+            "RizzmaxExtraChance",
+            "MoRCellHighlight",
+            "RizziteNRizzium",
+            "RizzalurgyUnlocked",
+            "newFormatToggle"
+        ];
+
+        // 6️⃣ Restore the original variables globally
+        keys.forEach((key, i) => {
+            window[key] = parsedEntries[i]; // or `this[key]` if in a module
+        });
+
+        // 7️⃣ Optional: Rebuild `data` object like before
+        const data = {};
+        keys.forEach((key) => data[key] = window[key]);
+
+        // 8️⃣ Restore localStorage
+        keys.forEach(key => {
+            if (key === "LooksmaxxingChallengesCompleted" || key === "MoRCellHighlight" || key === "RizziteNRizzium") {
+                localStorage.setItem(key, JSON.stringify(window[key]));
+            } else {
+                localStorage.setItem(key, window[key]);
+            }
+        });
+
+        console.log("Game data loaded successfully!");
+        return data;
+    } catch (err) {
+        console.error("Failed to load data:", err);
     }
+}
 
-    for (const [key, value] of Object.entries(translatedData)) {
-        encodedDict[btoa(key)] = btoa(value);
-    }
 
-    for (const [key, value] of Object.entries(encodedDict)) {
-        encodedData += key + "|" + value + "|";
-    }
 
-    encodedData = encodedData.slice(0, -1)
 
-    console.log(encodedData);
-
+async function allInitialize() {
     try{
         backgroundToggle = Number(localStorage.getItem('backgroundToggle'));
         chosenBackground = Number(localStorage.getItem('chosenBackground'));
@@ -431,66 +473,15 @@ function allInitialize() {
         if (chosenBackground == 0) {
             chosenBackground = 1;
         }
-        clicks = Number(localStorage.getItem('mainClicks'));
-        CountryClubs = Number(localStorage.getItem('CountryClubs'));
-        RiceWashers = Number(localStorage.getItem('RiceWashers'));
-        RandomValue5xUpgrades = Number(localStorage.getItem('RandomValue5xUpgrades'));
-        RandomAuto2xUpgrades = Number(localStorage.getItem('RandomAuto2xUpgrades'));
-        AutomaticRizzers = Number(localStorage.getItem('AutomaticRizzers'));
-        Rizzmaxxes = Number(localStorage.getItem('Rizzmaxxes'));
-        RizzPoints = Number(localStorage.getItem('RizzPoints'));
-        OfflineProdHrs = Number(localStorage.getItem('OfflineProdHrs'));
-        RizzmaxClickWorth = Number(localStorage.getItem('RizzmaxClickWorth'));
-        LooksmaxxingChallengesUpgradeUnlocked = Number(localStorage.getItem('LooksmaxxingChallengesUpgradeUnlocked'));
-        inLooksmaxxingChallenge = Number(localStorage.getItem('inLooksmaxxingChallenge'));
-        LooksmaxxingChallengesCompleted = JSON.parse(localStorage.getItem('LooksmaxxingChallengesCompleted'));
-        MineOfRizzUnlocked = Number(localStorage.getItem('MineOfRizzUnlocked'));
-        RizzmaxExtraChance = Number(localStorage.getItem('RizzmaxExtraChance'));
-        MoRCellHighlight = JSON.parse(localStorage.getItem('MoRCellHighlight'));
-        RizziteNRizzium = JSON.parse(localStorage.getItem('RizziteNRizzium'));
-        RizzalurgyUnlocked = Number(localStorage.getItem('RizzalurgyUnlocked'));
-        try {
-            if (LooksmaxxingChallengesCompleted == null || LooksmaxxingChallengesCompleted == 0) {
-                LooksmaxxingChallengesCompleted = [0,0,0,0];
-            }
-            if (LooksmaxxingChallengesCompleted.length < 4) {
-                LooksmaxxingChallengesCompleted.push(0);
-            }
-            if (MoRCellHighlight == null || MoRCellHighlight == 0) {
-                MoRCellHighlight = [0,0];
-            }
-            if (MoRCellHighlight.length < 2) {
-                MoRCellHighlight.push(1);
-            }
-            if (RizziteNRizzium == null || RizziteNRizzium == 0) {
-                RizziteNRizzium = [0,0,0];
-            }
-            if (RizziteNRizzium.length < 3) {
-                RizziteNRizzium.push(0);
-            }
-        } catch(error) {
-            console.log(error);
-        }
         lastOfflineTime = Number(localStorage.getItem('lastOfflineTime'));
     } catch(error) {
         console.error(error);
-        clicks = 0;
-        CountryClubs = 0;
-        RiceWashers = 0;
-        RandomValue5xUpgrades = 0;
-        RandomAuto2xUpgrades = 0;
-        AutomaticRizzers = 0;
         backgroundToggle = 1;
         chosenBackground = 1;
-        Rizzmaxxes = 0;
-        RizzPoints = 0;
-        OfflineProdHrs = 0;
-        RizzmaxClickWorth = 0;
-        LooksmaxxingChallengesUpgradeUnlocked = 0;
-        inLooksmaxxingChallenge = 0;
-        LooksmaxxingChallengesCompleted = [0,0,0,0];
         lastOfflineTime = 0;
     }
+
+    await loadData(USERNAME, PASSWORD);
 
     setClickProcesses0();
     setClickProcesses0andahalf();

@@ -25,8 +25,8 @@ async function gameLoad() {
         // Event Listeners
         const logoutButton = document.getElementById('logoutButton');
         if (logoutButton) {
-            logoutButton.addEventListener('click', function () {
-                saveData();
+            logoutButton.addEventListener('click', async function () {
+                await saveData();
                 currentRoom = 7;
                 gameActive = false;
                 menuLoad();

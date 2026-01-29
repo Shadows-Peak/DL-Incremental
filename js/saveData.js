@@ -38,7 +38,7 @@ function updateVisuals() {
 }
 */
 
-async function saveData() {
+async function saveData(silent=false) {
     var megaData = "";
     var basicIter = 0;
     for (const key of Object.keys(data)) {
@@ -61,6 +61,9 @@ async function saveData() {
         encryptedData
     ).then(() => {
         console.log("Data saved successfully!");
+        if (!silent) {
+            alert('Save Successful!');
+        }
     }).catch(err => {
         console.error("Failed to save data:", err);
     });
@@ -128,7 +131,7 @@ function setClickProcesses0andahalf() {
 }
 
 function periodicSave() {
-    saveData();
+    saveData(true);
 }
 
 window.onbeforeunload = function () {

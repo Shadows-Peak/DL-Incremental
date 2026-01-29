@@ -18,14 +18,14 @@
     <script src="js/map.js"></script>
     <script src="js/gameLoop.js"></script>
     <script>
-        function bodyLoad() {
+        async function bodyLoad() {
             //offlineProgress();
             updateBackgrounds();
             updateVisuals();
             disables(currentRoom);
             setInterval(gameLoop, 1000 / gameTick);
             if (gameActive == true) {
-              allInitialize();
+              await allInitialize();
             }
         }
     </script>
@@ -36,7 +36,7 @@
         <hr>
         <button data-room-id=0 id="signUp">Sign Up</button>
         <button data-room-id=0 id="login">Login</button>
-        <div data-room-id=0 id="value-container">Loading...</div>
+        <div data-room-id=0 id="value-container">Loading... (or am I?)</div>
         <h1 id="version">1.0.0.1</h1>
         <h2>testing data saves with accounts</h2>
     </div>

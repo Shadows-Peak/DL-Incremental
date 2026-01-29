@@ -7,6 +7,7 @@ async function menuLoad() {
         const doc = parser.parseFromString(html, 'text/html');
         document.body.innerHTML = doc.body.innerHTML;
         document.getElementById('logoutButton').style.display = 'none';
+        document.getElementById('currencyCounter').style.display = 'none';
 
         clearInterval(gameLoop);
         bodyLoad();
