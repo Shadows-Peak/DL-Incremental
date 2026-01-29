@@ -37,6 +37,7 @@ function setClickProcesses1() {
           clicks = 0;
           CountryClubs = 0;
           RiceWashers = 0;
+          Cars = 0;
           RandomValue5xUpgrades = 0;
           RandomAuto2xUpgrades = 0;
           AutomaticRizzers = 0;
@@ -53,6 +54,7 @@ function setClickProcesses1() {
       clicks = 0;
       CountryClubs = 0;
       RiceWashers = 0;
+      Cars = 0;
       RandomValue5xUpgrades = 0;
       RandomAuto2xUpgrades = 0;
       AutomaticRizzers = 0;
@@ -78,7 +80,7 @@ function simulateClick() {
     } else {
       mult2 = (Boolean(inLooksmaxxingChallenge) ? 0 : 1);
     }
-    clicks += Math.floor((multiplier)*(1 + (1+mult3*Number(LooksmaxxingChallengesCompleted[3]))*CountryClubs)*(1 + RiceWashers)*(1+(mult2*RizzmaxClickWorth)/100)*(1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100)*(1+mult3*(Number(LooksmaxxingChallengesCompleted[0])/10)) );
+    clicks += Math.floor((multiplier)*(1 + (1+mult3*Number(LooksmaxxingChallengesCompleted[3]))*Math.ceil(CountryClubs**(1+Cars/10))*(1 + RiceWashers)*(1+(mult2*RizzmaxClickWorth)/100)*(1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100)*(1+mult3*(Number(LooksmaxxingChallengesCompleted[0])/10)) );
     document.getElementById('counter').innerHTML = "You have: <b>"+abbrev(clicks)+"</b> Dilyan Points";
     updateVisuals();
   }
