@@ -18,7 +18,7 @@ function gameLoop() {
     MoRCellChangeCount--;
   }
 
-  // Automatic Rizzer
+  // Automatic Rizzer  
   if (inLooksmaxxingChallenge != 2) {
     var multiplier = 1;
     var RandomNumber = Math.floor(Math.random() * 100);
@@ -48,7 +48,7 @@ function gameLoop() {
       multiplier2 = 1;
     }
 
-    clicks += Math.floor((multiplier) * (multiplier2) * (AutomaticRizzers) * Math.ceil(CountryClubs**(1+Cars/10)) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100) );
+    clicks += Math.floor((multiplier) * (multiplier2) * (AutomaticRizzers) * Math.ceil((1+CountryClubs)**(1+Cars/10)) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100) );
     updateVisuals();
   }
 }
