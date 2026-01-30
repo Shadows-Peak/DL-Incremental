@@ -9,7 +9,8 @@ async function menuLoad() {
         document.getElementById('logoutButton').style.display = 'none';
         document.getElementById('currencyCounter').style.display = 'none';
 
-        clearInterval(gameLoop);
+        clearInterval(gameLoopInterval);
+        console.log("MENU LOAD");
         bodyLoad();
         updateBackgrounds();
 

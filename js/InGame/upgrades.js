@@ -31,7 +31,7 @@ function setClickProcesses2() {
         }
     }
     // Cars
-    document.getElementById('CarButton').onclick = function() {
+    document.getElementById('CarsButton').onclick = function() {
         if (clicks >= grabCost('Cars') && inLooksmaxxingChallenge != 1 && inLooksmaxxingChallenge != 4) {
             clicks -= grabCost('Cars');
             Cars++

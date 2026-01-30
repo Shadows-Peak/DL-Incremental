@@ -1,5 +1,5 @@
 data = {
-    "mainClicks": 0,
+    "clicks": 0,
     "CountryClubs": 0,
     "RiceWashers": 0,
     "Cars": 0,
@@ -44,7 +44,7 @@ async function saveData(silent=false) {
     var basicIter = 0;
     for (const key of Object.keys(data)) {
         data[key] = [clicks,CountryClubs,RiceWashers,Cars,RandomValue5xUpgrades,AutomaticRizzers,RandomAuto2xUpgrades,Rizzmaxxes,RizzPoints,OfflineProdHrs,RizzmaxClickWorth,LooksmaxxingChallengesUpgradeUnlocked,inLooksmaxxingChallenge,LooksmaxxingChallengesCompleted,backgroundToggle,chosenBackground,lastOfflineTime,MineOfRizzUnlocked,RizzmaxExtraChance,MoRCellHighlight,RizziteNRizzium,RizzalurgyUnlocked,newFormatToggle][basicIter];
-        megaData += JSON.stringify(data[key]) + "||";
+        megaData += key + ":" + JSON.stringify(data[key]) + "|";
         basicIter++;
     }
     for (const [key, value] of Object.entries(data)) {
@@ -54,7 +54,7 @@ async function saveData(silent=false) {
             localStorage.setItem(key, value);
         }
     }
-    megaData = megaData.slice(0, -2); // Remove last ||
+    megaData = megaData.slice(0, -1); // Remove last ||
     var encryptedData = fullEncrypt(megaData, "8675309");
     await dataReplace(
         USERNAME,
@@ -78,20 +78,23 @@ function resetData() {
         "Cars": 0,
         "RandomValue5xUpgrades": 0,
         "AutomaticRizzers": 0,
+        "RandomAuto2xUpgrades": 0,
         "Rizzmaxxes": 0,
         "RizzPoints": 0,
-        "RandomAuto2xUpgrades": 0,
         "OfflineProdHrs": 0,
         "RizzmaxClickWorth": 0,
         "LooksmaxxingChallengesUpgradeUnlocked": 0,
         "inLooksmaxxingChallenge": 0,
         "LooksmaxxingChallengesCompleted": [0,0,0,0],
+        "backgroundToggle": 1,
+        "chosenBackground": 1,
         "lastOfflineTime": 0,
         "MineOfRizzUnlocked": 0,
         "RizzmaxExtraChance": 0,
         "MoRCellHighlight": [1,1],
         "RizziteNRizzium": [0,0,0],
-        "RizzalurgyUnlocked": 0
+        "RizzalurgyUnlocked": 0,
+        "newFormatToggle": 0
     }
     for (const [key, value] of Object.entries(data)) {
         window[key] = value;

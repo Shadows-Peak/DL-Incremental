@@ -18,19 +18,22 @@
     <script src="js/map.js"></script>
     <script src="js/gameLoop.js"></script>
     <script>
-        async function bodyLoad() {
-            //offlineProgress();
-            updateBackgrounds();
-            updateVisuals();
-            disables(currentRoom);
-            setInterval(gameLoop, 1000 / gameTick);
-            if (gameActive == true) {
-              await allInitialize();
-            }
+      var gameLoopInterval;
+
+      async function bodyLoad() {
+        console.log("Body Loaded");
+        //offlineProgress();
+        updateBackgrounds();
+        updateVisuals();
+        disables(currentRoom);
+        gameLoopInterval = setInterval(gameLoop, 1000 / gameTick);
+        if (gameActive == true) {
+          await allInitialize();
         }
+      }
     </script>
 </head>
-<body onload="bodyLoad()">
+<body>
     <div id="menuStuff" style="position: absolute; left: 5px; top: 5px;">
         <h1>Dilyan Lopez Incremental (Remastered?)</h1>
         <hr>
@@ -69,7 +72,7 @@
         <p>Country Clubs add +1 Per Click. Rice Washers multiply everything by +1 per upgrade. Cars raise the number of Country Clubs used in clicks by a power.</p>
         <button id="CountryClubButton" type="button" class="themed1">Buy Country Club (0): Cost: 0</button>
         <button id="RiceWasherButton" type="button" class="themed1">Buy Rice Washer (0): Cost: 0</button>
-        <button id="CarButton" type="button" class="themed1">Buy Car (0): Cost: 0</button>
+        <button id="CarsButton" type="button" class="themed1">Buy Car (0): Cost: 0</button>
     </div>
     <div id="room3Stuff" style="position: absolute; left: 5px; top: 5px;">
         <h1>Rizzmax</h1>

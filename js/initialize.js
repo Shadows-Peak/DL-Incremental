@@ -151,7 +151,7 @@ function setDisplay(object, value) {
 }
 
 function updateBackgrounds() {
-    if (newFormatToggle == 1) {
+    if (newFormatToggle == 1 && currentRoom != 7) {
         document.querySelectorAll('button.freeButton').forEach(function(elem) {
             elem.classList.remove("freeButton");
         });
@@ -269,7 +269,7 @@ function updateVisuals() {
         document.getElementById('counter').innerHTML = "You have: <b>"+abbrev(clicks)+"</b> Dilyan Points";
         document.getElementById('CountryClubButton').innerHTML = "Buy Country Club ("+abbrev(CountryClubs)+"): Cost: <b>"+grabVisualCost('CountryClubs')+"</b>";
         document.getElementById('RiceWasherButton').innerHTML = "Buy Rice Washer ("+abbrev(RiceWashers)+"): Cost: <b>"+grabVisualCost('RiceWashers')+"</b>";
-        document.getElementById('Cars').innerHTML = "Buy "+(Cars>0 ? "Another " : "")+"Car ("+abbrev(Cars)+"): Cost: <b>"+grabVisualCost('Cars')+"</b>";
+        document.getElementById('CarsButton').innerHTML = "Buy "+(Cars>0 ? "Another " : "")+"Car ("+abbrev(Cars)+"): Cost: <b>"+grabVisualCost('Cars')+"</b>";
         if (inLooksmaxxingChallenge == 0) {
             if (typeof grabCost("RandomValue5xUpgrades") === "undefined") {
                 document.getElementById('5xRandomValueUpgradeButton').innerHTML = abbrev(5+LooksmaxxingChallengesCompleted[2])+"x Random Value Upgrade ("+abbrev(RandomValue5xUpgrades)+"): <b>MAXED</b>";
@@ -400,59 +400,48 @@ async function loadData(username, password) {
     try {
         const encryptedData = await readData(username, password);
         const decryptedMegaData = fullDecrypt(encryptedData, "8675309");
-        const entries = decryptedMegaData.split("||");
-        const parsedEntries = entries.map(e => {
-            try { return JSON.parse(e); } 
-            catch { return e; }
-        });
 
-        const keys = [
-            "clicks",
-            "CountryClubs",
-            "RiceWashers",
-            "RandomValue5xUpgrades",
-            "AutomaticRizzers",
-            "RandomAuto2xUpgrades",
-            "Rizzmaxxes",
-            "RizzPoints",
-            "OfflineProdHrs",
-            "RizzmaxClickWorth",
-            "LooksmaxxingChallengesUpgradeUnlocked",
-            "inLooksmaxxingChallenge",
-            "LooksmaxxingChallengesCompleted",
-            "backgroundToggle",
-            "chosenBackground",
-            "lastOfflineTime",
-            "MineOfRizzUnlocked",
-            "RizzmaxExtraChance",
-            "MoRCellHighlight",
-            "RizziteNRizzium",
-            "RizzalurgyUnlocked",
-            "newFormatToggle"
-        ];
-
-        keys.forEach((key, i) => {
-            window[key] = parsedEntries[i];
-        });
+        const entries = decryptedMegaData.split("|");
 
         const data = {};
-        keys.forEach((key) => data[key] = window[key]);
 
-        // prob not needed anymore
-        keys.forEach(key => {
-            if (key === "LooksmaxxingChallengesCompleted" || key === "MoRCellHighlight" || key === "RizziteNRizzium") {
-                localStorage.setItem(key, JSON.stringify(window[key]));
-            } else {
-                localStorage.setItem(key, window[key]);
+        for (const entry of entries) {
+            if (!entry) continue;
+
+            const colonIndex = entry.indexOf(":");
+            if (colonIndex === -1) continue;
+
+            const key = entry.slice(0, colonIndex);
+            let value = entry.slice(colonIndex + 1);
+
+            try {
+                value = JSON.parse(value);
+            } catch {
+                console.error(e)
             }
-        });
+
+            window[key] = value;
+            data[key] = value;
+
+            if (
+                key === "LooksmaxxingChallengesCompleted" ||
+                key === "MoRCellHighlight" ||
+                key === "RizziteNRizzium"
+            ) {
+                localStorage.setItem(key, JSON.stringify(value));
+            } else {
+                localStorage.setItem(key, value);
+            }
+        }
 
         console.log("Game data loaded successfully!");
         return data;
+
     } catch (err) {
         console.error("Failed to load data:", err);
     }
 }
+
 
 
 

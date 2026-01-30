@@ -14,9 +14,10 @@ async function gameLoad() {
         const doc = parser.parseFromString(html, 'text/html');
         document.body.innerHTML = doc.body.innerHTML;
 
-        clearInterval(gameLoop);
+        clearInterval(gameLoopInterval);
         currentRoom = 1;
         gameActive = true;
+        console.log("BODY LOAD");
         bodyLoad();
         updateBackgrounds();
 
@@ -27,6 +28,7 @@ async function gameLoad() {
         if (logoutButton) {
             logoutButton.addEventListener('click', async function () {
                 await saveData();
+                clearInterval(gameLoop);
                 currentRoom = 7;
                 gameActive = false;
                 menuLoad();
