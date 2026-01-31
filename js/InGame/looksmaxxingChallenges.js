@@ -1,5 +1,5 @@
 function ChallengeStart(num, alertMsg) {
-    if (LooksmaxxingChallengesCompleted[num-1] < [10,90,5,9][num-1]) {
+    if (LooksmaxxingChallengesCompleted[num-1] < [10,90,5,9,10][num-1]) {
         if (inLooksmaxxingChallenge == 0) {
             inLooksmaxxingChallenge = num;
             // Rizzmax reset
@@ -58,5 +58,8 @@ function setClickProcesses3() {
 
     document.getElementById('LMC4Button').onclick = function() {
         ChallengeStart(4,"You have begun the 'Rags to Riches' Looksmaxxing Challenge. You are unable to do anything other than click to gain Dilyan Points."); 
+    }
+    document.getElementById('LMC5Button').onclick = function() {
+        ChallengeStart(5,"You have begun the 'Ad Hominem' Looksmaxxing Challenge. You are unable to see any points, upgrades, or multipliers. You must rizzmax for at least 30 points to complete this challenge."); 
     }
 }

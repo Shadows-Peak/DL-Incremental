@@ -31,7 +31,7 @@ function setClickProcesses0() {
             "RizzmaxClickWorth": 0,
             "LooksmaxxingChallengesUpgradeUnlocked": 0,
             "inLooksmaxxingChallenge": 0,
-            "LooksmaxxingChallengesCompleted": [0,0,0,0],
+            "LooksmaxxingChallengesCompleted": [0,0,0,0,0],
             "backgroundToggle": 1,
             "chosenBackground": 1,
             "lastOfflineTime": 0,
