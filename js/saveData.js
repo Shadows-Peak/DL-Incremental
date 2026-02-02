@@ -3,6 +3,7 @@ data = {
     "CountryClubs": 0,
     "RiceWashers": 0,
     "Cars": 0,
+    "Cheater": false,
     "RandomValue5xUpgrades": 0,
     "AutomaticRizzers": 0,
     "RandomAuto2xUpgrades": 0,
@@ -13,6 +14,7 @@ data = {
     "LooksmaxxingChallengesUpgradeUnlocked": 0,
     "inLooksmaxxingChallenge": 0,
     "LooksmaxxingChallengesCompleted": [0,0,0,0,0],
+    "timePlayed": 0,
     "backgroundToggle": 1,
     "chosenBackground": 1,
     "lastOfflineTime": 0,
@@ -40,10 +42,14 @@ function updateVisuals() {
 */
 
 async function saveData(silent=false) {
+    if (USERNAME == "" || PASSWORD == "" || USERNAME == null || PASSWORD == null) {
+        return;
+    }
+    lastOfflineTime = Date.now();
     var megaData = "";
     var basicIter = 0;
     for (const key of Object.keys(data)) {
-        data[key] = [clicks,CountryClubs,RiceWashers,Cars,RandomValue5xUpgrades,AutomaticRizzers,RandomAuto2xUpgrades,Rizzmaxxes,RizzPoints,OfflineProdHrs,RizzmaxClickWorth,LooksmaxxingChallengesUpgradeUnlocked,inLooksmaxxingChallenge,LooksmaxxingChallengesCompleted,backgroundToggle,chosenBackground,lastOfflineTime,MineOfRizzUnlocked,RizzmaxExtraChance,MoRCellHighlight,RizziteNRizzium,RizzalurgyUnlocked,newFormatToggle][basicIter];
+        data[key] = [clicks,CountryClubs,RiceWashers,Cars,Cheater,RandomValue5xUpgrades,AutomaticRizzers,RandomAuto2xUpgrades,Rizzmaxxes,RizzPoints,OfflineProdHrs,RizzmaxClickWorth,LooksmaxxingChallengesUpgradeUnlocked,inLooksmaxxingChallenge,LooksmaxxingChallengesCompleted,timePlayed,backgroundToggle,chosenBackground,lastOfflineTime,MineOfRizzUnlocked,RizzmaxExtraChance,MoRCellHighlight,RizziteNRizzium,RizzalurgyUnlocked,newFormatToggle][basicIter];
         megaData += key + ":" + JSON.stringify(data[key]) + "|";
         basicIter++;
     }
@@ -76,6 +82,7 @@ function resetData() {
         "CountryClubs": 0,
         "RiceWashers": 0,
         "Cars": 0,
+        "Cheater": false,
         "RandomValue5xUpgrades": 0,
         "AutomaticRizzers": 0,
         "RandomAuto2xUpgrades": 0,
@@ -86,6 +93,7 @@ function resetData() {
         "LooksmaxxingChallengesUpgradeUnlocked": 0,
         "inLooksmaxxingChallenge": 0,
         "LooksmaxxingChallengesCompleted": [0,0,0,0,0],
+        "timePlayed": 0,
         "backgroundToggle": 1,
         "chosenBackground": 1,
         "lastOfflineTime": 0,

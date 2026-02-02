@@ -1,5 +1,9 @@
 var lastOfflineTime = 0;
 
+var timePlayed = 0;
+
+var Cheater = false;
+
 var backgroundToggle = 1;
 var newFormatToggle = 0;
 var chosenBackground = 1; // 1 for Light, 2 for Dark, 3 for Cream
@@ -41,8 +45,8 @@ function grabCost(Item) {
         "RandomAuto2xUpgrades": [15000,35000,75000,150000,500000][RandomAuto2xUpgrades],
         "AutomaticRizzers": 2500 + 500*(AutomaticRizzers) + Math.ceil(50*(Math.log(7*(AutomaticRizzers)+1)**1.4)),
         "CountryClubs": Math.ceil(Math.floor(1.75 ** CountryClubs) * Math.log(5 * ((CountryClubs + 1) ** 1.5)) * (CountryClubs + 1)),
-        "RiceWashers": Math.ceil(500*Math.floor(2 ** RiceWashers) * Math.log(7 * ((RiceWashers + 1) ** 1.5)) * (RiceWashers + 1)),
-        "Cars": 12000 + 10000*Cars + Math.ceil(100*Math.floor(2.3 ** Cars)*Math.ceil(Math.log(Cars*Cars+1))+((Cars+1)**3)*Math.log(Cars+1)),
+        "RiceWashers": Math.ceil(400*Math.floor(2 ** RiceWashers) * Math.log(7 * ((RiceWashers + 1) ** 1.5)) * (RiceWashers + 1)),
+        "Cars": 12000 + 10000*Cars + Math.ceil(300*Math.floor(2.3 ** Cars)*Math.ceil(Math.log((Cars*Cars+1)*((Cars+1)**3)))*Math.log(Cars+1)),
         "OfflineProdHrs": Math.ceil(1.5*((OfflineProdHrs)**3.5))+1,
         "RizzmaxClickWorth": (2**(Math.floor(RizzmaxClickWorth/50)))*(Math.ceil(Math.ceil(2/3*((RizzmaxClickWorth)**0.5))*(Math.log(RizzmaxClickWorth+1)))+1),
         "LooksmaxxingChallengesUpgradeUnlocked": (Boolean(LooksmaxxingChallengesUpgradeUnlocked) ? -1 : 100),
@@ -138,6 +142,14 @@ function abbrev(number) {
     return((Math.floor((number/(10**zeros))*100)/100).toString()+finalAbbrev);
 }
 
+function abrevTime(seconds) {
+    var mins = Math.floor(Math.floor(seconds) / 60);
+    var hrs = Math.floor(mins / 60);
+    var days = Math.floor(hrs / 24);
+    secs = Math.floor(seconds) % 60;
+    return((days > 0 ? abbrev(days)+" Days: " : "")+(hrs > 0 ? hrs%24+"h " : "")+((mins > 0 && days < 10) ? mins%60+"m " : "")+(days <= 0 ? secs+"s" : ""));
+}
+
 function setDisplay(object, value) {
     var finalVal
     if (value == 0) {
@@ -166,18 +178,30 @@ function updateBackgrounds() {
         themedButtons = document.getElementsByClassName("themed1");
         for(var i = 0; i < themedButtons.length; i++)
         {
+            if (themedButtons[i].id == "leaderboard-table") {
+                themedButtons[i].style.backgroundColor = "rgba(240, 240, 240, 0.6)";
+                continue;
+            }
             themedButtons[i].style.backgroundColor = "rgb(240, 240, 240)";
         }
     } else if (chosenBackground == 2) {
         themedButtons = document.getElementsByClassName("themed1");
         for(var i = 0; i < themedButtons.length; i++)
         {
+            if (themedButtons[i].id == "leaderboard-table") {
+                themedButtons[i].style.backgroundColor = "rgba(64, 66, 71, 0.6)";
+                continue;
+            }
             themedButtons[i].style.backgroundColor = "rgb(64, 66, 71)";
         }
     } else if (chosenBackground == 3) {
         themedButtons = document.getElementsByClassName("themed1");
         for(var i = 0; i < themedButtons.length; i++)
         {
+            if (themedButtons[i].id == "leaderboard-table") {
+                themedButtons[i].style.backgroundColor = "rgba(209, 193, 161, 0.6)";
+                continue;
+            }
             themedButtons[i].style.backgroundColor = "rgb(209, 193, 161)";
         }
     }
@@ -387,6 +411,7 @@ function offlineProgress() {
     if (OfflineProdHrs > 0 && inLooksmaxxingChallenge == 0) {
         var currentTime = Date.now();
         var timeDifference = currentTime - lastOfflineTime;
+        if (timeDifference < 1000*10) {return;}
         if (timeDifference/3600000 <= OfflineProdHrs) {
             var timeDifferenceSeconds = timeDifference / 1000;
         } else {
@@ -400,15 +425,16 @@ function offlineProgress() {
     } else if (inLooksmaxxingChallenge == 2) {
         var currentTime = Date.now();
         var timeDifference = currentTime - lastOfflineTime;
+        if (timeDifference < 1000*10) {return;}
         if (timeDifference/3600000 <= OfflineProdHrs) {
             var timeDifferenceSeconds = timeDifference / 1000;
         } else {
             var timeDifferenceSeconds = OfflineProdHrs*360;
         }
-        clicks += Math.floor((0.5)*(Math.floor(timeDifferenceSeconds) * (gameTick) * (AutomaticRizzers) * (1 + CountryClubs) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) ));
+        clicks += Math.floor((0.5)*(Math.floor(timeDifferenceSeconds) * (gameTick) * (AutomaticRizzers) * (1 + CountryClubs)**Cars * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) ));
         lastOfflineTime = 0;
 
-        alert("You gained "+Math.floor((0.5)*(Math.floor(timeDifferenceSeconds) * (gameTick) * (AutomaticRizzers) * (1 + CountryClubs) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) ))+" clicks while you were gone! "+timeDifferenceSeconds);
+        alert("You gained "+Math.floor((0.5)*(Math.floor(timeDifferenceSeconds) * (gameTick) * (AutomaticRizzers) * (1 + CountryClubs)**Cars * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) ))+" clicks while you were gone! "+timeDifferenceSeconds);
         updateVisuals(); 
     }
 }
@@ -482,10 +508,13 @@ async function allInitialize() {
 
     await loadData(USERNAME, PASSWORD);
 
+    offlineProgress();
+
     setClickProcesses0();
     setClickProcesses0andahalf();
     setClickProcesses1();
     setClickProcesses2();
     setClickProcesses3();
     setClickProcesses4();
+    setClickProcesses5();
 }

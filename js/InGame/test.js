@@ -87,25 +87,32 @@ function simulateClick() {
 }
 
 
-var timeout;
 var GiveOfflineTime = 0;
 
 document.addEventListener("visibilitychange", (event) => {
-  if (document.visibilityState == "visible") {
-    try {
-      clearTimeout(timeout);
-    } catch(error) {
-      console.error(error); 
-    }
-    if (GiveOfflineTime == true) {
-      offlineProgress();
-    }
-    GiveOfflineTime = false;
-  } else {
-    lastOfflineTime = 0;
-    timeout = setTimeout(function () {
-      GiveOfflineTime = true;
-      lastOfflineTime = Date.now();
-    }, 10*1000);
+  if (document.visibilityState == "hidden") {
+    lastOfflineTime = Date.now();
   }
+
+  if (document.visibilityState == "visible") {
+    if (lastOfflineTime == 0) {
+      return;
+    }
+
+    offlineProgress();
+
+    lastOfflineTime = 0;
+  }
+});
+
+window.addEventListener("pagehide", () => {
+    lastOfflineTime = Date.now();
+});
+
+// Not sure about this one.
+window.addEventListener("load", () => {
+    if (lastOfflineTime != 0 && gameActive) {
+        offlineProgress();
+        lastOfflineTime = 0;
+    }
 });

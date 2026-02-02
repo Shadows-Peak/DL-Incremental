@@ -9,6 +9,7 @@
     <script src="js/api/signup.js"></script>
     <script src="js/api/login.js"></script>
     <script src="js/api/syncdata.js"></script>
+    <script src="js/api/leaderboard.js"></script>
     <script src="js/data/hasher.js"></script>
     <script src="js/data/encryption.js"></script>
     <script src="js/menu/main_menu.js"></script>
@@ -40,8 +41,8 @@
         <button data-room-id=0 id="signUp">Sign Up</button>
         <button data-room-id=0 id="login">Login</button>
         <div data-room-id=0 id="value-container">Loading... (or am I?)</div>
-        <h1 id="version">1.0.1</h1>
-        <h2>Accounts: Saves accessible anywhere on any device! (and by any person who you give the credentials)</h2>
+        <h1 id="version">1.0.2.1</h1>
+        <h2>Leaderboards: You can now access leaderboars of any non-test accounts and non-flagged accounts.<br><br>Cars: There is the car upgrade now.<br><br>Rescaling: The beta Car prices have been made higher, and the Rice Washer is now cheaper.<br>Offline Progress: I believe it's fixed now?</h2>
     </div>
     <div id="room0Stuff" style="position: absolute; left: 5px; top: 5px;">
         <h1>Settings</h1>
@@ -52,12 +53,14 @@
         <button id="saveButton" type="button" class="themed1">Save Game</menu></button>
         <button id="resetButton" type="button" class="themed1">Reset Game</menu></button>
         <button id="devB" type="button" class="themed1">Dev</menu></button>
+        <button id="logoutButton2" class="themed1">Another Logout Button</button>
     </div>
     <div id="room1Stuff" style="position: absolute; left: 5px; top: 5px;">
         <h1>Dilyan Lopez Incremental</h1>
         <p>Not made by <b>Dilyan Lopez</b>.</p>
         <p>But approved by <b>Dilyan Lopez</b>.</p>
         <p>If ever something breaks, reload or use the <b>Fix</b> button in the Settings room. There are some cases where you will need to do this more than once.</p>
+        <p>NOTE: This game only autosaves every 2 minutes, so don't close the tab before either logging out or pressing save in the settings menu if you wish to keep your data!</p>
         <h1 id="counter">You have <b>Test</b> Dilyan Points.</h1>
         <p>Dilyan Lopez Incremental™ was made to commemorate the greatness of Dilyan.</p>
         <button id="button1" type="button" class="themed1" onkeydown="return event.key != 'Enter';">Main Button Click</button>
@@ -80,7 +83,7 @@
         <p>Your first rizzmax will unlock new upgrades.<br></p>
         <button id="RizzmaxButton" type="button" class="themed1">Rizzmax: +0 Rizz Points</button>
         <div id="RizzmaxUpgrades">
-            <p>Offline production is 10% the production.</p>
+            <p>Offline production is 10% the production and only kicks in after at least 10 seconds.</p>
             <h2>Rizzmax Upgrades:<br></h2>
             <button id="OfflineProduction1Button" type="button" class="themed1">Offline Production (+0 hr(s)): Cost: 0 RP</button>
             <button id="RizzClickWorthButton" type="button" class="themed1">Click Worth (+0%): Cost: 0 RP</button>
@@ -262,8 +265,34 @@
         </table>
       </div>
     </div>
+    <div id="room8Stuff" style="position: absolute; left: 10px; top: 5px;">
+      <div id="leaderboard-tabs">
+          <button class="lb-tab active themed1" data-type="clicks">Clicks</button>
+          <button class="lb-tab themed1" data-type="RizzPoints">Rizz Points</button>
+          <button class="lb-tab themed1" data-type="LooksmaxxingChallengesCompleted">Challenges Completed</button>
+          <button class="lb-tab themed1" data-type="timePlayed">Playtime</button>
+      </div>
+      <table id="leaderboard-table" class="themed1">
+          <thead>
+              <tr>
+                  <th>#</th>
+                  <th>Username</th>
+                  <th>Value</th>
+              </tr>
+          </thead>
+          <tbody></tbody>
+      </table>
+      <div id="leaderboard-page-buttons">
+          <button id="prev-page" class="themed1">◀</button>
+          <span id="page-indicator"></span>
+          <button id="next-page" class="themed1">▶</button>
+      </div>
+      <div id="leaderboard-refresh-div">
+        <button id="refresh-lb" class="themed1">Refresh Leaderboard</button>
+      </div>
+    </div>
     <div id="toolbar" z-index="1000" style="position: absolute; right: 10px; top: 5px;">
-        <button id="logoutButton">Logout</button>
+        <button id="logoutButton" class="themed1">Logout</button>
     </div>
     <div style="position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%);">
         <h2 id="currencyCounter"><span style="border: white 3px solid">0 Dilyan Points</span></h2>
@@ -284,9 +313,13 @@
         document.getElementById("room4Stuff").style.display = "none";
         document.getElementById("room5Stuff").style.display = "none";
         document.getElementById("room5Stuff2").style.display = "none";
+        document.getElementById("room6Stuff").style.display = "none";
+        document.getElementById("room6Stuff2").style.display = "none";
+        document.getElementById("room8Stuff").style.display = "none";
     </script>
     <script src="js/InGame/MoR.js"></script>
     <script src="js/settings.js"></script>
+    <script src="js/lboard.js"></script>
     <script src="js/InGame/upgrades.js"></script>
     <script src="js/InGame/looksmaxxingChallenges.js"></script>
     <script src="js/saveData.js"></script>
