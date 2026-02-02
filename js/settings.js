@@ -22,6 +22,8 @@ function setClickProcesses0() {
             "clicks": 0,
             "CountryClubs": 0,
             "RiceWashers": 0,
+            "Cars": 0,
+            "Cheater": false,
             "RandomValue5xUpgrades": 0,
             "AutomaticRizzers": 0,
             "RandomAuto2xUpgrades": 0,
@@ -31,14 +33,17 @@ function setClickProcesses0() {
             "RizzmaxClickWorth": 0,
             "LooksmaxxingChallengesUpgradeUnlocked": 0,
             "inLooksmaxxingChallenge": 0,
-            "LooksmaxxingChallengesCompleted": [0,0,0,0],
+            "LooksmaxxingChallengesCompleted": [0,0,0,0,0],
+            "timePlayed": 0,
             "backgroundToggle": 1,
             "chosenBackground": 1,
             "lastOfflineTime": 0,
             "MineOfRizzUnlocked": 0,
             "RizzmaxExtraChance": 0,
             "MoRCellHighlight": [1,1],
-            "RizziteNRizzium": [0,0,0]
+            "RizziteNRizzium": [0,0,0],
+            "RizzalurgyUnlocked": 0,
+            "newFormatToggle": 0
         };
         for (const [key, value] of Object.entries(FixData)) {
             if (key == "LooksmaxxingChallengesCompleted" || key == "MoRCellHighlight" || key == "RizziteNRizzium") {

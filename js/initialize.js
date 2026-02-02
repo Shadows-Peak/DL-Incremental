@@ -28,7 +28,7 @@ var RizzmaxClickWorth = 0;
 var LooksmaxxingChallengesUpgradeUnlocked = 0;
 
 var inLooksmaxxingChallenge = 0;
-var LooksmaxxingChallengesCompleted = [0,0,0,0];
+var LooksmaxxingChallengesCompleted = [0,0,0,0,0]; // Bye Bye!, Edging Maestro, Stone-Faced Mogging, Rags to Riches, Ad Hominem
 
 var MineOfRizzUnlocked = 0;
 var RizzalurgyUnlocked = 0;
@@ -59,13 +59,15 @@ function grabCost(Item) {
 
 function LooksmaxCosts(Looksmax) {
     if (Looksmax == 1) {
-        return(10 + 5*LooksmaxxingChallengesCompleted[0]*Math.floor(1.25**LooksmaxxingChallengesCompleted[0]));
+        return(Math.ceil((1-0.03*LooksmaxxingChallengesCompleted[4]) * (10 + 5*LooksmaxxingChallengesCompleted[0]*Math.floor(1.25**LooksmaxxingChallengesCompleted[0]))));
     } else if (Looksmax == 2) {
-        return(1 + 2*LooksmaxxingChallengesCompleted[1]*Math.floor(1.01**LooksmaxxingChallengesCompleted[1]));
+        return(Math.ceil((1-0.03*LooksmaxxingChallengesCompleted[4]) * (1 + 2*LooksmaxxingChallengesCompleted[1]*Math.floor(1.01**LooksmaxxingChallengesCompleted[1]))));
     } else if (Looksmax == 3) {
-        return(50 + 50*LooksmaxxingChallengesCompleted[2]*Math.floor(1.25**LooksmaxxingChallengesCompleted[2]));
+        return(Math.ceil((1-0.03*LooksmaxxingChallengesCompleted[4]) * (50 + 50*LooksmaxxingChallengesCompleted[2]*Math.floor(1.25**LooksmaxxingChallengesCompleted[2]))));
     } else if (Looksmax == 4) {
-        return(10 + 20*LooksmaxxingChallengesCompleted[3]*Math.floor(1.5**LooksmaxxingChallengesCompleted[3]));
+        return(Math.ceil((1-0.03*LooksmaxxingChallengesCompleted[4]) * (10 + 20*LooksmaxxingChallengesCompleted[3]*Math.floor(1.5**LooksmaxxingChallengesCompleted[3]))));
+    } else if (Looksmax == 5) {
+        return(Math.ceil((1-0.03*LooksmaxxingChallengesCompleted[4]) * (30 + 10*LooksmaxxingChallengesCompleted[4]*Math.floor(1.25**LooksmaxxingChallengesCompleted[4]))));
     }
 }
 
@@ -271,8 +273,12 @@ function updateVisuals() {
     if (gameActive == false) {return;}
     try {
         if (Rizzmaxxes > 0) {
-            var LooksmaxChallengeText = [""," <b><em>Bye Bye!</em></b>"," <b><em>Edging Maestro</em></b>"," <b><em>Stone-Faced Mogging</em></b>"," <b><em>Rags to Riches</em></b>"][inLooksmaxxingChallenge];
-            document.getElementById('currencyCounter').innerHTML = "<b>"+abbrev(clicks)+"</b> Dilyan Points <b>"+abbrev(RizzPoints)+"</b> Rizz Points"+LooksmaxChallengeText;
+            var LooksmaxChallengeText = [""," <b><em>Bye Bye!</em></b>"," <b><em>Edging Maestro</em></b>"," <b><em>Stone-Faced Mogging</em></b>"," <b><em>Rags to Riches</em></b>"," <b><em>Ad Hominem</em></b>"][inLooksmaxxingChallenge];
+            if (inLooksmaxxingChallenge == 5) {
+                document.getElementById('currencyCounter').innerHTML = "<b>???</b> Dilyan Points <b>"+abbrev(RizzPoints)+"</b> Rizz Points"+LooksmaxChallengeText;
+            } else {
+                document.getElementById('currencyCounter').innerHTML = "<b>"+abbrev(clicks)+"</b> Dilyan Points <b>"+abbrev(RizzPoints)+"</b> Rizz Points"+LooksmaxChallengeText;
+            }
             setDisplay('2xRandomAutoUpgradeButton', 1);
             setDisplay('RizzmaxUpgrades', 1);
         } else {
@@ -290,10 +296,23 @@ function updateVisuals() {
             setDisplay('RizzmaxUpg2Indicator', 0);
             setDisplay('RizzmaxUpgrades2', 0);
         }
-        document.getElementById('counter').innerHTML = "You have: <b>"+abbrev(clicks)+"</b> Dilyan Points";
-        document.getElementById('CountryClubButton').innerHTML = "Buy Country Club ("+abbrev(CountryClubs)+"): Cost: <b>"+grabVisualCost('CountryClubs')+"</b>";
-        document.getElementById('RiceWasherButton').innerHTML = "Buy Rice Washer ("+abbrev(RiceWashers)+"): Cost: <b>"+grabVisualCost('RiceWashers')+"</b>";
-        document.getElementById('CarsButton').innerHTML = "Buy "+(Cars>0 ? "Another " : "")+"Car ("+abbrev(Cars)+"): Cost: <b>"+grabVisualCost('Cars')+"</b>";
+        if (inLooksmaxxingChallenge == 5) {
+            document.getElementById('counter').innerHTML = "You have: <b>???</b> Dilyan Points";
+        } else {
+            document.getElementById('counter').innerHTML = "You have: <b>"+abbrev(clicks)+"</b> Dilyan Points";
+        }
+        
+        if (inLooksmaxxingChallenge != 5) {
+            document.getElementById('CountryClubButton').innerHTML = "Buy Country Club ("+abbrev(CountryClubs)+"): Cost: <b>"+grabVisualCost('CountryClubs')+"</b>";
+            document.getElementById('RiceWasherButton').innerHTML = "Buy Rice Washer ("+abbrev(RiceWashers)+"): Cost: <b>"+grabVisualCost('RiceWashers')+"</b>";
+            document.getElementById('CarsButton').innerHTML = "Buy "+(Cars>0 ? "Another " : "")+"Car ("+abbrev(Cars)+"): Cost: <b>"+grabVisualCost('Cars')+"</b>";
+            document.getElementById('AutomaticRizzerButton').innerHTML = "Automatic Rizzer ("+abbrev(AutomaticRizzers)+"): Cost: <b>"+grabVisualCost('AutomaticRizzers')+"</b>";
+        } else {
+            document.getElementById('CountryClubButton').innerHTML = "Buy Country Club (???): Cost: <b>???</b>";
+            document.getElementById('RiceWasherButton').innerHTML = "Buy Rice Washer (???): Cost: <b>???</b>";
+            document.getElementById('CarsButton').innerHTML = "Buy Car (???): Cost: <b>???</b>";
+            document.getElementById('AutomaticRizzerButton').innerHTML = "Automatic Rizzer (???): Cost: <b>???</b>";
+        }
         if (inLooksmaxxingChallenge == 0) {
             if (typeof grabCost("RandomValue5xUpgrades") === "undefined") {
                 document.getElementById('5xRandomValueUpgradeButton').innerHTML = abbrev(5+LooksmaxxingChallengesCompleted[2])+"x Random Value Upgrade ("+abbrev(RandomValue5xUpgrades)+"): <b>MAXED</b>";
@@ -306,25 +325,28 @@ function updateVisuals() {
                 document.getElementById('2xRandomAutoUpgradeButton').innerHTML = abbrev(2+LooksmaxxingChallengesCompleted[2])+"x Random Auto Upgrade ("+abbrev(RandomAuto2xUpgrades)+"): Cost: <b>"+grabVisualCost('RandomAuto2xUpgrades')+"</b>";
             }
         } else {
-            if (typeof grabCost("RandomValue5xUpgrades") === "undefined") {
+            if (typeof grabCost("RandomValue5xUpgrades") === "undefined" && inLooksmaxxingChallenge != 5) {
                 document.getElementById('5xRandomValueUpgradeButton').innerHTML = "5x Random Value Upgrade ("+abbrev(RandomValue5xUpgrades)+"): <b>MAXED</b>";
-            } else {
+            } else if (inLooksmaxxingChallenge != 5) {
                 document.getElementById('5xRandomValueUpgradeButton').innerHTML = "5x Random Value Upgrade ("+abbrev(RandomValue5xUpgrades)+"): Cost: <b>"+grabVisualCost('RandomValue5xUpgrades')+"</b>";
-            }
-            if (typeof grabCost("RandomAuto2xUpgrades") === "undefined") {
-                document.getElementById('2xRandomAutoUpgradeButton').innerHTML = "2x Random Auto Upgrade ("+abbrev(RandomAuto2xUpgrades)+"): <b>MAXED</b>";
             } else {
+                document.getElementById('5xRandomValueUpgradeButton').innerHTML = "???x Random Value Upgrade (???): Cost: <b>???</b>";
+            }
+            if (typeof grabCost("RandomAuto2xUpgrades") === "undefined" && inLooksmaxxingChallenge != 5) {
+                document.getElementById('2xRandomAutoUpgradeButton').innerHTML = "2x Random Auto Upgrade ("+abbrev(RandomAuto2xUpgrades)+"): <b>MAXED</b>";
+            } else if (inLooksmaxxingChallenge != 5) {
                 document.getElementById('2xRandomAutoUpgradeButton').innerHTML = "2x Random Auto Upgrade ("+abbrev(RandomAuto2xUpgrades)+"): Cost: <b>"+grabVisualCost('RandomAuto2xUpgrades')+"</b>";
+            } else {
+                document.getElementById('2xRandomAutoUpgradeButton').innerHTML = "???x Random Auto Upgrade (???): Cost: <b>???</b>";
             }
         }
-        document.getElementById('AutomaticRizzerButton').innerHTML = "Automatic Rizzer ("+abbrev(AutomaticRizzers)+"): Cost: <b>"+grabVisualCost('AutomaticRizzers')+"</b>";
         document.getElementById('BackgroundToggleButton').innerHTML = "Toggle Backgrounds: "+["Off","On"][backgroundToggle];
         document.getElementById('ThemeChangeButton').innerHTML = "Current Theme: "+["Light","Dark","Cream"][chosenBackground-1];
         document.getElementById('NewFormatToggleButton').innerHTML = "Toggle Better Format: "+["Off","On"][newFormatToggle];
         if (clicks >= 25000) {
             document.getElementById('RizzmaxButton').innerHTML = "Rizzmax: <b>+"+abbrev(RizzPointgain()+1)+" Points</b>";
         } else {
-            document.getElementById('RizzmaxButton').innerHTML = "Rizzmax: <b>+0 Points</b>";
+            document.getElementById('RizzmaxButton').innerHTML = "Rizzmax: <b>+??? Points</b>";    
         }
         document.getElementById('OfflineProduction1Button').innerHTML = "Offline Production (+"+abbrev(OfflineProdHrs)+" hr(s)): Cost: <b>"+grabVisualCost('OfflineProdHrs')+"</b> RP";
         document.getElementById('RizzClickWorthButton').innerHTML = "Click Worth (+"+abbrev(RizzmaxClickWorth)+"%): Cost: <b>"+grabVisualCost('RizzmaxClickWorth')+"</b> RP";
@@ -340,11 +362,13 @@ function updateVisuals() {
             document.getElementById('LMC2Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[1],90) ? (isEqual(inLooksmaxxingChallenge,2) ? "End Challenge" : "Cannot Start") : "<b>MAXED</b>");;
             document.getElementById('LMC3Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[2],5) ? (isEqual(inLooksmaxxingChallenge,3) ? "End Challenge" : "Cannot Start") : "<b>MAXED</b>");;
             document.getElementById('LMC4Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[3],9) ? (isEqual(inLooksmaxxingChallenge,4) ? "End Challenge" : "Cannot Start") : "<b>MAXED</b>");;
+            document.getElementById('LMC5Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[4],10) ? (isEqual(inLooksmaxxingChallenge,5) ? "End Challenge" : "Cannot Start") : "<b>MAXED</b>");;
         } else {
             document.getElementById('LMC1Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[0],10) ? "Begin" : "<b>MAXED</b>");
             document.getElementById('LMC2Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[1],90) ? "Begin" : "<b>MAXED</b>");
             document.getElementById('LMC3Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[2],5) ? "Begin" : "<b>MAXED</b>");
             document.getElementById('LMC4Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[3],9) ? "Begin" : "<b>MAXED</b>");
+            document.getElementById('LMC5Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[4],10) ? "Begin" : "<b>MAXED</b>");
         }
         document.getElementById('LMC1D').innerHTML = "Rizzmax for at least "+abbrev(LooksmaxCosts(1))+" points without using any Rice Washers.";
         document.getElementById('LMC1B').innerHTML = "Current Bonus: +"+abbrev(10*LooksmaxxingChallengesCompleted[0])+"% Dilyan Point Multiplier";
@@ -358,6 +382,9 @@ function updateVisuals() {
         document.getElementById('LMC4D').innerHTML = "In this challenge, you can use your rizzmax click worth upgrade. Everything is disabled aside from the clicking of the main button. Rizzmax for at least "+abbrev(LooksmaxCosts(4))+" points.";
         document.getElementById('LMC4B').innerHTML = "Current Bonus: +"+abbrev(LooksmaxxingChallengesCompleted[3])+" Dilyan Point Worth Per Country Club";
         document.getElementById('LMC4C').innerHTML = "Completions: "+abbrev(LooksmaxxingChallengesCompleted[3])+"/9";
+        document.getElementById('LMC5D').innerHTML = "Rizzmax for at least "+abbrev(LooksmaxCosts(5))+" points while being unable to see any points, upgrades, or multipliers.";
+        document.getElementById('LMC5B').innerHTML = "Current Bonus: -"+abbrev(3*LooksmaxxingChallengesCompleted[4])+"% Rizz Point Requirement for Looksmaxxing Challenge Completion";
+        document.getElementById('LMC5C').innerHTML = "Completions: "+abbrev(LooksmaxxingChallengesCompleted[4])+"/10";
 
         if (inLooksmaxxingChallenge == 0) {
             document.getElementById('RandomValueExplanatory').innerHTML = "The earlier upgrades labeled as 'Random Value Upgrade/Auto Value' function as follows: Each time you upgrade them, you gain an additional 10% chance to either receive "+abbrev(5+LooksmaxxingChallengesCompleted[2])+" times the usual value upon manual click or "+abbrev(2+LooksmaxxingChallengesCompleted[2])+" times the usual value upon automatic generation by a rizzer, depending on the specific upgrade purchased.";
@@ -442,8 +469,17 @@ async function loadData(username, password) {
 
             try {
                 value = JSON.parse(value);
-            } catch {
-                console.error(e)
+                        
+                if (key === "LooksmaxxingChallengesCompleted") {
+                    value = padArrayToLength(
+                        value,
+                        LooksmaxxingChallengesCompleted.length,
+                        0
+                    );
+                }
+            
+            } catch (e) {
+                console.error(e);
             }
 
             window[key] = value;
@@ -467,6 +503,19 @@ async function loadData(username, password) {
         console.error("Failed to load data:", err);
     }
 }
+
+function padArrayToLength(arr, targetLength, padValue = 0) {
+    if (!Array.isArray(arr)) return arr;
+
+    if (arr.length < targetLength) {
+        return arr.concat(
+            Array(targetLength - arr.length).fill(padValue)
+        );
+    }
+
+    return arr;
+}
+
 
 
 
