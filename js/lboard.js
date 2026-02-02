@@ -1,5 +1,5 @@
 let currentPage = 0;
-const pageSize = 4;
+const pageSize = 10;
 let statType = "clicks";
 let currentLeaderboard = [];
 
