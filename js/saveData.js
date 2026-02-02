@@ -45,6 +45,7 @@ async function saveData(silent=false) {
     if (USERNAME == "" || PASSWORD == "" || USERNAME == null || PASSWORD == null) {
         return;
     }
+    lastOfflineTime = Date.now();
     var megaData = "";
     var basicIter = 0;
     for (const key of Object.keys(data)) {

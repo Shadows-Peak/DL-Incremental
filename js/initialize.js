@@ -393,6 +393,7 @@ function offlineProgress() {
     if (OfflineProdHrs > 0 && inLooksmaxxingChallenge == 0) {
         var currentTime = Date.now();
         var timeDifference = currentTime - lastOfflineTime;
+        if (timeDifference < 1000*10) {return;}
         if (timeDifference/3600000 <= OfflineProdHrs) {
             var timeDifferenceSeconds = timeDifference / 1000;
         } else {
@@ -406,15 +407,16 @@ function offlineProgress() {
     } else if (inLooksmaxxingChallenge == 2) {
         var currentTime = Date.now();
         var timeDifference = currentTime - lastOfflineTime;
+        if (timeDifference < 1000*10) {return;}
         if (timeDifference/3600000 <= OfflineProdHrs) {
             var timeDifferenceSeconds = timeDifference / 1000;
         } else {
             var timeDifferenceSeconds = OfflineProdHrs*360;
         }
-        clicks += Math.floor((0.5)*(Math.floor(timeDifferenceSeconds) * (gameTick) * (AutomaticRizzers) * (1 + CountryClubs) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) ));
+        clicks += Math.floor((0.5)*(Math.floor(timeDifferenceSeconds) * (gameTick) * (AutomaticRizzers) * (1 + CountryClubs)**Cars * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) ));
         lastOfflineTime = 0;
 
-        alert("You gained "+Math.floor((0.5)*(Math.floor(timeDifferenceSeconds) * (gameTick) * (AutomaticRizzers) * (1 + CountryClubs) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) ))+" clicks while you were gone! "+timeDifferenceSeconds);
+        alert("You gained "+Math.floor((0.5)*(Math.floor(timeDifferenceSeconds) * (gameTick) * (AutomaticRizzers) * (1 + CountryClubs)**Cars * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) ))+" clicks while you were gone! "+timeDifferenceSeconds);
         updateVisuals(); 
     }
 }
@@ -487,6 +489,8 @@ async function allInitialize() {
     }
 
     await loadData(USERNAME, PASSWORD);
+
+    offlineProgress();
 
     setClickProcesses0();
     setClickProcesses0andahalf();
