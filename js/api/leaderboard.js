@@ -15,36 +15,51 @@ async function fetchLeaderboardData() {
 }
 
 function extractValue(decryptedData, key) {
-    return Number(
-        decryptedData
+    const raw =decryptedData
             .split("|")
             .find(p => p.startsWith(key + ":"))
-            ?.split(":")[1] ?? 0
-    );
+            ?.split(":")[1] ?? 0;
+    
+    if (!raw) return 0;
+
+    if (raw.startsWith("[") && raw.endsWith("]")) {
+        try {
+            const arr = JSON.parse(raw);
+            if (Array.isArray(arr)) {
+                return arr.reduce((sum, v) => sum + Number(v || 0), 0);
+            }
+        } catch (e) {
+            return 0;
+        }
+    }
+
+    const num = Number(raw);
+    return Number.isNaN(num) ? 0 : num;
 }
 
-async function buildLeaderboard() {
+async function buildLeaderboard(dataName="clicks") {
     const records = await fetchLeaderboardData();
 
     const leaderboard = records.map(record => {
+        if (record.fields.username == 'test' || record.fields.username == 'test2' || record.fields.data == null) {
+            return null;
+        }
         const encrypted = record.fields.data;
         if (!encrypted) return null;
 
         const decrypted = fullDecrypt(encrypted, "8675309");
-        const clicks = extractValue(decrypted, "clicks");
+        const data = extractValue(decrypted, dataName);
+
+        if (extractValue(decrypted, "Cheater") == true) {
+            return null;
+        }
 
         return {
             username: record.fields.username,
-            clicks
+            data: data
         };
     }).filter(Boolean);
 
-    leaderboard.sort((a, b) => b.clicks - a.clicks);
+    leaderboard.sort((a, b) => b.data - a.data);
     return leaderboard;
 }
-
-const leaderboard = await buildLeaderboard();
-
-leaderboard.slice(0, 10).forEach((p, i) => {
-    console.log(`#${i + 1} ${p.username}: ${p.clicks}`);
-});

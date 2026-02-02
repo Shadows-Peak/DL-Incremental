@@ -59,3 +59,38 @@ button:not(:is(.freeButton, .freeButtonPersist)) {
   height: 100%;
   width: 100%;
 }
+
+#leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#leaderboard-table th,
+#leaderboard-table td {
+    border: 1px solid #000000;
+    padding: 6px 10px;
+    text-align: center;
+}
+
+#leaderboard-tabs {
+    margin-bottom: 10px;
+}
+
+.lb-tab {
+    margin-right: 5px;
+}
+
+.lb-tab.active {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+#leaderboard-page-buttons {
+    margin-top: 10px;
+    text-align: center;
+}
+
+#leaderboard-refresh-div {
+    margin-top: 10px;
+    text-align: center;
+}

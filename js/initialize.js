@@ -1,5 +1,9 @@
 var lastOfflineTime = 0;
 
+var timePlayed = 0;
+
+var Cheater = false;
+
 var backgroundToggle = 1;
 var newFormatToggle = 0;
 var chosenBackground = 1; // 1 for Light, 2 for Dark, 3 for Cream
@@ -136,6 +140,14 @@ function abbrev(number) {
     return((Math.floor((number/(10**zeros))*100)/100).toString()+finalAbbrev);
 }
 
+function abrevTime(seconds) {
+    var mins = Math.floor(Math.floor(seconds) / 60);
+    var hrs = Math.floor(mins / 60);
+    var days = Math.floor(hrs / 24);
+    secs = Math.floor(seconds) % 60;
+    return((days > 0 ? abbrev(days)+" Days: " : "")+(hrs > 0 ? hrs%24+"h " : "")+((mins > 0 && days < 10) ? mins%60+"m " : "")+(days <= 0 ? secs+"s" : ""));
+}
+
 function setDisplay(object, value) {
     var finalVal
     if (value == 0) {
@@ -164,18 +176,30 @@ function updateBackgrounds() {
         themedButtons = document.getElementsByClassName("themed1");
         for(var i = 0; i < themedButtons.length; i++)
         {
+            if (themedButtons[i].id == "leaderboard-table") {
+                themedButtons[i].style.backgroundColor = "rgba(240, 240, 240, 0.6)";
+                continue;
+            }
             themedButtons[i].style.backgroundColor = "rgb(240, 240, 240)";
         }
     } else if (chosenBackground == 2) {
         themedButtons = document.getElementsByClassName("themed1");
         for(var i = 0; i < themedButtons.length; i++)
         {
+            if (themedButtons[i].id == "leaderboard-table") {
+                themedButtons[i].style.backgroundColor = "rgba(64, 66, 71, 0.6)";
+                continue;
+            }
             themedButtons[i].style.backgroundColor = "rgb(64, 66, 71)";
         }
     } else if (chosenBackground == 3) {
         themedButtons = document.getElementsByClassName("themed1");
         for(var i = 0; i < themedButtons.length; i++)
         {
+            if (themedButtons[i].id == "leaderboard-table") {
+                themedButtons[i].style.backgroundColor = "rgba(209, 193, 161, 0.6)";
+                continue;
+            }
             themedButtons[i].style.backgroundColor = "rgb(209, 193, 161)";
         }
     }
@@ -470,4 +494,5 @@ async function allInitialize() {
     setClickProcesses2();
     setClickProcesses3();
     setClickProcesses4();
+    setClickProcesses5();
 }

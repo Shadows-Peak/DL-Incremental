@@ -68,9 +68,23 @@ function setClickProcesses0() {
             let Devcurr = prompt("Currency Type?");
             let Devamt = prompt("Amount?");
             eval(Devcurr+" = "+Devamt);
+            Cheater = true;
             updateVisuals();
         } else {
             alert("stop trying to active my dev tools");
         }
     };
+
+    document.getElementById('logoutButton2').onclick = async function() {
+        await saveData();
+        clearInterval(gameLoop);
+        currentRoom = 7;
+        gameActive = false;
+        menuLoad();
+        updateBackgrounds();
+        localStorage.removeItem('username');
+        localStorage.removeItem('password');
+        localStorage.removeItem('logged_in');
+        localStorage.removeItem('first_load');
+    }
 }
