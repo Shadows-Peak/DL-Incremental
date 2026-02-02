@@ -275,7 +275,7 @@ function updateVisuals() {
         if (Rizzmaxxes > 0) {
             var LooksmaxChallengeText = [""," <b><em>Bye Bye!</em></b>"," <b><em>Edging Maestro</em></b>"," <b><em>Stone-Faced Mogging</em></b>"," <b><em>Rags to Riches</em></b>"," <b><em>Ad Hominem</em></b>"][inLooksmaxxingChallenge];
             if (inLooksmaxxingChallenge == 5) {
-                document.getElementById('currencyCounter').innerHTML = "<b>"+ "</b> ??? Dilyan Points <b>"+"</b> ??? Rizz Points"+LooksmaxChallengeText;
+                document.getElementById('currencyCounter').innerHTML = "<b>???</b> Dilyan Points <b>"+abbrev(RizzPoints)+"</b> Rizz Points"+LooksmaxChallengeText;
             } else {
                 document.getElementById('currencyCounter').innerHTML = "<b>"+abbrev(clicks)+"</b> Dilyan Points <b>"+abbrev(RizzPoints)+"</b> Rizz Points"+LooksmaxChallengeText;
             }
@@ -286,10 +286,10 @@ function updateVisuals() {
             setDisplay('2xRandomAutoUpgradeButton', 0);
             setDisplay('RizzmaxUpgrades', 0);
         }
-        if (LooksmaxxingChallengesUpgradeUnlocked == 1 && listSum(LooksmaxxingChallengesCompleted) < 6) {
+        if (LooksmaxxingChallengesUpgradeUnlocked == 1 && listSum(LooksmaxxingChallengesCompleted) < 5) {
             setDisplay('RizzmaxUpg2Indicator', 1);
             setDisplay('RizzmaxUpgrades2',0);
-        } else if (LooksmaxxingChallengesUpgradeUnlocked == 1 && listSum(LooksmaxxingChallengesCompleted) >= 6) {
+        } else if (LooksmaxxingChallengesUpgradeUnlocked == 1 && listSum(LooksmaxxingChallengesCompleted) >= 5) {
             setDisplay('RizzmaxUpg2Indicator', 0);
             setDisplay('RizzmaxUpgrades2',1);
         } else {
@@ -302,9 +302,17 @@ function updateVisuals() {
             document.getElementById('counter').innerHTML = "You have: <b>"+abbrev(clicks)+"</b> Dilyan Points";
         }
         
-        document.getElementById('CountryClubButton').innerHTML = "Buy Country Club ("+abbrev(CountryClubs)+"): Cost: <b>"+grabVisualCost('CountryClubs')+"</b>";
-        document.getElementById('RiceWasherButton').innerHTML = "Buy Rice Washer ("+abbrev(RiceWashers)+"): Cost: <b>"+grabVisualCost('RiceWashers')+"</b>";
-        document.getElementById('CarsButton').innerHTML = "Buy "+(Cars>0 ? "Another " : "")+"Car ("+abbrev(Cars)+"): Cost: <b>"+grabVisualCost('Cars')+"</b>";
+        if (inLooksmaxxingChallenge != 5) {
+            document.getElementById('CountryClubButton').innerHTML = "Buy Country Club ("+abbrev(CountryClubs)+"): Cost: <b>"+grabVisualCost('CountryClubs')+"</b>";
+            document.getElementById('RiceWasherButton').innerHTML = "Buy Rice Washer ("+abbrev(RiceWashers)+"): Cost: <b>"+grabVisualCost('RiceWashers')+"</b>";
+            document.getElementById('CarsButton').innerHTML = "Buy "+(Cars>0 ? "Another " : "")+"Car ("+abbrev(Cars)+"): Cost: <b>"+grabVisualCost('Cars')+"</b>";
+            document.getElementById('AutomaticRizzerButton').innerHTML = "Automatic Rizzer ("+abbrev(AutomaticRizzers)+"): Cost: <b>"+grabVisualCost('AutomaticRizzers')+"</b>";
+        } else {
+            document.getElementById('CountryClubButton').innerHTML = "Buy Country Club (???): Cost: <b>???</b>";
+            document.getElementById('RiceWasherButton').innerHTML = "Buy Rice Washer (???): Cost: <b>???</b>";
+            document.getElementById('CarsButton').innerHTML = "Buy Car (???): Cost: <b>???</b>";
+            document.getElementById('AutomaticRizzerButton').innerHTML = "Automatic Rizzer (???): Cost: <b>???</b>";
+        }
         if (inLooksmaxxingChallenge == 0) {
             if (typeof grabCost("RandomValue5xUpgrades") === "undefined") {
                 document.getElementById('5xRandomValueUpgradeButton').innerHTML = abbrev(5+LooksmaxxingChallengesCompleted[2])+"x Random Value Upgrade ("+abbrev(RandomValue5xUpgrades)+"): <b>MAXED</b>";
@@ -317,27 +325,28 @@ function updateVisuals() {
                 document.getElementById('2xRandomAutoUpgradeButton').innerHTML = abbrev(2+LooksmaxxingChallengesCompleted[2])+"x Random Auto Upgrade ("+abbrev(RandomAuto2xUpgrades)+"): Cost: <b>"+grabVisualCost('RandomAuto2xUpgrades')+"</b>";
             }
         } else {
-            if (typeof grabCost("RandomValue5xUpgrades") === "undefined") {
+            if (typeof grabCost("RandomValue5xUpgrades") === "undefined" && inLooksmaxxingChallenge != 5) {
                 document.getElementById('5xRandomValueUpgradeButton').innerHTML = "5x Random Value Upgrade ("+abbrev(RandomValue5xUpgrades)+"): <b>MAXED</b>";
-            } else {
+            } else if (inLooksmaxxingChallenge != 5) {
                 document.getElementById('5xRandomValueUpgradeButton').innerHTML = "5x Random Value Upgrade ("+abbrev(RandomValue5xUpgrades)+"): Cost: <b>"+grabVisualCost('RandomValue5xUpgrades')+"</b>";
-            }
-            if (typeof grabCost("RandomAuto2xUpgrades") === "undefined") {
-                document.getElementById('2xRandomAutoUpgradeButton').innerHTML = "2x Random Auto Upgrade ("+abbrev(RandomAuto2xUpgrades)+"): <b>MAXED</b>";
             } else {
+                document.getElementById('5xRandomValueUpgradeButton').innerHTML = "???x Random Value Upgrade (???): Cost: <b>???</b>";
+            }
+            if (typeof grabCost("RandomAuto2xUpgrades") === "undefined" && inLooksmaxxingChallenge != 5) {
+                document.getElementById('2xRandomAutoUpgradeButton').innerHTML = "2x Random Auto Upgrade ("+abbrev(RandomAuto2xUpgrades)+"): <b>MAXED</b>";
+            } else if (inLooksmaxxingChallenge != 5) {
                 document.getElementById('2xRandomAutoUpgradeButton').innerHTML = "2x Random Auto Upgrade ("+abbrev(RandomAuto2xUpgrades)+"): Cost: <b>"+grabVisualCost('RandomAuto2xUpgrades')+"</b>";
+            } else {
+                document.getElementById('2xRandomAutoUpgradeButton').innerHTML = "???x Random Auto Upgrade (???): Cost: <b>???</b>";
             }
         }
-        document.getElementById('AutomaticRizzerButton').innerHTML = "Automatic Rizzer ("+abbrev(AutomaticRizzers)+"): Cost: <b>"+grabVisualCost('AutomaticRizzers')+"</b>";
         document.getElementById('BackgroundToggleButton').innerHTML = "Toggle Backgrounds: "+["Off","On"][backgroundToggle];
         document.getElementById('ThemeChangeButton').innerHTML = "Current Theme: "+["Light","Dark","Cream"][chosenBackground-1];
         document.getElementById('NewFormatToggleButton').innerHTML = "Toggle Better Format: "+["Off","On"][newFormatToggle];
         if (clicks >= 25000) {
             document.getElementById('RizzmaxButton').innerHTML = "Rizzmax: <b>+"+abbrev(RizzPointgain()+1)+" Points</b>";
-        } else if (inLooksmaxxingChallenge == 5) {
-            document.getElementById('RizzmaxButton').innerHTML = "Rizzmax: <b>+??? Points</b>";    
         } else {
-            document.getElementById('RizzmaxButton').innerHTML = "Rizzmax: <b>+0 Points</b>";
+            document.getElementById('RizzmaxButton').innerHTML = "Rizzmax: <b>+??? Points</b>";    
         }
         document.getElementById('OfflineProduction1Button').innerHTML = "Offline Production (+"+abbrev(OfflineProdHrs)+" hr(s)): Cost: <b>"+grabVisualCost('OfflineProdHrs')+"</b> RP";
         document.getElementById('RizzClickWorthButton').innerHTML = "Click Worth (+"+abbrev(RizzmaxClickWorth)+"%): Cost: <b>"+grabVisualCost('RizzmaxClickWorth')+"</b> RP";
@@ -460,8 +469,17 @@ async function loadData(username, password) {
 
             try {
                 value = JSON.parse(value);
-            } catch {
-                console.error(e)
+                        
+                if (key === "LooksmaxxingChallengesCompleted") {
+                    value = padArrayToLength(
+                        value,
+                        LooksmaxxingChallengesCompleted.length,
+                        0
+                    );
+                }
+            
+            } catch (e) {
+                console.error(e);
             }
 
             window[key] = value;
@@ -485,6 +503,19 @@ async function loadData(username, password) {
         console.error("Failed to load data:", err);
     }
 }
+
+function padArrayToLength(arr, targetLength, padValue = 0) {
+    if (!Array.isArray(arr)) return arr;
+
+    if (arr.length < targetLength) {
+        return arr.concat(
+            Array(targetLength - arr.length).fill(padValue)
+        );
+    }
+
+    return arr;
+}
+
 
 
 
