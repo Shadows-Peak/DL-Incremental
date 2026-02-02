@@ -345,8 +345,6 @@ function updateVisuals() {
         document.getElementById('NewFormatToggleButton').innerHTML = "Toggle Better Format: "+["Off","On"][newFormatToggle];
         if (clicks >= 25000) {
             document.getElementById('RizzmaxButton').innerHTML = "Rizzmax: <b>+"+abbrev(RizzPointgain()+1)+" Points</b>";
-        } else if (inLooksmaxxingChallenge == 5) {
-            document.getElementById('RizzmaxButton').innerHTML = "Rizzmax: <b>+??? Points</b>";    
         } else {
             document.getElementById('RizzmaxButton').innerHTML = "Rizzmax: <b>+0 Points</b>";    
         }
