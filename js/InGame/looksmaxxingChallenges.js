@@ -60,6 +60,6 @@ function setClickProcesses3() {
         ChallengeStart(4,"You have begun the 'Rags to Riches' Looksmaxxing Challenge. You are unable to do anything other than click to gain Dilyan Points."); 
     }
     document.getElementById('LMC5Button').onclick = function() {
-        ChallengeStart(5,"You have begun the 'Ad Hominem' Looksmaxxing Challenge. You are unable to see any points, upgrades, or multipliers. You must rizzmax for at least 30 points to complete this challenge."); 
+        ChallengeStart(5,"You have begun the 'Ad Hominem' Looksmaxxing Challenge. YIn this challenge, you are unable to see how many points, upgrades, prices, or multipliers you have."); 
     }
 }

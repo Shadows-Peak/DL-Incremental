@@ -59,15 +59,15 @@ function grabCost(Item) {
 
 function LooksmaxCosts(Looksmax) {
     if (Looksmax == 1) {
-        return(10 + 5*LooksmaxxingChallengesCompleted[0]*Math.floor(1.25**LooksmaxxingChallengesCompleted[0]));
+        return(Math.ceil((1-0.03*LooksmaxxingChallengesCompleted[4]) * (10 + 5*LooksmaxxingChallengesCompleted[0]*Math.floor(1.25**LooksmaxxingChallengesCompleted[0]))));
     } else if (Looksmax == 2) {
-        return(1 + 2*LooksmaxxingChallengesCompleted[1]*Math.floor(1.01**LooksmaxxingChallengesCompleted[1]));
+        return(Math.ceil((1-0.03*LooksmaxxingChallengesCompleted[4]) * (1 + 2*LooksmaxxingChallengesCompleted[1]*Math.floor(1.01**LooksmaxxingChallengesCompleted[1]))));
     } else if (Looksmax == 3) {
-        return(50 + 50*LooksmaxxingChallengesCompleted[2]*Math.floor(1.25**LooksmaxxingChallengesCompleted[2]));
+        return(Math.ceil((1-0.03*LooksmaxxingChallengesCompleted[4]) * (50 + 50*LooksmaxxingChallengesCompleted[2]*Math.floor(1.25**LooksmaxxingChallengesCompleted[2]))));
     } else if (Looksmax == 4) {
-        return(10 + 20*LooksmaxxingChallengesCompleted[3]*Math.floor(1.5**LooksmaxxingChallengesCompleted[3]));
+        return(Math.ceil((1-0.03*LooksmaxxingChallengesCompleted[4]) * (10 + 20*LooksmaxxingChallengesCompleted[3]*Math.floor(1.5**LooksmaxxingChallengesCompleted[3]))));
     } else if (Looksmax == 5) {
-        return(30 + 10*LooksmaxxingChallengesCompleted[4]*Math.floor(1.25**LooksmaxxingChallengesCompleted[4]));
+        return(Math.ceil((1-0.03*LooksmaxxingChallengesCompleted[4]) * (30 + 10*LooksmaxxingChallengesCompleted[4]*Math.floor(1.25**LooksmaxxingChallengesCompleted[4]))));
     }
 }
 
@@ -383,7 +383,7 @@ function updateVisuals() {
         document.getElementById('LMC4B').innerHTML = "Current Bonus: +"+abbrev(LooksmaxxingChallengesCompleted[3])+" Dilyan Point Worth Per Country Club";
         document.getElementById('LMC4C').innerHTML = "Completions: "+abbrev(LooksmaxxingChallengesCompleted[3])+"/9";
         document.getElementById('LMC5D').innerHTML = "Rizzmax for at least "+abbrev(LooksmaxCosts(5))+" points while being unable to see any points, upgrades, or multipliers.";
-        document.getElementById('LMC5B').innerHTML = "Current Bonus: +"+abbrev(10*LooksmaxxingChallengesCompleted[4])+"% Dilyan Point Multiplier";
+        document.getElementById('LMC5B').innerHTML = "Current Bonus: -"+abbrev(3*LooksmaxxingChallengesCompleted[4])+"% Rizz Point Requirement for Looksmaxxing Challenge Completion";
         document.getElementById('LMC5C').innerHTML = "Completions: "+abbrev(LooksmaxxingChallengesCompleted[4])+"/10";
 
         if (inLooksmaxxingChallenge == 0) {
