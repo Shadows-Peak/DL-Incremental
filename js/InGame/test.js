@@ -41,7 +41,7 @@ function setClickProcesses1() {
           RandomValue5xUpgrades = 0;
           RandomAuto2xUpgrades = 0;
           AutomaticRizzers = 0;
-          alert("You have completed the '"+['Bye Bye!','Edging Maestro','Stone-Faced Mogging','Rags to Riches'][inLooksmaxxingChallenge-1]+"' Looksmaxxing Challenge. Aside from the benefits of completion, you have also recieved the Rizz Points from your Rizzmax.")
+          alert("You have completed the '"+['Bye Bye!','Edging Maestro','Stone-Faced Mogging','Rags to Riches','Ad Hominem'][inLooksmaxxingChallenge-1]+"' Looksmaxxing Challenge. Aside from the benefits of completion, you have also recieved the Rizz Points from your Rizzmax.")
           inLooksmaxxingChallenge = 0;
           setRoom(1);
           updateBackgrounds();
