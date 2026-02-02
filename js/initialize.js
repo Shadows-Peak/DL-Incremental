@@ -431,7 +431,7 @@ function offlineProgress() {
 
         alert("You gained "+Math.floor(((10+Number(LooksmaxxingChallengesCompleted[1]))/100)*(Math.floor(timeDifferenceSeconds) * (gameTick) * (AutomaticRizzers) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) * (1+(Number(LooksmaxxingChallengesCompleted[0])/10)) ))+" clicks while you were gone! "+timeDifferenceSeconds);
         updateVisuals();
-    } else if (inLooksmaxxingChallenge == 2) {
+    } else if (inLooksmaxxingChallenge == 2 && OfflineProdHrs > 0) {
         var currentTime = Date.now();
         var timeDifference = currentTime - lastOfflineTime;
         if (timeDifference < 1000*10) {return;}
@@ -440,10 +440,10 @@ function offlineProgress() {
         } else {
             var timeDifferenceSeconds = OfflineProdHrs*360;
         }
-        clicks += Math.floor((0.5)*(Math.floor(timeDifferenceSeconds) * (gameTick) * (AutomaticRizzers) * (1 + CountryClubs)**Cars * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) ));
+        clicks += Math.floor(0.5*Math.floor(timeDifferenceSeconds)*Math.floor((multiplier) * (multiplier2) * (AutomaticRizzers) * (1+Math.ceil((CountryClubs)**(1+Cars/10))) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100)));
         lastOfflineTime = 0;
 
-        alert("You gained "+Math.floor((0.5)*(Math.floor(timeDifferenceSeconds) * (gameTick) * (AutomaticRizzers) * (1 + CountryClubs)**Cars * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) ))+" clicks while you were gone! "+timeDifferenceSeconds);
+        alert("You gained "+Math.floor(0.5*Math.floor(timeDifferenceSeconds)*Math.floor((multiplier) * (multiplier2) * (AutomaticRizzers) * (1+Math.ceil((CountryClubs)**(1+Cars/10))) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100)))+" clicks while you were gone! "+timeDifferenceSeconds);
         updateVisuals(); 
     }
 }
