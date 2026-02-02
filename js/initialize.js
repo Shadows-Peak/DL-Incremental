@@ -345,8 +345,10 @@ function updateVisuals() {
         document.getElementById('NewFormatToggleButton').innerHTML = "Toggle Better Format: "+["Off","On"][newFormatToggle];
         if (clicks >= 25000) {
             document.getElementById('RizzmaxButton').innerHTML = "Rizzmax: <b>+"+abbrev(RizzPointgain()+1)+" Points</b>";
-        } else {
+        } else if (inLooksmaxxingChallenge == 5) {
             document.getElementById('RizzmaxButton').innerHTML = "Rizzmax: <b>+??? Points</b>";    
+        } else {
+            document.getElementById('RizzmaxButton').innerHTML = "Rizzmax: <b>+0 Points</b>";    
         }
         document.getElementById('OfflineProduction1Button').innerHTML = "Offline Production (+"+abbrev(OfflineProdHrs)+" hr(s)): Cost: <b>"+grabVisualCost('OfflineProdHrs')+"</b> RP";
         document.getElementById('RizzClickWorthButton').innerHTML = "Click Worth (+"+abbrev(RizzmaxClickWorth)+"%): Cost: <b>"+grabVisualCost('RizzmaxClickWorth')+"</b> RP";
