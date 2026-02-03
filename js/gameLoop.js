@@ -23,7 +23,7 @@ function gameLoop() {
   }
 
   // Automatic Rizzer  
-  if (inLooksmaxxingChallenge != 2) {
+  if (inLooksmaxxingChallenge != 2 && inLooksmaxxingChallenge != 6) {
     var multiplier = 1;
     var RandomNumber = Math.floor(Math.random() * 100);
     if (RandomNumber >= 100 - 10*RandomAuto2xUpgrades) {
@@ -57,4 +57,5 @@ function gameLoop() {
 
   // Increment time played
   timePlayed += 1 / gameTick;
+  sessionTime += 1 / gameTick;
 }
