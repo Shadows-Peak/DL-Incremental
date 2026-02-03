@@ -62,4 +62,7 @@ function setClickProcesses3() {
     document.getElementById('LMC5Button').onclick = function() {
         ChallengeStart(5,"You have begun the 'Ad Hominem' Looksmaxxing Challenge. In this challenge, you are unable to see how many points, upgrades, prices, or multipliers you have."); 
     }
+    document.getElementById('LMC6Button').onclick = function() {
+        ChallengeStart(6,"You have begun the 'Gods Plan' Looksmaxxing Challenge. In this challenge, you have a depreciating click value and must repurchase upgrades/Automatic Rizzers to have them reset/continue producing."); 
+    }
 }
