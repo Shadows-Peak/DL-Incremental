@@ -18,7 +18,41 @@ window.addEventListener('keyup', e=>{
     simulateClick();
   }
 });
-
+window.addEventListener('keyup', e=>{
+  if ((e.key == "1") && (currentRoom == 2)) {
+    document.getElementById('CountryClubButton').click();
+  }
+});
+window.addEventListener('keyup', e=>{
+  if ((e.key == "2") && (currentRoom == 2)) {
+    document.getElementById('RiceWasherButton').click();
+  }
+});
+window.addEventListener('keyup', e=>{
+  if ((e.key == "3") && (currentRoom == 2)) {
+    document.getElementById('CarsButton').click();
+  }
+});
+window.addEventListener('keyup', e=>{
+  if ((e.key == "1") && (currentRoom == 1)) {
+    document.getElementById('5xRandomValueUpgradeButton').click();
+  }
+});
+window.addEventListener('keyup', e=>{
+  if ((e.key == "2") && (currentRoom == 1)) {
+    document.getElementById('2xRandomAutoUpgradeButton').click();
+  }
+});
+window.addEventListener('keyup', e=>{
+  if ((e.key == "3") && (currentRoom == 1)) {
+    document.getElementById('AutomaticRizzerButton').click();
+  }
+});
+window.addEventListener('keyup', e=>{
+  if ((e.key == " ") && (currentRoom == 3)) {
+    document.getElementById('RizzmaxButton').click();
+  }
+}); 
 function setClickProcesses1() {
   document.getElementById('button1').onclick = function() {
       simulateClick();
@@ -41,7 +75,7 @@ function setClickProcesses1() {
           RandomValue5xUpgrades = 0;
           RandomAuto2xUpgrades = 0;
           AutomaticRizzers = 0;
-          alert("You have completed the '"+['Bye Bye!','Edging Maestro','Stone-Faced Mogging','Rags to Riches','Ad Hominem'][inLooksmaxxingChallenge-1]+"' Looksmaxxing Challenge. Aside from the benefits of completion, you have also recieved the Rizz Points from your Rizzmax.")
+          alert("You have completed the '"+['Bye Bye!','Edging Maestro','Stone-Faced Mogging','Rags to Riches','Ad Hominem','Tiktok Attention Span'][inLooksmaxxingChallenge-1]+"' Looksmaxxing Challenge. Aside from the benefits of completion, you have also recieved the Rizz Points from your Rizzmax.")
           inLooksmaxxingChallenge = 0;
           setRoom(1);
           updateBackgrounds();
@@ -66,7 +100,7 @@ function setClickProcesses1() {
 function simulateClick() {
   if (inLooksmaxxingChallenge != 2) {
     var mult3 = (Boolean(inLooksmaxxingChallenge) ? 0 : 1);
-
+    var mult4 = (inLooksmaxxingChallenge == 6 && sessionTime > 30) ? 0 : 1;
     var multiplier = 1;
     var RandomNumber = Math.floor(Math.random() * 100);
     if (RandomNumber >= 100 - 10*RandomValue5xUpgrades-mult3*5*RizzmaxExtraChance) {
@@ -80,7 +114,7 @@ function simulateClick() {
     } else {
       mult2 = (Boolean(inLooksmaxxingChallenge) ? 0 : 1);
     }
-    clicks += Math.floor((multiplier)*(1 + Math.ceil(((1+mult3*Number(LooksmaxxingChallengesCompleted[3]))*CountryClubs)**(1+Cars/10))*(1 + RiceWashers)*(1+(mult2*RizzmaxClickWorth)/100)*(1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100)*(1+mult3*(Number(LooksmaxxingChallengesCompleted[0])/10))));
+    clicks += Math.floor((multiplier)*(1 + Math.ceil(((1+mult3*Number(LooksmaxxingChallengesCompleted[3]))*CountryClubs)**(1+Cars/10))*(1 + RiceWashers)*(1+(mult2*RizzmaxClickWorth)/100)*(1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100)*(1+mult3*(Number(LooksmaxxingChallengesCompleted[0])/10))) * mult4);
     document.getElementById('counter').innerHTML = "You have: <b>"+abbrev(clicks)+"</b> Dilyan Points";
     updateVisuals();
   }
@@ -111,6 +145,9 @@ window.addEventListener("pagehide", () => {
 
 // Not sure about this one.
 window.addEventListener("load", () => {
+    if (gameActive) {
+        sessionTime = 0;
+    }
     if (lastOfflineTime != 0 && gameActive) {
         offlineProgress();
         lastOfflineTime = 0;

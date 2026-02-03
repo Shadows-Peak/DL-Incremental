@@ -1,5 +1,5 @@
 function ChallengeStart(num, alertMsg) {
-    if (LooksmaxxingChallengesCompleted[num-1] < [10,90,5,9,10][num-1]) {
+    if (LooksmaxxingChallengesCompleted[num-1] < [10,90,5,9,10,10][num-1]) {
         if (inLooksmaxxingChallenge == 0) {
             inLooksmaxxingChallenge = num;
             // Rizzmax reset
@@ -61,5 +61,8 @@ function setClickProcesses3() {
     }
     document.getElementById('LMC5Button').onclick = function() {
         ChallengeStart(5,"You have begun the 'Ad Hominem' Looksmaxxing Challenge. In this challenge, you are unable to see how many points, upgrades, prices, or multipliers you have."); 
+    }
+    document.getElementById('LMC6Button').onclick = function() {
+        ChallengeStart(6,"You have begun the 'Tiktok Attention Span' Looksmaxxing Challenge. In this challenge, clicks and automatic rizzers fail to produce after 30 seconds.");
     }
 }

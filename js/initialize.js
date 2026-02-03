@@ -1,5 +1,7 @@
 var lastOfflineTime = 0;
 
+var sessionTime = 0;
+
 var timePlayed = 0;
 
 var Cheater = false;
@@ -28,7 +30,7 @@ var RizzmaxClickWorth = 0;
 var LooksmaxxingChallengesUpgradeUnlocked = 0;
 
 var inLooksmaxxingChallenge = 0;
-var LooksmaxxingChallengesCompleted = [0,0,0,0,0]; // Bye Bye!, Edging Maestro, Stone-Faced Mogging, Rags to Riches, Ad Hominem
+var LooksmaxxingChallengesCompleted = [0,0,0,0,0,0]; // Bye Bye!, Edging Maestro, Stone-Faced Mogging, Rags to Riches, Ad Hominem
 
 var MineOfRizzUnlocked = 0;
 var RizzalurgyUnlocked = 0;
@@ -273,7 +275,7 @@ function updateVisuals() {
     if (gameActive == false) {return;}
     try {
         if (Rizzmaxxes > 0) {
-            var LooksmaxChallengeText = [""," <b><em>Bye Bye!</em></b>"," <b><em>Edging Maestro</em></b>"," <b><em>Stone-Faced Mogging</em></b>"," <b><em>Rags to Riches</em></b>"," <b><em>Ad Hominem</em></b>"][inLooksmaxxingChallenge];
+            var LooksmaxChallengeText = [""," <b><em>Bye Bye!</em></b>"," <b><em>Edging Maestro</em></b>"," <b><em>Stone-Faced Mogging</em></b>"," <b><em>Rags to Riches</em></b>"," <b><em>Ad Hominem</em></b>", " <b><em> TikTok Attention Span</em></b>"][inLooksmaxxingChallenge];
             if (inLooksmaxxingChallenge == 5) {
                 document.getElementById('currencyCounter').innerHTML = "<b>???</b> Dilyan Points <b>"+abbrev(RizzPoints)+"</b> Rizz Points"+LooksmaxChallengeText;
             } else {
@@ -363,12 +365,14 @@ function updateVisuals() {
             document.getElementById('LMC3Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[2],5) ? (isEqual(inLooksmaxxingChallenge,3) ? "End Challenge" : "Cannot Start") : "<b>MAXED</b>");;
             document.getElementById('LMC4Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[3],9) ? (isEqual(inLooksmaxxingChallenge,4) ? "End Challenge" : "Cannot Start") : "<b>MAXED</b>");;
             document.getElementById('LMC5Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[4],10) ? (isEqual(inLooksmaxxingChallenge,5) ? "End Challenge" : "Cannot Start") : "<b>MAXED</b>");;
+            document.getElementById('LMC6Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[5],10) ? (isEqual(inLooksmaxxingChallenge,6) ? "End Challenge" : "Cannot Start") : "<b>MAXED</b>");
         } else {
             document.getElementById('LMC1Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[0],10) ? "Begin" : "<b>MAXED</b>");
             document.getElementById('LMC2Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[1],90) ? "Begin" : "<b>MAXED</b>");
             document.getElementById('LMC3Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[2],5) ? "Begin" : "<b>MAXED</b>");
             document.getElementById('LMC4Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[3],9) ? "Begin" : "<b>MAXED</b>");
             document.getElementById('LMC5Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[4],10) ? "Begin" : "<b>MAXED</b>");
+            document.getElementById('LMC6Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[5],10) ? "Begin" : "<b>MAXED</b>");
         }
         document.getElementById('LMC1D').innerHTML = "Rizzmax for at least "+abbrev(LooksmaxCosts(1))+" points without using any Rice Washers.";
         document.getElementById('LMC1B').innerHTML = "Current Bonus: +"+abbrev(10*LooksmaxxingChallengesCompleted[0])+"% Dilyan Point Multiplier";
@@ -385,7 +389,9 @@ function updateVisuals() {
         document.getElementById('LMC5D').innerHTML = "Rizzmax for at least "+abbrev(LooksmaxCosts(5))+" points while being unable to see any points, upgrades, prices, or multipliers.";
         document.getElementById('LMC5B').innerHTML = "Current Bonus: -"+abbrev(3*LooksmaxxingChallengesCompleted[4])+"% Rizz Point Requirement for Looksmaxxing Challenge Completion";
         document.getElementById('LMC5C').innerHTML = "Completions: "+abbrev(LooksmaxxingChallengesCompleted[4])+"/10";
-
+        document.getElementById('LMC6D').innerHTML = "Rizzmax for at least " +abbrev(LooksmaxCosts(6))+" points with progress disabled after 30 seconds.";
+        document.getElementById('LMC6B').innerHTML = "Current Bonus: <b>UNIMPLEMENTED</b>";
+        document.getElementById('LMC6C').innerHTML = "Completions: "+abbrev(LooksmaxxingChallengesCompleted[5])+"/10";
         if (inLooksmaxxingChallenge == 0) {
             document.getElementById('RandomValueExplanatory').innerHTML = "The earlier upgrades labeled as 'Random Value Upgrade/Auto Value' function as follows: Each time you upgrade them, you gain an additional 10% chance to either receive "+abbrev(5+LooksmaxxingChallengesCompleted[2])+" times the usual value upon manual click or "+abbrev(2+LooksmaxxingChallengesCompleted[2])+" times the usual value upon automatic generation by a rizzer, depending on the specific upgrade purchased.";
         } else {
