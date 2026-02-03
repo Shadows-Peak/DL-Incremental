@@ -40,7 +40,7 @@ window.addEventListener('keyup', e=>{
 });
 window.addEventListener('keyup', e=>{
   if ((e.key == "2") && (currentRoom == 1)) {
-    document.getElementById('2xRandomValueUpgradeButton').click();
+    document.getElementById('2xRandomAutoUpgradeButton').click();
   }
 });
 window.addEventListener('keyup', e=>{
