@@ -18,7 +18,41 @@ window.addEventListener('keyup', e=>{
     simulateClick();
   }
 });
-
+window.addEventListener('keyup', e=>{
+  if ((e.key == "1") && (currentRoom == 2)) {
+    document.getElementById('CountryClubButton').click();
+  }
+});
+window.addEventListener('keyup', e=>{
+  if ((e.key == "2") && (currentRoom == 2)) {
+    document.getElementById('RiceWasherButton').click();
+  }
+});
+window.addEventListener('keyup', e=>{
+  if ((e.key == "3") && (currentRoom == 2)) {
+    document.getElementById('CarsButton').click();
+  }
+});
+window.addEventListener('keyup', e=>{
+  if ((e.key == "1") && (currentRoom == 1)) {
+    document.getElementById('5xRandomValueUpgradeButton').click();
+  }
+});
+window.addEventListener('keyup', e=>{
+  if ((e.key == "2") && (currentRoom == 1)) {
+    document.getElementById('2xRandomValueUpgradeButton').click();
+  }
+});
+window.addEventListener('keyup', e=>{
+  if ((e.key == "3") && (currentRoom == 1)) {
+    document.getElementById('AutomaticRizzerButton').click();
+  }
+});
+window.addEventListener('keyup', e=>{
+  if ((e.key == " ") && (currentRoom == 3)) {
+    document.getElementById('RizzmaxButton').click();
+  }
+}); 
 function setClickProcesses1() {
   document.getElementById('button1').onclick = function() {
       simulateClick();
