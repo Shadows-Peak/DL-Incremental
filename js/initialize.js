@@ -349,7 +349,7 @@ function updateVisuals() {
             document.getElementById('RizzmaxButton').innerHTML = "Rizzmax: <b>+0 Points</b>";    
         }
         document.getElementById('OfflineProduction1Button').innerHTML = "Offline Production (+"+abbrev(OfflineProdHrs)+" hr(s)): Cost: <b>"+grabVisualCost('OfflineProdHrs')+"</b> RP";
-        document.getElementById('RizzClickWorthButton').innerHTML = "Click Worth (+"+abbrev(RizzmaxClickWorth)+"%): Cost: <b>"+grabVisualCost('RizzmaxClickWorth')+"</b> RP";
+        document.getElementById('RizzClickWorthButton').innerHTML = "Click Worth (+"+abbrev(RizzmaxClickWorth*5)+"%): Cost: <b>"+grabVisualCost('RizzmaxClickWorth')+"</b> RP";
         if (grabCost('LooksmaxxingChallengesUpgradeUnlocked') == -1) {
             document.getElementById('UnlockLooksmaxxingButton').innerHTML = "Looksmaxxing Challenges: <b>Unlocked</b>";
         } else {
