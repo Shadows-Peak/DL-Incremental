@@ -370,7 +370,7 @@ function updateVisuals() {
             document.getElementById('LMC4Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[3],9) ? "Begin" : "<b>MAXED</b>");
             document.getElementById('LMC5Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[4],10) ? "Begin" : "<b>MAXED</b>");
         }
-        document.getElementById('LMC1D').innerHTML = "Rizzmax for at least "+abbrev(LooksmaxCosts(1))+" points without using any Rice Washers.";
+        document.getElementById('LMC1D').innerHTML = "Rizzmax for at least "+abbrev(LooksmaxCosts(1))+" points without using any Rice Washers or Cars.";
         document.getElementById('LMC1B').innerHTML = "Current Bonus: +"+abbrev(10*LooksmaxxingChallengesCompleted[0])+"% Dilyan Point Multiplier";
         document.getElementById('LMC1C').innerHTML = "Completions: "+abbrev(LooksmaxxingChallengesCompleted[0])+"/10";
         document.getElementById('LMC2D').innerHTML = "Rizzmax for at least "+abbrev(LooksmaxCosts(2))+" point without clicking the main button and starting with 1 Automatic Rizzer.  Offline Progress is enabled at 50% efficiency. Automatic Rizzers use the formula of clicking in this challenge, and are affected by both random chance upgrades.";
