@@ -426,10 +426,13 @@ function offlineProgress() {
         } else {
             var timeDifferenceSeconds = OfflineProdHrs*360;
         }
-        clicks += Math.floor(((10+Number(LooksmaxxingChallengesCompleted[1]))/100)*(Math.floor(timeDifferenceSeconds) * (gameTick) * (AutomaticRizzers) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) * (1+(Number(LooksmaxxingChallengesCompleted[0])/10)) ));
+        
+        var multiplier = (0.1*RandomValue5xUpgrades+0.05*RizzmaxExtraChance)*(0.1*RandomAuto2xUpgrades+0.05*RizzmaxExtraChance)*10+(0.1*RandomAuto2xUpgrades+0.05*RizzmaxExtraChance)*(1-0.1*RandomValue5xUpgrades-0.05*RizzmaxExtraChance)*2+(0.1*RandomValue5xUpgrades+0.05*RizzmaxExtraChance)*(1-0.1*RandomAuto2xUpgrades-0.05*RizzmaxExtraChance)*5+(1-0.1*RandomAuto2xUpgrades-0.05*RizzmaxExtraChance)*(1-0.1*RandomValue5xUpgrades-0.05*RizzmaxExtraChance);
+        
+        clicks += Math.floor(((10+Number(LooksmaxxingChallengesCompleted[1]))/100)*(Math.floor(timeDifferenceSeconds) * (gameTick) * (multiplier) * (AutomaticRizzers) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) * (1+(Number(LooksmaxxingChallengesCompleted[0])/10)) ));
         lastOfflineTime = 0;
 
-        alert("You gained "+Math.floor(((10+Number(LooksmaxxingChallengesCompleted[1]))/100)*(Math.floor(timeDifferenceSeconds) * (gameTick) * (AutomaticRizzers) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) * (1+(Number(LooksmaxxingChallengesCompleted[0])/10)) ))+" clicks while you were gone! "+timeDifferenceSeconds);
+        alert("You gained "+Math.floor(((10+Number(LooksmaxxingChallengesCompleted[1]))/100)*(Math.floor(timeDifferenceSeconds) * (gameTick) * (multiplier) * (AutomaticRizzers) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) * (1+(Number(LooksmaxxingChallengesCompleted[0])/10)) ))+" clicks while you were gone! "+timeDifferenceSeconds);
         updateVisuals();
     } else if (inLooksmaxxingChallenge == 2 && OfflineProdHrs > 0) {
         var currentTime = Date.now();
@@ -440,10 +443,13 @@ function offlineProgress() {
         } else {
             var timeDifferenceSeconds = OfflineProdHrs*360;
         }
-        clicks += Math.floor(0.5*Math.floor(timeDifferenceSeconds)*Math.floor((multiplier) * (multiplier2) * (AutomaticRizzers) * (1+Math.ceil((CountryClubs)**(1+Cars/10))) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100)));
+
+        var multiplier = 0.01*RandomValue5xUpgrades*RandomAuto2xUpgrades*10+(0.1*RandomAuto2xUpgrades-0.01*RandomAuto2xUpgrades*RandomValue5xUpgrades)*2+(0.1*RandomValue5xUpgrades-0.01*RandomAuto2xUpgrades*RandomValue5xUpgrades)*5+(1-0.1*RandomValue5xUpgrades-0.1*RandomAuto2xUpgrades+0.01*RandomValue5xUpgrades*RandomAuto2xUpgrades);
+        
+        clicks += Math.floor(0.5*Math.floor(timeDifferenceSeconds)*Math.floor((multiplier) * (AutomaticRizzers) * (1+Math.ceil((CountryClubs)**(1+Cars/10))) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100)));
         lastOfflineTime = 0;
 
-        alert("You gained "+Math.floor(0.5*Math.floor(timeDifferenceSeconds)*Math.floor((multiplier) * (multiplier2) * (AutomaticRizzers) * (1+Math.ceil((CountryClubs)**(1+Cars/10))) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100)))+" clicks while you were gone! "+timeDifferenceSeconds);
+        alert("You gained "+Math.floor(0.5*Math.floor(timeDifferenceSeconds)*Math.floor((multiplier) * (AutomaticRizzers) * (1+Math.ceil((CountryClubs)**(1+Cars/10))) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100)))+" clicks while you were gone! "+timeDifferenceSeconds);
         updateVisuals(); 
     }
 }
