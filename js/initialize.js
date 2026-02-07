@@ -52,7 +52,7 @@ function grabCost(Item) {
         "LooksmaxxingChallengesUpgradeUnlocked": (Boolean(LooksmaxxingChallengesUpgradeUnlocked) ? -1 : 100),
         "RizzmaxExtraChance": (4*Math.floor(2.3**RizzmaxExtraChance)+(2**RizzmaxExtraChance)),
         "MineOfRizzUnlocked": (Boolean(MineOfRizzUnlocked) ? -1 : 250),
-        "RizzalurgyUnlocked": (Boolean(RizzalurgyUnlocked) ? -1 : 5)
+        "RizzalurgyUnlocked": (Boolean(RizzalurgyUnlocked) ? -1 : 1)
     }
     return(allCosts[Item]);
 }
@@ -397,7 +397,7 @@ function updateVisuals() {
         } else {
             document.getElementById('RmU2Upg1').innerHTML = "Mine of Rizz: <b>UNLOCKED</b>";
             if (RizzalurgyUnlocked == 0) {
-                document.getElementById('RmU2Upg2').innerHTML = "Unlock the Rizzalurgy: Cost: <b>5</b> Rizzite";
+                document.getElementById('RmU2Upg2').innerHTML = "Unlock the Rizzalurgy: Cost: <b>1</b> Rizzite";
             } else {
                 document.getElementById('RmU2Upg2').innerHTML = "Unlock the Rizzalurgy: <b>UNLOCKED</b>";
             }
