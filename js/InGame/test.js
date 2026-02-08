@@ -41,7 +41,9 @@ function setClickProcesses1() {
           RandomValue5xUpgrades = 0;
           RandomAuto2xUpgrades = 0;
           AutomaticRizzers = 0;
-          alert("You have completed the '"+['Bye Bye!','Edging Maestro','Stone-Faced Mogging','Rags to Riches','Ad Hominem'][inLooksmaxxingChallenge-1]+"' Looksmaxxing Challenge. Aside from the benefits of completion, you have also recieved the Rizz Points from your Rizzmax.")
+          clicksIn6 = 0;
+          runsIn6 = 0;
+          alert("You have completed the '"+['Bye Bye!','Edging Maestro','Stone-Faced Mogging','Rags to Riches','Ad Hominem','Gods Plan'][inLooksmaxxingChallenge-1]+"' Looksmaxxing Challenge. Aside from the benefits of completion, you have also recieved the Rizz Points from your Rizzmax.")
           inLooksmaxxingChallenge = 0;
           setRoom(1);
           updateBackgrounds();
@@ -80,7 +82,15 @@ function simulateClick() {
     } else {
       mult2 = (Boolean(inLooksmaxxingChallenge) ? 0 : 1);
     }
-    clicks += Math.floor((multiplier)*(1+(mult2*RizzmaxClickWorth*5)/100)*(1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100)*(1+mult3*(Number(LooksmaxxingChallengesCompleted[0])/10))*(1 + Math.ceil(((1+mult3*Number(LooksmaxxingChallengesCompleted[3]))*CountryClubs)**(1+Cars/10))*(1 + RiceWashers)));
+
+    if (inLooksmaxxingChallenge != 6) {
+      clicks += Math.floor((multiplier)*(1+(mult2*RizzmaxClickWorth*5)/100)*(1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100)*(1+mult3*(Number(LooksmaxxingChallengesCompleted[0])/10))*(1 + Math.ceil(((1+mult3*Number(LooksmaxxingChallengesCompleted[3]))*CountryClubs)**(1+Cars/10))*(1 + RiceWashers)));
+    } else if (inLooksmaxxingChallenge == 6) {
+      var nerfMult = ( 0.8 + ( Math.log(clicksIn6+2) / ( Math.log(2) * ( 1 + ( clicksIn6 + 2 )**2 ) ) ) ) * ( ( 1.1 ) ** ( -1*clicksIn6 ) )
+      clicks += Math.round(nerfMult*Math.floor((multiplier)*(1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100)*(1 + Math.ceil((CountryClubs)**(1+Cars/10))*(1 + RiceWashers))));
+      clicksIn6++;
+    }
+    
     document.getElementById('counter').innerHTML = "You have: <b>"+abbrev(clicks)+"</b> Dilyan Points";
     updateVisuals();
   }

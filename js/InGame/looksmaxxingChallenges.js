@@ -1,5 +1,5 @@
 function ChallengeStart(num, alertMsg) {
-    if (LooksmaxxingChallengesCompleted[num-1] < [10,90,5,9,10][num-1]) {
+    if (LooksmaxxingChallengesCompleted[num-1] < [10,90,5,9,10,3][num-1]) {
         if (inLooksmaxxingChallenge == 0) {
             inLooksmaxxingChallenge = num;
             // Rizzmax reset
@@ -10,6 +10,8 @@ function ChallengeStart(num, alertMsg) {
             RandomValue5xUpgrades = 0;
             RandomAuto2xUpgrades = 0;
             AutomaticRizzers = 0;
+            clicksIn6 = 0;
+            runsIn6 = 0;
     
             if (num == 2) {
                 AutomaticRizzers = 1;
@@ -33,6 +35,8 @@ function ChallengeStart(num, alertMsg) {
                     RandomValue5xUpgrades = 0;
                     RandomAuto2xUpgrades = 0;
                     AutomaticRizzers = 0;
+                    clicksIn6 = 0;
+                    runsIn6 = 0;
                     
                     setRoom(1);
                     updateBackgrounds();

@@ -6,6 +6,8 @@ data = {
     "Cheater": false,
     "RandomValue5xUpgrades": 0,
     "AutomaticRizzers": 0,
+    "clicksIn6": 0,
+    "runsIn6": 0,
     "RandomAuto2xUpgrades": 0,
     "Rizzmaxxes": 0,
     "RizzPoints": 0,
@@ -13,7 +15,7 @@ data = {
     "RizzmaxClickWorth": 0,
     "LooksmaxxingChallengesUpgradeUnlocked": 0,
     "inLooksmaxxingChallenge": 0,
-    "LooksmaxxingChallengesCompleted": [0,0,0,0,0],
+    "LooksmaxxingChallengesCompleted": [0,0,0,0,0,0],
     "timePlayed": 0,
     "backgroundToggle": 1,
     "chosenBackground": 1,
@@ -49,7 +51,7 @@ async function saveData(silent=false) {
     var megaData = "";
     var basicIter = 0;
     for (const key of Object.keys(data)) {
-        data[key] = [clicks,CountryClubs,RiceWashers,Cars,Cheater,RandomValue5xUpgrades,AutomaticRizzers,RandomAuto2xUpgrades,Rizzmaxxes,RizzPoints,OfflineProdHrs,RizzmaxClickWorth,LooksmaxxingChallengesUpgradeUnlocked,inLooksmaxxingChallenge,LooksmaxxingChallengesCompleted,timePlayed,backgroundToggle,chosenBackground,lastOfflineTime,MineOfRizzUnlocked,RizzmaxExtraChance,MoRCellHighlight,RizziteNRizzium,RizzalurgyUnlocked,newFormatToggle][basicIter];
+        data[key] = [clicks,CountryClubs,RiceWashers,Cars,Cheater,RandomValue5xUpgrades,AutomaticRizzers,clicksIn6,runsIn6,RandomAuto2xUpgrades,Rizzmaxxes,RizzPoints,OfflineProdHrs,RizzmaxClickWorth,LooksmaxxingChallengesUpgradeUnlocked,inLooksmaxxingChallenge,LooksmaxxingChallengesCompleted,timePlayed,backgroundToggle,chosenBackground,lastOfflineTime,MineOfRizzUnlocked,RizzmaxExtraChance,MoRCellHighlight,RizziteNRizzium,RizzalurgyUnlocked,newFormatToggle][basicIter];
         megaData += key + ":" + JSON.stringify(data[key]) + "|";
         basicIter++;
     }
@@ -85,6 +87,8 @@ function resetData() {
         "Cheater": false,
         "RandomValue5xUpgrades": 0,
         "AutomaticRizzers": 0,
+        "clicksIn6": 0,
+        "runsIn6": 0,
         "RandomAuto2xUpgrades": 0,
         "Rizzmaxxes": 0,
         "RizzPoints": 0,
@@ -92,7 +96,7 @@ function resetData() {
         "RizzmaxClickWorth": 0,
         "LooksmaxxingChallengesUpgradeUnlocked": 0,
         "inLooksmaxxingChallenge": 0,
-        "LooksmaxxingChallengesCompleted": [0,0,0,0,0],
+        "LooksmaxxingChallengesCompleted": [0,0,0,0,0,0],
         "timePlayed": 0,
         "backgroundToggle": 1,
         "chosenBackground": 1,

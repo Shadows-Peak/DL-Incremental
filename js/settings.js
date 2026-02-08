@@ -26,6 +26,8 @@ function setClickProcesses0() {
             "Cheater": false,
             "RandomValue5xUpgrades": 0,
             "AutomaticRizzers": 0,
+            "clicksIn6": 0,
+            "runsIn6": 0,
             "RandomAuto2xUpgrades": 0,
             "Rizzmaxxes": 0,
             "RizzPoints": 0,
@@ -33,7 +35,7 @@ function setClickProcesses0() {
             "RizzmaxClickWorth": 0,
             "LooksmaxxingChallengesUpgradeUnlocked": 0,
             "inLooksmaxxingChallenge": 0,
-            "LooksmaxxingChallengesCompleted": [0,0,0,0,0],
+            "LooksmaxxingChallengesCompleted": [0,0,0,0,0,0],
             "timePlayed": 0,
             "backgroundToggle": 1,
             "chosenBackground": 1,
@@ -49,7 +51,7 @@ function setClickProcesses0() {
             if (key == "LooksmaxxingChallengesCompleted" || key == "MoRCellHighlight" || key == "RizziteNRizzium") {
                 if (localStorage.getItem(key) == null || localStorage.getItem(key) == 0) {window[key] = value;}
                 if (window[key] == null || window[key] == 0) {window[key] = value;}
-                if (key == "LooksmaxxingChallengesCompleted" && window[key].length < 4) {window[key].push(0);}
+                if (key == "LooksmaxxingChallengesCompleted" && window[key].length < 6) {window[key].push(0);}
                 if (key == "MoRCellHighlight" && window[key].length < 2) {window[key].push(1);}
                 if (key == "RizziteNRizzium" && window[key].length < 3) {window[key].push(0);}
             } else {

@@ -19,6 +19,7 @@ function setClickProcesses2() {
         if (clicks >= grabCost('CountryClubs') && inLooksmaxxingChallenge != 4) {
             clicks -= grabCost('CountryClubs');
             CountryClubs++;
+            if (inLooksmaxxingChallenge == 6) {clicksIn6 = 0;}
             updateVisuals();
         }
     };
@@ -27,6 +28,7 @@ function setClickProcesses2() {
         if (clicks >= grabCost('RiceWashers') && inLooksmaxxingChallenge != 1 && inLooksmaxxingChallenge != 4) {
             clicks -= grabCost('RiceWashers');
             RiceWashers++;
+            if (inLooksmaxxingChallenge == 6) {clicksIn6 = 0;}
             updateVisuals();
         }
     }
@@ -35,6 +37,7 @@ function setClickProcesses2() {
         if (clicks >= grabCost('Cars') && inLooksmaxxingChallenge != 1 && inLooksmaxxingChallenge != 4) {
             clicks -= grabCost('Cars');
             Cars++
+            if (inLooksmaxxingChallenge == 6) {clicksIn6 = 0;}
             updateVisuals();
         }
     }
@@ -44,6 +47,7 @@ function setClickProcesses2() {
             if (clicks >= grabCost('RandomValue5xUpgrades')) {
                 clicks -= grabCost('RandomValue5xUpgrades');
                 RandomValue5xUpgrades++;
+                if (inLooksmaxxingChallenge == 6) {clicksIn6 = 0;}
                 updateVisuals();
             }
         }
@@ -53,6 +57,7 @@ function setClickProcesses2() {
         if (clicks >= grabCost('AutomaticRizzers') && inLooksmaxxingChallenge != 3 && inLooksmaxxingChallenge != 4) {
             clicks -= grabCost('AutomaticRizzers');
             AutomaticRizzers++;
+            if (inLooksmaxxingChallenge == 6) {runsIn6 = AutomaticRizzers;}
             updateVisuals();
         }
     }
@@ -62,6 +67,7 @@ function setClickProcesses2() {
             if (clicks >= grabCost('RandomAuto2xUpgrades')) {
                 clicks -= grabCost('RandomAuto2xUpgrades');
                 RandomAuto2xUpgrades++;
+                if (inLooksmaxxingChallenge == 6) {clicksIn6 = 0;}
                 updateVisuals();
             }
         }

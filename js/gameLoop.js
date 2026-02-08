@@ -23,7 +23,7 @@ function gameLoop() {
   }
 
   // Automatic Rizzer  
-  if (inLooksmaxxingChallenge != 2) {
+  if (inLooksmaxxingChallenge != 2 && inLooksmaxxingChallenge != 6) {
     var multiplier = 1;
     var RandomNumber = Math.floor(Math.random() * 100);
     if (RandomNumber >= 100 - 10*RandomAuto2xUpgrades) {
@@ -34,11 +34,11 @@ function gameLoop() {
     
     clicks += Math.floor((multiplier) * (AutomaticRizzers) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100) );
     updateVisuals();
-  } else if (inLooksmaxxingChallenge == 2) {
+  } else if (inLooksmaxxingChallenge == 2 && inLooksmaxxingChallenge != 6) {
     var multiplier = 1;
     var RandomNumber = Math.floor(Math.random() * 100);
     if (RandomNumber >= 100 - 10*RandomAuto2xUpgrades) {
-      multiplier = 2+LooksmaxxingChallengesCompleted[2];
+      multiplier = 2;
     } else {
       multiplier = 1;
     }
@@ -46,13 +46,23 @@ function gameLoop() {
     var multiplier2 = 1;
     RandomNumber = Math.floor(Math.random() * 100);
     if (RandomNumber >= 100 - 10*RandomValue5xUpgrades) {
-      multiplier2 = 5+LooksmaxxingChallengesCompleted[2];
+      multiplier2 = 5;
     } else {
       multiplier2 = 1;
     }
 
     clicks += Math.floor((multiplier) * (multiplier2) * (AutomaticRizzers) * (1+Math.ceil((CountryClubs)**(1+Cars/10))) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100) );
     updateVisuals();
+  } else if (inLooksmaxxingChallenge != 2 && inLooksmaxxingChallenge == 6 && runsIn6 > 0) {
+    var multiplier = 1;
+    var RandomNumber = Math.floor(Math.random() * 100);
+    if (RandomNumber >= 100 - 10*RandomAuto2xUpgrades) {
+      multiplier = 2;
+    }
+    
+    clicks += Math.floor((multiplier) * (AutomaticRizzers) * (1+Math.ceil((CountryClubs)**(1+Cars/10))) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100) );
+    updateVisuals();
+    runsIn6--;
   }
 
   // Increment time played
