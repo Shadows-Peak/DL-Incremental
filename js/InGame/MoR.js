@@ -42,4 +42,13 @@ function setClickProcesses4() {
   document.getElementById('MoRCellR5C3').onclick = function(){clickedMoRCell([5,3]);};
   document.getElementById('MoRCellR5C4').onclick = function(){clickedMoRCell([5,4]);};
   document.getElementById('MoRCellR5C5').onclick = function(){clickedMoRCell([5,5]);};
+
+  // Foundry
+  document.getElementById('smeltRizziteButton').onclick = function(){
+    if (RizziteNRizzium[1] > 0 && smeltingTime == 0) {
+      RizziteNRizzium[1] -= 1;
+      smeltingTime = Math.floor(60*(5+15*Math.random()));
+      updateVisuals();
+    }
+  };
 }

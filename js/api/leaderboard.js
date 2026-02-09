@@ -22,18 +22,27 @@ function extractValue(decryptedData, key) {
     
     if (!raw) return 0;
 
-    if (raw.startsWith("[") && raw.endsWith("]")) {
-        try {
-            const arr = JSON.parse(raw);
-            if (Array.isArray(arr)) {
-                return arr.reduce((sum, v) => sum + Number(v || 0), 0);
+    var num;
+
+    if (key == "LooksmaxxingChallengesCompleted") {
+        if (raw.startsWith("[") && raw.endsWith("]")) {
+            try {
+                const arr = JSON.parse(raw);
+                if (Array.isArray(arr)) {
+                    return arr.reduce((sum, v) => sum + Number(v || 0), 0);
+                }
+            } catch (e) {
+                return 0;
             }
-        } catch (e) {
-            return 0;
         }
+        num = Number(raw);
+    } else if (key == "RizziteNRizzium") {
+        const arr = JSON.parse(raw);
+        num = Number(arr[2]);
+    } else {
+        num = Number(raw);
     }
 
-    const num = Number(raw);
     return Number.isNaN(num) ? 0 : num;
 }
 

@@ -41,8 +41,8 @@
         <button data-room-id=0 id="signUp">Sign Up</button>
         <button data-room-id=0 id="login">Login</button>
         <div data-room-id=0 id="value-container">Loading... (or am I?)</div>
-        <h1 id="version">1.0.3</h1>
-        <h2>Challenges: The Gods Plan Challenge has been added (Keep in mind its an incredibly late game challenge!).<br><br>Buffs: Rizzmax Click Worth now gives 5x the value.<br><br>Fixes: Mine of Rizz board works again.<br><br>Visual Changes: Leaderboard now displays the abbreviated values from players.</h2>
+        <h1 id="version">1.0.3.1</h1>
+        <h2>Challenges: The Gods Plan Challenge has been added (Keep in mind its an incredibly late game challenge!).<br><br>Buffs: Rizzmax Click Worth now gives 5x the value.<br><br>Fixes: Mine of Rizz board works again.<br><br>Visual Changes: Leaderboard now displays the abbreviated values from players.<br><br>Next Update Preparation: You can now smelt Rizzite into Rizzium, but there is currently no use or application. It is, however, in the leaderboard.</h2>
     </div>
     <div id="room0Stuff" style="position: absolute; left: 5px; top: 5px;">
         <h1>Settings</h1>
@@ -231,15 +231,15 @@
       <table style="width:90%">
         <tr><th><b>Foundry</b></th></tr>
         <tr style="height:78px"><td>Smelt down Rizzite into liquid Rizzium</td></tr>
-        <tr><td>Each smelting process takes 5-20 minutes.</td></tr>
-        <tr><td>Produce: 15-25 mL of Rizzium for each Rizzite</td></tr>
-        <tr><td>Time Left: 0 min</td></tr>
-        <tr><th><button type="button" class="themed1">Smelt 1 Rizzite</button></th></tr>
+        <tr><td id="foundryTotalTime">Each smelting process takes 5-20 minutes.</td></tr>
+        <tr><td id="foundryTotalProduction">Produce: 15-25 mL of Rizzium for each Rizzite.</td></tr>
+        <tr><td id="foundryTimer">Not Currently Active</td></tr>
+        <tr><th><button type="button" class="themed1" id="smeltRizziteButton">Smelt 1 Rizzite</button></th></tr>
       </table>
-      <p>Convert 10 Rizzite into 1 Rizzalurgy.</p>
+      <p>ignore this</p>
     </div>
     <div id="room6Stuff2" style="position: absolute; right: 10px; top: 5px;">
-      <h2>Rizzifacts</h2>
+      <h2>Rizzifacts (WIP)</h2>
       <div style="height:380px;width:330px;border:10px solid black;overflow:auto;">
         <table style="width:100%">
           <tr><th><b>Rizzactive Rizzeactor</b></th></tr>
@@ -280,6 +280,7 @@
           <button class="lb-tab active themed1" data-type="clicks">Clicks</button>
           <button class="lb-tab themed1" data-type="RizzPoints">Rizz Points</button>
           <button class="lb-tab themed1" data-type="LooksmaxxingChallengesCompleted">Challenges Completed</button>
+          <button class="lb-tab themed1" data-type="RizziteNRizzium">Rizzium</button>
           <button class="lb-tab themed1" data-type="timePlayed">Playtime</button>
       </div>
       <table id="leaderboard-table" class="themed1">

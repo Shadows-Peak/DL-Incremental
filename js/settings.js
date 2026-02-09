@@ -45,6 +45,8 @@ function setClickProcesses0() {
             "MoRCellHighlight": [1,1],
             "RizziteNRizzium": [0,0,0],
             "RizzalurgyUnlocked": 0,
+            "smeltingTime": 0,
+            "hasSmelted": false,
             "newFormatToggle": 0
         };
         for (const [key, value] of Object.entries(FixData)) {
@@ -84,6 +86,10 @@ function setClickProcesses0() {
 
     document.getElementById('logoutButton2').onclick = async function() {
         await saveData();
+        resetData(true);
+        Rizzmaxxes = 0;
+        MineOfRizzUnlocked = 0;
+        hasSmelted = false;
         clearInterval(gameLoop);
         currentRoom = 7;
         gameActive = false;

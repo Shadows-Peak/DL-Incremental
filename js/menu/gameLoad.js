@@ -28,6 +28,7 @@ async function gameLoad() {
         if (logoutButton) {
             logoutButton.addEventListener('click', async function () {
                 await saveData();
+                resetData(true);
                 clearInterval(gameLoop);
                 currentRoom = 7;
                 gameActive = false;

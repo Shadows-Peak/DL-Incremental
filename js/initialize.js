@@ -41,6 +41,8 @@ var RizzmaxExtraChance = 0;
 
 var MoRCellHighlight = [1,1];
 var RizziteNRizzium = [0,0,0]; // Rizzite Progress, Rizzite, Rizzium
+var smeltingTime = 0;
+var hasSmelted = false;
 
 
 
@@ -155,6 +157,22 @@ function abrevTime(seconds) {
     var days = Math.floor(hrs / 24);
     secs = Math.floor(seconds) % 60;
     return((days > 0 ? abbrev(days)+" Days: " : "")+(hrs > 0 ? hrs%24+"h " : "")+((mins > 0 && days < 10) ? mins%60+"m " : "")+(days <= 0 ? secs+"s" : ""));
+}
+
+function abbrevLiquid(ml) {
+    if (ml == 0) {
+        return(ml + "mL");
+    }
+    var suffixes = ["mL","L","kL","ML","GL"];
+    var suffixIndex = Math.floor(Math.log10(ml)/3);
+    if (suffixIndex >= suffixes.length) {
+        suffixIndex = suffixes.length - 1;
+    }
+    if (suffixIndex < suffixes.length - 1) {
+        return(Math.floor((ml/(10**(3*suffixIndex)))*100)/100).toString() + suffixes[suffixIndex];
+    } else {
+        return(abbrev(Math.floor(ml/(10**(3*(suffixes.length-1))))) + suffixes[suffixes.length - 1]);
+    }
 }
 
 function setDisplay(object, value) {
@@ -279,8 +297,19 @@ function listSum(list) {
 function updateVisuals() {
     if (gameActive == false) {return;}
     try {
-        if (Rizzmaxxes > 0) {
+        if (hasSmelted == true) {
             var LooksmaxChallengeText = [""," <b><em>Bye Bye!</em></b>"," <b><em>Edging Maestro</em></b>"," <b><em>Stone-Faced Mogging</em></b>"," <b><em>Rags to Riches</em></b>"," <b><em>Ad Hominem</em></b>", " <b><em>Gods Plan</em></b>"][inLooksmaxxingChallenge];
+            
+            if (inLooksmaxxingChallenge == 5) {
+                document.getElementById('currencyCounter').innerHTML = "<b>???</b> Dilyan Points <b>"+abbrev(RizzPoints)+"</b> Rizz Points <b>"+abbrevLiquid(RizziteNRizzium[2])+"</b> Rizzium"+LooksmaxChallengeText;
+            } else {
+                document.getElementById('currencyCounter').innerHTML = "<b>"+abbrev(clicks)+"</b> Dilyan Points <b>"+abbrev(RizzPoints)+"</b> Rizz Points <b>"+abbrevLiquid(RizziteNRizzium[2])+"</b> Rizzium"+LooksmaxChallengeText;
+            }
+            setDisplay('2xRandomAutoUpgradeButton', 1);
+            setDisplay('RizzmaxUpgrades', 1);
+        } else if (Rizzmaxxes > 0) {
+            var LooksmaxChallengeText = [""," <b><em>Bye Bye!</em></b>"," <b><em>Edging Maestro</em></b>"," <b><em>Stone-Faced Mogging</em></b>"," <b><em>Rags to Riches</em></b>"," <b><em>Ad Hominem</em></b>", " <b><em>Gods Plan</em></b>"][inLooksmaxxingChallenge];
+            
             if (inLooksmaxxingChallenge == 5) {
                 document.getElementById('currencyCounter').innerHTML = "<b>???</b> Dilyan Points <b>"+abbrev(RizzPoints)+"</b> Rizz Points"+LooksmaxChallengeText;
             } else {
@@ -423,6 +452,17 @@ function updateVisuals() {
         // Mine of Rizz
         document.getElementById('RizziteCollectionProgress').innerHTML = RizziteNRizzium[0]+"/10"
         document.getElementById('RizziteCounter').innerHTML = "<b>"+abbrev(RizziteNRizzium[1])+"</b>"
+
+        // Rizzalurgy
+        if (smeltingTime == 0) {
+            document.getElementById('smeltRizziteButton').innerHTML = "Smelt 1 Rizzite";
+            document.getElementById('foundryTimer').innerHTML = "Not Currently Active";
+        } else {
+            document.getElementById('smeltRizziteButton').innerHTML = "Cannot Smelt More Rizzite At This Time";
+            document.getElementById('foundryTimer').innerHTML = "Time Left: "+abrevTime(smeltingTime);
+        }
+        document.getElementById('foundryTotalTime').innerHTML = "Each smelting process takes 5-20 minutes.";
+        document.getElementById('foundryTotalProduction').innerHTML = "Produce: 15-25 mL of Rizzium for each Rizzite.";
     } catch(error) {
         console.error(error);
     }
@@ -484,6 +524,29 @@ function offlineProgress() {
 
         alert("You gained "+Math.floor(0.1*(Math.floor(timeDifferenceSeconds) * (multiplier) * (AutomaticRizzers) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) ))+" clicks while you were gone! "+timeDifferenceSeconds);
         updateVisuals();
+    }
+
+    if (OfflineProdHrs > 0) {
+        var currentTime = Date.now();
+        var timeDifference = currentTime - lastOfflineTime;
+        if (timeDifference < 1000*10) {return;}
+        if (timeDifference/3600000 <= OfflineProdHrs) {
+            var timeDifferenceSeconds = timeDifference / 1000;
+        } else {
+            var timeDifferenceSeconds = OfflineProdHrs*360;
+        }
+        
+        if (smeltingTime > 0) {
+            if (timeDifferenceSeconds >= smeltingTime) {
+                RizziteNRizzium[2] += 15 + Math.floor(10*Math.random());
+                smeltingTime = 0;
+                hasSmelted = true;
+                updateVisuals();
+            } else {
+                smeltingTime -= timeDifferenceSeconds;
+                updateVisuals();
+            }
+        }
     }
 }
 

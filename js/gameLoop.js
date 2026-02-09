@@ -22,6 +22,15 @@ function gameLoop() {
     MoRCellChangeCount--;
   }
 
+  if (smeltingTime > 0) {
+    smeltingTime -= 1 / gameTick;
+    if (smeltingTime == 0) {
+      RizziteNRizzium[2] += 15 + Math.floor(10*Math.random());
+      hasSmelted = true;
+      updateVisuals();
+    }
+  }
+
   // Automatic Rizzer  
   if (inLooksmaxxingChallenge != 2 && inLooksmaxxingChallenge != 6) {
     var multiplier = 1;

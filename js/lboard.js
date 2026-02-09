@@ -18,7 +18,7 @@ function renderLeaderboardPage() {
         tr.innerHTML = `
             <td>${start + index + 1}</td>
             <td>${player.username}</td>
-            <td>${(statType === "timePlayed" ? abrevTime(player.data) : abbrev(player.data))}</td>
+            <td>${(statType === "timePlayed" ? abrevTime(player.data) : (statType === "RizziteNRizzium" ? abbrevLiquid(player.data) : abbrev(player.data)))}</td>
         `;
 
         tbody.appendChild(tr);

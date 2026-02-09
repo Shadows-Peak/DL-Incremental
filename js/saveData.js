@@ -25,7 +25,9 @@ data = {
     "MoRCellHighlight": [1,1],
     "RizziteNRizzium": [0,0,0],
     "RizzalurgyUnlocked": 0,
-    "newFormatToggle": 0
+    "smeltingTime": 0,
+    "hasSmelted": false,
+    "newFormatToggle": 0,
 }
 
 /*
@@ -51,7 +53,7 @@ async function saveData(silent=false) {
     var megaData = "";
     var basicIter = 0;
     for (const key of Object.keys(data)) {
-        data[key] = [clicks,CountryClubs,RiceWashers,Cars,Cheater,RandomValue5xUpgrades,AutomaticRizzers,clicksIn6,runsIn6,RandomAuto2xUpgrades,Rizzmaxxes,RizzPoints,OfflineProdHrs,RizzmaxClickWorth,LooksmaxxingChallengesUpgradeUnlocked,inLooksmaxxingChallenge,LooksmaxxingChallengesCompleted,timePlayed,backgroundToggle,chosenBackground,lastOfflineTime,MineOfRizzUnlocked,RizzmaxExtraChance,MoRCellHighlight,RizziteNRizzium,RizzalurgyUnlocked,newFormatToggle][basicIter];
+        data[key] = [clicks,CountryClubs,RiceWashers,Cars,Cheater,RandomValue5xUpgrades,AutomaticRizzers,clicksIn6,runsIn6,RandomAuto2xUpgrades,Rizzmaxxes,RizzPoints,OfflineProdHrs,RizzmaxClickWorth,LooksmaxxingChallengesUpgradeUnlocked,inLooksmaxxingChallenge,LooksmaxxingChallengesCompleted,timePlayed,backgroundToggle,chosenBackground,lastOfflineTime,MineOfRizzUnlocked,RizzmaxExtraChance,MoRCellHighlight,RizziteNRizzium,RizzalurgyUnlocked,smeltingTime,hasSmelted,newFormatToggle][basicIter];
         megaData += key + ":" + JSON.stringify(data[key]) + "|";
         basicIter++;
     }
@@ -78,7 +80,7 @@ async function saveData(silent=false) {
     });
 }
 
-function resetData() {
+function resetData(soft=false) {
     data = {
         "clicks": 0,
         "CountryClubs": 0,
@@ -106,10 +108,13 @@ function resetData() {
         "MoRCellHighlight": [1,1],
         "RizziteNRizzium": [0,0,0],
         "RizzalurgyUnlocked": 0,
+        "smeltingTime": 0,
+        "hasSmelted": false,
         "newFormatToggle": 0
     }
     for (const [key, value] of Object.entries(data)) {
         window[key] = value;
+        if (soft) {continue;}
         if (key == "LooksmaxxingChallengesCompleted" || key == "MoRCellHighlight" || key == "RizziteNRizzium") {
             localStorage.setItem(key, JSON.stringify(value));
         } else if (key == "clicks") {
