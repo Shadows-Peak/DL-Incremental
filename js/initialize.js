@@ -702,7 +702,8 @@ function offlineProgress() {
         
         if (smeltingTime > 0) {
             if (timeDifferenceSeconds >= smeltingTime) {
-                RizziteNRizzium[2] += 15 + Math.floor(10*Math.random());
+                const numToIncreaseBy = 15 + Math.floor(10*Math.random());
+                RizziteNRizzium[2] += numToIncreaseBy;
                 sendToast("Rizzalurgy: <b>+"+abbrevLiquid(numToIncreaseBy)+" Rizzium</b>");
                 smeltingTime = 0;
                 hasSmelted = true;
