@@ -56,11 +56,14 @@ async function submitRun(event) {
             } else {
                 const response = await signUp(data.username, data.password);
                 if (response) {
-                    if (localStorage.getItem('made_account') === 'true') {
+                    if (Number(localStorage.getItem('made_account')) >= 3) {
                         alert('You have already made an account, please log in.');
+                    } else if (localStorage.getItem('made_account') === 'true') {
+                        localStorage.setItem('made_account', '1');
+                        alert('Try again.');
                     } else {
                         alert('Sign Up Successful (we dont store passwords in plaintext, if you forget your password, make a new account (or pay me like 5 bucks and I will reset it for you))');
-                        localStorage.setItem('made_account', 'true');
+                        localStorage.setItem('made_account', String(Number(localStorage.getItem('made_account'))+1));
                         USERNAME = data.username;
                         PASSWORD = data.password;
                         gameLoad();
