@@ -1,3 +1,8 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0px;
+}
+
 .MoRTable {
   width: 100%;
   border-collapse: separate;
@@ -46,17 +51,23 @@ table {
 }
 
 .MoR {
+  background-color: rgb(255, 255, 255);
+  display: block;
   padding: 0px;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .LmCCellStuff {
   padding: 8px;
 }
 
-button:not(:is(.freeButton, .freeButtonPersist)) {
+button:not(:is(.freeButton, .freeButtonPersist, .MoR)) {
   border: 0;
   padding: 5px 3px;
-  height: 100%;
+  margin-top: 2px;
+  margin-bottom: 2px;
   width: 100%;
 }
 
@@ -93,4 +104,243 @@ button:not(:is(.freeButton, .freeButtonPersist)) {
 #leaderboard-refresh-div {
     margin-top: 10px;
     text-align: center;
+}
+
+
+
+/* =======================
+   TOOLBAR
+======================= */
+
+#newToolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  height: 40px;
+  background: #fc9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 22 10px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+
+  z-index: 900;
+  flex-wrap: nowrap;
+}
+
+/* Prevent wrapping */
+#newToolbar > * {
+  white-space: nowrap;
+}
+
+/* Center currency absolutely */
+.currency2 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* =======================
+   LOGOUT BUTTON
+======================= */
+
+.logout-btn2 {
+  background: linear-gradient(145deg, #9e2a2a, #7c1f1f);
+  border: none;
+  color: white;
+  padding: 11px 16px;
+  border-radius: 11px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+.logout-btn2:hover {
+  background: linear-gradient(145deg, #c03a3a, #991f1f);
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+  transform: translateY(-2px);
+}
+
+/* =======================
+   ICON BUTTONS
+======================= */
+
+.toolbar-right2 {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.icon-btn * {
+  pointer-events: none; /* Ensure only the button itself is clickable, not its children */
+}
+
+.icon-btn {
+  font-size: 22px;
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.icon-btn:hover {
+  transform: scale(1.15);
+  filter: brightness(1.3);
+}
+
+/* =======================
+   DROPDOWN MENUS
+======================= */
+
+.dropdown-menu {
+  position: fixed;
+  top: -700px; /* hidden above */
+  left: 50%;    /* center horizontally */
+  transform: translateX(-50%); /* center exactly */
+  width: 250px;
+  background: #6d6da1;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  transition: top 0.5s cubic-bezier(.34,1.56,.64,1);
+  z-index: 999;
+}
+
+.dropdown-menu h3 {
+  margin-top: 0;
+}
+
+.dropdown-menu button {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 6px;
+  background: #7d7db9;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+
+.dropdown-menu button:is(#resetButton) {
+  color: #ffffff;
+  background: #682929;
+}
+
+/* Active state (slides down) */
+.dropdown-menu.active {
+  top: 70px;
+}
+
+/* Push page content below toolbar */
+#page-content {
+  margin-top: 60px;
+  position: relative;
+  display: flex;
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65); /* semi-transparent black */
+  z-index: 998; /* below your dropdown menus which are 999 */
+  display: none; /* hidden by default */
+  transition: opacity 0.3s ease;
+}
+#overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spinner {
+  display: inline-block;
+  width: 28.672px;
+  height: 30px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+
+#saveBtn2.disabled {
+    pointer-events: none; /* prevents clicks */
+    opacity: 0.7;
+}
+
+/* BIG SCROLLABLE BOX */
+#achievementsBox {
+    width: 100%;
+    height: 100%; /* adjust if needed */
+    background: rgba(0,0,0,0.1);
+    border: 3px solid black;
+    overflow-y: auto;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+/* 12 PER ROW GRID */
+#achievementsGrid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 10px;
+}
+
+/* SQUARES */
+.achievementSquare {
+    aspect-ratio: 1 / 1;
+    background: #cccccc;
+    border: 2px solid black;
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.achievementSquare:hover {
+    transform: scale(1.05);
+    background: #dddddd;
+}
+
+/* TOOLTIP */
+#achievementTooltip {
+    position: fixed;
+    pointer-events: none;
+    background: rgba(0,0,0,0.85);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+
+    opacity: 0;
+    transition: opacity 0.15s ease;
+
+    z-index: 801;
+}
+
+.achievementCard {
+    background: #222;
+    color: #fff;
+    padding: 10px 15px;
+    margin: 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    opacity: 0;
+    transform: translateY(-100%); /* start offscreen */
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    pointer-events: auto;
+    width: 280px;
 }

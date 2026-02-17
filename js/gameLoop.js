@@ -24,8 +24,11 @@ function gameLoop() {
 
   if (smeltingTime > 0) {
     smeltingTime -= 1 / gameTick;
-    if (smeltingTime == 0) {
-      RizziteNRizzium[2] += 15 + Math.floor(10*Math.random());
+    if (smeltingTime <= 0) {
+      smeltingTime = 0;
+      const numToIncreaseBy = 15 + Math.floor(10*Math.random());
+      RizziteNRizzium[2] += numToIncreaseBy;
+      sendToast("Rizzalurgy: <b>+"+abbrevLiquid(numToIncreaseBy)+" Rizzium</b>");
       hasSmelted = true;
       updateVisuals();
     }
@@ -41,7 +44,7 @@ function gameLoop() {
       multiplier = 1;
     }
     
-    clicks += Math.floor((multiplier) * (AutomaticRizzers) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100) );
+    clicks += Math.floor((1+(countUnlockedAchievements()/100)) * (multiplier) * (AutomaticRizzers) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100) );
     updateVisuals();
   } else if (inLooksmaxxingChallenge == 2 && inLooksmaxxingChallenge != 6) {
     var multiplier = 1;
@@ -60,7 +63,7 @@ function gameLoop() {
       multiplier2 = 1;
     }
 
-    clicks += Math.floor((multiplier) * (multiplier2) * (AutomaticRizzers) * (1+Math.ceil((CountryClubs)**(1+Cars/10))) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100) );
+    clicks += Math.floor((1+(countUnlockedAchievements()/100)) * (multiplier) * (multiplier2) * (AutomaticRizzers) * (1+Math.ceil((CountryClubs)**(1+Cars/10))) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100) );
     updateVisuals();
   } else if (inLooksmaxxingChallenge != 2 && inLooksmaxxingChallenge == 6 && runsIn6 > 0) {
     var multiplier = 1;
@@ -69,10 +72,17 @@ function gameLoop() {
       multiplier = 2;
     }
     
-    clicks += Math.floor((multiplier) * (AutomaticRizzers) * (1+Math.ceil((CountryClubs)**(1+Cars/10))) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100) );
+    clicks += Math.floor((1+(countUnlockedAchievements()/100)) * (multiplier) * (AutomaticRizzers) * (1+Math.ceil((CountryClubs)**(1+Cars/10))) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100) );
     updateVisuals();
     runsIn6--;
   }
+
+  if (!savingInterval) {
+    savingInterval = setInterval(periodicSave, autosaveInterval * 1000);
+  }
+
+  // Achievemnts
+  checkAchievements();
 
   // Increment time played
   timePlayed += 1 / gameTick;

@@ -15,6 +15,7 @@
     <script src="js/menu/main_menu.js"></script>
     <script src="js/menu/menuLoad.js"></script>
     <script src="js/menu/gameLoad.js"></script>
+    <script src="js/achievementCard.js"></script>
     <script src="js/initialize.js"></script>
     <script src="js/map.js"></script>
     <script src="js/gameLoop.js"></script>
@@ -35,287 +36,332 @@
     </script>
 </head>
 <body>
-    <div id="menuStuff" style="position: absolute; left: 5px; top: 5px;">
+    <div class="themed2" id="newToolbar">
+        <button class="logout-btn2 freeButtonPersist themed3" id="logoutButton">LOGOUT</button>
+        <div class="currency2">
+            <span id="currencyCounter">10</span>
+        </div>
+        <div class="toolbar-right2">
+            <div class="icon-btn" id="settingsBtn2"><span>⚙</span></div>
+            <div class="icon-btn" id="saveBtn2"><span id="saveIcon">💾</span></div>
+            <div class="icon-btn" id="profileBtn2"><span>👤</span></div>
+        </div>
+    </div>
+    <!-- Settings Dropdown -->
+    <div class="dropdown-menu themed2" id="settingsMenu">
+        <h3>Settings</h3>
+        <button class="themed1" id="BackgroundToggleButton">Toggle Backgrounds: On</button>
+        <button class="themed1" id="ThemeChangeButton">Toggle Theme (Light)</button>
+        <button class="themed1" id="NewFormatToggleButton">Toggle Wide Buttons: Off</button>
+        <button class="themed1" id="autoSaveIntervalButton">Autosave Interval: 2 Minutes</button>
+        <button class="themed1" id="devB">Dev</button>
+        <button class="themed3" id="resetButton">Reset Game</button>
+    </div>
+    <!-- Profile Dropdown -->
+    <div class="dropdown-menu themed2" id="profileMenu">
+        <h3>Profile (WORK IN PROGRESS)</h3>
+        <p>Username: Player1</p>
+        <p>Level: 5</p>
+    </div>
+    <div id="menuStuff" style="margin-top: 5px; left: 5px;">
         <h1>Dilyan Lopez Incremental (Remastered?)</h1>
         <hr>
         <button data-room-id=0 id="signUp">Sign Up</button>
         <button data-room-id=0 id="login">Login</button>
         <div data-room-id=0 id="value-container">Loading... (or am I?)</div>
-        <h1 id="version">1.0.3.1</h1>
-        <h2>Challenges: The Gods Plan Challenge has been added (Keep in mind its an incredibly late game challenge!).<br><br>Buffs: Rizzmax Click Worth now gives 5x the value.<br><br>Fixes: Mine of Rizz board works again.<br><br>Visual Changes: Leaderboard now displays the abbreviated values from players.<br><br>Next Update Preparation: You can now smelt Rizzite into Rizzium, but there is currently no use or application. It is, however, in the leaderboard.</h2>
+        <h1 id="version">1.1.0</h1>
+        <h2>Visual Overhaul In Progress!<br><br>Dynamic Options For Autosave Intervals!<br><br>Achievements!<br><br>Rizzifacts: The First One Has Been Implemented!<br><br>Toast Alert Card Functionality!<br><br>More Themes!</h2>
     </div>
-    <div id="room0Stuff" style="position: absolute; left: 5px; top: 5px;">
-        <h1>Settings</h1>
-        <button id="BackgroundToggleButton" type="button" class="themed1">Toggle Backgrounds: On</button>
-        <button id="NewFormatToggleButton" type="button" class="themed1">Toggle Better Format: On</button>
-        <button id="ThemeChangeButton" type="button" class="themed1">Current Theme: Light</button>
-        <button id="fixButton" type="button" class="themed1">Fix</menu></button>
-        <button id="saveButton" type="button" class="themed1">Save Game</menu></button>
-        <button id="resetButton" type="button" class="themed1">Reset Game</menu></button>
-        <button id="devB" type="button" class="themed1">Dev</menu></button>
-        <button id="logoutButton2" class="themed1">Another Logout Button</button>
-    </div>
-    <div id="room1Stuff" style="position: absolute; left: 5px; top: 5px;">
-        <h1>Dilyan Lopez Incremental</h1>
-        <p>Not made by <b>Dilyan Lopez</b>.</p>
-        <p>But approved by <b>Dilyan Lopez</b>.</p>
-        <p>If ever something breaks, reload or use the <b>Fix</b> button in the Settings room. There are some cases where you will need to do this more than once.</p>
-        <p>NOTE: This game only autosaves every 2 minutes, so don't close the tab before either logging out or pressing save in the settings menu if you wish to keep your data!</p>
-        <h1 id="counter">You have <b>Test</b> Dilyan Points.</h1>
-        <p>Dilyan Lopez Incremental™ was made to commemorate the greatness of Dilyan.</p>
-        <button id="button1" type="button" class="themed1" onkeydown="return event.key != 'Enter';">Main Button Click</button>
-        <h><br>Click the Button to gain Dilyan Points!</h>
-        <button id="5xRandomValueUpgradeButton" type="button" class="themed1">Random x5 Value Upgrade (0): Cost: 0</button>
-        <button id="2xRandomAutoUpgradeButton" type="button" class="themed1">Random x2 Auto Value (0): Cost: 0</button>
-        <p id="RandomValueExplanatory">The earlier upgrades labeled as 'Random Value Upgrade/Auto Value' function as follows: Each time you upgrade them, you gain an additional 10% chance to either receive 5 times the usual value upon manual click or 2 times the usual value upon automatic generation by a rizzer, depending on the specific upgrade purchased.</p>
-        <button id="AutomaticRizzerButton" type="button" class="themed1">Automatic Rizzer (0): Cost: 0</button>
-    </div>
-    <div id="room2Stuff" style="position: absolute; left: 5px; top: 5px;">
-        <h1>Dillboy's Shop</h1>
-        <p>Country Clubs add +1 Per Click. Rice Washers multiply everything by +1 per upgrade. Cars raise the number of Country Clubs used in clicks by a power.</p>
-        <button id="CountryClubButton" type="button" class="themed1">Buy Country Club (0): Cost: 0</button>
-        <button id="RiceWasherButton" type="button" class="themed1">Buy Rice Washer (0): Cost: 0</button>
-        <button id="CarsButton" type="button" class="themed1">Buy Car (0): Cost: 0</button>
-    </div>
-    <div id="room3Stuff" style="position: absolute; left: 5px; top: 5px;">
-        <h1>Rizzmax</h1>
-        <p>Base rizzmax requires 25k Dilyan Points. From there, you gain more points in correspondence to how many Dilyan points you have.<br></p>
-        <p>Your first rizzmax will unlock new upgrades.<br></p>
-        <button id="RizzmaxButton" type="button" class="themed1">Rizzmax: +0 Rizz Points</button>
-        <div id="RizzmaxUpgrades">
-            <p>Offline production is 10% the production and only kicks in after at least 10 seconds.</p>
-            <h2>Rizzmax Upgrades:<br></h2>
-            <button id="OfflineProduction1Button" type="button" class="themed1">Offline Production (+0 hr(s)): Cost: 0 RP</button>
-            <button id="RizzClickWorthButton" type="button" class="themed1">Click Worth (+0%): Cost: 0 RP</button>
-            <button id="UnlockLooksmaxxingButton" type="button" class="themed1">Looksmaxxing Challenges : Cost: 100 RP</button>
-            <p id="RizzmaxUpg2Indicator">Unlock more upgrades after completing 5 Looksmaxxing Challenges</p>
-            <div id="RizzmaxUpgrades2">
-              <h2>Looksmaxxed Rizz Upgrades:<br></h2>
-              <p>These don't work in Looksmaxxing Challenges either, despite the name.</p>
-              <button id="RmU2Upg1" type="button" class="themed1">Unlock Mine of Rizz: Cost: 250 RP</button>
-              <button id="RmU2Upg2" type="button" class="themed1">Unlock the Mine of Rizz to See This Upgrade</button> <!---Unlock Rizzalurgy-->
-              <button id="RmU2Upg3" type="button" class="themed1">Extra Odds to All Random Chance Upgrades (+0%): Cost: 0 RP</button>
+    <div id="page-content">
+      <div id="room0Stuff" style="margin-top: 5px; left: 5px;">
+          <h1>Achievements</h1>
+          <p id="achievementDPM">Dilyan Point Multiplier (From Achievements): +0%</p>
+          <p>The above multiplier applies even in Looksmaxxing Challenges.</p>
+          <div id="achievementsBox" style="margin-left: 15px">
+            <div id="achievementsGrid"></div>
+          </div>
+          <div id="achievementTooltip"></div>
+      </div>
+      <div id="room1Stuff" style="margin-top: 5px; left: 5px;">
+          <h1>Dilyan Lopez Incremental</h1>
+          <p>Not made by <b>Dilyan Lopez</b>.</p>
+          <p>But approved by <b>Dilyan Lopez</b>.</p>
+          <p>If ever something breaks, reload or use the <b>Fix</b> button in the Settings room. There are some cases where you will need to do this more than once.</p>
+          <p>NOTE: This game only autosaves every 2 minutes, so don't close the tab before either logging out or pressing save in the settings menu if you wish to keep your data!</p>
+          <h1 id="counter">You have <b>Test</b> Dilyan Points.</h1>
+          <p>Dilyan Lopez Incremental™ was made to commemorate the greatness of Dilyan.</p>
+          <button id="button1" type="button" class="themed1" onkeydown="return event.key != 'Enter';">Main Button Click</button>
+          <h><br>Click the Button to gain Dilyan Points!</h>
+          <button id="5xRandomValueUpgradeButton" type="button" class="themed1">Random x5 Value Upgrade (0): Cost: 0</button>
+          <button id="2xRandomAutoUpgradeButton" type="button" class="themed1">Random x2 Auto Value (0): Cost: 0</button>
+          <p id="RandomValueExplanatory">The earlier upgrades labeled as 'Random Value Upgrade/Auto Value' function as follows: Each time you upgrade them, you gain an additional 10% chance to either receive 5 times the usual value upon manual click or 2 times the usual value upon automatic generation by a rizzer, depending on the specific upgrade purchased.</p>
+          <button id="AutomaticRizzerButton" type="button" class="themed1">Automatic Rizzer (0): Cost: 0</button>
+      </div>
+      <div id="room2Stuff" style="margin-top: 5px; left: 5px;">
+          <h1>Dillboy's Shop</h1>
+          <p>Country Clubs add +1 Per Click. Rice Washers multiply everything by +1 per upgrade. Cars raise the number of Country Clubs used in clicks by a power.</p>
+          <button id="CountryClubButton" type="button" class="themed1">Buy Country Club (0): Cost: 0</button>
+          <button id="RiceWasherButton" type="button" class="themed1">Buy Rice Washer (0): Cost: 0</button>
+          <button id="CarsButton" type="button" class="themed1">Buy Car (0): Cost: 0</button>
+      </div>
+      <div id="room3Stuff" style="margin-top: 5px; left: 5px;">
+          <h1>Rizzmax</h1>
+          <p>Base rizzmax requires 25k Dilyan Points. From there, you gain more points in correspondence to how many Dilyan points you have.<br></p>
+          <p>Your first rizzmax will unlock new upgrades.<br></p>
+          <button id="RizzmaxButton" type="button" class="themed1">Rizzmax: +0 Rizz Points</button>
+          <div id="RizzmaxUpgrades">
+              <p>Offline production is 10% the production and only kicks in after at least 10 seconds.</p>
+              <h2>Rizzmax Upgrades:<br></h2>
+              <button id="OfflineProduction1Button" type="button" class="themed1">Offline Production (+0 hr(s)): Cost: 0 RP</button>
+              <button id="RizzClickWorthButton" type="button" class="themed1">Click Worth (+0%): Cost: 0 RP</button>
+              <button id="UnlockLooksmaxxingButton" type="button" class="themed1">Looksmaxxing Challenges : Cost: 100 RP</button>
+              <p id="RizzmaxUpg2Indicator">Unlock more upgrades after completing 5 Looksmaxxing Challenges</p>
+              <div id="RizzmaxUpgrades2">
+                <h2>Looksmaxxed Rizz Upgrades:<br></h2>
+                <p>These don't work in Looksmaxxing Challenges either, despite the name.</p>
+                <button id="RmU2Upg1" type="button" class="themed1">Unlock Mine of Rizz: Cost: 250 RP</button>
+                <button id="RmU2Upg2" type="button" class="themed1">Unlock the Mine of Rizz to See This Upgrade</button> <!---Unlock Rizzalurgy-->
+                <button id="RmU2Upg3" type="button" class="themed1">Extra Odds to All Random Chance Upgrades (+0%): Cost: 0 RP</button>
+              </div>
+          </div>
+      </div>
+      <div id="room4Stuff" style="margin-top: 5px; left: 5px;">
+          <h1>Looksmaxxing Challenges</h1>
+          <p>Looksmaxxing Challenges force a rizzmax reset (YOU WILL NOT GAIN RIZZ POINTS FROM THIS!!). This means it is heavily recommended that you rizzmax before starting one of these.<br>
+          In a looksmaxxing challenge, all your Rizzmax Upgrades are disabled, and you must follow restrictions whilst trying to reach a requirement.<br>
+          After meeting this requirement, and ending the challenge, you will gain permanent bonuses usable outside of a Looksmaxxing Challenge.<br>
+          As you complete the challenges more and more, the requirements for them go up more and more.<br>
+          You are unable to Rizzmax or spend Rizz Points whilst in a Looksmaxxing Challenge.</p>
+          <p>You can only have one looksmaxxing challenge active at a time.</p>
+          <p>For every looksmaxxing challenge completion, you will gain a permanent +5% Dilyan Point Multiplier that works inside and outside of Looksmaxxing Challenges.</p>
+          <p id="LMCDPMVisual">Current Dilyan Point Multiplier: +<b>0</b>%</p>
+          <div class="row">
+              <div class="column">
+                  <table class="LmCTable" style="width:90%">
+                    <tr><th><b>Bye Bye!</b></th></tr>
+                    <tr style="height:78px"><td class="LmCCellStuff" id="LMC1D">Rizzmax for at least 10 points without using any Rice Washers or Cars.</td></tr>
+                    <tr><td class="LmCCellStuff" id="LMC1B">Current Bonus: +0% Dilyan Point Multiplier</td></tr>
+                    <tr><td class="LmCCellStuff" id="LMC1C">Completions: 0/10</td></tr>
+                    <tr><th class="LmCCellStuff"><button type="button" class="themed1" id="LMC1Button">Begin</button></th></tr>
+                  </table>
+              </div>
+              <div class="column">
+                  <table class="LmCTable" style="width:90%">
+                    <tr><th class="LmCCellStuff"><b>Edging Maestro</b></th></tr>
+                    <tr style="height:78px"><td class="LmCCellStuff" id="LMC2D">Rizzmax for at least 1 point without clicking the main button and starting with 1 Automatic Rizzer. Offline Progress is enabled at 50% efficiency. Automatic Rizzers use the formula of clicking in this challenge, and are affected by both random chance upgrades.</td></tr>
+                    <tr><td class="LmCCellStuff" id="LMC2B">Current Bonus: +0% Offline Value</td></tr>
+                    <tr><td class="LmCCellStuff" id="LMC2C">Completions: 0/90</td></tr>
+                    <tr><th class="LmCCellStuff"><button type="button" class="themed1" id="LMC2Button">Begin</button></th></tr>
+                  </table>
+              </div>
+              <div class="column">
+                  <table class="LmCTable" style="width:90%">
+                    <tr><th class="LmCCellStuff"><b>Stone-Faced Mogging</b></th></tr>
+                    <tr style="height:78px"><td class="LmCCellStuff" id="LMC3D">Rizzmax for at least 50 points without any random chance triggers or Automatic Rizzers.</td></tr>
+                    <tr><td class="LmCCellStuff" id="LMC3B">Current Bonus: +1x On All Random Multipliers</td></tr>
+                    <tr><td class="LmCCellStuff" id="LMC3C">Completions: 0/5</td></tr>
+                    <tr><th class="LmCCellStuff"><button type="button" class="themed1" id="LMC3Button">Begin</button></th></tr>
+                  </table>
+              </div>
+              <div class="column">
+                  <table class="LmCTable" style="width:90%">
+                    <tr><th class="LmCCellStuff"><b>Rags to Riches</b></th></tr>
+                    <tr style="height:78px"><td class="LmCCellStuff" id="LMC4D">In this challenge, you can use your rizzmax click worth upgrade. Everything is disabled aside from the clicking of the main button. Rizzmax for at least 10 points.</td></tr>
+                    <tr><td class="LmCCellStuff" id="LMC4B">Current Bonus: +1 Dilyan Point Worth Per Country Club</td></tr>
+                    <tr><td class="LmCCellStuff" id="LMC4C">Completions: 0/9</td></tr>
+                    <tr><th class="LmCCellStuff"><button type="button" class="themed1" id="LMC4Button">Begin</button></th></tr>
+                  </table>
+              </div>
+              <div class="column">
+                  <table class="LmCTable" style="width:90%">
+                    <tr><th class="LmCCellStuff"><b>Ad Hominem</b></th></tr>
+                    <tr style="height:78px"><td class="LmCCellStuff" id="LMC5D">In this challenge, you are unable to see how many points, upgrades, prices, or multipliers you have. You must rizzmax for at least 30 points to complete this challenge.</td></tr>
+                    <tr><td class="LmCCellStuff" id="LMC5B">Current Bonus: -3% Rizz Point Requirement For Looksmaxxing Challenge Completion</td></tr>
+                    <tr><td class="LmCCellStuff" id="LMC5C">Completions: 0/10</td></tr>
+                    <tr><th class="LmCCellStuff"><button type="button" class="themed1" id="LMC5Button">Begin</button></th></tr>
+                  </table>
+              </div>
+              <div class="column">
+                  <table class="LmCTable" style="width:90%">
+                    <tr><th class="LmCCellStuff"><b>Gods Plan</b></th></tr>
+                    <tr style="height:78px"><td class="LmCCellStuff" id="LMC6D">Rizzmax for at least 100 points while consecutively clicking the main button depreciates the value yet Automatic Rizzers are 5x more expensive and the other upgrades are 3x cheaper. The value for clicking can be reset by purchasing an upgrade (besides Automatic Rizzers), and Automatic Rizzers only produce 1 time for each one you own before stopping until you buy another. Offline Progress is enabled at 10% efficiency.</td></tr>
+                    <tr><td class="LmCCellStuff" id="LMC6B">Current Bonus: -0.01 From The Logarithm's Base In The Rizzmax Rizz Point Formula</td></tr>
+                    <tr><td class="LmCCellStuff" id="LMC6C">Completions: 0/3</td></tr>
+                    <tr><th class="LmCCellStuff"><button type="button" class="themed1" id="LMC6Button">Begin</button></th></tr>
+                  </table>
+              </div>
+          </div>
+      </div>
+      <div id="room5Stuff" style="margin-top: 5px; left: 5px;">
+        <h1>Mine of Rizz</h1>
+        <h2><em>Where all of Rizzkind is extracted from.</em></h2>
+        <table class="MoRTable">
+          <tr>
+            <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR1C1"> </button></td>
+            <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR1C2"> </button></td>
+            <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR1C3"> </button></td>
+            <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR1C4"> </button></td>
+            <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR1C5"> </button></td>
+          </tr>
+          <tr>
+            <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR2C1"> </button></td>
+            <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR2C2"> </button></td>
+            <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR2C3"> </button></td>
+            <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR2C4"> </button></td>
+            <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR2C5"> </button></td>
+          </tr>
+          <tr>
+            <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR3C1"> </button></td>
+            <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR3C2"> </button></td>
+            <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR3C3"> </button></td>
+            <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR3C4"> </button></td>
+            <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR3C5"> </button></td>
+          </tr>
+          <tr>
+            <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR4C1"> </button></td>
+            <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR4C2"> </button></td>
+            <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR4C3"> </button></td>
+            <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR4C4"> </button></td>
+            <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR4C5"> </button></td>
+          </tr>
+          <tr>
+            <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR5C1"> </button></td>
+            <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR5C2"> </button></td>
+            <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR5C3"> </button></td>
+            <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR5C4"> </button></td>
+            <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR5C5"> </button></td>
+          </tr>
+        </table>
+        <script>
+          /*
+          (function() {
+            if ($("button:not(.freeButton)").parent('td').length) {
+              $("button:not(.freeButton)").css('height', $('button').parent('td').height());
+            }
+          }).call(this);
+          */
+        </script>
+      </div>
+      <div id="room5Stuff2" style="position: absolute; margin-top: 5px; right: 10px;"">
+        <h1>Information</h1>
+        <p>Attempt to click the highlighted square.<br>
+        Repeat this 10 times to gain 1 Rizzite.<br>
+        Each click takes 10M DP and 50 RP.<br>
+        [(Dilyan Points) & (Rizz Points)]</p>
+        <h2>Rizzite Collection Progress:</h2>
+        <p id="RizziteCollectionProgress">0/10</p>
+        <h2>Current Rizzite:</h2>
+        <p id="RizziteCounter"><b>0</b></p>
+      </div>
+      <div id="room6Stuff" style="margin-top: 5px; left: 5px;">
+        <h1>Rizzalurgy</h1>
+        <table style="width:90%">
+          <tr><th><b>Foundry</b></th></tr>
+          <tr style="height:78px"><td>Smelt down Rizzite into liquid Rizzium</td></tr>
+          <tr><td id="foundryTotalTime">Each smelting process takes 5-20 minutes.</td></tr>
+          <tr><td id="foundryTotalProduction">Produce: 15-25 mL of Rizzium for each Rizzite.</td></tr>
+          <tr><td id="foundryTimer">Not Currently Active</td></tr>
+          <tr><th><button type="button" class="themed1" id="smeltRizziteButton">Smelt 1 Rizzite</button></th></tr>
+        </table>
+        <p>ignore this</p>
+      </div>
+      <div id="room6Stuff2" style="position: absolute; margin-top: 5px; right: 10px;">
+        <h2>Rizzifacts (WIP)</h2>
+        <div style="height:380px;width:330px;border:10px solid black;overflow:auto;">
+          <table style="width:100%">
+            <tr><th><b>Rizzactive Rizzeactor</b></th></tr>
+            <tr style="height:78px"><td><i>WARNING: RIZZ IS REACHING CRITICAL LEVELS!!!</i></td></tr>
+            <tr><td id="Rizif1C">Infusion Cost: 50mL Rizzium</td></tr>
+            <div>
+              <tr><td id="Rizif1B">Bonus: +0% Chance to Upgrade Twice When You Buy Normal Upgrades.</td></tr>
             </div>
+            <tr><td id="Rizif1I">Infusions: 0/3</td></tr>
+            <tr><th><button type="button" class="themed1" id="Rizzafact1Infuse">Infuse</button></th></tr>
+          </table>
+          <p><br></p>
+          <table style="width:100%">
+            <tr><th><b>Clock of Mog (NOT IMPLEMENTED)</b></th></tr>
+            <tr style="height:78px"><td><i>The truth: Mog is the primordial art of creation.</i></td></tr>
+            <tr><td>Infusion Cost: 100mL Rizzium</td></tr>
+            <div>
+              <tr><td>Bonus: -1 Minute From Max Smelting Time.</td></tr>
+            </div>
+            <tr><td>Infusions: 0/1</td></tr>
+            <tr><th><button type="button" class="themed1" id="Rizzafact2Infuse">Infuse</button></th></tr>
+          </table>
+          <p><br></p>
+          <table style="width:100%">
+            <tr><th><b>Rizzucation (NOT IMPLEMENTED)</b></th></tr>
+            <tr style="height:78px"><td><i>"Rizz is an ancient art that is difficult to master.." - Sun Tzu, Art of War</i></td></tr>
+            <tr><td>Infusion Cost: 250mL Rizzium</td></tr>
+            <div>
+              <tr><td>Bonus: +5 To the Max Amount of Rizzium You Can Produce.</td></tr>
+            </div>
+            <tr><td>Infusions: 0/1</td></tr>
+            <tr><th><button type="button" class="themed1" id="Rizzafact3Infuse">Infuse</button></th></tr>
+          </table>
+          <table style="width:100%">
+            <tr><th><b>Ring of Edge (NOT IMPLEMENTED)</b></th></tr>
+            <tr style="height:78px"><td><i>You now dawn such great power that your past self sneers at what you've become.</i></td></tr>
+            <tr><td>Infusion Cost: 1kL Rizzium</td></tr>
+            <div>
+              <tr><td>Bonus: The First Upgrade of All Rizzifacts Work in Looksmaxxing Challenges.</td></tr>
+            </div>
+            <tr><td>Infusions: 0/1</td></tr>
+            <tr><th><button type="button" class="themed1" id="Rizzafact3Infuse">Infuse</button></th></tr>
+          </table>
         </div>
-    </div>
-    <div id="room4Stuff" style="position: absolute; left: 5px; top: 5px;">
-        <h1>Looksmaxxing Challenges</h1>
-        <p>Looksmaxxing Challenges force a rizzmax reset (YOU WILL NOT GAIN RIZZ POINTS FROM THIS!!). This means it is heavily recommended that you rizzmax before starting one of these.<br>
-        In a looksmaxxing challenge, all your Rizzmax Upgrades are disabled, and you must follow restrictions whilst trying to reach a requirement.<br>
-        After meeting this requirement, and ending the challenge, you will gain permanent bonuses usable outside of a Looksmaxxing Challenge.<br>
-        As you complete the challenges more and more, the requirements for them go up more and more.<br>
-        You are unable to Rizzmax or spend Rizz Points whilst in a Looksmaxxing Challenge.</p>
-        <p>You can only have one looksmaxxing challenge active at a time.</p>
-        <p>For every looksmaxxing challenge completion, you will gain a permanent +5% Dilyan Point Multiplier that works inside and outside of Looksmaxxing Challenges.</p>
-        <p id="LMCDPMVisual">Current Dilyan Point Multiplier: +<b>0</b>%</p>
-        <div class="row">
-            <div class="column">
-                <table class="LmCTable" style="width:90%">
-                  <tr><th><b>Bye Bye!</b></th></tr>
-                  <tr style="height:78px"><td class="LmCCellStuff" id="LMC1D">Rizzmax for at least 10 points without using any Rice Washers or Cars.</td></tr>
-                  <tr><td class="LmCCellStuff" id="LMC1B">Current Bonus: +0% Dilyan Point Multiplier</td></tr>
-                  <tr><td class="LmCCellStuff" id="LMC1C">Completions: 0/10</td></tr>
-                  <tr><th class="LmCCellStuff"><button type="button" class="themed1" id="LMC1Button">Begin</button></th></tr>
-                </table>
-            </div>
-            <div class="column">
-                <table class="LmCTable" style="width:90%">
-                  <tr><th class="LmCCellStuff"><b>Edging Maestro</b></th></tr>
-                  <tr style="height:78px"><td class="LmCCellStuff" id="LMC2D">Rizzmax for at least 1 point without clicking the main button and starting with 1 Automatic Rizzer. Offline Progress is enabled at 50% efficiency. Automatic Rizzers use the formula of clicking in this challenge, and are affected by both random chance upgrades.</td></tr>
-                  <tr><td class="LmCCellStuff" id="LMC2B">Current Bonus: +0% Offline Value</td></tr>
-                  <tr><td class="LmCCellStuff" id="LMC2C">Completions: 0/90</td></tr>
-                  <tr><th class="LmCCellStuff"><button type="button" class="themed1" id="LMC2Button">Begin</button></th></tr>
-                </table>
-            </div>
-            <div class="column">
-                <table class="LmCTable" style="width:90%">
-                  <tr><th class="LmCCellStuff"><b>Stone-Faced Mogging</b></th></tr>
-                  <tr style="height:78px"><td class="LmCCellStuff" id="LMC3D">Rizzmax for at least 50 points without any random chance triggers or Automatic Rizzers.</td></tr>
-                  <tr><td class="LmCCellStuff" id="LMC3B">Current Bonus: +1x On All Random Multipliers</td></tr>
-                  <tr><td class="LmCCellStuff" id="LMC3C">Completions: 0/5</td></tr>
-                  <tr><th class="LmCCellStuff"><button type="button" class="themed1" id="LMC3Button">Begin</button></th></tr>
-                </table>
-            </div>
-            <div class="column">
-                <table class="LmCTable" style="width:90%">
-                  <tr><th class="LmCCellStuff"><b>Rags to Riches</b></th></tr>
-                  <tr style="height:78px"><td class="LmCCellStuff" id="LMC4D">In this challenge, you can use your rizzmax click worth upgrade. Everything is disabled aside from the clicking of the main button. Rizzmax for at least 10 points.</td></tr>
-                  <tr><td class="LmCCellStuff" id="LMC4B">Current Bonus: +1 Dilyan Point Worth Per Country Club</td></tr>
-                  <tr><td class="LmCCellStuff" id="LMC4C">Completions: 0/9</td></tr>
-                  <tr><th class="LmCCellStuff"><button type="button" class="themed1" id="LMC4Button">Begin</button></th></tr>
-                </table>
-            </div>
-            <div class="column">
-                <table class="LmCTable" style="width:90%">
-                  <tr><th class="LmCCellStuff"><b>Ad Hominem</b></th></tr>
-                  <tr style="height:78px"><td class="LmCCellStuff" id="LMC5D">In this challenge, you are unable to see how many points, upgrades, prices, or multipliers you have. You must rizzmax for at least 30 points to complete this challenge.</td></tr>
-                  <tr><td class="LmCCellStuff" id="LMC5B">Current Bonus: -3% Rizz Point Requirement For Looksmaxxing Challenge Completion</td></tr>
-                  <tr><td class="LmCCellStuff" id="LMC5C">Completions: 0/10</td></tr>
-                  <tr><th class="LmCCellStuff"><button type="button" class="themed1" id="LMC5Button">Begin</button></th></tr>
-                </table>
-            </div>
-            <div class="column">
-                <table class="LmCTable" style="width:90%">
-                  <tr><th class="LmCCellStuff"><b>Gods Plan</b></th></tr>
-                  <tr style="height:78px"><td class="LmCCellStuff" id="LMC6D">Rizzmax for at least 100 points while consecutively clicking the main button depreciates the value yet Automatic Rizzers are 5x more expensive and the other upgrades are 3x cheaper. The value for clicking can be reset by purchasing an upgrade (besides Automatic Rizzers), and Automatic Rizzers only produce 1 time for each one you own before stopping until you buy another. Offline Progress is enabled at 10% efficiency.</td></tr>
-                  <tr><td class="LmCCellStuff" id="LMC6B">Current Bonus: -0.01 From The Logarithm's Base In The Rizzmax Rizz Point Formula</td></tr>
-                  <tr><td class="LmCCellStuff" id="LMC6C">Completions: 0/3</td></tr>
-                  <tr><th class="LmCCellStuff"><button type="button" class="themed1" id="LMC6Button">Begin</button></th></tr>
-                </table>
-            </div>
+      </div>
+      <div id="room8Stuff" style="margin-top: 5px; left: 10px; align-self: center; justify-self: center; margin: auto; width: 75%;">
+        <div id="leaderboard-tabs">
+            <button class="lb-tab active themed1" data-type="clicks">Clicks</button>
+            <button class="lb-tab themed1" data-type="RizzPoints">Rizz Points</button>
+            <button class="lb-tab themed1" data-type="LooksmaxxingChallengesCompleted">Challenges Completed</button>
+            <button class="lb-tab themed1" data-type="RizziteNRizzium">Rizzium</button>
+            <button class="lb-tab themed1" data-type="timePlayed">Playtime</button>
         </div>
-    </div>
-    <div id="room5Stuff" style="position: absolute; left: 5px; top: 5px;">
-      <h1>Mine of Rizz</h1>
-      <h2><em>Where all of Rizzkind is extracted from.</em></h2>
-      <table class="MoRTable">
-        <tr>
-          <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR1C1"> </button></td>
-          <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR1C2"> </button></td>
-          <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR1C3"> </button></td>
-          <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR1C4"> </button></td>
-          <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR1C5"> </button></td>
-        </tr>
-        <tr>
-          <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR2C1"> </button></td>
-          <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR2C2"> </button></td>
-          <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR2C3"> </button></td>
-          <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR2C4"> </button></td>
-          <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR2C5"> </button></td>
-        </tr>
-        <tr>
-          <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR3C1"> </button></td>
-          <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR3C2"> </button></td>
-          <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR3C3"> </button></td>
-          <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR3C4"> </button></td>
-          <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR3C5"> </button></td>
-        </tr>
-        <tr>
-          <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR4C1"> </button></td>
-          <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR4C2"> </button></td>
-          <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR4C3"> </button></td>
-          <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR4C4"> </button></td>
-          <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR4C5"> </button></td>
-        </tr>
-        <tr>
-          <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR5C1"> </button></td>
-          <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR5C2"> </button></td>
-          <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR5C3"> </button></td>
-          <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR5C4"> </button></td>
-          <td class="pad-0" style="height:60px;width:60px"><button type="button" class="MoR" id="MoRCellR5C5"> </button></td>
-        </tr>
-      </table>
-      <script>
-        /*
-        (function() {
-          if ($("button:not(.freeButton)").parent('td').length) {
-            $("button:not(.freeButton)").css('height', $('button').parent('td').height());
-          }
-        }).call(this);
-        */
-      </script>
-    </div>
-    <div id="room5Stuff2" style="position: absolute; right: 10px; top: 5px">
-      <h1>Information</h1>
-      <p>Attempt to click the highlighted square.<br>
-      Repeat this 10 times to gain 1 Rizzite.<br>
-      Each click takes 10M DP and 50 RP.<br>
-      [(Dilyan Points) & (Rizz Points)]</p>
-      <h2>Rizzite Collection Progress:</h2>
-      <p id="RizziteCollectionProgress">0/10</p>
-      <h2>Current Rizzite:</h2>
-      <p id="RizziteCounter"><b>0</b></p>
-    </div>
-    <div id="room6Stuff" style="position: absolute; left: 5px; top: 5px">
-      <h1>Rizzalurgy</h1>
-      <table style="width:90%">
-        <tr><th><b>Foundry</b></th></tr>
-        <tr style="height:78px"><td>Smelt down Rizzite into liquid Rizzium</td></tr>
-        <tr><td id="foundryTotalTime">Each smelting process takes 5-20 minutes.</td></tr>
-        <tr><td id="foundryTotalProduction">Produce: 15-25 mL of Rizzium for each Rizzite.</td></tr>
-        <tr><td id="foundryTimer">Not Currently Active</td></tr>
-        <tr><th><button type="button" class="themed1" id="smeltRizziteButton">Smelt 1 Rizzite</button></th></tr>
-      </table>
-      <p>ignore this</p>
-    </div>
-    <div id="room6Stuff2" style="position: absolute; right: 10px; top: 5px;">
-      <h2>Rizzifacts (WIP)</h2>
-      <div style="height:380px;width:330px;border:10px solid black;overflow:auto;">
-        <table style="width:100%">
-          <tr><th><b>Rizzactive Rizzeactor</b></th></tr>
-          <tr style="height:78px"><td><i>WARNING: RIZZ IS REACHING CRITICAL LEVELS!!!</i></td></tr>
-          <tr><td>Infusion Cost: 50mL Rizzium</td></tr>
-          <div>
-            <tr><td>Bonus: +0% Chance to Upgrade Twice When You Buy Normal Upgrades.</td></tr>
-          </div>
-          <tr><td>Infusions: 0/1</td></tr>
-          <tr><th><button type="button" class="themed1">Infuse</button></th></tr>
+        <table id="leaderboard-table" class="themed1">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Username</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
         </table>
-        <p><br></p>
-        <table style="width:100%">
-          <tr><th><b>Clock of Mog</b></th></tr>
-          <tr style="height:78px"><td><i>The truth: Mog is the primordial art of creation.</i></td></tr>
-          <tr><td>Infusion Cost: 100mL Rizzium</td></tr>
-          <div>
-            <tr><td>Bonus: -1 Minute From Max Smelting Time.</td></tr>
-          </div>
-          <tr><td>Infusions: 0/1</td></tr>
-          <tr><th><button type="button" class="themed1">Infuse</button></th></tr>
-        </table>
-        <p><br></p>
-        <table style="width:100%">
-          <tr><th><b>Rizzucation</b></th></tr>
-          <tr style="height:78px"><td><i>"Rizz is an ancient art that is difficult to master.." - Sun Tzu, Art of War</i></td></tr>
-          <tr><td>Infusion Cost: 250mL Rizzium</td></tr>
-          <div>
-            <tr><td>Bonus: +5 To the Max Amount of Rizzium You Can Produce.</td></tr>
-          </div>
-          <tr><td>Infusions: 0/1</td></tr>
-          <tr><th><button type="button" class="themed1">Infuse</button></th></tr>
-        </table>
+        <div id="leaderboard-page-buttons">
+            <button id="prev-page" class="themed1">◀</button>
+            <span id="page-indicator"></span>
+            <button id="next-page" class="themed1">▶</button>
+        </div>
+        <div id="leaderboard-refresh-div">
+          <button id="refresh-lb" class="themed1">Refresh Leaderboard</button>
+        </div>
       </div>
-    </div>
-    <div id="room8Stuff" style="position: absolute; left: 10px; top: 5px;">
-      <div id="leaderboard-tabs">
-          <button class="lb-tab active themed1" data-type="clicks">Clicks</button>
-          <button class="lb-tab themed1" data-type="RizzPoints">Rizz Points</button>
-          <button class="lb-tab themed1" data-type="LooksmaxxingChallengesCompleted">Challenges Completed</button>
-          <button class="lb-tab themed1" data-type="RizziteNRizzium">Rizzium</button>
-          <button class="lb-tab themed1" data-type="timePlayed">Playtime</button>
+      <div style="position: fixed; bottom: 5px; left: 50%; transform: translateX(-50%);">
+          <button id="lMap" onclick="move('lMap', currentRoom)" class="themed1 freeButtonPersist">◀</button>
+          <button id="rMap" onclick="move('rMap', currentRoom)" class="themed1 freeButtonPersist">▶</button>
+          <button id="uMap" onclick="move('uMap', currentRoom)" class="themed1 freeButtonPersist">▲</button>
+          <button id="dMap" onclick="move('dMap', currentRoom)" class="themed1 freeButtonPersist">▼</button>
+          <!--<button id="spaceButton" onclick="tmp.space = !tmp.space">Go to Space</button>-->
       </div>
-      <table id="leaderboard-table" class="themed1">
-          <thead>
-              <tr>
-                  <th>#</th>
-                  <th>Username</th>
-                  <th>Value</th>
-              </tr>
-          </thead>
-          <tbody></tbody>
-      </table>
-      <div id="leaderboard-page-buttons">
-          <button id="prev-page" class="themed1">◀</button>
-          <span id="page-indicator"></span>
-          <button id="next-page" class="themed1">▶</button>
-      </div>
-      <div id="leaderboard-refresh-div">
-        <button id="refresh-lb" class="themed1">Refresh Leaderboard</button>
-      </div>
+      <div id="debugDiv"></div>
+      <div id="achievementNotifications" style="
+          position: fixed;
+          top: 50px;
+          right: 5px;
+          width: 300px;
+          max-height: 50vh; /* limit stack to 50% of screen */
+          overflow: visible;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          pointer-events: none; /* clicks go through */
+          z-index: 800;
+      "></div>
     </div>
-    <div id="toolbar" z-index="1000" style="position: absolute; right: 10px; top: 5px;">
-        <button id="logoutButton" class="themed1">Logout</button>
-    </div>
-    <div style="position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%);">
-        <h2 id="currencyCounter"><span style="border: white 3px solid">0 Dilyan Points</span></h2>
-    </div>
-    <div style="position: fixed; bottom: 5px; left: 50%; transform: translateX(-50%);">
-        <button id="lMap" onclick="move('lMap', currentRoom)" class="themed1 freeButtonPersist">◀</button>
-        <button id="rMap" onclick="move('rMap', currentRoom)" class="themed1 freeButtonPersist">▶</button>
-        <button id="uMap" onclick="move('uMap', currentRoom)" class="themed1 freeButtonPersist">▲</button>
-        <button id="dMap" onclick="move('dMap', currentRoom)" class="themed1 freeButtonPersist">▼</button>
-        <!--<button id="spaceButton" onclick="tmp.space = !tmp.space">Go to Space</button>-->
-    </div>
-    <div id="debugDiv"></div>
+    <div id="overlay"></div>
     <script>
         document.getElementById("room0Stuff").style.display = "none";
         document.getElementById("room1Stuff").style.display = "none";
@@ -328,6 +374,7 @@
         document.getElementById("room6Stuff2").style.display = "none";
         document.getElementById("room8Stuff").style.display = "none";
     </script>
+    <script src="script.js"></script>
     <script src="js/InGame/MoR.js"></script>
     <script src="js/settings.js"></script>
     <script src="js/lboard.js"></script>

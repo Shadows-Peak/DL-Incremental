@@ -14,7 +14,7 @@ function updateVisuals() {
 */
 
 window.addEventListener('keyup', e=>{
-  if ((e.key == " ") && (currentRoom == 1 || currentRoom == 2)) {
+  if ((e.key == " ") && (currentRoom == 1 || currentRoom == 2 || currentRoom == 3)) {
     simulateClick();
   }
 });
@@ -33,6 +33,19 @@ function setClickProcesses1() {
         } else {
           LooksmaxxingChallengesCompleted[inLooksmaxxingChallenge-1] += 1;
           RizzPoints += RizzPointgain() + 1;
+          const ranChance = Math.floor(Math.random() * 100);
+          if (ranChance >= 100 - 5*(1-Boolean(inLooksmaxxingChallenge)) && rizzifactsObtained[0] >= 3) {
+            RizzPoints += RizzPointgain() + 1;
+            sendToast("Rizzmax: <b>+"+abbrev(2*RizzPointgain() + 2)+" Rizz Points</b>");
+            if (2*RizzPointgain() + 2 >= 10) {
+              forceAchieve(1607);
+            }
+          } else {
+            sendToast("Rizzmax: <b>+"+abbrev(RizzPointgain() + 1)+" Rizz Points</b>");
+            if (RizzPointgain() + 1 >= 10) {
+              forceAchieve(1607);
+            }
+          }
           Rizzmaxxes++;
           clicks = 0;
           CountryClubs = 0;
@@ -43,7 +56,7 @@ function setClickProcesses1() {
           AutomaticRizzers = 0;
           clicksIn6 = 0;
           runsIn6 = 0;
-          alert("You have completed the '"+['Bye Bye!','Edging Maestro','Stone-Faced Mogging','Rags to Riches','Ad Hominem','Gods Plan'][inLooksmaxxingChallenge-1]+"' Looksmaxxing Challenge. Aside from the benefits of completion, you have also recieved the Rizz Points from your Rizzmax.")
+          sendToast("Completion: <b>"+['Bye Bye!','Edging Maestro','Stone-Faced Mogging','Rags to Riches','Ad Hominem','Gods Plan'][inLooksmaxxingChallenge-1]+"</b> Challenge!");
           inLooksmaxxingChallenge = 0;
           setRoom(1);
           updateBackgrounds();
@@ -52,6 +65,19 @@ function setClickProcesses1() {
         }
       }
       RizzPoints += RizzPointgain() + 1;
+      const ranChance = Math.floor(Math.random() * 100);
+      if (ranChance >= 100 - 5*(1-Boolean(inLooksmaxxingChallenge)) && rizzifactsObtained[0] >= 3) {
+        RizzPoints += RizzPointgain() + 1;
+        sendToast("Rizzmax: <b>+"+abbrev(2*RizzPointgain() + 2)+" Rizz Points</b>");
+        if (2*RizzPointgain() + 2 >= 10) {
+          forceAchieve(1607);
+        }
+      } else {
+        sendToast("Rizzmax: <b>+"+abbrev(RizzPointgain() + 1)+" Rizz Points</b>");
+        if (RizzPointgain() + 1 >= 10) {
+          forceAchieve(1607);
+        }
+      }
       Rizzmaxxes++;
       clicks = 0;
       CountryClubs = 0;
@@ -84,10 +110,10 @@ function simulateClick() {
     }
 
     if (inLooksmaxxingChallenge != 6) {
-      clicks += Math.floor((multiplier)*(1+(mult2*RizzmaxClickWorth*5)/100)*(1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100)*(1+mult3*(Number(LooksmaxxingChallengesCompleted[0])/10))*(1 + Math.ceil(((1+mult3*Number(LooksmaxxingChallengesCompleted[3]))*CountryClubs)**(1+Cars/10))*(1 + RiceWashers)));
+      clicks += Math.floor((1+(countUnlockedAchievements()/100))*(multiplier)*(1+(mult2*RizzmaxClickWorth*5)/100)*(1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100)*(1+mult3*(Number(LooksmaxxingChallengesCompleted[0])/10))*(1 + Math.ceil(((1+mult3*Number(LooksmaxxingChallengesCompleted[3]))*CountryClubs)**(1+Cars/10))*(1 + RiceWashers)));
     } else if (inLooksmaxxingChallenge == 6) {
       var nerfMult = ( 0.8 + ( Math.log(clicksIn6+2) / ( Math.log(2) * ( 1 + ( clicksIn6 + 2 )**2 ) ) ) ) * ( ( 1.1 ) ** ( -1*clicksIn6 ) )
-      clicks += Math.round(nerfMult*Math.floor((multiplier)*(1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100)*(1 + Math.ceil((CountryClubs)**(1+Cars/10))*(1 + RiceWashers))));
+      clicks += Math.round(nerfMult*Math.floor((1+(countUnlockedAchievements()/100))*(multiplier)*(1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100)*(1 + Math.ceil((CountryClubs)**(1+Cars/10))*(1 + RiceWashers))));
       clicksIn6++;
     }
     
@@ -116,6 +142,10 @@ document.addEventListener("visibilitychange", (event) => {
 });
 
 window.addEventListener("pagehide", () => {
+    lastOfflineTime = Date.now();
+});
+
+window.addEventListener("visibilitychange", () => {
     lastOfflineTime = Date.now();
 });
 

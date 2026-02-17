@@ -25,7 +25,7 @@ window.addEventListener('keydown', e=>{
 
 function move(direction, FcurrentRoom) {
     movement = {
-        "lMap": [-1,-1,-1,-1,1,1,0,0,0][currentRoom],
+        "lMap": [-1,-1,-1,-1,1,1,2,0,0][currentRoom],
         "rMap": [1,1,1,1,0,-1,-1,0,-2][currentRoom],
         "uMap": [8,5,3,1,0,0,0,0,0][currentRoom],
         "dMap": [0,0,0,0,-1,-3,-5,0,-8][currentRoom],
@@ -38,7 +38,7 @@ function move(direction, FcurrentRoom) {
             currentRoom = currentRoom + movement[direction];
         }
     } else if (direction == "lMap") {
-        if (FcurrentRoom == 0 || FcurrentRoom == 6 || FcurrentRoom == 8) {
+        if (FcurrentRoom == 0 || FcurrentRoom == 8) {
             return
         } else {
             if (FcurrentRoom == 4 && MineOfRizzUnlocked == 0) {
@@ -95,6 +95,7 @@ function disables(FcurrentRoom) {
     if (FcurrentRoom == 7) {
         disablesList = [0,0,0,0]
         extraDisables = {
+            "newToolbar" : 0,
             "menuStuff": 1,
             "room0Stuff": 0,
             "room1Stuff": 0,
@@ -111,6 +112,7 @@ function disables(FcurrentRoom) {
     if (FcurrentRoom == 0) {
         disablesList = [0,1,1,0]
         extraDisables = {
+            "newToolbar" : 1,
             "menuStuff": 0,
             "room0Stuff": 1,
             "room1Stuff": 0,
@@ -130,6 +132,7 @@ function disables(FcurrentRoom) {
             disablesList = [1,1,1,0]
         }
         extraDisables = {
+            "newToolbar" : 1,
             "menuStuff": 0,
             "room0Stuff": 0,
             "room1Stuff": 1,
@@ -149,6 +152,7 @@ function disables(FcurrentRoom) {
             disablesList = [1,1,1,0];
         }
         extraDisables = {
+            "newToolbar" : 1,
             "menuStuff": 0,
             "room0Stuff": 0,
             "room1Stuff": 0,
@@ -168,6 +172,7 @@ function disables(FcurrentRoom) {
             disablesList = [1,0,1,0]
         }
         extraDisables = {
+            "newToolbar" : 1,
             "menuStuff": 0,
             "room0Stuff": 0,
             "room1Stuff": 0,
@@ -187,6 +192,7 @@ function disables(FcurrentRoom) {
             disablesList = [1,0,0,1];
         }
         extraDisables = {
+            "newToolbar" : 1,
             "menuStuff": 0,
             "room0Stuff": 0,
             "room1Stuff": 0,
@@ -206,6 +212,7 @@ function disables(FcurrentRoom) {
             disablesList = [1,1,0,1]
         }
         extraDisables = {
+            "newToolbar" : 1,
             "menuStuff": 0,
             "room0Stuff": 0,
             "room1Stuff": 0,
@@ -221,6 +228,7 @@ function disables(FcurrentRoom) {
     } else if (FcurrentRoom == 6) {
         disablesList = [1,1,0,1]
         extraDisables = {
+            "newToolbar" : 1,
             "menuStuff": 0,
             "room0Stuff": 0,
             "room1Stuff": 0,
@@ -240,6 +248,7 @@ function disables(FcurrentRoom) {
             disablesList = [0,1,0,1]
         }
         extraDisables = {
+            "newToolbar" : 1,
             "menuStuff": 0,
             "room0Stuff": 0,
             "room1Stuff": 0,

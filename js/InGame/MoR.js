@@ -51,4 +51,12 @@ function setClickProcesses4() {
       updateVisuals();
     }
   };
+
+  document.getElementById('Rizzafact1Infuse').onclick = function(){
+    if (RizziteNRizzium[2] > grabCost('RizzifactUpgrade1') && rizzifactsObtained[0] < 3) {
+      RizziteNRizzium[2] -= grabCost('RizzifactUpgrade1');
+      rizzifactsObtained[0] += 1;
+      updateVisuals();
+    }
+  }
 }

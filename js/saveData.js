@@ -19,6 +19,7 @@ data = {
     "timePlayed": 0,
     "backgroundToggle": 1,
     "chosenBackground": 1,
+    "autosaveInterval": 120,
     "lastOfflineTime": 0,
     "MineOfRizzUnlocked": 0,
     "RizzmaxExtraChance": 0,
@@ -28,6 +29,8 @@ data = {
     "smeltingTime": 0,
     "hasSmelted": false,
     "newFormatToggle": 0,
+    "playerAchievements": {},
+    "rizzifactsObtained": [0]
 }
 
 /*
@@ -45,7 +48,7 @@ function updateVisuals() {
 }
 */
 
-async function saveData(silent=false) {
+async function saveData() {
     if (USERNAME == "" || PASSWORD == "" || USERNAME == null || PASSWORD == null) {
         return;
     }
@@ -53,12 +56,12 @@ async function saveData(silent=false) {
     var megaData = "";
     var basicIter = 0;
     for (const key of Object.keys(data)) {
-        data[key] = [clicks,CountryClubs,RiceWashers,Cars,Cheater,RandomValue5xUpgrades,AutomaticRizzers,clicksIn6,runsIn6,RandomAuto2xUpgrades,Rizzmaxxes,RizzPoints,OfflineProdHrs,RizzmaxClickWorth,LooksmaxxingChallengesUpgradeUnlocked,inLooksmaxxingChallenge,LooksmaxxingChallengesCompleted,timePlayed,backgroundToggle,chosenBackground,lastOfflineTime,MineOfRizzUnlocked,RizzmaxExtraChance,MoRCellHighlight,RizziteNRizzium,RizzalurgyUnlocked,smeltingTime,hasSmelted,newFormatToggle][basicIter];
+        data[key] = [clicks,CountryClubs,RiceWashers,Cars,Cheater,RandomValue5xUpgrades,AutomaticRizzers,clicksIn6,runsIn6,RandomAuto2xUpgrades,Rizzmaxxes,RizzPoints,OfflineProdHrs,RizzmaxClickWorth,LooksmaxxingChallengesUpgradeUnlocked,inLooksmaxxingChallenge,LooksmaxxingChallengesCompleted,timePlayed,backgroundToggle,chosenBackground,autosaveInterval,lastOfflineTime,MineOfRizzUnlocked,RizzmaxExtraChance,MoRCellHighlight,RizziteNRizzium,RizzalurgyUnlocked,smeltingTime,hasSmelted,newFormatToggle,playerAchievements,rizzifactsObtained][basicIter];
         megaData += key + ":" + JSON.stringify(data[key]) + "|";
         basicIter++;
     }
     for (const [key, value] of Object.entries(data)) {
-        if (key == "LooksmaxxingChallengesCompleted" || key == "MoRCellHighlight" || key == "RizziteNRizzium") {
+        if (["LooksmaxxingChallengesCompleted", "MoRCellHighlight", "RizziteNRizzium", "playerAchievements"].includes(key)) {
             localStorage.setItem(key, JSON.stringify(value));
         } else {
             localStorage.setItem(key, value);
@@ -72,9 +75,6 @@ async function saveData(silent=false) {
         encryptedData
     ).then(() => {
         console.log("Data saved successfully!");
-        if (!silent) {
-            alert('Save Successful!');
-        }
     }).catch(err => {
         console.error("Failed to save data:", err);
     });
@@ -102,6 +102,7 @@ function resetData(soft=false) {
         "timePlayed": 0,
         "backgroundToggle": 1,
         "chosenBackground": 1,
+        "autosaveInterval": 120,
         "lastOfflineTime": 0,
         "MineOfRizzUnlocked": 0,
         "RizzmaxExtraChance": 0,
@@ -110,12 +111,14 @@ function resetData(soft=false) {
         "RizzalurgyUnlocked": 0,
         "smeltingTime": 0,
         "hasSmelted": false,
-        "newFormatToggle": 0
+        "newFormatToggle": 0,
+        "playerAchievements": {},
+        "rizzifactsObtained": [0]
     }
     for (const [key, value] of Object.entries(data)) {
         window[key] = value;
         if (soft) {continue;}
-        if (key == "LooksmaxxingChallengesCompleted" || key == "MoRCellHighlight" || key == "RizziteNRizzium") {
+        if (["LooksmaxxingChallengesCompleted", "MoRCellHighlight", "RizziteNRizzium", "playerAchievements"].includes(key)) {
             localStorage.setItem(key, JSON.stringify(value));
         } else if (key == "clicks") {
             localStorage.setItem("mainClicks", value);
@@ -127,14 +130,6 @@ function resetData(soft=false) {
 }
 
 function setClickProcesses0andahalf() {
-    document.getElementById('saveButton').onclick = function () {
-        saveData();
-        document.getElementById('saveButton').innerHTML = "Saved!";
-        setTimeout(function () {
-            document.getElementById('saveButton').innerHTML = "Save Game";
-        }, (3 * 1000));
-    };
-
     document.getElementById('resetButton').onclick = function () {
         if (confirm("Are you sure you want to reset your game?") == true) {
             if (confirm("Are you really really sure?") == true) {
@@ -152,8 +147,30 @@ function setClickProcesses0andahalf() {
     };
 }
 
-function periodicSave() {
-    saveData(true);
+saveInProgress = false;
+async function periodicSave() {
+    if (saveInProgress) {return;}
+    saveInProgress = true;
+
+    document.getElementById("saveBtn2").classList.add("disabled");
+    document.getElementById("saveIcon").innerHTML = '<div class="spinner"></div>'
+
+    try {
+        await saveData();
+
+        document.getElementById("saveIcon").textContent = '✔';
+        sendToast("<b>Game Saved!</b>");
+        await new Promise(res => setTimeout(res, 1500));
+    } catch(err) {
+        console.error("Save failed:", err);
+
+        document.getElementById("saveIcon").textContent = '❌';
+        await new Promise(res => setTimeout(res, 1500));
+    }
+
+    document.getElementById("saveIcon").textContent = '💾';
+    document.getElementById("saveBtn2").classList.remove("disabled");
+    saveInProgress = false;
 }
 
 window.onbeforeunload = function () {
@@ -161,5 +178,3 @@ window.onbeforeunload = function () {
     saveData();
     alert("Your game has been saved.");
 }
-
-setInterval(periodicSave, 120 * 1000);

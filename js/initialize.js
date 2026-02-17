@@ -1,4 +1,6 @@
 //const { run } = require("googleapis/build/src/apis/run");
+var savingInterval;
+var saveInProgress = false;
 
 var lastOfflineTime = 0;
 
@@ -9,6 +11,7 @@ var Cheater = false;
 var backgroundToggle = 1;
 var newFormatToggle = 0;
 var chosenBackground = 1; // 1 for Light, 2 for Dark, 3 for Cream
+var autosaveInterval = 120;
 
 var clicks = 0;
 
@@ -44,6 +47,97 @@ var RizziteNRizzium = [0,0,0]; // Rizzite Progress, Rizzite, Rizzium
 var smeltingTime = 0;
 var hasSmelted = false;
 
+var rizzifactsObtained = [0];
+
+var playerAchievements = {}; // Player Data Side
+
+
+var gameAchievements = {}; // Game Side
+
+function addAchievement(id,name,tooltip,requirementFunction) {
+    const square = document.createElement("div");
+    square.className = "achievementSquare";
+    square.dataset.id = id;
+    square.dataset.tooltip = name+"<br><hr>"+tooltip;
+    square.classList.add('themedLocked');
+    square.style.width = '50px';
+    square.style.height = '50px';
+
+    document.getElementById("achievementsGrid").appendChild(square);
+
+    gameAchievements[id] = {
+        element: square,
+        name: name,
+        tooltip: tooltip,
+        unlocked: playerAchievements[id] ?? false,
+        requirement: requirementFunction
+    };
+
+    playerAchievements[id] = playerAchievements[id] ?? false;
+}
+
+function orderAchievements() {
+    const grid = document.getElementById("achievementsGrid");
+
+    const squares = Array.from(grid.children);
+
+    squares.sort((a, b) => {
+        return Number(a.dataset.id) - Number(b.dataset.id);
+    });
+
+    squares.forEach(square => {
+        const achievement = gameAchievements[square.dataset.id];
+        if (achievement.unlocked) {square.dataset.tooltip=achievement.name+" <b>(COMPLETED)</b><br><hr>"+achievement.tooltip;square.classList.add('themedUnlocked');}
+        grid.appendChild(square); // Re-append in sorted order
+    });
+}
+
+function checkAchievements() {
+    for (const id in gameAchievements) {
+        const achievement = gameAchievements[id];
+
+        if (!achievement.unlocked && achievement.requirement()) {
+            unlockAchievement(id);
+            achievement.element.dataset.tooltip=achievement.name+" <b>(COMPLETED)</b><br><hr>"+achievement.tooltip;
+            achievement.element.classList.add('themedUnlocked');
+            unlockAchievementCard(achievement.name,achievement.tooltip);
+        }
+    }
+}
+
+function forceAchieve(id) {
+    const achievement = gameAchievements[id];
+
+    if (!achievement.unlocked) {
+        unlockAchievement(id);
+        achievement.element.dataset.tooltip=achievement.name+" <b>(COMPLETED)</b><br><hr>"+achievement.tooltip;
+        achievement.element.classList.add('themedUnlocked');
+        unlockAchievementCard(achievement.name,achievement.tooltip);
+    }
+}
+
+function unlockAchievement(id) {
+    const achievement = gameAchievements[id];
+    achievement.unlocked = true;
+    playerAchievements[id] = true;
+
+    achievement.element.classList.add("unlocked");
+    console.log("Unlocked achievement:", id);
+}
+
+function countUnlockedAchievements() {
+    if (!playerAchievements || typeof playerAchievements !== "object") return 0;
+
+    let count = 0;
+    for (const key in playerAchievements) {
+        if (playerAchievements[key] === true) {
+            count++;
+        }
+    }
+    return count;
+}
+
+
 
 
 function grabCost(Item) {
@@ -59,9 +153,17 @@ function grabCost(Item) {
         "LooksmaxxingChallengesUpgradeUnlocked": (Boolean(LooksmaxxingChallengesUpgradeUnlocked) ? -1 : 100),
         "RizzmaxExtraChance": (4*Math.floor(2.3**RizzmaxExtraChance)+(2**RizzmaxExtraChance)),
         "MineOfRizzUnlocked": (Boolean(MineOfRizzUnlocked) ? -1 : 250),
-        "RizzalurgyUnlocked": (Boolean(RizzalurgyUnlocked) ? -1 : 1)
+        "RizzalurgyUnlocked": (Boolean(RizzalurgyUnlocked) ? -1 : 1),
+        "RizzifactUpgrade1": [50,150,500][rizzifactsObtained]
     }
     return(allCosts[Item]);
+}
+
+function bonusText(Item) {
+    var allBonusTexts = {
+        "RizzifactUpgrade1": (rizzifactsObtained[0] < 3 ? "Bonus: +"+rizzifactsObtained[0]*5+"% Chance to Upgrade Twice When You Buy Normal Upgrades." : "Bonus: +15% Chance to Upgrade Twice When You Buy Normal Upgrades And +5% Chance To Rizzmax For Twice As Much.")
+    }
+    return(allBonusTexts[Item])
 }
 
 function LooksmaxCosts(Looksmax) {
@@ -151,7 +253,7 @@ function abbrev(number) {
     return((Math.floor((number/(10**zeros))*100)/100).toString()+finalAbbrev);
 }
 
-function abrevTime(seconds) {
+function abbrevTime(seconds) {
     var mins = Math.floor(Math.floor(seconds) / 60);
     var hrs = Math.floor(mins / 60);
     var days = Math.floor(hrs / 24);
@@ -183,7 +285,13 @@ function setDisplay(object, value) {
         finalVal = "initial";
     }
     try{
-        document.getElementById(object).style.display = finalVal;
+        if (object != "newToolbar") {
+            document.getElementById(object).style.display = finalVal;
+        } else if (finalVal == "initial") {
+            document.getElementById(object).style.display = "flex";
+        } else {
+            document.getElementById(object).style.display = finalVal;
+        }
     } catch(error) {
         console.log(error);
     }
@@ -199,38 +307,86 @@ function updateBackgrounds() {
             elem.classList.add("freeButton");
         });
     }
+    var themeMap;
     if (chosenBackground == 1) {
-        themedButtons = document.getElementsByClassName("themed1");
-        for(var i = 0; i < themedButtons.length; i++)
-        {
-            if (themedButtons[i].id == "leaderboard-table") {
-                themedButtons[i].style.backgroundColor = "rgba(240, 240, 240, 0.6)";
-                continue;
-            }
-            themedButtons[i].style.backgroundColor = "rgb(240, 240, 240)";
-        }
+        themeMap = {
+            "themed1": "linear-gradient(0deg, rgb(240, 240, 240), rgb(240, 240, 240))",
+            "themed2": "linear-gradient(0deg, rgb(221, 221, 221), rgb(221, 221, 221))",
+            "themed3": "linear-gradient(145deg, rgb(158, 42, 42), rgb(124, 31, 31))",
+            "themed4": "linear-gradient(45deg, rgb(138, 138, 138), rgb(102, 102, 102))",
+            "themedLocked": "linear-gradient(225deg, rgb(48, 48, 48), rgb(65, 65, 65))",
+            "themedUnlocked": "linear-gradient(225deg, rgb(189, 189, 189), rgb(211, 211, 211))"
+        };
     } else if (chosenBackground == 2) {
-        themedButtons = document.getElementsByClassName("themed1");
-        for(var i = 0; i < themedButtons.length; i++)
-        {
-            if (themedButtons[i].id == "leaderboard-table") {
-                themedButtons[i].style.backgroundColor = "rgba(64, 66, 71, 0.6)";
-                continue;
-            }
-            themedButtons[i].style.backgroundColor = "rgb(64, 66, 71)";
-        }
+        themeMap = {
+            "themed1": "linear-gradient(0deg, rgb(64, 66, 71), rgb(64, 66, 71))",
+            "themed2": "linear-gradient(0deg, rgb(37, 39, 41), rgb(37, 39, 41))",
+            "themed3": "linear-gradient(145deg, rgb(54, 18, 18), rgb(54, 9, 9))",
+            "themed4": "linear-gradient(45deg, rgb(27, 29, 31), rgb(19, 20, 22))",
+            "themedLocked": "linear-gradient(225deg, rgb(19, 19, 19), rgb(29, 29, 29))",
+            "themedUnlocked": "linear-gradient(225deg, rgb(49, 49, 49), rgb(63, 63, 65))"
+        };
     } else if (chosenBackground == 3) {
-        themedButtons = document.getElementsByClassName("themed1");
-        for(var i = 0; i < themedButtons.length; i++)
-        {
-            if (themedButtons[i].id == "leaderboard-table") {
-                themedButtons[i].style.backgroundColor = "rgba(209, 193, 161, 0.6)";
-                continue;
-            }
-            themedButtons[i].style.backgroundColor = "rgb(209, 193, 161)";
+        themeMap = {
+            "themed1": "linear-gradient(0deg, rgb(209, 193, 161), rgb(209, 193, 161))",
+            "themed2": "linear-gradient(0deg, rgb(216, 199, 165), rgb(216, 199, 165))",
+            "themed3": "linear-gradient(145deg, rgb(150, 60, 60), rgb(155, 52, 52))",
+            "themed4": "linear-gradient(45deg,rgb(194, 174, 134), rgb(168, 148, 107))",
+            "themedLocked": "linear-gradient(225deg, rgb(104, 94, 66), rgb(124, 108, 87))",
+            "themedUnlocked": "linear-gradient(225deg, rgb(204, 189, 148), rgb(231, 202, 148))"
+        };
+    } else if (chosenBackground == 4) {
+        themeMap = {
+            "themed1": "linear-gradient(0deg, rgb(42, 98, 170), rgb(74, 134, 212))",
+            "themed2": "linear-gradient(0deg, rgb(32, 77, 136), rgb(30, 88, 165))",
+            "themed3": "linear-gradient(145deg, rgb(57, 50, 112), rgb(66, 58, 126))",
+            "themed4": "linear-gradient(45deg, rgb(22, 62, 114), rgb(12, 54, 109))",
+            "themedLocked": "linear-gradient(225deg, rgb(40, 42, 102), rgb(41, 29, 112))",
+            "themedUnlocked": "linear-gradient(225deg, rgb(93, 91, 175), rgb(55, 106, 199))"
+        };
+    } else if (chosenBackground == 5) {
+        themeMap = {
+            "themed1": "linear-gradient(0deg, rgb(184, 72, 72), rgb(228, 95, 72))",
+            "themed2": "linear-gradient(0deg, rgb(153, 52, 52), rgb(209, 91, 72))",
+            "themed3": "linear-gradient(145deg, rgb(100, 30, 30), rgb(180, 60, 40))",
+            "themed4": "linear-gradient(45deg, rgb(112, 31, 31), rgb(163, 57, 41))",
+            "themedLocked": "linear-gradient(225deg, rgb(95, 43, 39), rgb(119, 48, 30))",
+            "themedUnlocked": "linear-gradient(225deg, rgb(177, 61, 41), rgb(214, 72, 37))"
+        }
+    } else if (chosenBackground == 6) {
+        themeMap = {
+            "themed1": "linear-gradient(0deg, rgb(116, 204, 116), rgb(124, 235, 141))",
+            "themed2": "linear-gradient(0deg, rgb(89, 168, 89), rgb(93, 202, 108))",
+            "themed3": "linear-gradient(145deg, rgb(43, 110, 43), rgb(65, 168, 47))",
+            "themed4": "linear-gradient(45deg, rgb(73, 148, 73), rgb(60, 151, 72))",
+            "themedLocked": "linear-gradient(225deg, rgb(54, 88, 46), rgb(50, 114, 44))",
+            "themedUnlocked": "linear-gradient(225deg, rgb(71, 146, 71), rgb(97, 190, 69))"
+        }
+    } else if (chosenBackground == 7) {
+        themeMap = {
+            "themed1": "linear-gradient(175deg, rgb(55, 61, 100), rgb(55, 64, 124))",
+            "themed2": "linear-gradient(175deg, rgb(44, 45, 82), rgb(46, 48, 97))",
+            "themed3": "linear-gradient(145deg, rgb(40, 32, 64), rgb(45, 35, 78))",
+            "themed4": "linear-gradient(95deg, rgb(34, 35, 70), rgb(31, 33, 77))",
+            "themedLocked": "linear-gradient(225deg, rgb(27, 24, 46), rgb(34, 21, 59))",
+            "themedUnlocked": "linear-gradient(225deg, rgb(45, 36, 83), rgb(49, 35, 112))"
         }
     }
+    Object.entries(themeMap).forEach(([className, color]) => {
+        const elements = document.getElementsByClassName(className);
+        for (const el of elements) {
+            if (className === "themed1" && el.id === "leaderboard-table") {
+                el.style.background = color.replace("rgb(", "rgba(").replace(")", ", 0.6)");
+                continue
+            }
+            el.style.background = color;
+        }
+    });
     if (backgroundToggle == 1) {
+        document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundRepeat = "no-repeat";
+        document.body.style.backgroundPositionX = "center";
+        document.body.style.backgroundPositionY = "center";
         if (currentRoom == 0) {
             document.body.style.backgroundImage = "url('images/otherDilyanLopez.jpg')";
         } else if (currentRoom == 1) {
@@ -242,33 +398,37 @@ function updateBackgrounds() {
         } else if (currentRoom == 4) {
             document.body.style.backgroundImage = "url('images/dilyanLopez3.jpg')";
         } else if (currentRoom == 7) {
-            document.body.style.backgroundColor = "rgb(228, 210, 178)";
             document.body.style.backgroundImage = "none";
             document.body.style.backgroundSize = "cover";
             document.body.style.backgroundRepeat = "no-repeat";
             document.body.style.backgroundPositionX = "center";
             document.body.style.backgroundPositionY = "center";
+            document.body.style.background = "linear-gradient(0deg, rgb(228, 210, 178), rgb(228, 210, 178))";
         }
-        document.body.style.backgroundSize = "cover";
-        document.body.style.backgroundRepeat = "no-repeat";
-        document.body.style.backgroundPositionX = "center";
-        document.body.style.backgroundPositionY = "center";
     } else {
-        if (chosenBackground == 1) {
-            document.body.style.backgroundColor = "rgb(255, 255, 255)";
-        } else if (chosenBackground == 2) {
-            document.body.style.backgroundColor = "rgb(42, 44, 48)";
-        } else if (chosenBackground == 3) {
-            document.body.style.backgroundColor = "rgb(240, 222, 187)";
-        }
-        if (currentRoom == 7) {
-            document.body.style.backgroundColor = "rgb(228, 210, 178)";
-        }
         document.body.style.backgroundImage = "none";
         document.body.style.backgroundSize = "cover";
         document.body.style.backgroundRepeat = "no-repeat";
         document.body.style.backgroundPositionX = "center";
         document.body.style.backgroundPositionY = "center";
+        if (chosenBackground == 1) {
+            document.body.style.background = "linear-gradient(0deg, rgb(255, 255, 255), rgb(255, 255, 255))";
+        } else if (chosenBackground == 2) {
+            document.body.style.background = "linear-gradient(0deg, rgb(42, 44, 48), rgb(42, 44, 48))";
+        } else if (chosenBackground == 3) {
+            document.body.style.background = "linear-gradient(0deg, rgb(240, 222, 187), rgb(240, 222, 187))";
+        } else if (chosenBackground == 4) {
+            document.body.style.background = "linear-gradient(0deg, rgb(50, 83, 194), rgb(39, 138, 204))";
+        } else if (chosenBackground == 5) {
+            document.body.style.background = "linear-gradient(0deg, rgb(168, 68, 68), rgb(238, 114, 92))";
+        } else if (chosenBackground == 6) {
+            document.body.style.background = "linear-gradient(0deg, rgb(112, 190, 112), rgb(129, 238, 145))";
+        } else if (chosenBackground == 7) {
+            document.body.style.background = "linear-gradient(175deg, rgb(47, 47, 82), rgb(51, 51, 93))";
+        }
+        if (currentRoom == 7) {
+            document.body.style.background = "linear-gradient(0deg, rgb(228, 210, 178), rgb(228, 210, 178))";
+        }
     }
 }
 
@@ -377,8 +537,10 @@ function updateVisuals() {
             }
         }
         document.getElementById('BackgroundToggleButton').innerHTML = "Toggle Backgrounds: "+["Off","On"][backgroundToggle];
-        document.getElementById('ThemeChangeButton').innerHTML = "Current Theme: "+["Light","Dark","Cream"][chosenBackground-1];
-        document.getElementById('NewFormatToggleButton').innerHTML = "Toggle Better Format: "+["Off","On"][newFormatToggle];
+        document.getElementById('ThemeChangeButton').innerHTML = "Toggle Theme ("+["Light","Dark","Cream","Sea","Fire","Green","Midnight"][chosenBackground-1]+")";
+        document.getElementById('NewFormatToggleButton').innerHTML = "Toggle Wide Buttons: "+["Off","On"][newFormatToggle];
+        document.getElementById('autoSaveIntervalButton').innerHTML = "Autosave Interval: "+abbrevTime(autosaveInterval);
+        document.getElementById('achievementDPM').innerHTML = "Dilyan Point Multiplier (From Achievements): +"+abbrev(countUnlockedAchievements())+"%";
         if (clicks >= 25000) {
             document.getElementById('RizzmaxButton').innerHTML = "Rizzmax: <b>+"+abbrev(RizzPointgain()+1)+" Points</b>";
         } else {
@@ -459,10 +621,15 @@ function updateVisuals() {
             document.getElementById('foundryTimer').innerHTML = "Not Currently Active";
         } else {
             document.getElementById('smeltRizziteButton').innerHTML = "Cannot Smelt More Rizzite At This Time";
-            document.getElementById('foundryTimer').innerHTML = "Time Left: "+abrevTime(smeltingTime);
+            document.getElementById('foundryTimer').innerHTML = "Time Left: "+abbrevTime(smeltingTime);
         }
         document.getElementById('foundryTotalTime').innerHTML = "Each smelting process takes 5-20 minutes.";
         document.getElementById('foundryTotalProduction').innerHTML = "Produce: 15-25 mL of Rizzium for each Rizzite.";
+
+        // Rizzifacts
+        document.getElementById('Rizif1C').innerHTML = "Infusion Cost: "+abbrevLiquid(grabCost('RizzifactUpgrade1'))+" Rizzium";
+        document.getElementById('Rizif1B').innerHTML = bonusText('RizzifactUpgrade1');
+        document.getElementById('Rizif1I').innerHTML = "Infusions: "+rizzifactsObtained[0]+"/3"
     } catch(error) {
         console.error(error);
     }
@@ -481,10 +648,9 @@ function offlineProgress() {
         
         var multiplier = (0.1*RandomValue5xUpgrades+0.05*RizzmaxExtraChance)*5+(1-(0.1*RandomValue5xUpgrades+0.05*RizzmaxExtraChance));
         
-        clicks += Math.floor(((10+Number(LooksmaxxingChallengesCompleted[1]))/100)*(Math.floor(timeDifferenceSeconds) * (gameTick) * (multiplier) * (AutomaticRizzers) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) * (1+(Number(LooksmaxxingChallengesCompleted[0])/10)) ));
-        lastOfflineTime = 0;
+        clicks += Math.floor((1+(countUnlockedAchievements()/100))* ((10+Number(LooksmaxxingChallengesCompleted[1]))/100)*(Math.floor(timeDifferenceSeconds) * (gameTick) * (multiplier) * (AutomaticRizzers) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) * (1+(Number(LooksmaxxingChallengesCompleted[0])/10)) ));
 
-        alert("You gained "+Math.floor(((10+Number(LooksmaxxingChallengesCompleted[1]))/100)*(Math.floor(timeDifferenceSeconds) * (gameTick) * (multiplier) * (AutomaticRizzers) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) * (1+(Number(LooksmaxxingChallengesCompleted[0])/10)) ))+" clicks while you were gone! "+timeDifferenceSeconds);
+        sendToast("You gained "+Math.floor(((10+Number(LooksmaxxingChallengesCompleted[1]))/100)*(Math.floor(timeDifferenceSeconds) * (gameTick) * (multiplier) * (AutomaticRizzers) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) * (1+(Number(LooksmaxxingChallengesCompleted[0])/10)) ))+" clicks while you were gone!");
         updateVisuals();
     } else if (inLooksmaxxingChallenge == 2 && OfflineProdHrs > 0) {
         var currentTime = Date.now();
@@ -498,10 +664,9 @@ function offlineProgress() {
 
         var multiplier = 0.01*RandomValue5xUpgrades*RandomAuto2xUpgrades*10+(0.1*RandomAuto2xUpgrades-0.01*RandomAuto2xUpgrades*RandomValue5xUpgrades)*2+(0.1*RandomValue5xUpgrades-0.01*RandomAuto2xUpgrades*RandomValue5xUpgrades)*5+(1-0.1*RandomValue5xUpgrades-0.1*RandomAuto2xUpgrades+0.01*RandomValue5xUpgrades*RandomAuto2xUpgrades);
         
-        clicks += Math.floor(0.5*Math.floor(timeDifferenceSeconds)*Math.floor((multiplier) * (AutomaticRizzers) * (1+Math.ceil((CountryClubs)**(1+Cars/10))) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100)));
-        lastOfflineTime = 0;
+        clicks += Math.floor((1+(countUnlockedAchievements()/100)) * 0.5*Math.floor(timeDifferenceSeconds)*Math.floor((multiplier) * (AutomaticRizzers) * (1+Math.ceil((CountryClubs)**(1+Cars/10))) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100)));
 
-        alert("You gained "+Math.floor(0.5*Math.floor(timeDifferenceSeconds)*Math.floor((multiplier) * (AutomaticRizzers) * (1+Math.ceil((CountryClubs)**(1+Cars/10))) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100)))+" clicks while you were gone! "+timeDifferenceSeconds);
+        sendToast("You gained "+Math.floor(0.5*Math.floor(timeDifferenceSeconds)*Math.floor((multiplier) * (AutomaticRizzers) * (1+Math.ceil((CountryClubs)**(1+Cars/10))) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100)))+" clicks while you were gone!");
         updateVisuals(); 
     } else if (inLooksmaxxingChallenge == 6 && OfflineProdHrs > 0) {
         var currentTime = Date.now();
@@ -519,10 +684,9 @@ function offlineProgress() {
         }
 
         var multiplier = (0.1*RandomValue5xUpgrades+0.05*RizzmaxExtraChance)*5+(1-0.1*RandomValue5xUpgrades-0.05*RizzmaxExtraChance);
-        clicks += Math.floor(0.1*(Math.floor(timeDifferenceSeconds) * (multiplier) * (AutomaticRizzers) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) ));
-        lastOfflineTime = 0;
+        clicks += Math.floor((1+(countUnlockedAchievements()/100)) * 0.1*(Math.floor(timeDifferenceSeconds) * (multiplier) * (AutomaticRizzers) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) ));
 
-        alert("You gained "+Math.floor(0.1*(Math.floor(timeDifferenceSeconds) * (multiplier) * (AutomaticRizzers) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) ))+" clicks while you were gone! "+timeDifferenceSeconds);
+        sendToast("You gained "+Math.floor(0.1*(Math.floor(timeDifferenceSeconds) * (multiplier) * (AutomaticRizzers) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) ))+" clicks while you were gone!");
         updateVisuals();
     }
 
@@ -539,6 +703,7 @@ function offlineProgress() {
         if (smeltingTime > 0) {
             if (timeDifferenceSeconds >= smeltingTime) {
                 RizziteNRizzium[2] += 15 + Math.floor(10*Math.random());
+                sendToast("Rizzalurgy: <b>+"+abbrevLiquid(numToIncreaseBy)+" Rizzium</b>");
                 smeltingTime = 0;
                 hasSmelted = true;
                 updateVisuals();
@@ -548,6 +713,8 @@ function offlineProgress() {
             }
         }
     }
+
+    lastOfflineTime = 0;
 }
 
 
@@ -579,6 +746,14 @@ async function loadData(username, password) {
                         0
                     );
                 }
+
+                if (key === "rizzifactsObtained") {
+                    value = padArrayToLength(
+                        value,
+                        rizzifactsObtained.length,
+                        0
+                    )
+                }
             
             } catch (e) {
                 console.error(e);
@@ -590,7 +765,9 @@ async function loadData(username, password) {
             if (
                 key === "LooksmaxxingChallengesCompleted" ||
                 key === "MoRCellHighlight" ||
-                key === "RizziteNRizzium"
+                key === "RizziteNRizzium" ||
+                key === "rizzifactsObtained" ||
+                key === "playerAchievements"
             ) {
                 localStorage.setItem(key, JSON.stringify(value));
             } else {
@@ -643,6 +820,7 @@ async function allInitialize() {
 
     offlineProgress();
 
+    setClickProcessesFirst();
     setClickProcesses0();
     setClickProcesses0andahalf();
     setClickProcesses1();

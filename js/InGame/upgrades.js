@@ -19,6 +19,10 @@ function setClickProcesses2() {
         if (clicks >= grabCost('CountryClubs') && inLooksmaxxingChallenge != 4) {
             clicks -= grabCost('CountryClubs');
             CountryClubs++;
+            const ranChance = Math.floor(Math.random() * 100);
+            if (ranChance >= 100 - 5*rizzifactsObtained[0]*(1-Boolean(inLooksmaxxingChallenge))) {
+                CountryClubs++;
+            }
             if (inLooksmaxxingChallenge == 6) {clicksIn6 = 0;}
             updateVisuals();
         }
@@ -28,6 +32,10 @@ function setClickProcesses2() {
         if (clicks >= grabCost('RiceWashers') && inLooksmaxxingChallenge != 1 && inLooksmaxxingChallenge != 4) {
             clicks -= grabCost('RiceWashers');
             RiceWashers++;
+            const ranChance = Math.floor(Math.random() * 100);
+            if (ranChance >= 100 - 5*rizzifactsObtained[0]*(1-Boolean(inLooksmaxxingChallenge))) {
+                RiceWashers++;
+            }
             if (inLooksmaxxingChallenge == 6) {clicksIn6 = 0;}
             updateVisuals();
         }
@@ -37,6 +45,10 @@ function setClickProcesses2() {
         if (clicks >= grabCost('Cars') && inLooksmaxxingChallenge != 1 && inLooksmaxxingChallenge != 4) {
             clicks -= grabCost('Cars');
             Cars++
+            const ranChance = Math.floor(Math.random() * 100);
+            if (ranChance >= 100 - 5*rizzifactsObtained[0]*(1-Boolean(inLooksmaxxingChallenge))) {
+                Cars++;
+            }
             if (inLooksmaxxingChallenge == 6) {clicksIn6 = 0;}
             updateVisuals();
         }
@@ -47,6 +59,10 @@ function setClickProcesses2() {
             if (clicks >= grabCost('RandomValue5xUpgrades')) {
                 clicks -= grabCost('RandomValue5xUpgrades');
                 RandomValue5xUpgrades++;
+                const ranChance = Math.floor(Math.random() * 100);
+                if (ranChance >= 100 - 5*rizzifactsObtained[0]*(1-Boolean(inLooksmaxxingChallenge))) {
+                    RandomValue5xUpgrades++;
+                }
                 if (inLooksmaxxingChallenge == 6) {clicksIn6 = 0;}
                 updateVisuals();
             }
@@ -57,6 +73,10 @@ function setClickProcesses2() {
         if (clicks >= grabCost('AutomaticRizzers') && inLooksmaxxingChallenge != 3 && inLooksmaxxingChallenge != 4) {
             clicks -= grabCost('AutomaticRizzers');
             AutomaticRizzers++;
+            const ranChance = Math.floor(Math.random() * 100);
+            if (ranChance >= 100 - 5*rizzifactsObtained[0]*(1-Boolean(inLooksmaxxingChallenge))) {
+                AutomaticRizzers++;
+            }
             if (inLooksmaxxingChallenge == 6) {runsIn6 = AutomaticRizzers;}
             updateVisuals();
         }
@@ -67,6 +87,10 @@ function setClickProcesses2() {
             if (clicks >= grabCost('RandomAuto2xUpgrades')) {
                 clicks -= grabCost('RandomAuto2xUpgrades');
                 RandomAuto2xUpgrades++;
+                const ranChance = Math.floor(Math.random() * 100);
+                if (ranChance >= 100 - 5*rizzifactsObtained[0]*(1-Boolean(inLooksmaxxingChallenge))) {
+                    RandomAuto2xUpgrades++;
+                }
                 if (inLooksmaxxingChallenge == 6) {clicksIn6 = 0;}
                 updateVisuals();
             }
@@ -77,6 +101,10 @@ function setClickProcesses2() {
         if (RizzPoints >= grabCost('OfflineProdHrs') && inLooksmaxxingChallenge == 0) {
             RizzPoints -= grabCost('OfflineProdHrs');
             OfflineProdHrs++;
+            const ranChance = Math.floor(Math.random() * 100);
+            if (ranChance >= 100 - 5*rizzifactsObtained[0]*(1-Boolean(inLooksmaxxingChallenge))) {
+                OfflineProdHrs++;
+            }
             updateVisuals();
         }
     }
@@ -85,6 +113,10 @@ function setClickProcesses2() {
         if (RizzPoints >= grabCost('RizzmaxClickWorth') && inLooksmaxxingChallenge == 0) {
             RizzPoints -= grabCost('RizzmaxClickWorth');
             RizzmaxClickWorth++;
+            const ranChance = Math.floor(Math.random() * 100);
+            if (ranChance >= 100 - 5*rizzifactsObtained[0]*(1-Boolean(inLooksmaxxingChallenge))) {
+                RizzmaxClickWorth++;
+            }
             updateVisuals();
         }
     }
@@ -121,6 +153,10 @@ function setClickProcesses2() {
         if (RizzmaxExtraChance < 10 && RizzPoints >= grabCost('RizzmaxExtraChance') && inLooksmaxxingChallenge == 0) {
             RizzPoints -= grabCost('RizzmaxExtraChance');
             RizzmaxExtraChance++;
+            const ranChance = Math.floor(Math.random() * 100);
+            if (ranChance >= 100 - 5*rizzifactsObtained[0]*(1-Boolean(inLooksmaxxingChallenge))) {
+                RizzmaxExtraChance++;
+            }
             updateVisuals();
         }
     }
