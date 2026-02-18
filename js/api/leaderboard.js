@@ -39,6 +39,16 @@ function extractValue(decryptedData, key) {
     } else if (key == "RizziteNRizzium") {
         const arr = JSON.parse(raw);
         num = Number(arr[2]);
+    } else if (key == "playerAchievements") {
+        const dict = JSON.parse(raw)(
+        if (!dict || typeof dict !== "object") {num = 0;} else {
+            let count = 0;
+            for (const key in dict) { 
+                if (dict[key] === true) {count++;}
+            }
+            num = count;
+        }
+        num = Number(num);
     } else {
         num = Number(raw);
     }
