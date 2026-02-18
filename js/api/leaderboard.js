@@ -15,10 +15,10 @@ async function fetchLeaderboardData() {
 }
 
 function extractValue(decryptedData, key) {
-    const raw =decryptedData
-            .split("|")
-            .find(p => p.startsWith(key + ":"))
-            ?.split(":")[1] ?? 0;
+    const raw = decryptedData
+        .split("|")  
+        .find(p => p.startsWith(key + ":"))   
+        ?.slice(key.length + 1) ?? 0;
     
     if (!raw) return 0;
 
@@ -40,15 +40,25 @@ function extractValue(decryptedData, key) {
         const arr = JSON.parse(raw);
         num = Number(arr[2]);
     } else if (key == "playerAchievements") {
-        const dict = JSON.parse(raw);
-        if (!dict || typeof dict !== "object") {num = 0;} else {
+        let dict;
+        
+        try {
+            dict = JSON.parse(raw);
+        } catch (e) {
+            return 0;
+        }
+
+        if (!dict || typeof dict !== "object") {
+            num = 0;
+        } else {
             let count = 0;
-            for (const key in dict) { 
-                if (dict[key] === true) {count++;}
+            for (const achievement in dict) {
+                if (dict[achievement] === true) {
+                    count++;
+                }
             }
             num = count;
         }
-        num = Number(num);
     } else {
         num = Number(raw);
     }
