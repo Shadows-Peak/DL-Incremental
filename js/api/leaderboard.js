@@ -40,7 +40,7 @@ function extractValue(decryptedData, key) {
         const arr = JSON.parse(raw);
         num = Number(arr[2]);
     } else if (key == "playerAchievements") {
-        const dict = JSON.parse(raw)(
+        const dict = JSON.parse(raw);
         if (!dict || typeof dict !== "object") {num = 0;} else {
             let count = 0;
             for (const key in dict) { 
