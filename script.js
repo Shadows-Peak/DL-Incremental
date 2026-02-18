@@ -109,12 +109,39 @@ function setClickProcessesFirst() {
     addAchievement(3,"Bands?","Get 1k Dilyan Points.",function() {
         if (clicks >= 1000) {return true}
     });
+    addAchievement(4,"\"I'm not even rich\"","Get 10k Dilyan Points.",function() {
+        if (clicks >= 10000) {return true}
+    });
+    addAchievement(5,"Yet Still Only Enough For A Few Upgrades.","Get 100k Dilyan Points.",function() {
+        if (clicks >= 100000) {return true}
+    });
+    addAchievement(6,"Big Leagues Are Calling.","Get 1m Dilyan Points.",function() {
+        if (clicks >= 1000000) {return true}
+    });
+    addAchievement(7,"Pocket Change.","Get 10m Dilyan Points.",function() {
+        if (clicks >= 10000000) {return true}
+    });
+    addAchievement(8,"Potentially Wired Funds.","Get 100m Dilyan Points.",function() {
+        if (clicks >= 100000000) {return true}
+    });
+    addAchievement(9,"Dillionare","Get 1b Dilyan Points.",function() {
+        if (clicks >= 1000000000) {return true}
+    });
+    addAchievement(10,"Dilyan Lopez Exponential","Get 1t Dilyan Points.",function() {
+        if (clicks >= 1000000000000) {return true}
+    });
+    addAchievement(11,"ok you can stop now","Get 1qd Dilyan Points.",function() {
+        if (clicks >= 1000000000000000) {return true}
+    });
 
     addAchievement(200,"Why a Country Club?","Obtain your first Country Club.",function() {
         if (CountryClubs >= 1) {return true}
     });
     addAchievement(201,"Things Are Getting Expensive.","Have at least 7 Country Clubs.",function() {
         if (CountryClubs >= 7) {return true}
+    });
+    addAchievement(202,"Business Plan.","Have at least 15 Country Clubs.",function() {
+        if (CountryClubs >= 15) {return true}
     });
 
     addAchievement(401,"Asian Food 😋","Obtain your first Rice Washer.",function() {
@@ -123,15 +150,47 @@ function setClickProcessesFirst() {
     addAchievement(402,"Too Expensive..","Get another Rice Washer.",function() {
         if (RiceWashers >= 2) {return true}
     });
+    addAchievement(403,"Shooting Shots.","Have at least 5 Rice Washers.",function() {
+        if (RiceWashers >= 5) {return true}
+    });
 
     addAchievement(602,"No Correlation.","Obtain your first Car.",function() {
         if (Cars >= 1) {return true}
     });
+    addAchievement(603,"Poor Man's Rotation.","Have at least 3 Cars.",function() {
+        if (Cars >= 3) {return true}
+    });
+    addAchievement(604,"Lore Accurare.","Have at least 11 Cars.",function() {
+        if (Cars >= 11) {return true}
+    });
+    addAchievement(702,"All I Need.","Have at least 1 Car while having only 1 Country Club and no Rice Washers.",function() {
+        if (Cars >= 1 && CountryClubs == 1 && RiceWashers == 0) {return true}
+    });
+    addAchievement(703,"Moving Out.","Have at least 2 Cars while having no Country Clubs and only 1 Rice Washer.",function() {
+        if (Cars >= 2 && CountryClubs == 0 && RiceWashers == 1) {return true}
+    });
+    addAchievement(704,"My Own Legacy.","Have at least 3 Cars while having no Country Clubs and no Rice Washers.",function() {
+        if (Cars >= 3 && CountryClubs == 0 && RiceWashers == 0) {return true}
+    });
 
-    addAchievement(803,"Completely Uselss.","Obtain your first Automatic Rizzer.",function() {
+    addAchievement(803,"Completely Useless.","Obtain your first Automatic Rizzer.",function() {
         if (AutomaticRizzers >= 1) {return true}
     });
-    // Not Quite My Tempo
+    addAchievement(804,"When Does This Get Good?","Have at least 5 Automatic Rizzers.",function() {
+        if (AutomaticRizzers >= 5) {return true}
+    });
+    addAchievement(805,"10 CPS And Still Nothing.","Have at least 10 Automatic Rizzers.",function() {
+        if (AutomaticRizzers >= 10) {return true}
+    });
+    addAchievement(806,"At Least It's Cheap.","Have at least 50 Automatic Rizzers.",function() {
+        if (AutomaticRizzers >= 50) {return true}
+    });
+    addAchievement(807,"Maybe It's Okay?","Have at least 100 Automatic Rizzers.",function() {
+        if (AutomaticRizzers >= 100) {return true}
+    });
+    addAchievement(903,"Not Quite My Tempo.","Have at least 200 Automatic Rizzers and no Country Clubs, Rice Washers, or Cars.",function() {
+        if (AutomaticRizzers >= 200 && CountryClubs == 0 && RiceWashers == 0 && Cars == 0) {return true}
+    });
 
     addAchievement(1004,"Sometimes.","Obtain your first Random Value Upgrade.",function() {
         if (RandomValue5xUpgrades >= 1) {return true}
@@ -139,7 +198,7 @@ function setClickProcessesFirst() {
     addAchievement(1005,"Pretty Likely.","Have three Random Value Upgrades.",function() {
         if (RandomValue5xUpgrades >= 3) {return true}
     });
-    addAchievement(1005,"Pretty Likely.","Have max Random Value Upgrades.",function() {
+    addAchievement(1006,"Toss Of A Coin.","Have max Random Value Upgrades.",function() {
         if (RandomValue5xUpgrades == 5) {return true}
     });
 
@@ -149,7 +208,7 @@ function setClickProcessesFirst() {
     addAchievement(1206,"Consistently.","Have three Random Auto Upgrades.",function() {
         if (RandomAuto2xUpgrades >= 3) {return true}
     });
-    addAchievement(1207,"Consistently.","Have max Random Auto Upgrades.",function() {
+    addAchievement(1207,"Half Time.","Have max Random Auto Upgrades.",function() {
         if (RandomAuto2xUpgrades == 5) {return true}
     });
 
