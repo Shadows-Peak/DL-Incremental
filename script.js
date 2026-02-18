@@ -106,6 +106,9 @@ function setClickProcessesFirst() {
     addAchievement(2,"Ooh, Another Zero!","Get 100 Dilyan Points.",function() {
         if (clicks >= 100) {return true}
     });
+    addAchievement(3,"Bands?","Get 1k Dilyan Points.",function() {
+        if (clicks >= 1000) {return true}
+    });
 
     addAchievement(200,"Why a Country Club?","Obtain your first Country Club.",function() {
         if (CountryClubs >= 1) {return true}
@@ -133,9 +136,21 @@ function setClickProcessesFirst() {
     addAchievement(1004,"Sometimes.","Obtain your first Random Value Upgrade.",function() {
         if (RandomValue5xUpgrades >= 1) {return true}
     });
+    addAchievement(1005,"Pretty Likely.","Have three Random Value Upgrades.",function() {
+        if (RandomValue5xUpgrades >= 3) {return true}
+    });
+    addAchievement(1005,"Pretty Likely.","Have max Random Value Upgrades.",function() {
+        if (RandomValue5xUpgrades == 5) {return true}
+    });
 
     addAchievement(1205,"Occasionally.","Obtain your first Random Auto Upgrade.",function() {
         if (RandomAuto2xUpgrades >= 1) {return true}
+    });
+    addAchievement(1206,"Consistently.","Have three Random Auto Upgrades.",function() {
+        if (RandomAuto2xUpgrades >= 3) {return true}
+    });
+    addAchievement(1207,"Consistently.","Have max Random Auto Upgrades.",function() {
+        if (RandomAuto2xUpgrades == 5) {return true}
     });
 
     addAchievement(1406,"I Guess Bro..","Rizzmax for the first time.",function() {
@@ -146,6 +161,89 @@ function setClickProcessesFirst() {
     });
 
     addAchievement(1607,"Adequate Strategy.","Rizzmax for at least 10 points.", () => false);
+
+    addAchievement(1808,"Longer Than Most People.","Play for 2 minutes.",function() {
+        if (timePlayed >= 120) {return true};
+    });
+    addAchievement(1809,"Locked In.","Play for 10 minutes.",function() {
+        if (timePlayed >= 10*60) {return true};
+    });
+    addAchievement(1810,"Lowkey A Loser.","Play for 30 minutes.",function() {
+        if (timePlayed >= 30*60) {return true};
+    });
+    addAchievement(1811,"ts not this deep","Play for an hour.",function() {
+        if (timePlayed >= 60*60) {return true};
+    });
+
+    addAchievement(2009,"Keyboard Warrior.","Obtain your first Rizzmax Click Worth Upgrade.",function() {
+        if (RizzmaxClickWorth*5 >= 5) {return true};
+    });
+    addAchievement(2010,"Good Buffs.","Get a +25% click value increase from Rizzmax Click Worth Upgrades.",function() {
+        if (RizzmaxClickWorth*5 >= 25) {return true};
+    });
+    addAchievement(2011,"Massive Buffs.","Get a +50% click value increase from Rizzmax Click Worth Upgrades.",function() {
+        if (RizzmaxClickWorth*5 >= 50) {return true};
+    });
+    addAchievement(2012,"Double Trouble.","Get a x2 click value increase from Rizzmax Click Worth Upgrades.",function() {
+        if (RizzmaxClickWorth*5 >= 100) {return true};
+    });
+    addAchievement(2013,"AIPAC Boosting","Get a x3 click value increase from Rizzmax Click Worth Upgrades.",function() {
+        if (RizzmaxClickWorth*5 >= 200) {return true};
+    });
+
+    addAchievement(2210,"Tactical Laziness.","Obtain your first Offline Production Hour.",function() {
+        if (OfflineProdHrs >= 1) {return true};
+    });
+    addAchievement(2211,"More Down Time.","Have 2 hours of Offline Production.",function() {
+        if (OfflineProdHrs >= 2) {return true};
+    });
+    addAchievement(2212,"I Think I Need A Break.","Have 6 hours of Offline Production.",function() {
+        if (OfflineProdHrs >= 6) {return true};
+    });
+    addAchievement(2213,"Twice A Day.","Have 12 hours of Offline Production.",function() {
+        if (OfflineProdHrs >= 12) {return true};
+    });
+    addAchievement(2214,"Don't Look Back.","Have a full day of Offline Production.",function() {
+        if (OfflineProdHrs >= 24) {return true};
+    });
+
+    addAchievement(2411,"New Beginnings.","Unlock Looksmaxxing Challenges.",function() {
+        if (LooksmaxxingChallengesUpgradeUnlocked == 1) {return true};
+    });
+    addAchievement(2412,"Student Of Mog.","Complete your first Looksmaxxing Challenge.",function() {
+        if (listSum(LooksmaxxingChallengesCompleted) >= 1) {return true};
+    });
+    addAchievement(2413,"Evolution.","Complete your first Looksmaxxing Challenge.",function() {
+        if (listSum(LooksmaxxingChallengesCompleted) >= 5) {return true};
+    });
+
+    addAchievement(2612,"The King Of Fighters.","Complete your first \"Bye Bye!\" Looksmaxxing Challenge.",function() {
+        if (LooksmaxxingChallengesCompleted[0] >= 1) {return true};
+    });
+
+    addAchievement(2813,"Inner Peace.","Complete your first \"Edging Maestro\" Looksmaxxing Challenge.",function() {
+        if (LooksmaxxingChallengesCompleted[1] >= 1) {return true};
+    });
+
+    addAchievement(3014,"Clavicular.","Complete your first \"Stone-Faced Mogging\" Looksmaxxing Challenge.",function() {
+        if (LooksmaxxingChallengesCompleted[2] >= 1) {return true};
+    });
+
+    addAchievement(3215,"Bands Like Dillpakel.","Complete your first \"Rags to Riches\" Looksmaxxing Challenge.",function() {
+        if (LooksmaxxingChallengesCompleted[3] >= 1) {return true};
+    });
+
+    addAchievement(3416,"Dilyan Lopez: Played By Noble Amani.","Complete your first \"Ad Hominem\" Looksmaxxing Challenge.",function() {
+        if (LooksmaxxingChallengesCompleted[4] >= 1) {return true};
+    });
+
+    addAchievement(3617,".gif","Complete your first \"Gods Plan\" Looksmaxxing Challenge.",function() {
+        if (LooksmaxxingChallengesCompleted[5] >= 1) {return true};
+    });
+
+    // 3818 is Tiktok
+    
+    // 4019 is the random one
 
 
     orderAchievements();
