@@ -27,6 +27,7 @@ async function gameLoad() {
         const logoutButton = document.getElementById('logoutButton');
         if (logoutButton) {
             logoutButton.addEventListener('click', async function () {
+                if (!gameFullyLoaded) {alert("Your game has not loaded yet!");return;}
                 await saveData();
                 clearInterval(savingInterval);
                 resetData(true);

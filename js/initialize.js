@@ -1,4 +1,5 @@
 //const { run } = require("googleapis/build/src/apis/run");
+var gameFullyLoaded = false;
 var savingInterval;
 var saveInProgress = false;
 
@@ -777,6 +778,7 @@ async function loadData(username, password) {
         }
 
         console.log("Game data loaded successfully!");
+        gameFullyLoaded = true;
         return data;
 
     } catch (err) {
