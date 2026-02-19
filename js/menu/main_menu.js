@@ -50,11 +50,11 @@ async function submitRun(event) {
         console.log('Sign Up Form Data:', JSON.stringify(data, undefined, 2));
         try {
             const userRecord = await getUserByUsername(data.username);
-            data.password = await hashPassword(data.password);
+            enteredPasswordHash = await hashPassword(data.password);
             if (userRecord) {
                 alert('Error: Username already exists.');
             } else {
-                const response = await signUp(data.username, data.password);
+                const response = await signUp(data.username, enteredPasswordHash);
                 if (response) {
                     if (Number(localStorage.getItem('made_account')) >= 3) {
                         alert('You have already made an account, please log in.');
@@ -62,7 +62,7 @@ async function submitRun(event) {
                         localStorage.setItem('made_account', '1');
                         alert('Try again.');
                     } else {
-                        alert('Sign Up Successful (we dont store passwords in plaintext, if you forget your password, make a new account (or pay me like 5 bucks and I will reset it for you))');
+                        alert('Sign Up Successful (we dont store passwords in plaintext, if you forget your password, make a new account or talk to a dev to set it to a new password)');
                         localStorage.setItem('made_account', String(Number(localStorage.getItem('made_account'))+1));
                         USERNAME = data.username;
                         PASSWORD = data.password;
