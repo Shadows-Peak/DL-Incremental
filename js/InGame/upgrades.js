@@ -60,7 +60,7 @@ function setClickProcesses2() {
                 clicks -= grabCost('RandomValue5xUpgrades');
                 RandomValue5xUpgrades++;
                 const ranChance = Math.floor(Math.random() * 100);
-                if (ranChance >= 100 - 5*rizzifactsObtained[0]*(1-Boolean(inLooksmaxxingChallenge))) {
+                if (ranChance >= 100 - 5*rizzifactsObtained[0]*(1-Boolean(inLooksmaxxingChallenge)) && RandomValue5xUpgrades < 5) {
                     RandomValue5xUpgrades++;
                 }
                 if (inLooksmaxxingChallenge == 6) {clicksIn6 = 0;}
@@ -88,7 +88,7 @@ function setClickProcesses2() {
                 clicks -= grabCost('RandomAuto2xUpgrades');
                 RandomAuto2xUpgrades++;
                 const ranChance = Math.floor(Math.random() * 100);
-                if (ranChance >= 100 - 5*rizzifactsObtained[0]*(1-Boolean(inLooksmaxxingChallenge))) {
+                if (ranChance >= 100 - 5*rizzifactsObtained[0]*(1-Boolean(inLooksmaxxingChallenge))  && RandomAuto2xUpgrades < 5) {
                     RandomAuto2xUpgrades++;
                 }
                 if (inLooksmaxxingChallenge == 6) {clicksIn6 = 0;}
@@ -154,7 +154,7 @@ function setClickProcesses2() {
             RizzPoints -= grabCost('RizzmaxExtraChance');
             RizzmaxExtraChance++;
             const ranChance = Math.floor(Math.random() * 100);
-            if (ranChance >= 100 - 5*rizzifactsObtained[0]*(1-Boolean(inLooksmaxxingChallenge))) {
+            if (ranChance >= 100 - 5*rizzifactsObtained[0]*(1-Boolean(inLooksmaxxingChallenge))  && RizzmaxExtraChance < 10) {
                 RizzmaxExtraChance++;
             }
             updateVisuals();
