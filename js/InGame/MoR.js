@@ -47,15 +47,22 @@ function setClickProcesses4() {
   document.getElementById('smeltRizziteButton').onclick = function(){
     if (RizziteNRizzium[1] > 0 && smeltingTime == 0) {
       RizziteNRizzium[1] -= 1;
-      smeltingTime = Math.floor(60*(5+15*Math.random()));
+      smeltingTime = Math.floor(60*(5+(15- rizzifactsObtained[1]) *Math.random()));
       updateVisuals();
     }
   };
 
-  document.getElementById('Rizzafact1Infuse').onclick = function(){
+  document.getElementById('Rizzifact1Infuse').onclick = function(){
     if (RizziteNRizzium[2] > grabCost('RizzifactUpgrade1') && rizzifactsObtained[0] < 3) {
       RizziteNRizzium[2] -= grabCost('RizzifactUpgrade1');
       rizzifactsObtained[0] += 1;
+      updateVisuals();
+    }
+  }
+  document.getElementById('Rizzifact2Infuse').onclick = function(){
+    if (RizziteNRizzium[2] > grabCost('RizzifactUpgrade2') && rizzifactsObtained[1] < 3) {
+      RizziteNRizzium[2] -= grabCost('RizzifactUpgrade2');
+      rizzifactsObtained[1] += 1;
       updateVisuals();
     }
   }
