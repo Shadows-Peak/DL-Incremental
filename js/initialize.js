@@ -47,12 +47,14 @@ var RizziteNRizzium = [0,0,0]; // Rizzite Progress, Rizzite, Rizzium
 var smeltingTime = 0;
 var hasSmelted = false;
 
-var rizzifactsObtained = [0];
+var rizzifactsObtained = [0,0];
 
 var playerAchievements = {}; // Player Data Side
 
 
 var gameAchievements = {}; // Game Side
+
+
 
 function addAchievement(id,name,tooltip,requirementFunction) {
     const square = document.createElement("div");
@@ -154,14 +156,16 @@ function grabCost(Item) {
         "RizzmaxExtraChance": (4*Math.floor(2.3**RizzmaxExtraChance)+(2**RizzmaxExtraChance)),
         "MineOfRizzUnlocked": (Boolean(MineOfRizzUnlocked) ? -1 : 250),
         "RizzalurgyUnlocked": (Boolean(RizzalurgyUnlocked) ? -1 : 1),
-        "RizzifactUpgrade1": [50,150,500][rizzifactsObtained]
+        "RizzifactUpgrade1": [50,150,500],
+        "RizzifactUpgrade2": [50, 100,150]
     }
     return(allCosts[Item]);
 }
 
 function bonusText(Item) {
     var allBonusTexts = {
-        "RizzifactUpgrade1": (rizzifactsObtained[0] < 3 ? "Bonus: +"+rizzifactsObtained[0]*5+"% Chance to Upgrade Twice When You Buy Normal Upgrades." : "Bonus: +15% Chance to Upgrade Twice When You Buy Normal Upgrades And +5% Chance To Rizzmax For Twice As Much.")
+        "RizzifactUpgrade1": (rizzifactsObtained[0] < 3 ? "Bonus: +"+rizzifactsObtained[0]*5+"% Chance to Upgrade Twice When You Buy Normal Upgrades." : "Bonus: +15% Chance to Upgrade Twice When You Buy Normal Upgrades And +5% Chance To Rizzmax For Twice As Much."),
+        "RizzifactUpgrade2": (rizzifactsObtained[1] < 3 ? `Bonus:  -${rizzifactsObtained[1]} Max Minutes to smelt Rizzite.` : "Bonus: -3 Minutes From The Max Smelting Time And +5mL Flat Rizzium Whenever You Smelt Rizzite.")
     }
     return(allBonusTexts[Item])
 }
@@ -627,9 +631,13 @@ function updateVisuals() {
         document.getElementById('foundryTotalProduction').innerHTML = "Produce: 15-25 mL of Rizzium for each Rizzite.";
 
         // Rizzifacts
-        document.getElementById('Rizif1C').innerHTML = "Infusion Cost: "+abbrevLiquid(grabCost('RizzifactUpgrade1'))+" Rizzium";
+        document.getElementById('Rizif1C').innerHTML = (rizzifactsObtained[0] = grabCost('RizzifactUpgrade1').length) ?`Infusion Cost: ${abbrevLiquid(grabCost('RizzifactUpgrade1')[rizzifactsObtained[0]])} Rizzium`: `Max Infusions Obtained`;
         document.getElementById('Rizif1B').innerHTML = bonusText('RizzifactUpgrade1');
         document.getElementById('Rizif1I').innerHTML = "Infusions: "+rizzifactsObtained[0]+"/3"
+        document.getElementById('Rizif2C').innerHTML = (rizzifactsObtained[0] = grabCost('RizzifactUpgrade1').length) ?`Infusion Cost: ${abbrevLiquid(grabCost('RizzifactUpgrade2'))[rizzifactsObtained[1]]} Rizzium`: `Max Infusions Obtained`;
+        document.getElementById('Rizif2B').innerHTML = bonusText('RizzifactUpgrade2');
+        document.getElementById('Rizif2I').innerHTML = `Infusions: ${rizzifactsObtained[1]}/3`
+
     } catch(error) {
         console.error(error);
     }
@@ -702,7 +710,8 @@ function offlineProgress() {
         
         if (smeltingTime > 0) {
             if (timeDifferenceSeconds >= smeltingTime) {
-                const numToIncreaseBy = 15 + Math.floor(10*Math.random());
+                let bonusRizzium = rizzifactsObtained[1] >= 3 ? 5: 0;
+                const numToIncreaseBy = 15 + Math.floor(10*Math.random()) + bonusRizzium;
                 RizziteNRizzium[2] += numToIncreaseBy;
                 sendToast("Rizzalurgy: <b>+"+abbrevLiquid(numToIncreaseBy)+" Rizzium</b>");
                 smeltingTime = 0;
