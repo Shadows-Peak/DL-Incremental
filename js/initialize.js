@@ -631,10 +631,10 @@ function updateVisuals() {
         document.getElementById('foundryTotalProduction').innerHTML = "Produce: 15-25 mL of Rizzium for each Rizzite.";
 
         // Rizzifacts
-        document.getElementById('Rizif1C').innerHTML = (rizzifactsObtained[0] = grabCost('RizzifactUpgrade1').length) ?`Infusion Cost: ${abbrevLiquid(grabCost('RizzifactUpgrade1')[rizzifactsObtained[0]])} Rizzium`: `Max Infusions Obtained`;
+        document.getElementById('Rizif1C').innerHTML = (rizzifactsObtained[0] = grabCost('RizzifactUpgrade1').length) ? 'Max Infusions Obtained': `Infusion Cost: ${abbrevLiquid(grabCost('RizzifactUpgrade1')[rizzifactsObtained[0]])} Rizzium`;
         document.getElementById('Rizif1B').innerHTML = bonusText('RizzifactUpgrade1');
         document.getElementById('Rizif1I').innerHTML = "Infusions: "+rizzifactsObtained[0]+"/3"
-        document.getElementById('Rizif2C').innerHTML = (rizzifactsObtained[0] = grabCost('RizzifactUpgrade1').length) ?`Infusion Cost: ${abbrevLiquid(grabCost('RizzifactUpgrade2'))[rizzifactsObtained[1]]} Rizzium`: `Max Infusions Obtained`;
+        document.getElementById('Rizif2C').innerHTML = (rizzifactsObtained[0] = grabCost('RizzifactUpgrade1').length) ? 'Max Infusions Obtained': `Infusion Cost: ${abbrevLiquid(grabCost('RizzifactUpgrade2'))[rizzifactsObtained[1]]} Rizzium`;
         document.getElementById('Rizif2B').innerHTML = bonusText('RizzifactUpgrade2');
         document.getElementById('Rizif2I').innerHTML = `Infusions: ${rizzifactsObtained[1]}/3`
 
