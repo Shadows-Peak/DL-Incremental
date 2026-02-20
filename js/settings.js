@@ -4,6 +4,13 @@ function setClickProcesses0() {
         document.getElementById('BackgroundToggleButton').innerHTML = "Toggle Backgrounds: "+["Off","On"][backgroundToggle];
         updateBackgrounds();
     };
+
+    document.getElementById('ButtonPictureToggle').onclick = function() {
+        buttonPictureToggle = 1 - buttonPictureToggle;
+        document.getElementById('ButtonPictureToggle').innerHTML = "Toggle Button Picture: "+["Off","On"][buttonPictureToggle];
+        updateBackgrounds();
+        updateTempBackgrounds();
+    }
     
     document.getElementById('ThemeChangeButton').onclick = function() {
         chosenBackground = (chosenBackground % 7) + 1;

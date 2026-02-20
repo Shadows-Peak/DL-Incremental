@@ -15,7 +15,7 @@ function updateVisuals() {
 
 function setClickProcesses2() {
     // Country Clubs
-    document.getElementById('CountryClubButton').onclick = function() {
+    document.getElementById('countryClubCost').onclick = function() {
         if (clicks >= grabCost('CountryClubs') && inLooksmaxxingChallenge != 4) {
             clicks -= grabCost('CountryClubs');
             CountryClubs++;
@@ -28,7 +28,7 @@ function setClickProcesses2() {
         }
     };
     // Rice Washers
-    document.getElementById('RiceWasherButton').onclick = function() {
+    document.getElementById('riceWasherCost').onclick = function() {
         if (clicks >= grabCost('RiceWashers') && inLooksmaxxingChallenge != 1 && inLooksmaxxingChallenge != 4) {
             clicks -= grabCost('RiceWashers');
             RiceWashers++;
@@ -41,7 +41,7 @@ function setClickProcesses2() {
         }
     }
     // Cars
-    document.getElementById('CarsButton').onclick = function() {
+    document.getElementById('carCost').onclick = function() {
         if (clicks >= grabCost('Cars') && inLooksmaxxingChallenge != 1 && inLooksmaxxingChallenge != 4) {
             clicks -= grabCost('Cars');
             Cars++
@@ -54,7 +54,7 @@ function setClickProcesses2() {
         }
     }
     // Random x5 Value Upgrade
-    document.getElementById('5xRandomValueUpgradeButton').onclick = function() {
+    document.getElementById('serendipitousClickerCost').onclick = function() {
         if (RandomValue5xUpgrades < 5 && inLooksmaxxingChallenge != 3 && inLooksmaxxingChallenge != 4) {
             if (clicks >= grabCost('RandomValue5xUpgrades')) {
                 clicks -= grabCost('RandomValue5xUpgrades');
@@ -69,7 +69,7 @@ function setClickProcesses2() {
         }
     }
     // Automatic Rizzers
-    document.getElementById('AutomaticRizzerButton').onclick = function() {
+    document.getElementById('automaticRizzerCost').onclick = function() {
         if (clicks >= grabCost('AutomaticRizzers') && inLooksmaxxingChallenge != 3 && inLooksmaxxingChallenge != 4) {
             clicks -= grabCost('AutomaticRizzers');
             AutomaticRizzers++;
@@ -82,7 +82,7 @@ function setClickProcesses2() {
         }
     }
     // Random x2 Auto Value
-    document.getElementById('2xRandomAutoUpgradeButton').onclick = function() {
+    document.getElementById('luckyRizzerCost').onclick = function() {
         if (RandomAuto2xUpgrades < 5 && inLooksmaxxingChallenge != 3 && inLooksmaxxingChallenge != 4) {
             if (clicks >= grabCost('RandomAuto2xUpgrades')) {
                 clicks -= grabCost('RandomAuto2xUpgrades');
@@ -90,6 +90,21 @@ function setClickProcesses2() {
                 const ranChance = Math.floor(Math.random() * 100);
                 if (ranChance >= 100 - 5*rizzifactsObtained[0]*(1-Boolean(inLooksmaxxingChallenge))  && RandomAuto2xUpgrades < 5) {
                     RandomAuto2xUpgrades++;
+                }
+                if (inLooksmaxxingChallenge == 6) {clicksIn6 = 0;}
+                updateVisuals();
+            }
+        }
+    }
+    // Blinged Dilyan Extra Chance Upgrade
+    document.getElementById('moreBlingedDilyanCost').onclick = function() {
+        if (blingedDilyanChance < 10 && inLooksmaxxingChallenge == 0) {
+            if (clicks >= grabCost('blingedDilyanChance')) {
+                clicks -= grabCost('blingedDilyanChance');
+                blingedDilyanChance++
+                const ranChance = Math.floor(Math.random() * 100);
+                if (ranChance >= 100 - 5*rizzifactsObtained[0]*(1-Boolean(inLooksmaxxingChallenge))  && blingedDilyanChance < 10) {
+                    blingedDilyanChance++;
                 }
                 if (inLooksmaxxingChallenge == 6) {clicksIn6 = 0;}
                 updateVisuals();

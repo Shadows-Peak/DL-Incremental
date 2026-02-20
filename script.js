@@ -3,13 +3,15 @@ function setClickProcessesFirst() {
     const settingsBtn = document.getElementById("settingsBtn2");
     const saveBtn = document.getElementById("saveBtn2");
     const profileBtn = document.getElementById("profileBtn2");
+    const infoBtn = document.getElementById("infoBtn");
     const settingsMenu = document.getElementById("settingsMenu");
     const profileMenu = document.getElementById("profileMenu");
+    const infoMenu = document.getElementById("infoMenu");
     const overlay = document.getElementById("overlay");
     const saveIcon = document.getElementById("saveIcon");
 
     function updateOverlay() {
-        if (settingsMenu.classList.contains("active") || profileMenu.classList.contains("active")) {
+        if (settingsMenu.classList.contains("active") || profileMenu.classList.contains("active") || infoMenu.classList.contains("active")) {
             overlay.classList.add("active");
         } else {
             overlay.classList.remove("active");
@@ -23,6 +25,7 @@ function setClickProcessesFirst() {
         e.stopPropagation();  // 🔥 Prevent bubbling
         settingsMenu.classList.toggle("active");
         profileMenu.classList.remove("active");
+        infoMenu.classList.remove("active");
         updateOverlay();
     });
 
@@ -30,6 +33,15 @@ function setClickProcessesFirst() {
         e.stopPropagation();  // 🔥 Prevent bubbling
         profileMenu.classList.toggle("active");
         settingsMenu.classList.remove("active");
+        infoMenu.classList.remove("active");
+        updateOverlay();
+    });
+
+    infoBtn.addEventListener("click", (e) => {
+        e.stopPropagation();  // 🔥 Prevent bubbling
+        profileMenu.classList.remove("active");
+        settingsMenu.classList.remove("active");
+        infoMenu.classList.toggle("active");
         updateOverlay();
     });
 
@@ -38,9 +50,11 @@ function setClickProcessesFirst() {
       if (!settingsMenu.contains(e.target) &&
           !profileMenu.contains(e.target) &&
           !settingsBtn.contains(e.target) &&
-          !profileBtn.contains(e.target)) {
+          !profileBtn.contains(e.target) &&
+          !infoBtn.contains(e.target)) {
         settingsMenu.classList.remove("active");
         profileMenu.classList.remove("active");
+        infoMenu.classList.remove("active");
         updateOverlay();
       }
     });
@@ -49,6 +63,7 @@ function setClickProcessesFirst() {
     overlay.addEventListener("click", () => {
         settingsMenu.classList.remove("active");
         profileMenu.classList.remove("active");
+        infoMenu.classList.remove("active");
         overlay.classList.remove("active");
     });
 
@@ -192,24 +207,47 @@ function setClickProcessesFirst() {
         if (AutomaticRizzers >= 200 && CountryClubs == 0 && RiceWashers == 0 && Cars == 0) {return true}
     });
 
-    addAchievement(1004,"Sometimes.","Obtain your first Random Value Upgrade.",function() {
+    addAchievement(1004,"Sometimes.","Obtain your first Serendipitous Clicker.",function() {
         if (RandomValue5xUpgrades >= 1) {return true}
     });
-    addAchievement(1005,"Pretty Likely.","Have three Random Value Upgrades.",function() {
+    addAchievement(1005,"Pretty Likely.","Have three Serendipitous Clickers.",function() {
         if (RandomValue5xUpgrades >= 3) {return true}
     });
-    addAchievement(1006,"Toss Of A Coin.","Have max Random Value Upgrades.",function() {
+    addAchievement(1006,"Toss Of A Coin.","Have max Serendipitous Clickers.",function() {
         if (RandomValue5xUpgrades == 5) {return true}
     });
 
-    addAchievement(1205,"Occasionally.","Obtain your first Random Auto Upgrade.",function() {
+    addAchievement(1205,"Occasionally.","Obtain your first Lucky Rizzer.",function() {
         if (RandomAuto2xUpgrades >= 1) {return true}
     });
-    addAchievement(1206,"Consistently.","Have three Random Auto Upgrades.",function() {
+    addAchievement(1206,"Consistently.","Have three Lucky Rizzers.",function() {
         if (RandomAuto2xUpgrades >= 3) {return true}
     });
-    addAchievement(1207,"Half Time.","Have max Random Auto Upgrades.",function() {
+    addAchievement(1207,"Half Time.","Have max Lucky Rizzers.",function() {
         if (RandomAuto2xUpgrades == 5) {return true}
+    });
+
+    addAchievement(1255,"Liquid Luck.","Obtain your first Bling Detector.",function() {
+        if (blingedDilyanChance >= 1) {return true}
+    });
+    addAchievement(1256,"Turururururu.. Click!","Have five Bling Detectors.",function() {
+        if (blingedDilyanChance >= 5) {return true}
+    });
+    addAchievement(1257,"Money On My Click.","Have max Bling Detectors.",function() {
+        if (blingedDilyanChance >= 10) {return true}
+    });
+
+    addAchievement(1280,"He is Him.","Click your first Blinged Dilyan.",function() {
+        if (blingedDilyansObtained >= 1) {return true}
+    });
+    addAchievement(1281,"Any Day Now..","Click your second Blinged Dilyan.",function() {
+        if (blingedDilyansObtained >= 2) {return true}
+    });
+    addAchievement(1282,"Making It Rain","Click five Blinged Dilyans.",function() {
+        if (blingedDilyansObtained >= 5) {return true}
+    });
+    addAchievement(1283,"Lucky Dilyan.","Click seven Blinged Dilyans.",function() {
+        if (blingedDilyansObtained >= 7) {return true}
     });
 
     addAchievement(1406,"I Guess Bro..","Rizzmax for the first time.",function() {
@@ -272,37 +310,134 @@ function setClickProcessesFirst() {
     addAchievement(2412,"Student Of Mog.","Complete your first Looksmaxxing Challenge.",function() {
         if (listSum(LooksmaxxingChallengesCompleted) >= 1) {return true};
     });
-    addAchievement(2413,"Evolution.","Complete your first Looksmaxxing Challenge.",function() {
+    addAchievement(2413,"Evolution.","Complete five Looksmaxxing Challenges.",function() {
         if (listSum(LooksmaxxingChallengesCompleted) >= 5) {return true};
     });
 
     addAchievement(2612,"The King Of Fighters.","Complete your first \"Bye Bye!\" Looksmaxxing Challenge.",function() {
         if (LooksmaxxingChallengesCompleted[0] >= 1) {return true};
     });
+    addAchievement(2613,"Nice Jawline.","Complete your third \"Bye Bye!\" Looksmaxxing Challenge.",function() {
+        if (LooksmaxxingChallengesCompleted[0] >= 3) {return true};
+    });
+    addAchievement(2614,"Frame Mogging.","Complete your fifth \"Bye Bye!\" Looksmaxxing Challenge.",function() {
+        if (LooksmaxxingChallengesCompleted[0] >= 5) {return true};
+    });
+    addAchievement(2615,"Built Different.","Complete your eighth \"Bye Bye!\" Looksmaxxing Challenge.",function() {
+        if (LooksmaxxingChallengesCompleted[0] >= 8) {return true};
+    });
+    addAchievement(2616,"All Mewed Out.","Complete all \"Bye Bye!\" Looksmaxxing Challenges.",function() {
+        if (LooksmaxxingChallengesCompleted[0] >= 10) {return true};
+    });
 
     addAchievement(2813,"Inner Peace.","Complete your first \"Edging Maestro\" Looksmaxxing Challenge.",function() {
         if (LooksmaxxingChallengesCompleted[1] >= 1) {return true};
+    });
+    addAchievement(2814,"Do Not Disturb.","Complete your fifth \"Edging Maestro\" Looksmaxxing Challenge.",function() {
+        if (LooksmaxxingChallengesCompleted[1] >= 5) {return true};
+    });
+    addAchievement(2815,"False Fire Alarm.","Complete your tenth \"Edging Maestro\" Looksmaxxing Challenge.",function() {
+        if (LooksmaxxingChallengesCompleted[1] >= 10) {return true};
+    });
+    addAchievement(2816,"Guru Of The Arts.","Complete your twentieth \"Edging Maestro\" Looksmaxxing Challenge.",function() {
+        if (LooksmaxxingChallengesCompleted[1] >= 20) {return true};
+    });
+    addAchievement(2817,"Gravity Simulation Machine.","Complete your thirtieth \"Edging Maestro\" Looksmaxxing Challenge.",function() {
+        if (LooksmaxxingChallengesCompleted[1] >= 30) {return true};
+    });
+    addAchievement(2818,"Low Cortisol.","Complete all \"Edging Maestro\" Looksmaxxing Challenges.",function() {
+        if (LooksmaxxingChallengesCompleted[1] >= 40) {return true};
     });
 
     addAchievement(3014,"Clavicular.","Complete your first \"Stone-Faced Mogging\" Looksmaxxing Challenge.",function() {
         if (LooksmaxxingChallengesCompleted[2] >= 1) {return true};
     });
+    addAchievement(3015,"Light Work. No Reaction.","Complete your second \"Stone-Faced Mogging\" Looksmaxxing Challenge.",function() {
+        if (LooksmaxxingChallengesCompleted[2] >= 2) {return true};
+    });
+    addAchievement(3016,"Poker Face.","Complete your third \"Stone-Faced Mogging\" Looksmaxxing Challenge.",function() {
+        if (LooksmaxxingChallengesCompleted[2] >= 3) {return true};
+    });
+    addAchievement(3017,"Diamond Is Unbreakable.","Complete your fourth \"Stone-Faced Mogging\" Looksmaxxing Challenge.",function() {
+        if (LooksmaxxingChallengesCompleted[2] >= 4) {return true};
+    });
+    addAchievement(3018,"Giga Chad.","Complete all \"Stone-Faced Mogging\" Looksmaxxing Challenges.",function() {
+        if (LooksmaxxingChallengesCompleted[2] >= 5) {return true};
+    });
 
     addAchievement(3215,"Bands Like Dillpakel.","Complete your first \"Rags to Riches\" Looksmaxxing Challenge.",function() {
         if (LooksmaxxingChallengesCompleted[3] >= 1) {return true};
+    });
+    addAchievement(3216,"A Pen Traded Up To A Car.","Complete your third \"Rags to Riches\" Looksmaxxing Challenge.",function() {
+        if (LooksmaxxingChallengesCompleted[3] >= 3) {return true};
+    });
+    addAchievement(3217,"Business Talent.","Complete your fifth \"Rags to Riches\" Looksmaxxing Challenge.",function() {
+        if (LooksmaxxingChallengesCompleted[3] >= 5) {return true};
+    });
+    addAchievement(3218,"Dirt To Hyperion.","Complete your seventh \"Rags to Riches\" Looksmaxxing Challenge.",function() {
+        if (LooksmaxxingChallengesCompleted[3] >= 7) {return true};
+    });
+    addAchievement(3219,"Corrupt CEO.","Complete all \"Rags to Riches\" Looksmaxxing Challenges.",function() {
+        if (LooksmaxxingChallengesCompleted[3] >= 9) {return true};
     });
 
     addAchievement(3416,"Dilyan Lopez: Played By Noble Amani.","Complete your first \"Ad Hominem\" Looksmaxxing Challenge.",function() {
         if (LooksmaxxingChallengesCompleted[4] >= 1) {return true};
     });
+    addAchievement(3417,"Invisible. Invisible.","Complete your fifth \"Ad Hominem\" Looksmaxxing Challenge.",function() {
+        if (LooksmaxxingChallengesCompleted[4] >= 5) {return true};
+    });
+    addAchievement(3418,"Ragebaiter.","Complete all \"Ad Hominem\" Looksmaxxing Challenges.",function() {
+        if (LooksmaxxingChallengesCompleted[4] >= 10) {return true};
+    });
 
     addAchievement(3617,".gif","Complete your first \"Gods Plan\" Looksmaxxing Challenge.",function() {
         if (LooksmaxxingChallengesCompleted[5] >= 1) {return true};
+    });
+    addAchievement(3618,"How'd You Do It?","Complete your second \"Gods Plan\" Looksmaxxing Challenge.",function() {
+        if (LooksmaxxingChallengesCompleted[5] >= 2) {return true};
+    });
+    addAchievement(3619,"Your Own God.","Complete all \"Gods Plan\" Looksmaxxing Challenges.",function() {
+        if (LooksmaxxingChallengesCompleted[5] >= 3) {return true};
     });
 
     // 3818 is Tiktok
     
     // 4019 is the random one
+
+    addAchievement(4020,"Stat Boosting.","Obtain your first upgrade of having Extra Odds to All Random Chance Upgrades.",function() {
+        if (RizzmaxExtraChance >= 1) {return true};
+    });
+    addAchievement(4021,"Obscene Odds.","Have two of the Extra Odds to All Random Chance Upgrades upgrade.",function() {
+        if (RizzmaxExtraChance >= 2) {return true};
+    });
+    addAchievement(4022,"Against The Odds.","Have four of the Extra Odds to All Random Chance Upgrades upgrade.",function() {
+        if (RizzmaxExtraChance >= 4) {return true};
+    });
+    addAchievement(4023,"Like.. Even More Odds.","Have six of the Extra Odds to All Random Chance Upgrades upgrade.",function() {
+        if (RizzmaxExtraChance >= 6) {return true};
+    });
+    addAchievement(4024,"On The Precipice.","Have eight of the Extra Odds to All Random Chance Upgrades upgrade.",function() {
+        if (RizzmaxExtraChance >= 8) {return true};
+    });
+    addAchievement(4025,"Probability Manipulation.","Have max of the Extra Odds to All Random Chance Upgrades upgrade.",function() {
+        if (RizzmaxExtraChance >= 10) {return true};
+    });
+
+    addAchievement(4121,"Coal Miner.","Unlock the Mine of Rizz.",function() {
+        if (MineOfRizzUnlocked == 1) {return true};
+    });
+    addAchievement(4122,"Wait.. Not Coal.","Obtain your first Rizzite.",function() {
+        if (RizziteNRizzium[1] >= 1) {return true};
+    });
+
+    addAchievement(4223,"Oh So This Does Have A Use.","Unlock the Rizzalurgy.",function() {
+        if (RizzalurgyUnlocked == 1) {return true};
+    });
+    addAchievement(4224,"Pure Unbridled Rizz.","Smelt down your first Rizzite.",function() {
+        if (RizziteNRizzium[2] >= 1) {return true};
+    });
+
 
 
     orderAchievements();

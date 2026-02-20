@@ -44,6 +44,7 @@
         <div class="toolbar-right2">
             <div class="icon-btn" id="settingsBtn2"><span>⚙</span></div>
             <div class="icon-btn" id="saveBtn2"><span id="saveIcon">💾</span></div>
+            <div class="icon-btn" id="infoBtn"><span>📔</span></div>
             <div class="icon-btn" id="profileBtn2"><span>👤</span></div>
         </div>
     </div>
@@ -51,6 +52,7 @@
     <div class="dropdown-menu themed2" id="settingsMenu">
         <h3>Settings</h3>
         <button class="themed1" id="BackgroundToggleButton">Toggle Backgrounds: On</button>
+        <button class="themed1" id="ButtonPictureToggle">Toggle Button Picture: On</button>
         <button class="themed1" id="ThemeChangeButton">Toggle Theme (Light)</button>
         <button class="themed1" id="NewFormatToggleButton">Toggle Wide Buttons: Off</button>
         <button class="themed1" id="autoSaveIntervalButton">Autosave Interval: 2 Minutes</button>
@@ -63,25 +65,188 @@
         <p>Username: Player1</p>
         <p>Level: 5</p>
     </div>
+    <div class="dropdown-menu themed2" id="infoMenu">
+        <h3>INFO (WORK IN PROGRESS)</h3>
+        <p>Will contain info on formulas, tutorials, and the changelog</p>
+        <p>yeah</p>
+        <h2>List of things that are Coming in Part 2 of this Update:</h2>
+        <p>More Blinged Dilyan Upgrades and Functionality in Looksmaxxing Challenges</p>
+        <p>Fusing the Mine of Rizz and Rizzalurgy into the same room on the map</p>
+        <p>This info menu and the profile menu functioning properly</p>
+        <p><b>Automatic Rizzer Buff/Rework</b></p>
+        <p>2 New (and final) Looksmaxxing Challenges</p>
+        <p>More working Rizzifacts</p>
+        <p>Another randomly appearing type of Dilyan aside from the Blinged Dilyan</p>
+    </div>
     <div id="menuStuff" style="margin-top: 5px; left: 5px;">
         <h1>Dilyan Lopez Incremental (Remastered?)</h1>
         <hr>
         <button data-room-id=0 id="signUp">Sign Up</button>
         <button data-room-id=0 id="login">Login</button>
         <div data-room-id=0 id="value-container">Loading... (or am I?)</div>
-        <h1 id="version">1.1.0</h1>
-        <h2>FIXED MAJOR BUG WHERE INITIAL ACCOUNT CREATION WOULD NOT SAVE DATA ON THAT SESSION!<br><br>Visual Overhaul In Progress!<br><br>Dynamic Options For Autosave Intervals!<br><br>Achievements!<br><br>Rizzifacts: The First One Has Been Implemented!<br><br>Toast Alert Card Functionality!<br><br>More Themes!<br><br>Leaderboard: Most Achievements</h2>
+        <h1 id="version">1.2 - Part 1</h1>
+        <h2>Visual Overhaul In Progress!<br><br>Nerf: "Edging Maestro" Looksmaxxing Challenge Completion Limit Lowered From 90 -> 40<br><br>New Achievements!<br><br>Remodel Of First Room (With The Clicking Button) To Include The Upgrades In A Special Tab!<br><br>Rizzmax Is No Longer Needed To Unlock 2x Random Auto Value<br><br>Renamed The Random Value Upgrades Because Their Names Were Too Long<br><br>Added Basic Explanations To The Basic Upgrades<br><br>New System: Blinged Dilyans, As Well As A New Rizzmax Unlocked Upgrade For It<br><br>Fixed Some Bugs With Rizzifacts<br><br>New Images (Not Done Importing)<br><br><b>!BE AWARE THAT THIS IS ONLY PART 1 AND MANY FUNCTIONALITIES (INCLUDING BUFFED AUTOMATIC RIZZERS AND BLINGED DILYANS WORKING IN CHALLENGES) ARE NOT YET ADDED BUT WILL BE ADDED OVER THE WEEKEND INSTEAD (CHECK THE IN-GAME NOTEBOOK FOR MORE INFO)!</b></h2>
     </div>
     <div id="page-content">
       <div id="room0Stuff" style="margin-top: 5px; left: 5px;">
           <h1>Achievements</h1>
           <p id="achievementDPM">Dilyan Point Multiplier (From Achievements): +0%</p>
           <p>The above multiplier applies even in Looksmaxxing Challenges.</p>
-          <div id="achievementsBox" style="margin-left: 15px">
+          <div class="themed1" id="achievementsBox" style="margin-left: 15px">
             <div id="achievementsGrid"></div>
           </div>
           <div id="achievementTooltip"></div>
       </div>
+      <div id="room1Stuff" style="width: 100%;  height: 100%;">
+          <h1 style="text-align: center;"><b>Dilyan Lopez Incremental</b></h2>
+          <h3 style="text-align: center;">Current Event: +0% Dilyan Points!</h3>
+          <!-- Slide Up Menu -->
+          <div class="room1-slide-wrapper" style="text-align: center;">
+            <div class="room1-slide-arrow themed2">◀</div>
+            <div class="room1-slide-menu themed2">
+              <div class="room1-slide-content">
+                <!-- Put future menu content here -->
+                <h2>Menu Area</h2>
+                <p>Stuff will go here later.</p>
+                <div class="room1-slide-menu-content">
+                  <div class="upgrade-card themed4">
+                      <div class="upgrade-header">
+                        <div class="upgrade-icon themed2" id="countryClubIcon"></div>
+                        <div class="upgrade-title">Country Club</div>
+                      </div>
+                      <div class="upgrade-owned">
+                        Owned: <span id="countryClubsOwned">0</span>
+                      </div>
+                      <div class="upgrade-bottom">
+                        <button class="upgrade-cost-button themedUnlocked" id="countryClubCost">Cost: 0</button>
+                        <div class="upgrade-info themed3">
+                          i
+                          <div class="upgrade-tooltip themedLocked">
+                            This upgrade increases Dilyan Points gained per click by +1.
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="upgrade-card themed4">
+                      <div class="upgrade-header">
+                        <div class="upgrade-icon themed2" id="riceWasherIcon"></div>
+                        <div class="upgrade-title">Rice Washer</div>
+                      </div>
+                      <div class="upgrade-owned">
+                        Owned: <span id="riceWashersOwned">0</span>
+                      </div>
+                      <div class="upgrade-bottom">
+                        <button class="upgrade-cost-button themedUnlocked" id="riceWasherCost">Cost: 0</button>
+                        <div class="upgrade-info themed3">
+                          i
+                          <div class="upgrade-tooltip themedLocked">
+                            This upgrade increases what your click and Automatic Rizzer formula is multiplied with by +1 (Having 0 is a 1x multiplier).
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="upgrade-card themed4">
+                      <div class="upgrade-header">
+                        <div class="upgrade-icon themed2" id="carIcon"></div>
+                        <div class="upgrade-title" id="carTitle">Car</div>
+                      </div>
+                      <div class="upgrade-owned">
+                        Owned: <span id="carsOwned">0</span>
+                      </div>
+                      <div class="upgrade-bottom">
+                        <button class="upgrade-cost-button themedUnlocked" id="carCost">Cost: 0</button>
+                        <div class="upgrade-info themed3">
+                          i
+                          <div class="upgrade-tooltip themedLocked">
+                            This upgrade increases power that the Country Clubs used in your click formula are raised by in an increment of +0.1 (Having 0 is ^1).
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="upgrade-card themed4">
+                      <div class="upgrade-header">
+                        <div class="upgrade-icon themed2" id="automaticRizzerIcon"></div>
+                        <div class="upgrade-title">Automatic Rizzer</div>
+                      </div>
+                      <div class="upgrade-owned">
+                        Owned: <span id="automaticRizzersOwned">0</span>
+                      </div>
+                      <div class="upgrade-bottom">
+                        <button class="upgrade-cost-button themedUnlocked" id="automaticRizzerCost">Cost: 0</button>
+                        <div class="upgrade-info themed3">
+                          i
+                          <div class="upgrade-tooltip themedLocked" id="automaticRizzerTooltip">
+                            This upgrade gives you +1 Dilyan Points every second for each one of these you own (It can also be multiplied by the Rice Washer's bonus).
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="upgrade-card themed4">
+                      <div class="upgrade-header">
+                        <div class="upgrade-icon themed2" id="serendipitousClickerIcon"></div>
+                        <div class="upgrade-title">Serendipitous Clicker</div>
+                      </div>
+                      <div class="upgrade-owned">
+                        Owned: <span id="serendipitousClickersOwned">0/5</span>
+                      </div>
+                      <div class="upgrade-bottom">
+                        <button class="upgrade-cost-button themedUnlocked" id="serendipitousClickerCost">Cost: 0</button>
+                        <div class="upgrade-info themed3">
+                          i
+                          <div class="upgrade-tooltip themedLocked" id="serendipitousClickerTooltip">
+                            This upgrade increases your chance to randomly gain 5x the Dilyan Point value on a click by +10% for each upgrade (Having 0 is 0% chance).
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="upgrade-card themed4">
+                      <div class="upgrade-header">
+                        <div class="upgrade-icon themed2" id="luckyRizzerIcon"></div>
+                        <div class="upgrade-title">Lucky Rizzer</div>
+                      </div>
+                      <div class="upgrade-owned">
+                        Owned: <span id="luckyRizzersOwned">0/5</span>
+                      </div>
+                      <div class="upgrade-bottom">
+                        <button class="upgrade-cost-button themedUnlocked" id="luckyRizzerCost">Cost: 0</button>
+                        <div class="upgrade-info themed3">
+                          i
+                          <div class="upgrade-tooltip themedLocked" id="luckyRizzerTooltip">
+                            This upgrade increases your chance to randomly gain 2x the Dilyan Point value on an Automatic Rizzer run by +10% for each upgrade (Having 0 is 0% chance).
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="upgrade-card themedRizzmaxUnlocked rizzmaxUnlockable">
+                      <div class="upgrade-header">
+                        <div class="upgrade-icon themed2" id="moreBlingedDilyanIcon"></div>
+                        <div class="upgrade-title">Bling Detector</div>
+                      </div>
+                      <div class="upgrade-owned">
+                        Owned: <span id="moreBlingedDilyansOwned">0/10</span>
+                      </div>
+                      <div class="upgrade-bottom">
+                        <button class="upgrade-cost-button themedRizzmaxUnlocked2" id="moreBlingedDilyanCost">Cost: 0</button>
+                        <div class="upgrade-info themed3">
+                          i
+                          <div class="upgrade-tooltip themedLocked" id="moreBlingedDilyanTooltip">
+                            This upgrade increases the chance for a Blinged Dilyan to spawn by +1% for each upgrade (Having 0 is 0.33%).
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Main Circle Button -->
+          <div class="room1-center">
+            <button id="button1" class="circle-button themed1 freeButtonPersist" onkeydown="return event.key != 'Enter';">
+              <div class="circle-image-overlay"></div>
+            </button>
+          </div>
+      </div>
+      <!--
       <div id="room1Stuff" style="margin-top: 5px; left: 5px;">
           <h1>Dilyan Lopez Incremental</h1>
           <p>Not made by <b>Dilyan Lopez</b>.</p>
@@ -97,12 +262,11 @@
           <p id="RandomValueExplanatory">The earlier upgrades labeled as 'Random Value Upgrade/Auto Value' function as follows: Each time you upgrade them, you gain an additional 10% chance to either receive 5 times the usual value upon manual click or 2 times the usual value upon automatic generation by a rizzer, depending on the specific upgrade purchased.</p>
           <button id="AutomaticRizzerButton" type="button" class="themed1">Automatic Rizzer (0): Cost: 0</button>
       </div>
+      -->
       <div id="room2Stuff" style="margin-top: 5px; left: 5px;">
-          <h1>Dillboy's Shop</h1>
-          <p>Country Clubs add +1 Per Click. Rice Washers multiply everything by +1 per upgrade. Cars raise the number of Country Clubs used in clicks by a power.</p>
-          <button id="CountryClubButton" type="button" class="themed1">Buy Country Club (0): Cost: 0</button>
-          <button id="RiceWasherButton" type="button" class="themed1">Buy Rice Washer (0): Cost: 0</button>
-          <button id="CarsButton" type="button" class="themed1">Buy Car (0): Cost: 0</button>
+          <h1>Deprecated Room</h1>
+          <p>There wasn't enough time to finish the full update yet, but the 2nd part is coming soon and will actually add content rather than just visually rework stuff.</p>
+          <p><b>You can check the notebook icon on the toolbar for more information</b></p>
       </div>
       <div id="room3Stuff" style="margin-top: 5px; left: 5px;">
           <h1>Rizzmax</h1>
@@ -359,7 +523,7 @@
           flex-direction: column;
           align-items: flex-end;
           pointer-events: none; /* clicks go through */
-          z-index: 800;
+          z-index: 600;
       "></div>
     </div>
     <div id="overlay"></div>

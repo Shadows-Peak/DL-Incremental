@@ -10,6 +10,7 @@ var timePlayed = 0;
 var Cheater = false;
 
 var backgroundToggle = 1;
+var buttonPictureToggle = 1;
 var newFormatToggle = 0;
 var chosenBackground = 1; // 1 for Light, 2 for Dark, 3 for Cream
 var autosaveInterval = 120;
@@ -24,6 +25,9 @@ var RandomValue5xUpgrades = 0;
 var RandomAuto2xUpgrades = 0;
 
 var AutomaticRizzers = 0;
+
+var blingedDilyanChance = 0;
+var blingedDilyansObtained = 0;
 
 var clicksIn6 = 0;
 var runsIn6 = 0;
@@ -155,7 +159,8 @@ function grabCost(Item) {
         "RizzmaxExtraChance": (4*Math.floor(2.3**RizzmaxExtraChance)+(2**RizzmaxExtraChance)),
         "MineOfRizzUnlocked": (Boolean(MineOfRizzUnlocked) ? -1 : 250),
         "RizzalurgyUnlocked": (Boolean(RizzalurgyUnlocked) ? -1 : 1),
-        "RizzifactUpgrade1": [50,150,500][rizzifactsObtained]
+        "RizzifactUpgrade1": [50,150,500][rizzifactsObtained[0]],
+        "blingedDilyanChance": [1000,5000,15000,50000,150000,500000,1000000,15000000,5000000,25000000][blingedDilyanChance]
     }
     return(allCosts[Item]);
 }
@@ -278,24 +283,40 @@ function abbrevLiquid(ml) {
     }
 }
 
-function setDisplay(object, value) {
+function setDisplay(object, value, idOrClass="id") {
     var finalVal
     if (value == 0) {
         finalVal = "none";
     } else {
-        finalVal = "initial";
+        finalVal = (idOrClass == "id" ? "initial" : "");
     }
-    try{
-        if (object != "newToolbar") {
-            document.getElementById(object).style.display = finalVal;
-        } else if (finalVal == "initial") {
-            document.getElementById(object).style.display = "flex";
-        } else {
-            document.getElementById(object).style.display = finalVal;
+    if (idOrClass=="id") {
+        try{
+            if (object != "newToolbar") {
+                document.getElementById(object).style.display = finalVal;
+            } else if (finalVal == "initial") {
+                document.getElementById(object).style.display = "flex";
+            } else {
+                document.getElementById(object).style.display = finalVal;
+            }
+        } catch(error) {
+            console.log(error);
         }
-    } catch(error) {
-        console.log(error);
+    } else {
+        try{
+            const elements = document.querySelectorAll("."+object);
+            elements.forEach(function(element) {
+                element.style.display = finalVal
+            });
+        } catch(error) {
+            console.log(error);
+        }
     }
+}
+
+function removeAllBonuses() {
+    const circles = document.querySelectorAll('.bonus-circle');
+    circles.forEach(circle => circle.remove());
 }
 
 function updateBackgrounds() {
@@ -308,76 +329,15 @@ function updateBackgrounds() {
             elem.classList.add("freeButton");
         });
     }
-    var themeMap;
-    if (chosenBackground == 1) {
-        themeMap = {
-            "themed1": "linear-gradient(0deg, rgb(240, 240, 240), rgb(240, 240, 240))",
-            "themed2": "linear-gradient(0deg, rgb(221, 221, 221), rgb(221, 221, 221))",
-            "themed3": "linear-gradient(145deg, rgb(158, 42, 42), rgb(124, 31, 31))",
-            "themed4": "linear-gradient(45deg, rgb(138, 138, 138), rgb(102, 102, 102))",
-            "themedLocked": "linear-gradient(225deg, rgb(48, 48, 48), rgb(65, 65, 65))",
-            "themedUnlocked": "linear-gradient(225deg, rgb(189, 189, 189), rgb(211, 211, 211))"
-        };
-    } else if (chosenBackground == 2) {
-        themeMap = {
-            "themed1": "linear-gradient(0deg, rgb(64, 66, 71), rgb(64, 66, 71))",
-            "themed2": "linear-gradient(0deg, rgb(37, 39, 41), rgb(37, 39, 41))",
-            "themed3": "linear-gradient(145deg, rgb(54, 18, 18), rgb(54, 9, 9))",
-            "themed4": "linear-gradient(45deg, rgb(27, 29, 31), rgb(19, 20, 22))",
-            "themedLocked": "linear-gradient(225deg, rgb(19, 19, 19), rgb(29, 29, 29))",
-            "themedUnlocked": "linear-gradient(225deg, rgb(49, 49, 49), rgb(63, 63, 65))"
-        };
-    } else if (chosenBackground == 3) {
-        themeMap = {
-            "themed1": "linear-gradient(0deg, rgb(209, 193, 161), rgb(209, 193, 161))",
-            "themed2": "linear-gradient(0deg, rgb(216, 199, 165), rgb(216, 199, 165))",
-            "themed3": "linear-gradient(145deg, rgb(150, 60, 60), rgb(155, 52, 52))",
-            "themed4": "linear-gradient(45deg,rgb(194, 174, 134), rgb(168, 148, 107))",
-            "themedLocked": "linear-gradient(225deg, rgb(104, 94, 66), rgb(124, 108, 87))",
-            "themedUnlocked": "linear-gradient(225deg, rgb(204, 189, 148), rgb(231, 202, 148))"
-        };
-    } else if (chosenBackground == 4) {
-        themeMap = {
-            "themed1": "linear-gradient(0deg, rgb(42, 98, 170), rgb(74, 134, 212))",
-            "themed2": "linear-gradient(0deg, rgb(32, 77, 136), rgb(30, 88, 165))",
-            "themed3": "linear-gradient(145deg, rgb(57, 50, 112), rgb(66, 58, 126))",
-            "themed4": "linear-gradient(45deg, rgb(22, 62, 114), rgb(12, 54, 109))",
-            "themedLocked": "linear-gradient(225deg, rgb(40, 42, 102), rgb(41, 29, 112))",
-            "themedUnlocked": "linear-gradient(225deg, rgb(93, 91, 175), rgb(55, 106, 199))"
-        };
-    } else if (chosenBackground == 5) {
-        themeMap = {
-            "themed1": "linear-gradient(0deg, rgb(184, 72, 72), rgb(228, 95, 72))",
-            "themed2": "linear-gradient(0deg, rgb(153, 52, 52), rgb(209, 91, 72))",
-            "themed3": "linear-gradient(145deg, rgb(100, 30, 30), rgb(180, 60, 40))",
-            "themed4": "linear-gradient(45deg, rgb(112, 31, 31), rgb(163, 57, 41))",
-            "themedLocked": "linear-gradient(225deg, rgb(95, 43, 39), rgb(119, 48, 30))",
-            "themedUnlocked": "linear-gradient(225deg, rgb(177, 61, 41), rgb(214, 72, 37))"
-        }
-    } else if (chosenBackground == 6) {
-        themeMap = {
-            "themed1": "linear-gradient(0deg, rgb(116, 204, 116), rgb(124, 235, 141))",
-            "themed2": "linear-gradient(0deg, rgb(89, 168, 89), rgb(93, 202, 108))",
-            "themed3": "linear-gradient(145deg, rgb(43, 110, 43), rgb(65, 168, 47))",
-            "themed4": "linear-gradient(45deg, rgb(73, 148, 73), rgb(60, 151, 72))",
-            "themedLocked": "linear-gradient(225deg, rgb(54, 88, 46), rgb(50, 114, 44))",
-            "themedUnlocked": "linear-gradient(225deg, rgb(71, 146, 71), rgb(97, 190, 69))"
-        }
-    } else if (chosenBackground == 7) {
-        themeMap = {
-            "themed1": "linear-gradient(175deg, rgb(55, 61, 100), rgb(55, 64, 124))",
-            "themed2": "linear-gradient(175deg, rgb(44, 45, 82), rgb(46, 48, 97))",
-            "themed3": "linear-gradient(145deg, rgb(40, 32, 64), rgb(45, 35, 78))",
-            "themed4": "linear-gradient(95deg, rgb(34, 35, 70), rgb(31, 33, 77))",
-            "themedLocked": "linear-gradient(225deg, rgb(27, 24, 46), rgb(34, 21, 59))",
-            "themedUnlocked": "linear-gradient(225deg, rgb(45, 36, 83), rgb(49, 35, 112))"
-        }
-    }
+    var themeMap = getTheme(chosenBackground);
     Object.entries(themeMap).forEach(([className, color]) => {
         const elements = document.getElementsByClassName(className);
         for (const el of elements) {
-            if (className === "themed1" && el.id === "leaderboard-table") {
+            if (className === "themed1" && (el.id === "leaderboard-table" || el.id === "achievementsBox")) {
                 el.style.background = color.replace("rgb(", "rgba(").replace(")", ", 0.6)");
+                continue
+            }
+            if (el.classList.contains("upgrade-icon")) {
                 continue
             }
             el.style.background = color;
@@ -431,6 +391,125 @@ function updateBackgrounds() {
             document.body.style.background = "linear-gradient(0deg, rgb(228, 210, 178), rgb(228, 210, 178))";
         }
     }
+    try {
+        if (buttonPictureToggle == 1) {
+            document.querySelector(".circle-image-overlay").style.backgroundImage = "url('images/dilyanLopez4.jpg')";
+        } else {
+            document.querySelector(".circle-image-overlay").style.backgroundImage = "none";
+        }
+    } catch (e) {
+        //
+    }
+    try {
+        document.getElementById('countryClubIcon').style.backgroundImage = "url('images/RiceWashFacility.jpg')";
+    } catch (e) {
+        //
+    }
+}
+
+function getTheme(backgroundNum) {
+    var themeMap;
+    if (backgroundNum == 1) {
+        themeMap = {
+            "themed1": "linear-gradient(0deg, rgb(240, 240, 240), rgb(240, 240, 240))",
+            "themed2": "linear-gradient(0deg, rgb(221, 221, 221), rgb(221, 221, 221))",
+            "themed3": "linear-gradient(145deg, rgb(158, 42, 42), rgb(124, 31, 31))",
+            "themed4": "linear-gradient(45deg, rgb(138, 138, 138), rgb(102, 102, 102))",
+            "themedRizzmaxUnlocked": "linear-gradient(45deg, rgb(143, 131, 141), rgb(114, 107, 114))",
+            "themedRizzmaxUnlocked2": "linear-gradient(45deg, rgb(172, 154, 169), rgb(148, 135, 148))",
+            "themedLocked": "linear-gradient(225deg, rgb(48, 48, 48), rgb(65, 65, 65))",
+            "themedUnlocked": "linear-gradient(225deg, rgb(189, 189, 189), rgb(211, 211, 211))"
+        };
+    } else if (backgroundNum == 2) {
+        themeMap = {
+            "themed1": "linear-gradient(0deg, rgb(64, 66, 71), rgb(64, 66, 71))",
+            "themed2": "linear-gradient(0deg, rgb(37, 39, 41), rgb(37, 39, 41))",
+            "themed3": "linear-gradient(145deg, rgb(54, 18, 18), rgb(54, 9, 9))",
+            "themed4": "linear-gradient(45deg, rgb(27, 29, 31), rgb(19, 20, 22))",
+            "themedRizzmaxUnlocked": "linear-gradient(45deg, rgb(41, 34, 41), rgb(35, 29, 36))",
+            "themedRizzmaxUnlocked2": "linear-gradient(45deg, rgb(59, 49, 59), rgb(50, 42, 51))",
+            "themedLocked": "linear-gradient(225deg, rgb(19, 19, 19), rgb(29, 29, 29))",
+            "themedUnlocked": "linear-gradient(225deg, rgb(49, 49, 49), rgb(63, 63, 65))"
+        };
+    } else if (backgroundNum == 3) {
+        themeMap = {
+            "themed1": "linear-gradient(0deg, rgb(209, 193, 161), rgb(209, 193, 161))",
+            "themed2": "linear-gradient(0deg, rgb(216, 199, 165), rgb(216, 199, 165))",
+            "themed3": "linear-gradient(145deg, rgb(150, 60, 60), rgb(155, 52, 52))",
+            "themed4": "linear-gradient(45deg,rgb(194, 174, 134), rgb(168, 148, 107))",
+            "themedRizzmaxUnlocked": "linear-gradient(45deg,rgb(194, 151, 134), rgb(179, 129, 114))",
+            "themedRizzmaxUnlocked2": "linear-gradient(45deg, rgb(224, 178, 167), rgb(207, 150, 140))",
+            "themedLocked": "linear-gradient(225deg, rgb(104, 94, 66), rgb(124, 108, 87))",
+            "themedUnlocked": "linear-gradient(225deg, rgb(204, 189, 148), rgb(231, 202, 148))"
+        };
+    } else if (backgroundNum == 4) {
+        themeMap = {
+            "themed1": "linear-gradient(0deg, rgb(42, 98, 170), rgb(74, 134, 212))",
+            "themed2": "linear-gradient(0deg, rgb(32, 77, 136), rgb(30, 88, 165))",
+            "themed3": "linear-gradient(145deg, rgb(57, 50, 112), rgb(66, 58, 126))",
+            "themed4": "linear-gradient(45deg, rgb(22, 62, 114), rgb(12, 54, 109))",
+            "themedRizzmaxUnlocked": "linear-gradient(45deg, rgb(52, 32, 124), rgb(74, 24, 116))",
+            "themedRizzmaxUnlocked2": "linear-gradient(45deg, rgb(68, 45, 150), rgb(87, 41, 148))",
+            "themedLocked": "linear-gradient(225deg, rgb(40, 42, 102), rgb(41, 29, 112))",
+            "themedUnlocked": "linear-gradient(225deg, rgb(93, 91, 175), rgb(55, 106, 199))"
+        };
+    } else if (backgroundNum == 5) {
+        themeMap = {
+            "themed1": "linear-gradient(0deg, rgb(184, 72, 72), rgb(228, 95, 72))",
+            "themed2": "linear-gradient(0deg, rgb(153, 52, 52), rgb(209, 91, 72))",
+            "themed3": "linear-gradient(145deg, rgb(100, 30, 30), rgb(180, 60, 40))",
+            "themed4": "linear-gradient(45deg, rgb(112, 31, 31), rgb(163, 57, 41))",
+            "themedRizzmaxUnlocked": "linear-gradient(45deg, rgb(110, 31, 48), rgb(155, 38, 48))",
+            "themedRizzmaxUnlocked2": "linear-gradient(45deg, rgb(141, 43, 65), rgb(179, 47, 75))",
+            "themedLocked": "linear-gradient(225deg, rgb(95, 43, 39), rgb(119, 48, 30))",
+            "themedUnlocked": "linear-gradient(225deg, rgb(177, 61, 41), rgb(214, 72, 37))"
+        }
+    } else if (backgroundNum == 6) {
+        themeMap = {
+            "themed1": "linear-gradient(0deg, rgb(116, 204, 116), rgb(124, 235, 141))",
+            "themed2": "linear-gradient(0deg, rgb(89, 168, 89), rgb(93, 202, 108))",
+            "themed3": "linear-gradient(145deg, rgb(43, 110, 43), rgb(65, 168, 47))",
+            "themed4": "linear-gradient(45deg, rgb(73, 148, 73), rgb(60, 151, 72))",
+            "themedRizzmaxUnlocked": "linear-gradient(45deg, rgb(121, 163, 135), rgb(98, 150, 130))",
+            "themedRizzmaxUnlocked2": "linear-gradient(225deg, rgb(110, 177, 147), rgb(127, 185, 153))",
+            "themedLocked": "linear-gradient(225deg, rgb(54, 88, 46), rgb(50, 114, 44))",
+            "themedUnlocked": "linear-gradient(225deg, rgb(71, 146, 71), rgb(97, 190, 69))"
+        }
+    } else if (backgroundNum == 7) {
+        themeMap = {
+            "themed1": "linear-gradient(175deg, rgb(55, 61, 100), rgb(55, 64, 124))",
+            "themed2": "linear-gradient(175deg, rgb(44, 45, 82), rgb(46, 48, 97))",
+            "themed3": "linear-gradient(145deg, rgb(40, 32, 64), rgb(45, 35, 78))",
+            "themed4": "linear-gradient(95deg, rgb(34, 35, 70), rgb(31, 33, 77))",
+            "themedRizzmaxUnlocked": "linear-gradient(95deg, rgb(48, 31, 61), rgb(48, 27, 75))",
+            "themedRizzmaxUnlocked2": "linear-gradient(225deg, rgb(58, 32, 80), rgb(67, 29, 99))",
+            "themedLocked": "linear-gradient(225deg, rgb(27, 24, 46), rgb(34, 21, 59))",
+            "themedUnlocked": "linear-gradient(225deg, rgb(45, 36, 83), rgb(49, 35, 112))"
+        }
+    }
+
+    return themeMap;
+}
+
+function updateTempBackgrounds() {
+    var themeMap = getTheme(chosenBackground);
+    Object.entries(themeMap).forEach(([className, color]) => {
+        const elements = document.getElementsByClassName("bonus-circle");
+        for (const el of elements) {
+            el.style.background = color;
+        }
+    });
+
+    const greenDilyanOverlays = document.querySelectorAll('.bonus-overlay');
+    if (buttonPictureToggle == 1) {
+        greenDilyanOverlays.forEach(function(overlay) {
+            overlay.classList.remove("hidden");
+        });
+    } else {
+        greenDilyanOverlays.forEach(function(overlay) {
+            overlay.classList.add("hidden");
+        });
+    }
 }
 
 function isEqual(a,b) {
@@ -458,6 +537,7 @@ function listSum(list) {
 function updateVisuals() {
     if (gameActive == false) {return;}
     try {
+        updateTempBackgrounds();
         if (hasSmelted == true) {
             var LooksmaxChallengeText = [""," <b><em>Bye Bye!</em></b>"," <b><em>Edging Maestro</em></b>"," <b><em>Stone-Faced Mogging</em></b>"," <b><em>Rags to Riches</em></b>"," <b><em>Ad Hominem</em></b>", " <b><em>Gods Plan</em></b>"][inLooksmaxxingChallenge];
             
@@ -466,8 +546,7 @@ function updateVisuals() {
             } else {
                 document.getElementById('currencyCounter').innerHTML = "<b>"+abbrev(clicks)+"</b> Dilyan Points <b>"+abbrev(RizzPoints)+"</b> Rizz Points <b>"+abbrevLiquid(RizziteNRizzium[2])+"</b> Rizzium"+LooksmaxChallengeText;
             }
-            setDisplay('2xRandomAutoUpgradeButton', 1);
-            setDisplay('RizzmaxUpgrades', 1);
+            setDisplay('rizzmaxUnlockable',1,'class');
         } else if (Rizzmaxxes > 0) {
             var LooksmaxChallengeText = [""," <b><em>Bye Bye!</em></b>"," <b><em>Edging Maestro</em></b>"," <b><em>Stone-Faced Mogging</em></b>"," <b><em>Rags to Riches</em></b>"," <b><em>Ad Hominem</em></b>", " <b><em>Gods Plan</em></b>"][inLooksmaxxingChallenge];
             
@@ -476,12 +555,10 @@ function updateVisuals() {
             } else {
                 document.getElementById('currencyCounter').innerHTML = "<b>"+abbrev(clicks)+"</b> Dilyan Points <b>"+abbrev(RizzPoints)+"</b> Rizz Points"+LooksmaxChallengeText;
             }
-            setDisplay('2xRandomAutoUpgradeButton', 1);
-            setDisplay('RizzmaxUpgrades', 1);
+            setDisplay('rizzmaxUnlockable',1,'class');
         } else {
             document.getElementById('currencyCounter').innerHTML = "<b>"+abbrev(clicks)+"</b> Dilyan Points";
-            setDisplay('2xRandomAutoUpgradeButton', 0);
-            setDisplay('RizzmaxUpgrades', 0);
+            setDisplay('rizzmaxUnlockable',0,'class');
         }
         if (LooksmaxxingChallengesUpgradeUnlocked == 1 && listSum(LooksmaxxingChallengesCompleted) < 5) {
             setDisplay('RizzmaxUpg2Indicator', 1);
@@ -493,51 +570,66 @@ function updateVisuals() {
             setDisplay('RizzmaxUpg2Indicator', 0);
             setDisplay('RizzmaxUpgrades2', 0);
         }
-        if (inLooksmaxxingChallenge == 5) {
-            document.getElementById('counter').innerHTML = "You have: <b>???</b> Dilyan Points";
-        } else {
-            document.getElementById('counter').innerHTML = "You have: <b>"+abbrev(clicks)+"</b> Dilyan Points";
-        }
+        //if (inLooksmaxxingChallenge == 5) {
+        //    document.getElementById('counter').innerHTML = "You have: <b>???</b> Dilyan Points";
+        //} else {
+        //    document.getElementById('counter').innerHTML = "You have: <b>"+abbrev(clicks)+"</b> Dilyan Points";
+        //}
         
         if (inLooksmaxxingChallenge != 5) {
-            document.getElementById('CountryClubButton').innerHTML = "Buy Country Club ("+abbrev(CountryClubs)+"): Cost: <b>"+grabVisualCost('CountryClubs')+"</b>";
-            document.getElementById('RiceWasherButton').innerHTML = "Buy Rice Washer ("+abbrev(RiceWashers)+"): Cost: <b>"+grabVisualCost('RiceWashers')+"</b>";
-            document.getElementById('CarsButton').innerHTML = "Buy "+(Cars>0 ? "Another " : "")+"Car ("+abbrev(Cars)+"): Cost: <b>"+grabVisualCost('Cars')+"</b>";
-            document.getElementById('AutomaticRizzerButton').innerHTML = "Automatic Rizzer ("+abbrev(AutomaticRizzers)+"): Cost: <b>"+grabVisualCost('AutomaticRizzers')+"</b>";
+            document.getElementById('countryClubsOwned').innerHTML = "<b>"+abbrev(CountryClubs)+"</b>";
+            document.getElementById('countryClubCost').innerHTML = "Cost: <b>"+grabVisualCost('CountryClubs')+"</b>";
+            document.getElementById('riceWashersOwned').innerHTML = "<b>"+abbrev(RiceWashers)+"</b>";
+            document.getElementById('riceWasherCost').innerHTML = "Cost: <b>"+grabVisualCost('RiceWashers')+"</b>";
+            document.getElementById('carTitle').innerHTML = (Cars>0 ? "Another " : "")+"Car";
+            document.getElementById('carsOwned').innerHTML = "<b>"+abbrev(Cars)+"</b>";
+            document.getElementById('carCost').innerHTML = "Cost: <b>"+grabVisualCost('Cars')+"</b>";
+            document.getElementById('automaticRizzersOwned').innerHTML = "<b>"+abbrev(AutomaticRizzers)+"</b>";
+            document.getElementById('automaticRizzerCost').innerHTML = "Cost: <b>"+grabVisualCost('AutomaticRizzers')+"</b>";
+            document.getElementById('moreBlingedDilyansOwned').innerHTML = "<b>"+abbrev(blingedDilyanChance)+"/10</b>"; 
+            document.getElementById('moreBlingedDilyanCost').innerHTML = "Cost: <b>"+((typeof grabCost("blingedDilyanChance") === "undefined" || isNaN(grabCost("blingedDilyanChance"))) ? "MAXED" : grabVisualCost('blingedDilyanChance'))+"</b>";
         } else {
-            document.getElementById('CountryClubButton').innerHTML = "Buy Country Club (???): Cost: <b>???</b>";
-            document.getElementById('RiceWasherButton').innerHTML = "Buy Rice Washer (???): Cost: <b>???</b>";
-            document.getElementById('CarsButton').innerHTML = "Buy Car (???): Cost: <b>???</b>";
-            document.getElementById('AutomaticRizzerButton').innerHTML = "Automatic Rizzer (???): Cost: <b>???</b>";
+            document.getElementById('countryClubsOwned').innerHTML = "<b>???</b>";
+            document.getElementById('countryClubCost').innerHTML = "Cost: <b>???</b>";
+            document.getElementById('riceWashersOwned').innerHTML = "<b>???</b>";
+            document.getElementById('riceWasherCost').innerHTML = "Cost: <b>???</b>";
+            document.getElementById('carTitle').innerHTML = "Car";
+            document.getElementById('carsOwned').innerHTML = "<b>???</b>";
+            document.getElementById('carCost').innerHTML = "Cost: <b>???</b>";
+            document.getElementById('automaticRizzersOwned').innerHTML = "<b>???</b>";
+            document.getElementById('automaticRizzerCost').innerHTML = "Cost: <b>???</b>";
+            document.getElementById('moreBlingedDilyansOwned').innerHTML = "<b>???</b>";
+            document.getElementById('moreBlingedDilyanCost').innerHTML = "Cost: <b>???</b>";
         }
         if (inLooksmaxxingChallenge == 0) {
-            if ((typeof grabCost("RandomValue5xUpgrades") === "undefined" || isNaN(grabCost("RandomValue5xUpgrades")))) {
-                document.getElementById('5xRandomValueUpgradeButton').innerHTML = abbrev(5+LooksmaxxingChallengesCompleted[2])+"x Random Value Upgrade ("+abbrev(RandomValue5xUpgrades)+"): <b>MAXED</b>";
-            } else {
-                document.getElementById('5xRandomValueUpgradeButton').innerHTML = abbrev(5+LooksmaxxingChallengesCompleted[2])+"x Random Value Upgrade ("+abbrev(RandomValue5xUpgrades)+"): Cost: <b>"+grabVisualCost('RandomValue5xUpgrades')+"</b>";
-            }
-            if ((typeof grabCost("RandomAuto2xUpgrades") === "undefined" || isNaN(grabCost("RandomAuto2xUpgrades")))) {
-                document.getElementById('2xRandomAutoUpgradeButton').innerHTML = abbrev(2+LooksmaxxingChallengesCompleted[2])+"x Random Auto Upgrade ("+abbrev(RandomAuto2xUpgrades)+"): <b>MAXED</b>";
-            } else {
-                document.getElementById('2xRandomAutoUpgradeButton').innerHTML = abbrev(2+LooksmaxxingChallengesCompleted[2])+"x Random Auto Upgrade ("+abbrev(RandomAuto2xUpgrades)+"): Cost: <b>"+grabVisualCost('RandomAuto2xUpgrades')+"</b>";
-            }
+            document.getElementById('serendipitousClickersOwned').innerHTML = "<b>"+abbrev(RandomValue5xUpgrades)+"/5</b>";
+            document.getElementById('serendipitousClickerCost').innerHTML = "Cost: <b>"+((typeof grabCost("RandomValue5xUpgrades") === "undefined" || isNaN(grabCost("RandomValue5xUpgrades"))) ? "MAXED" : grabVisualCost('RandomValue5xUpgrades'))+"</b>";
+            document.getElementById('serendipitousClickerTooltip').innerHTML = "This upgrade increases your chance to randomly gain "+abbrev(5+LooksmaxxingChallengesCompleted[2])+"x the Dilyan Point value on a click by +10% for each upgrade (Having 0 is 0% chance).";
+            
+            document.getElementById('luckyRizzersOwned').innerHTML = "<b>"+abbrev(RandomAuto2xUpgrades)+"/5</b>";
+            document.getElementById('luckyRizzerCost').innerHTML = "Cost: <b>"+((typeof grabCost("RandomAuto2xUpgrades") === "undefined" || isNaN(grabCost("RandomAuto2xUpgrades"))) ? "MAXED" : grabVisualCost('RandomAuto2xUpgrades'))+"</b>";
+            document.getElementById('luckyRizzerTooltip').innerHTML = "This upgrade increases your chance to randomly gain "+abbrev(2+LooksmaxxingChallengesCompleted[2])+"x the Dilyan Point value on an Automatic Rizzer run by +10% for each upgrade (Having 0 is 0% chance).";
         } else {
-            if ((typeof grabCost("RandomValue5xUpgrades") === "undefined" || isNaN(grabCost("RandomValue5xUpgrades"))) && inLooksmaxxingChallenge != 5) {
-                document.getElementById('5xRandomValueUpgradeButton').innerHTML = "5x Random Value Upgrade ("+abbrev(RandomValue5xUpgrades)+"): <b>MAXED</b>";
-            } else if (inLooksmaxxingChallenge != 5) {
-                document.getElementById('5xRandomValueUpgradeButton').innerHTML = "5x Random Value Upgrade ("+abbrev(RandomValue5xUpgrades)+"): Cost: <b>"+grabVisualCost('RandomValue5xUpgrades')+"</b>";
+            if (inLooksmaxxingChallenge != 5) {
+                document.getElementById('serendipitousClickersOwned').innerHTML = "<b>"+abbrev(RandomValue5xUpgrades)+"</b>";
+                document.getElementById('serendipitousClickerCost').innerHTML = "Cost: <b>"+((typeof grabCost("RandomValue5xUpgrades") === "undefined" || isNaN(grabCost("RandomValue5xUpgrades"))) ? "MAXED" : grabVisualCost('RandomValue5xUpgrades'))+"</b>";
+                document.getElementById('serendipitousClickerTooltip').innerHTML = "This upgrade increases your chance to randomly gain "+abbrev(LooksmaxxingChallengesCompleted[2])+"x the Dilyan Point value on a click by +10% for each upgrade (Having 0 is 0% chance).";
+                
+                document.getElementById('luckyRizzersOwned').innerHTML = "<b>"+abbrev(RandomAuto2xUpgrades)+"</b>";
+                document.getElementById('luckyRizzerCost').innerHTML = "Cost: <b>"+((typeof grabCost("RandomAuto2xUpgrades") === "undefined" || isNaN(grabCost("RandomAuto2xUpgrades"))) ? "MAXED" : grabVisualCost('RandomAuto2xUpgrades'))+"</b>";
+                document.getElementById('luckyRizzerTooltip').innerHTML = "This upgrade increases your chance to randomly gain "+abbrev(LooksmaxxingChallengesCompleted[2])+"x the Dilyan Point value on an Automatic Rizzer run by +10% for each upgrade (Having 0 is 0% chance).";
             } else {
-                document.getElementById('5xRandomValueUpgradeButton').innerHTML = "???x Random Value Upgrade (???): Cost: <b>???</b>";
-            }
-            if ((typeof grabCost("RandomAuto2xUpgrades") === "undefined" || isNaN(grabCost("RandomAuto2xUpgrades"))) && inLooksmaxxingChallenge != 5) {
-                document.getElementById('2xRandomAutoUpgradeButton').innerHTML = "2x Random Auto Upgrade ("+abbrev(RandomAuto2xUpgrades)+"): <b>MAXED</b>";
-            } else if (inLooksmaxxingChallenge != 5) {
-                document.getElementById('2xRandomAutoUpgradeButton').innerHTML = "2x Random Auto Upgrade ("+abbrev(RandomAuto2xUpgrades)+"): Cost: <b>"+grabVisualCost('RandomAuto2xUpgrades')+"</b>";
-            } else {
-                document.getElementById('2xRandomAutoUpgradeButton').innerHTML = "???x Random Auto Upgrade (???): Cost: <b>???</b>";
+                document.getElementById('serendipitousClickersOwned').innerHTML = "<b>???</b>";
+                document.getElementById('serendipitousClickerCost').innerHTML = "Cost: <b>???</b>";
+                document.getElementById('serendipitousClickerTooltip').innerHTML = "This upgrade increases your chance to randomly gain ???x the Dilyan Point value on a click by +10% for each upgrade (Having 0 is 0% chance).";
+                
+                document.getElementById('luckyRizzersOwned').innerHTML = "<b>???</b>";
+                document.getElementById('luckyRizzerCost').innerHTML = "Cost: <b>???</b>";
+                document.getElementById('luckyRizzerTooltip').innerHTML = "This upgrade increases your chance to randomly gain ???x the Dilyan Point value on an Automatic Rizzer run by +10% for each upgrade (Having 0 is 0% chance).";
             }
         }
         document.getElementById('BackgroundToggleButton').innerHTML = "Toggle Backgrounds: "+["Off","On"][backgroundToggle];
+        document.getElementById('ButtonPictureToggle').innerHTML = "Toggle Button Picture: "+["Off","On"][buttonPictureToggle];
         document.getElementById('ThemeChangeButton').innerHTML = "Toggle Theme ("+["Light","Dark","Cream","Sea","Fire","Green","Midnight"][chosenBackground-1]+")";
         document.getElementById('NewFormatToggleButton').innerHTML = "Toggle Wide Buttons: "+["Off","On"][newFormatToggle];
         document.getElementById('autoSaveIntervalButton').innerHTML = "Autosave Interval: "+abbrevTime(autosaveInterval);
@@ -558,14 +650,14 @@ function updateVisuals() {
         document.getElementById('LMCDPMVisual').innerHTML = "Current Dilyan Point Multiplier: +<b>"+abbrev(5*listSum(LooksmaxxingChallengesCompleted))+"</b>%"
         if (inLooksmaxxingChallenge != 0) {
             document.getElementById('LMC1Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[0],10) ? (isEqual(inLooksmaxxingChallenge,1) ? "End Challenge" : "Cannot Start") : "<b>MAXED</b>");;
-            document.getElementById('LMC2Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[1],90) ? (isEqual(inLooksmaxxingChallenge,2) ? "End Challenge" : "Cannot Start") : "<b>MAXED</b>");;
+            document.getElementById('LMC2Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[1],40) ? (isEqual(inLooksmaxxingChallenge,2) ? "End Challenge" : "Cannot Start") : "<b>MAXED</b>");;
             document.getElementById('LMC3Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[2],5) ? (isEqual(inLooksmaxxingChallenge,3) ? "End Challenge" : "Cannot Start") : "<b>MAXED</b>");;
             document.getElementById('LMC4Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[3],9) ? (isEqual(inLooksmaxxingChallenge,4) ? "End Challenge" : "Cannot Start") : "<b>MAXED</b>");;
             document.getElementById('LMC5Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[4],10) ? (isEqual(inLooksmaxxingChallenge,5) ? "End Challenge" : "Cannot Start") : "<b>MAXED</b>");;
             document.getElementById('LMC6Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[5],3) ? (isEqual(inLooksmaxxingChallenge,6) ? "End Challenge" : "Cannot Start") : "<b>MAXED</b>");;
         } else {
             document.getElementById('LMC1Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[0],10) ? "Begin" : "<b>MAXED</b>");
-            document.getElementById('LMC2Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[1],90) ? "Begin" : "<b>MAXED</b>");
+            document.getElementById('LMC2Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[1],40) ? "Begin" : "<b>MAXED</b>");
             document.getElementById('LMC3Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[2],5) ? "Begin" : "<b>MAXED</b>");
             document.getElementById('LMC4Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[3],9) ? "Begin" : "<b>MAXED</b>");
             document.getElementById('LMC5Button').innerHTML = (isLessThan(LooksmaxxingChallengesCompleted[4],10) ? "Begin" : "<b>MAXED</b>");
@@ -576,7 +668,7 @@ function updateVisuals() {
         document.getElementById('LMC1C').innerHTML = "Completions: "+abbrev(LooksmaxxingChallengesCompleted[0])+"/10";
         document.getElementById('LMC2D').innerHTML = "Rizzmax for at least "+abbrev(LooksmaxCosts(2))+" point without clicking the main button and starting with 1 Automatic Rizzer.  Offline Progress is enabled at 50% efficiency. Automatic Rizzers use the formula of clicking in this challenge, and are affected by both random chance upgrades.";
         document.getElementById('LMC2B').innerHTML = "Current Bonus: +"+abbrev(LooksmaxxingChallengesCompleted[1])+"% Offline Value";
-        document.getElementById('LMC2C').innerHTML = "Completions: "+abbrev(LooksmaxxingChallengesCompleted[1])+"/90";
+        document.getElementById('LMC2C').innerHTML = "Completions: "+abbrev(LooksmaxxingChallengesCompleted[1])+"/40";
         document.getElementById('LMC3D').innerHTML = "Rizzmax for at least "+abbrev(LooksmaxCosts(3))+" points without any random chance triggers or Automatic Rizzers.";
         document.getElementById('LMC3B').innerHTML = "Current Bonus: +"+abbrev(LooksmaxxingChallengesCompleted[2])+"x On All Random Multipliers";
         document.getElementById('LMC3C').innerHTML = "Completions: "+abbrev(LooksmaxxingChallengesCompleted[2])+"/5";
@@ -590,11 +682,6 @@ function updateVisuals() {
         document.getElementById('LMC6B').innerHTML = "Current Bonus: -"+0.01*LooksmaxxingChallengesCompleted[5]+" From The Logarithm's Base In The Rizzmax Rizz Point Formula";
         document.getElementById('LMC6C').innerHTML = "Completions: "+abbrev(LooksmaxxingChallengesCompleted[5])+"/3";
 
-        if (inLooksmaxxingChallenge == 0) {
-            document.getElementById('RandomValueExplanatory').innerHTML = "The earlier upgrades labeled as 'Random Value Upgrade/Auto Value' function as follows: Each time you upgrade them, you gain an additional 10% chance to either receive "+abbrev(5+LooksmaxxingChallengesCompleted[2])+" times the usual value upon manual click or "+abbrev(2+LooksmaxxingChallengesCompleted[2])+" times the usual value upon automatic generation by a rizzer, depending on the specific upgrade purchased.";
-        } else {
-            document.getElementById('RandomValueExplanatory').innerHTML = "The earlier upgrades labeled as 'Random Value Upgrade/Auto Value' function as follows: Each time you upgrade them, you gain an additional 10% chance to either receive 2 times the usual value upon manual click or 5 times the usual value upon automatic generation by a rizzer, depending on the specific upgrade purchased.";
-        }
         if (MineOfRizzUnlocked == 0) {
             document.getElementById('RmU2Upg1').innerHTML = "Unlock Mine of Rizz: Cost: <b>250</b> RP";
             document.getElementById('RmU2Upg2').innerHTML = "Unlock the Mine of Rizz to See This Upgrade";
@@ -628,7 +715,7 @@ function updateVisuals() {
         document.getElementById('foundryTotalProduction').innerHTML = "Produce: 15-25 mL of Rizzium for each Rizzite.";
 
         // Rizzifacts
-        document.getElementById('Rizif1C').innerHTML = "Infusion Cost: "+abbrevLiquid(grabCost('RizzifactUpgrade1'))+" Rizzium";
+        document.getElementById('Rizif1C').innerHTML = "Infusion Cost: "+((typeof grabCost("RizzifactUpgrade1") === "undefined" || isNaN(grabCost("RizzifactUpgrade1"))) ? "MAXED" : (abbrevLiquid(grabCost('RizzifactUpgrade1')) + " Rizzium"));
         document.getElementById('Rizif1B').innerHTML = bonusText('RizzifactUpgrade1');
         document.getElementById('Rizif1I').innerHTML = "Infusions: "+rizzifactsObtained[0]+"/3"
     } catch(error) {

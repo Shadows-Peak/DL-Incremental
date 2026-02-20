@@ -14,6 +14,7 @@ function unlockAchievementCard(name, tooltip) {
     card.style.opacity = "0";
     card.style.transform = "translateY(-20px)";
     card.style.transition = "transform 0.5s ease, opacity 0.5s ease";
+    card.style.zIndex = 600;
 
     achievementQueue.push(card);
     processQueue();

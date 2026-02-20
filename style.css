@@ -328,7 +328,7 @@ button:not(:is(.freeButton, .freeButtonPersist, .MoR)) {
     opacity: 0;
     transition: opacity 0.15s ease;
 
-    z-index: 801;
+    z-index: 601;
 }
 
 .achievementCard {
@@ -343,4 +343,338 @@ button:not(:is(.freeButton, .freeButtonPersist, .MoR)) {
     transition: transform 0.5s ease, opacity 0.5s ease;
     pointer-events: auto;
     width: 280px;
+    z-index: 602;
+}
+
+.circle-button {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%,calc(-50% - 30px)) scale(1);
+
+    background: linear-gradient(145deg, #4c6ef5, #364fc7);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+
+    transition: 
+        transform 0.12s ease,
+        filter 0.12s ease,
+        box-shadow 0.12s ease;
+    
+    z-index: 700;
+}
+
+/* Hover Effect */
+.circle-button:hover {
+    transform: translate(-50%,calc(-50% - 30px)) scale(0.94);
+    filter: brightness(0.92);
+}
+
+/* Click Pop */
+.circle-button:active {
+    transform: translate(-50%,calc(-50% - 30px)) scale(1.03);
+    filter: brightness(1.08);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+}
+
+.circle-button.held {
+    transform: translate(-50%,calc(-50% - 30px)) scale(0.94);
+    filter: brightness(0.92);
+}
+.circle-button.pop {
+    transform: translate(-50%, calc(-50% - 30px)) scale(1.03);
+    filter: brightness(1.08);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+}
+
+.circle-image-overlay {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    pointer-events: none;
+}
+
+.circle-image-overlay.hidden {
+    display: none;
+}
+
+.room1-slide-wrapper {
+    position: fixed;
+    top: 50%;
+    right: 0px;
+    transform: translate(calc(80%), calc(-50% - 30px));
+    width: 240px;
+    z-index: 1001;
+}
+
+.room1-slide-arrow {
+    width: 180px;
+    height: 35px;
+    background: #1e1e1e;
+    color: white;
+    border-radius: 20px 0 0 20px;
+    text-align: left;
+    padding-left: 10px;
+    line-height: 35px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s ease;
+    transform-origin: 50% right;
+    transition: transform 0.48s cubic-bezier(0.35, 0.1, 0.25, 1.0);
+    z-index: 701;
+}
+
+.room1-slide-arrow:hover {
+    background: #3b3b3b;
+    transition: background 0.2s ease;
+}
+
+.room1-slide-wrapper:hover .room1-slide-arrow {
+    transform: translateX(-660px); /* match menu width */
+    transform-origin: right;
+    transition: transform 0.65s ease;
+}
+
+.room1-slide-menu {
+    position: absolute;
+    top: -270px;
+    right: 60px; /* sits left of arrow */
+
+    width: 800px;
+    height: 630px;
+
+    background: #1e1e1e;
+    border-radius: 20px 0 0 20px;
+    padding-right: 130px;
+
+    transform-origin: right;
+    transition: transform 0.65s ease;
+    transform: scaleX(0);
+
+    overflow: hidden;
+
+    z-index: 702;
+}
+
+.room1-slide-menu-content {
+  flex: 1;              /* fills remaining space */
+  overflow-y: auto;     /* enables vertical scroll */
+  padding: 15px;
+}
+
+.room1-slide-menu-content {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar (Chrome/Edge) */
+.room1-slide-menu-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.room1-slide-menu-content::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 4px;
+}
+
+.room1-slide-wrapper:hover .room1-slide-menu {
+    transform: scaleX(1);
+}
+
+.room1-slide-content {
+    padding: 20px;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.upgrade-card {
+    background: #2a2a2a;
+    border-radius: 14px;
+    padding: 12px;
+    margin-bottom: 14px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.upgrade-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.upgrade-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #444;
+    flex-shrink: 0;
+    background-size: cover;
+    background-position: center;
+}
+
+.upgrade-title {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.upgrade-owned {
+    text-align: center;
+    padding-right: 34px;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.upgrade-bottom {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.upgrade-cost-button {
+    flex: 1;
+    height: 36px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(145deg, #4c6ef5, #364fc7);
+    color: white;
+    cursor: pointer;
+    transition: filter 0.15s ease, transform 0.1s ease;
+}
+
+.upgrade-cost-button:hover {
+    filter: brightness(0.9);
+}
+
+.upgrade-cost-button:active {
+    transform: scale(0.97);
+}
+
+.upgrade-info {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #3b3b3b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.upgrade-tooltip {
+    position: absolute;
+    bottom: 120%;
+    right: 0;
+    background: #111;
+    color: white;
+    padding: 8px 10px;
+    border-radius: 8px;
+    width: 200px;
+    font-size: 13px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(6px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    z-index: 10;
+}
+
+.upgrade-info:hover .upgrade-tooltip {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.floating-text {
+    position: fixed;
+    font-weight: bold;
+    font-size: 22px;
+    pointer-events: none;
+    user-select: none;
+
+    animation: floatBounce 700ms cubic-bezier(.2,.8,.2,1) forwards;
+    z-index: 750;
+}
+
+@keyframes floatBounce {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+    60% {
+        transform: translate(var(--x), var(--y)) scale(1.15);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--x), calc(var(--y) - 10px)) scale(0.9);
+    }
+}
+
+.bonus-circle {
+    position: fixed;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: auto;
+    overflow: hidden;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    opacity: 0;
+    transform: scale(0.8);
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease;
+    
+    z-index: 850;
+}
+
+/* The front image layer */
+.bonus-overlay {
+    position: absolute;
+    inset: 0;               /* same as top:0; left:0; right:0; bottom:0 */
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    pointer-events: none;   /* important: lets clicks pass to circle */
+}
+
+.bonus-overlay.hidden {
+    opacity: 0;
+}
+
+/* Fade in state */
+.bonus-circle.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Expire (slow fade out) */
+.bonus-circle.expire {
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+/* Clicked (fast shrink pop) */
+.bonus-circle.clicked {
+    opacity: 0;
+    transform: scale(0.4);
+    transition:
+        opacity 0.15s ease,
+        transform 0.15s ease;
 }

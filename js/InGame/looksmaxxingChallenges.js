@@ -1,8 +1,9 @@
 function ChallengeStart(num, alertMsg) {
-    if (LooksmaxxingChallengesCompleted[num-1] < [10,90,5,9,10,3][num-1]) {
+    if (LooksmaxxingChallengesCompleted[num-1] < [10,40,5,9,10,3][num-1]) {
         if (inLooksmaxxingChallenge == 0) {
             inLooksmaxxingChallenge = num;
             // Rizzmax reset
+            removeAllBonuses();
             clicks = 0;
             CountryClubs = 0;
             RiceWashers = 0;
@@ -10,6 +11,7 @@ function ChallengeStart(num, alertMsg) {
             RandomValue5xUpgrades = 0;
             RandomAuto2xUpgrades = 0;
             AutomaticRizzers = 0;
+            blingedDilyanChance = 0;
             clicksIn6 = 0;
             runsIn6 = 0;
     
@@ -28,6 +30,7 @@ function ChallengeStart(num, alertMsg) {
                     inLooksmaxxingChallenge = 0;
     
                     // Rizzmax reset
+                    removeAllBonuses();
                     clicks = 0;
                     CountryClubs = 0;
                     RiceWashers = 0;
@@ -35,6 +38,7 @@ function ChallengeStart(num, alertMsg) {
                     RandomValue5xUpgrades = 0;
                     RandomAuto2xUpgrades = 0;
                     AutomaticRizzers = 0;
+                    blingedDilyanChance = 0;
                     clicksIn6 = 0;
                     runsIn6 = 0;
                     

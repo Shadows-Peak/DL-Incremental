@@ -6,6 +6,8 @@ data = {
     "Cheater": false,
     "RandomValue5xUpgrades": 0,
     "AutomaticRizzers": 0,
+    "blingedDilyanChance": 0,
+    "blingedDilyansObtained": 0,
     "clicksIn6": 0,
     "runsIn6": 0,
     "RandomAuto2xUpgrades": 0,
@@ -18,6 +20,7 @@ data = {
     "LooksmaxxingChallengesCompleted": [0,0,0,0,0,0],
     "timePlayed": 0,
     "backgroundToggle": 1,
+    "buttonPictureToggle": 1,
     "chosenBackground": 1,
     "autosaveInterval": 120,
     "lastOfflineTime": 0,
@@ -56,7 +59,7 @@ async function saveData() {
     var megaData = "";
     var basicIter = 0;
     for (const key of Object.keys(data)) {
-        data[key] = [clicks,CountryClubs,RiceWashers,Cars,Cheater,RandomValue5xUpgrades,AutomaticRizzers,clicksIn6,runsIn6,RandomAuto2xUpgrades,Rizzmaxxes,RizzPoints,OfflineProdHrs,RizzmaxClickWorth,LooksmaxxingChallengesUpgradeUnlocked,inLooksmaxxingChallenge,LooksmaxxingChallengesCompleted,timePlayed,backgroundToggle,chosenBackground,autosaveInterval,lastOfflineTime,MineOfRizzUnlocked,RizzmaxExtraChance,MoRCellHighlight,RizziteNRizzium,RizzalurgyUnlocked,smeltingTime,hasSmelted,newFormatToggle,playerAchievements,rizzifactsObtained][basicIter];
+        data[key] = [clicks,CountryClubs,RiceWashers,Cars,Cheater,RandomValue5xUpgrades,AutomaticRizzers,blingedDilyanChance,blingedDilyansObtained,clicksIn6,runsIn6,RandomAuto2xUpgrades,Rizzmaxxes,RizzPoints,OfflineProdHrs,RizzmaxClickWorth,LooksmaxxingChallengesUpgradeUnlocked,inLooksmaxxingChallenge,LooksmaxxingChallengesCompleted,timePlayed,backgroundToggle,buttonPictureToggle,chosenBackground,autosaveInterval,lastOfflineTime,MineOfRizzUnlocked,RizzmaxExtraChance,MoRCellHighlight,RizziteNRizzium,RizzalurgyUnlocked,smeltingTime,hasSmelted,newFormatToggle,playerAchievements,rizzifactsObtained][basicIter];
         megaData += key + ":" + JSON.stringify(data[key]) + "|";
         basicIter++;
     }
@@ -89,6 +92,8 @@ function resetData(soft=false) {
         "Cheater": false,
         "RandomValue5xUpgrades": 0,
         "AutomaticRizzers": 0,
+        "blingedDilyanChance": 0,
+        "blingedDilyansObtained": 0,
         "clicksIn6": 0,
         "runsIn6": 0,
         "RandomAuto2xUpgrades": 0,
@@ -101,6 +106,7 @@ function resetData(soft=false) {
         "LooksmaxxingChallengesCompleted": [0,0,0,0,0,0],
         "timePlayed": 0,
         "backgroundToggle": 1,
+        "buttonPictureToggle": 1,
         "chosenBackground": 1,
         "autosaveInterval": 120,
         "lastOfflineTime": 0,
