@@ -156,8 +156,15 @@ function grabCost(Item) {
         "RizzmaxExtraChance": (4*Math.floor(2.3**RizzmaxExtraChance)+(2**RizzmaxExtraChance)),
         "MineOfRizzUnlocked": (Boolean(MineOfRizzUnlocked) ? -1 : 250),
         "RizzalurgyUnlocked": (Boolean(RizzalurgyUnlocked) ? -1 : 1),
-        "RizzifactUpgrade1": [50,150,500],
-        "RizzifactUpgrade2": [50, 100,150]
+        "RizzifactUpgrade1": [50,150,500], //Rizzator
+        "RizzifactUpgrade2": [50, 100,150], //Clock Of Mog
+        "RizzifactUpgrade3": [250, 350],   //Rizzucation
+        "RizzifactUpgrade4": [1000000],   //Ring of Edge
+        "RizzifactUpgrade5": [1, 100],   // Sigil of Rizz + Not Right Prices :shrug:
+        "RizzifactUpgrade6": [1000, 50000, 250000, 1000000],    //Soul Of Edge
+        "RizzifactUpgrade7": [1000],   //Reforger
+        "RizzifactUpgrade8": [2000, 2000000],  //Rizztortion
+        "RizzifactUpgrade9": []  //Rizzphone
     }
     return(allCosts[Item]);
 }
@@ -165,7 +172,14 @@ function grabCost(Item) {
 function bonusText(Item) {
     var allBonusTexts = {
         "RizzifactUpgrade1": (rizzifactsObtained[0] < 3 ? "Bonus: +"+rizzifactsObtained[0]*5+"% Chance to Upgrade Twice When You Buy Normal Upgrades." : "Bonus: +15% Chance to Upgrade Twice When You Buy Normal Upgrades And +5% Chance To Rizzmax For Twice As Much."),
-        "RizzifactUpgrade2": (rizzifactsObtained[1] < 3 ? `Bonus:  -${rizzifactsObtained[1]} Max Minutes to smelt Rizzite.` : "Bonus: -3 Minutes From The Max Smelting Time And +5mL Flat Rizzium Whenever You Smelt Rizzite.")
+        "RizzifactUpgrade2": (rizzifactsObtained[1] < 3 ? `Bonus:  -${rizzifactsObtained[1]} Max Minutes to smelt Rizzite.` : "Bonus: -3 Minutes From The Max Smelting Time And +5mL Flat Rizzium Whenever You Smelt Rizzite."),
+        "RizzifactUpgrade3": (rizzifactsObtained[2] < 2 ? `Bonus: +${rizzifactsObtained[2]*5} To The Max Amount Of Rizzium You Can Produce.` : `Bonus: +10 To The Max Amount Of Rizzium You Can Produce And +5 To The Min.`),
+        "RizzifactUpgrade4": `Bonus: The First Upgrade Of All Rizzifacts Works In Looksmaxxing Challanges`,
+        "RizzifactUpgrade5": (rizzifactsObtained[4] < 2 ? `Bonus: Past The Requirement for 200 Rizz Points, The Formula Improves By The Power Of 1.05.` : `Bonus: Past The Requirement for 200 Rizz Points, The Formula Improves By The Power Of 1.10.`),
+        "RizzifactUpgrade6": "idk, its complicated",
+        "RizzifactUpgrade7": `Bonus: The Rizzium Generation Formula Will Now Roll Twice, Taking The Better Result.`,
+        "RizzifactUpgrade8": `Bonus: Game Time Is ${rizzifactsObtained[7]+1}x Faster.`,
+        "RizzifactUpgrade9": `Bonus: TBD`
     }
     return(allBonusTexts[Item])
 }
@@ -634,13 +648,18 @@ function updateVisuals() {
         document.getElementById('Rizif1C').innerHTML = (rizzifactsObtained[0] = grabCost('RizzifactUpgrade1').length) ? 'Max Infusions Obtained': `Infusion Cost: ${abbrevLiquid(grabCost('RizzifactUpgrade1')[rizzifactsObtained[0]])} Rizzium`;
         document.getElementById('Rizif1B').innerHTML = bonusText('RizzifactUpgrade1');
         document.getElementById('Rizif1I').innerHTML = "Infusions: "+rizzifactsObtained[0]+"/3"
-        document.getElementById('Rizif2C').innerHTML = (rizzifactsObtained[0] = grabCost('RizzifactUpgrade1').length) ? 'Max Infusions Obtained': `Infusion Cost: ${abbrevLiquid(grabCost('RizzifactUpgrade2'))[rizzifactsObtained[1]]} Rizzium`;
+        document.getElementById('Rizif2C').innerHTML = (rizzifactsObtained[1] = grabCost('RizzifactUpgrade1').length) ? 'Max Infusions Obtained': `Infusion Cost: ${abbrevLiquid(grabCost('RizzifactUpgrade2'))[rizzifactsObtained[1]]} Rizzium`;
         document.getElementById('Rizif2B').innerHTML = bonusText('RizzifactUpgrade2');
         document.getElementById('Rizif2I').innerHTML = `Infusions: ${rizzifactsObtained[1]}/3`
+        
 
     } catch(error) {
         console.error(error);
     }
+}
+
+function rizzifactHTML(bonus, infusions, number) {
+    document.getElementById(`Rizif${number}C`).innerHTML = (rizzifactsObtained[number - 1] = grabCost(`RizzifactUpgrade${number}`).length) ? 'Max Infusions Obtained': `Infusion Cost: ${abbrevLiquid(grabCost(`RizzifactUpgrade${number}`)[rizzifactsObtained[number - 1]])} Rizzium`;
 }
 
 function offlineProgress() {

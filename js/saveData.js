@@ -30,7 +30,7 @@ data = {
     "hasSmelted": false,
     "newFormatToggle": 0,
     "playerAchievements": {},
-    "rizzifactsObtained": [0,0]
+    "rizzifactsObtained": [0,0,0,0,0,0,0,0,0]
 }
 
 /*
@@ -113,7 +113,7 @@ function resetData(soft=false) {
         "hasSmelted": false,
         "newFormatToggle": 0,
         "playerAchievements": {},
-        "rizzifactsObtained": [0,0]
+        "rizzifactsObtained": [0,0,0,0,0,0,0,0,0]
     }
     for (const [key, value] of Object.entries(data)) {
         window[key] = value;
