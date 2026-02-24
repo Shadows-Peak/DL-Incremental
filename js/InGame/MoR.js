@@ -16,6 +16,16 @@ function clickedMoRCell(x) {
   }
 }
 
+function rizzifactInfuse(number) {
+  document.getElementById(`Rizzifact${number}Infuse`).onclick = function(){
+    if (RizziteNRizzium[2] > grabCost(`RizzifactUpgrade${number}`)[rizzifactsObtained[number - 1]] && rizzifactsObtained[number - 1] < grabCost(`RizzifactUpgrade${number}`).length) {
+      RizziteNRizzium[2] -= grabCost(`RizzifactUpgrade${number}`)[rizzifactsObtained[number - 1]];
+      rizzifactsObtained[number - 1] += 1;
+      updateVisuals();
+    }
+  }
+}
+
 function setClickProcesses4() {
   document.getElementById('MoRCellR1C1').onclick = function(){clickedMoRCell([1,1]);};
   document.getElementById('MoRCellR1C2').onclick = function(){clickedMoRCell([1,2]);};
@@ -47,23 +57,19 @@ function setClickProcesses4() {
   document.getElementById('smeltRizziteButton').onclick = function(){
     if (RizziteNRizzium[1] > 0 && smeltingTime == 0) {
       RizziteNRizzium[1] -= 1;
-      smeltingTime = Math.floor(60*(5+(15- rizzifactsObtained[1]) *Math.random()));
+      var rand_amount = Math.floor(60*(5+(15- rizzifactsObtained[1]) *Math.random()));
+      var rand_amount2 = Math.floor(60*(5+(15- rizzifactsObtained[1]) *Math.random()));
+      smeltingTime = (rizzifactsObtained[6] >= 1? Math.max(rand_amount, rand_amount2): rand_amount);
       updateVisuals();
     }
   };
-
-  document.getElementById('Rizzifact1Infuse').onclick = function(){
-    if (RizziteNRizzium[2] > grabCost('RizzifactUpgrade1') && rizzifactsObtained[0] < 3) {
-      RizziteNRizzium[2] -= grabCost('RizzifactUpgrade1');
-      rizzifactsObtained[0] += 1;
-      updateVisuals();
-    }
-  }
-  document.getElementById('Rizzifact2Infuse').onclick = function(){
-    if (RizziteNRizzium[2] > grabCost('RizzifactUpgrade2') && rizzifactsObtained[1] < 3) {
-      RizziteNRizzium[2] -= grabCost('RizzifactUpgrade2');
-      rizzifactsObtained[1] += 1;
-      updateVisuals();
-    }
-  }
+ rizzifactInfuse(1)
+ rizzifactInfuse(2)
+ rizzifactInfuse(3)
+ rizzifactInfuse(4)
+ rizzifactInfuse(5)
+ rizzifactInfuse(6)
+ rizzifactInfuse(7)
+ rizzifactInfuse(8)
+ rizzifactInfuse(9)
 }

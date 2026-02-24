@@ -47,7 +47,7 @@ var RizziteNRizzium = [0,0,0]; // Rizzite Progress, Rizzite, Rizzium
 var smeltingTime = 0;
 var hasSmelted = false;
 
-var rizzifactsObtained = [0,0];
+var rizzifactsObtained = [0,0,0,0,0,0,0,0,0];
 
 var playerAchievements = {}; // Player Data Side
 
@@ -206,7 +206,11 @@ function grabVisualCost(Item) {
 
 function RizzPointgain() {
     if (clicks >= 25000) {
-      return(Math.floor(Math.log(clicks/25000)/Math.log(1.05-0.01*LooksmaxxingChallengesCompleted[5])));
+      var rizzPointgain_temp = Math.floor(Math.log(clicks/25000)/Math.log(1.05-0.01*LooksmaxxingChallengesCompleted[5]));
+      if (rizzPointgain_temp >= 200){
+        rizzPointgain_temp = rizzPointgain_temp**(rizzifactsObtained[4] === 2 ? 1.10 : rizzifactsObtained[4] === 1 ? 1.05 : 1);
+      }
+      return rizzPointgain_temp
     } else {
       return(0);
     }
@@ -641,25 +645,29 @@ function updateVisuals() {
             document.getElementById('smeltRizziteButton').innerHTML = "Cannot Smelt More Rizzite At This Time";
             document.getElementById('foundryTimer').innerHTML = "Time Left: "+abbrevTime(smeltingTime);
         }
-        document.getElementById('foundryTotalTime').innerHTML = "Each smelting process takes 5-20 minutes.";
-        document.getElementById('foundryTotalProduction').innerHTML = "Produce: 15-25 mL of Rizzium for each Rizzite.";
+        document.getElementById('foundryTotalTime').innerHTML = "Each smelting process takes 5-20 minutes. (base)";
+        document.getElementById('foundryTotalProduction').innerHTML = "Produce: 15-25 mL of Rizzium for each Rizzite. (base)";
 
         // Rizzifacts
-        document.getElementById('Rizif1C').innerHTML = (rizzifactsObtained[0] = grabCost('RizzifactUpgrade1').length) ? 'Max Infusions Obtained': `Infusion Cost: ${abbrevLiquid(grabCost('RizzifactUpgrade1')[rizzifactsObtained[0]])} Rizzium`;
-        document.getElementById('Rizif1B').innerHTML = bonusText('RizzifactUpgrade1');
-        document.getElementById('Rizif1I').innerHTML = "Infusions: "+rizzifactsObtained[0]+"/3"
-        document.getElementById('Rizif2C').innerHTML = (rizzifactsObtained[1] = grabCost('RizzifactUpgrade1').length) ? 'Max Infusions Obtained': `Infusion Cost: ${abbrevLiquid(grabCost('RizzifactUpgrade2'))[rizzifactsObtained[1]]} Rizzium`;
-        document.getElementById('Rizif2B').innerHTML = bonusText('RizzifactUpgrade2');
-        document.getElementById('Rizif2I').innerHTML = `Infusions: ${rizzifactsObtained[1]}/3`
-        
+        rizzifactHTML(3,1)
+        rizzifactHTML(3,2)
+        rizzifactHTML(2,3)
+        rizzifactHTML(1,4)
+        rizzifactHTML(2,5)
+        rizzifactHTML(4,6)
+        rizzifactHTML(1,7)
+        rizzifactHTML(2,8)
+        rizzifactHTML(0,9)
 
     } catch(error) {
         console.error(error);
     }
 }
 
-function rizzifactHTML(bonus, infusions, number) {
-    document.getElementById(`Rizif${number}C`).innerHTML = (rizzifactsObtained[number - 1] = grabCost(`RizzifactUpgrade${number}`).length) ? 'Max Infusions Obtained': `Infusion Cost: ${abbrevLiquid(grabCost(`RizzifactUpgrade${number}`)[rizzifactsObtained[number - 1]])} Rizzium`;
+function rizzifactHTML(infusions, number) {
+    document.getElementById(`Rizif${number}C`).innerHTML = (rizzifactsObtained[number - 1] >= grabCost(`RizzifactUpgrade${number}`).length) ? 'Max Infusions Obtained': `Infusion Cost: ${abbrevLiquid(grabCost(`RizzifactUpgrade${number}`)[rizzifactsObtained[number - 1]])} Rizzium`;
+    document.getElementById(`Rizif${number}B`).innerHTML = bonusText(`RizzifactUpgrade${number}`)
+    document.getElementById(`Rizif${number}I`).innerHTML = `Infusions: ${rizzifactsObtained[number - 1]}/${infusions}`
 }
 
 function offlineProgress() {
@@ -730,7 +738,9 @@ function offlineProgress() {
         if (smeltingTime > 0) {
             if (timeDifferenceSeconds >= smeltingTime) {
                 let bonusRizzium = rizzifactsObtained[1] >= 3 ? 5: 0;
-                const numToIncreaseBy = 15 + Math.floor(10*Math.random()) + bonusRizzium;
+                let maxBonus = rizzifactsObtained[2]*5
+                let minBonus = rizzifactsObtained[2] >= 2 ? 5:0;
+                const numToIncreaseBy = 15 + minBonus + Math.floor(10*Math.random() + maxBonus - minBonus) + bonusRizzium;
                 RizziteNRizzium[2] += numToIncreaseBy;
                 sendToast("Rizzalurgy: <b>+"+abbrevLiquid(numToIncreaseBy)+" Rizzium</b>");
                 smeltingTime = 0;
