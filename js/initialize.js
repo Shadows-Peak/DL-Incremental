@@ -757,7 +757,7 @@ function updateVisuals() {
         document.getElementById('LMC3D').innerHTML = "Rizzmax for at least "+abbrev(LooksmaxCosts(3))+" points without any random chance triggers, Automatic Rizzers, Blinged Dilyans, or Peeking Dilyans.";
         document.getElementById('LMC3B').innerHTML = "Current Bonus: +"+abbrev(LooksmaxxingChallengesCompleted[2])+"x On All Random Multipliers";
         document.getElementById('LMC3C').innerHTML = "Completions: "+abbrev(LooksmaxxingChallengesCompleted[2])+"/5";
-        document.getElementById('LMC4D').innerHTML = "In this challenge, you can use your rizzmax click worth upgrade. Everything is disabled aside from the clicking of the main button and Blinged Dilyans. Rizzmax for at least "+abbrev(LooksmaxCosts(4))+" points.";
+        document.getElementById('LMC4D').innerHTML = "In this challenge, you can use your rizzmax click worth upgrade. Everything is disabled aside from the clicking of the main button and Blinged Dilyans. Blinged Dilyans give a random upgrade in this challenge, up to 5 max in any upgrade. Rizzmax for at least "+abbrev(LooksmaxCosts(4))+" points.";
         document.getElementById('LMC4B').innerHTML = "Current Bonus: +"+abbrev(LooksmaxxingChallengesCompleted[3])+" Dilyan Point Worth Per Country Club";
         document.getElementById('LMC4C').innerHTML = "Completions: "+abbrev(LooksmaxxingChallengesCompleted[3])+"/9";
         document.getElementById('LMC5D').innerHTML = "Rizzmax for at least "+abbrev(LooksmaxCosts(5))+" points while being unable to see any points, upgrades, prices, or multipliers.";
