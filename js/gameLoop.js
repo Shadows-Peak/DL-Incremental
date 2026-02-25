@@ -238,42 +238,44 @@ function spawnBonusCircle(lifetime = 4000) {
         else if (listSum(LooksmaxxingChallengesCompleted) < 70) {randomPulling=Math.round((4+normalUpgrades)*Math.random())}
         else {randomPulling=Math.round((5+normalUpgrades)*Math.random())}
         
-        if (randomPulling == 0) {
+        if (randomPulling == 0 && CountryClubs < 5) {
           CountryClubs++
           spawnFloatingText("", "+1 Country Club",1,[e.clientX,e.clientY]);
-        } else if (randomPulling == 1) {
+        } else if (randomPulling == 1 && RiceWashers < 5) {
           RiceWashers++
           spawnFloatingText("", "+1 Rice Washer",1,[e.clientX,e.clientY]);
-        } else if (randomPulling == 2) {
+        } else if (randomPulling == 2 && Cars < 5) {
           Cars++
           spawnFloatingText("", "+1 Car",1,[e.clientX,e.clientY]);
-        } else if (randomPulling == 3) {
+        } else if (randomPulling == 3 && AutomaticRizzers < 5) {
           AutomaticRizzers++
           spawnFloatingText("", "+1 Automatic Rizzer",1,[e.clientX,e.clientY]);
-        } else if (randomPulling == 4) {
+        } else if (randomPulling == 4 && RandomValue5xUpgrades < 5) {
           RandomValue5xUpgrades++
           spawnFloatingText("", "+1 Serendipitous Clicker",1,[e.clientX,e.clientY]);
-        } else if (randomPulling == 5) {
+        } else if (randomPulling == 5 && RandomAuto2xUpgrades < 5) {
           RandomAuto2xUpgrades++
           spawnFloatingText("", "+1 Lucky Rizzer",1,[e.clientX,e.clientY]);
-        } else if (randomPulling == 6) {
+        } else if (randomPulling == 6 && blingedDilyanChance < 5) {
           blingedDilyanChance++
           spawnFloatingText("", "+1 Bling Detector",1,[e.clientX,e.clientY]);
-        } else if (randomPulling == 7) {
+        } else if (randomPulling == 7 && proudBlings < 5) {
           proudBlings++
           spawnFloatingText("", "+1 Proud Bling",1,[e.clientX,e.clientY]);
-        } else if (randomPulling == 8) {
+        } else if (randomPulling == 8 && blingKings < 5) {
           blingKings++
           spawnFloatingText("", "+1 Bling King",1,[e.clientX,e.clientY]);
-        } else if (randomPulling == 9) {
+        } else if (randomPulling == 9 && exposureTherapys < 5) {
           exposureTherapys++
           spawnFloatingText("", "+1 Exposure Therapy",1,[e.clientX,e.clientY]);
-        } else if (randomPulling == 10) {
+        } else if (randomPulling == 10 && prolongedPresences < 3) {
           prolongedPresences++
           spawnFloatingText("", "+1 Prolonged Presence",1,[e.clientX,e.clientY]);
-        } else if (randomPulling == 11) {
+        } else if (randomPulling == 11 && dilyansTruth < 5) {
           dilyansTruths++
           spawnFloatingText("", "+1 Dilyan's Truth",1,[e.clientX,e.clientY]);
+        } else {
+          spawnFloatingText("", "Nothing Happened..",1,[e.clientX,e.clientY]);
         }
       } else {
         clicksGained = simulateClick("BONUS",(6+2*Math.floor(blingKings/2))+Math.random()*((13+3*Math.ceil(blingKings/2))-(6+2*Math.floor(blingKings/2)))); // 6-13x multiplier i believe
