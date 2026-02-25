@@ -68,15 +68,14 @@
     <div class="dropdown-menu themed2" id="infoMenu">
         <h3>INFO (WORK IN PROGRESS)</h3>
         <p>Will contain info on formulas, tutorials, and the changelog</p>
-        <p>yeah</p>
-        <h2>List of things that are Coming in Part 2 of this Update:</h2>
-        <p>More Blinged Dilyan Upgrades and Functionality in Looksmaxxing Challenges</p>
+        <h2>List of things that are Coming in Part 3 of this Update:</h2>
+        <p>More uses for Rizzite</p>
+        <p>Extended Caps for Peeking Dilyan Upgrades</p>
         <p>Fusing the Mine of Rizz and Rizzalurgy into the same room on the map</p>
         <p>This info menu and the profile menu functioning properly</p>
-        <p><b>Automatic Rizzer Buff/Rework</b></p>
+        <p><b>More Automatic Rizzer Buffing from Challenges/Rizzifacts</b></p>
         <p>2 New (and final) Looksmaxxing Challenges</p>
         <p>More working Rizzifacts</p>
-        <p>Another randomly appearing type of Dilyan aside from the Blinged Dilyan</p>
     </div>
     <div id="menuStuff" style="margin-top: 5px; left: 5px;">
         <h1>Dilyan Lopez Incremental (Remastered?)</h1>
@@ -84,8 +83,8 @@
         <button data-room-id=0 id="signUp">Sign Up</button>
         <button data-room-id=0 id="login">Login</button>
         <div data-room-id=0 id="value-container">Loading... (or am I?)</div>
-        <h1 id="version">1.2 - Part 1</h1>
-        <h2>Visual Overhaul In Progress!<br><br>Nerf: "Edging Maestro" Looksmaxxing Challenge Completion Limit Lowered From 90 -> 40<br><br>New Achievements!<br><br>Remodel Of First Room (With The Clicking Button) To Include The Upgrades In A Special Tab!<br><br>Rizzmax Is No Longer Needed To Unlock 2x Random Auto Value<br><br>Renamed The Random Value Upgrades Because Their Names Were Too Long<br><br>Added Basic Explanations To The Basic Upgrades<br><br>New System: Blinged Dilyans, As Well As A New Rizzmax Unlocked Upgrade For It<br><br>Fixed Some Bugs With Rizzifacts<br><br>New Images (Not Done Importing)<br><br><b>!BE AWARE THAT THIS IS ONLY PART 1 AND MANY FUNCTIONALITIES (INCLUDING BUFFED AUTOMATIC RIZZERS AND BLINGED DILYANS WORKING IN CHALLENGES) ARE NOT YET ADDED BUT WILL BE ADDED OVER THE WEEKEND INSTEAD (CHECK THE IN-GAME NOTEBOOK FOR MORE INFO)!</b></h2>
+        <h1 id="version">1.2 - Part 2</h1>
+        <h2>Peeking Dilyans!<br><br>Blinged Dilyan And Peeking Dilyan Functionality In Challenges!<br><br>Upgrades For Blinged Dilyans And Peeking Dilyans<br><br>Softcaps On Certain Upgrades<br><br>Hardcaps On Certain Upgrades<br><br><b>!UNFORTUNATELY I NEED MORE TIME TO IMPLEMENT THE OTHER CONTENT, BUT A SECONDARY USE FOR RIZZITE IS COMING IN THE NEXT UPDATE AS WELL. YOU NEED TO WAIT FOR PART 3 FOR THE NEW ACHIEVEMENTS TOO UNFORTUNATELY!</b></h2>
     </div>
     <div id="page-content">
       <div id="room0Stuff" style="margin-top: 5px; left: 5px;">
@@ -109,7 +108,7 @@
                 <h2>Menu Area</h2>
                 <p>Stuff will go here later.</p>
                 <div class="room1-slide-menu-content">
-                  <div class="upgrade-card themed4">
+                  <div class="upgrade-card themed4" id="countryClubUpgradeCard">
                       <div class="upgrade-header">
                         <div class="upgrade-icon themed2" id="countryClubIcon"></div>
                         <div class="upgrade-title">Country Club</div>
@@ -127,7 +126,7 @@
                         </div>
                       </div>
                   </div>
-                  <div class="upgrade-card themed4">
+                  <div class="upgrade-card themed4" id="riceWasherUpgradeCard">
                       <div class="upgrade-header">
                         <div class="upgrade-icon themed2" id="riceWasherIcon"></div>
                         <div class="upgrade-title">Rice Washer</div>
@@ -145,7 +144,7 @@
                         </div>
                       </div>
                   </div>
-                  <div class="upgrade-card themed4">
+                  <div class="upgrade-card themed4" id="carUpgradeCard">
                       <div class="upgrade-header">
                         <div class="upgrade-icon themed2" id="carIcon"></div>
                         <div class="upgrade-title" id="carTitle">Car</div>
@@ -163,7 +162,7 @@
                         </div>
                       </div>
                   </div>
-                  <div class="upgrade-card themed4">
+                  <div class="upgrade-card themed4" id="automaticRizzerUpgradeCard">
                       <div class="upgrade-header">
                         <div class="upgrade-icon themed2" id="automaticRizzerIcon"></div>
                         <div class="upgrade-title">Automatic Rizzer</div>
@@ -176,12 +175,12 @@
                         <div class="upgrade-info themed3">
                           i
                           <div class="upgrade-tooltip themedLocked" id="automaticRizzerTooltip">
-                            This upgrade gives you +1 Dilyan Points every second for each one of these you own (It can also be multiplied by the Rice Washer's bonus).
+                            This upgrade simulates a click for you automatically every second, but it only uses 10% of your country clubs rounded down and no less than 1 (so less than 10 country clubs still counts as 1) when it does so (Buying more of these multiplies what you get per second by how many you own). This also is not affected by upgrades like Click Worth that only mention clicks, unless otherwise stated.
                           </div>
                         </div>
                       </div>
                   </div>
-                  <div class="upgrade-card themed4">
+                  <div class="upgrade-card themed4" id="serendipitousClickerUpgradeCard">
                       <div class="upgrade-header">
                         <div class="upgrade-icon themed2" id="serendipitousClickerIcon"></div>
                         <div class="upgrade-title">Serendipitous Clicker</div>
@@ -199,7 +198,7 @@
                         </div>
                       </div>
                   </div>
-                  <div class="upgrade-card themed4">
+                  <div class="upgrade-card themed4" id="luckyRizzerUpgradeCard">
                       <div class="upgrade-header">
                         <div class="upgrade-icon themed2" id="luckyRizzerIcon"></div>
                         <div class="upgrade-title">Lucky Rizzer</div>
@@ -217,7 +216,7 @@
                         </div>
                       </div>
                   </div>
-                  <div class="upgrade-card themedRizzmaxUnlocked rizzmaxUnlockable">
+                  <div class="upgrade-card themedRizzmaxUnlocked rizzmaxUnlockable" id="blingDetectorUpgradeCard">
                       <div class="upgrade-header">
                         <div class="upgrade-icon themed2" id="moreBlingedDilyanIcon"></div>
                         <div class="upgrade-title">Bling Detector</div>
@@ -230,7 +229,97 @@
                         <div class="upgrade-info themed3">
                           i
                           <div class="upgrade-tooltip themedLocked" id="moreBlingedDilyanTooltip">
-                            This upgrade increases the chance for a Blinged Dilyan to spawn by +1% for each upgrade (Having 0 is 0.33%).
+                            This upgrade increases the chance for a Blinged Dilyan to spawn per second by +1% for each upgrade (Having 0 is 0.33%).
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="upgrade-card themedRizzmaxUnlocked rizzmaxUnlockable" id="proudBlingUpgradeCard">
+                      <div class="upgrade-header">
+                        <div class="upgrade-icon themed2" id="proudBlingIcon"></div>
+                        <div class="upgrade-title">Proud Bling</div>
+                      </div>
+                      <div class="upgrade-owned">
+                        Owned: <span id="proudBlingsOwned">0/10</span>
+                      </div>
+                      <div class="upgrade-bottom">
+                        <button class="upgrade-cost-button themedRizzmaxUnlocked2" id="proudBlingCost">Cost: 0</button>
+                        <div class="upgrade-info themed3">
+                          i
+                          <div class="upgrade-tooltip themedLocked" id="proudBlingTooltip">
+                            This upgrade increases the time a Blinged Dilyan will stay on the screen before disappearing by +1 second for each upgrade (Having 0 is 4 seconds).
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="upgrade-card themedRizzmaxUnlocked rizzmaxUnlockable" id="blingKingUpgradeCard">
+                      <div class="upgrade-header">
+                        <div class="upgrade-icon themed2" id="blingKingIcon"></div>
+                        <div class="upgrade-title">Bling King</div>
+                      </div>
+                      <div class="upgrade-owned">
+                        Owned: <span id="blingKingsOwned">0/20</span>
+                      </div>
+                      <div class="upgrade-bottom">
+                        <button class="upgrade-cost-button themedRizzmaxUnlocked2" id="blingKingCost">Cost: 0</button>
+                        <div class="upgrade-info themed3">
+                          i
+                          <div class="upgrade-tooltip themedLocked" id="blingKingTooltip">
+                            This upgrade increases the multipliers for a Blinged Dilyan when clicked. Each odd upgrade increases the maximum multiplier by +3 and each even upgrade increases the minimum multiplier by +2 (Having 0 is a 6x to 13x multiplier).
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="upgrade-card themedRizzmaxUnlocked rizzmaxUnlockable" id="exposureTherapyUpgradeCard">
+                      <div class="upgrade-header">
+                        <div class="upgrade-icon themed2" id="exposureTherapyIcon"></div>
+                        <div class="upgrade-title">Exposure Therapy</div>
+                      </div>
+                      <div class="upgrade-owned">
+                        Owned: <span id="exposureTherapysOwned">0/5</span>
+                      </div>
+                      <div class="upgrade-bottom">
+                        <button class="upgrade-cost-button themedRizzmaxUnlocked2" id="exposureTherapyCost">Cost: 0</button>
+                        <div class="upgrade-info themed3">
+                          i
+                          <div class="upgrade-tooltip themedLocked" id="exposureTherapyTooltip">
+                            This upgrade increases the chance for a Peeking Dilyan to spawn per second by +0.5% for each upgrade (Having 0 is 0.25%).
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="upgrade-card themedRizzmaxUnlocked rizzmaxUnlockable" id="prolongedPresenceUpgradeCard">
+                      <div class="upgrade-header">
+                        <div class="upgrade-icon themed2" id="prolongedPresenceIcon"></div>
+                        <div class="upgrade-title">Prolonged Presence</div>
+                      </div>
+                      <div class="upgrade-owned">
+                        Owned: <span id="prolongedPresencesOwned">0/10</span>
+                      </div>
+                      <div class="upgrade-bottom">
+                        <button class="upgrade-cost-button themedRizzmaxUnlocked2" id="prolongedPresenceCost">Cost: 0</button>
+                        <div class="upgrade-info themed3">
+                          i
+                          <div class="upgrade-tooltip themedLocked" id="prolongedPresenceTooltip">
+                            This upgrade increases the time a Peeking Dilyan will stay on the screen before disappearing by +1 second for each upgrade (Having 0 is 6 seconds). It also increases the duration of Aura Rush gained by clicking a Peeking Dilyan by +1.5 seconds (Having 0 is 1 second).
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="upgrade-card themedRizzmaxUnlocked rizzmaxUnlockable" id="dilyansTruthUpgradeCard">
+                      <div class="upgrade-header">
+                        <div class="upgrade-icon themed2" id="dilyansTruthIcon"></div>
+                        <div class="upgrade-title">Dilyan's Truth</div>
+                      </div>
+                      <div class="upgrade-owned">
+                        Owned: <span id="dilyansTruthsOwned">0/30</span>
+                      </div>
+                      <div class="upgrade-bottom">
+                        <button class="upgrade-cost-button themedRizzmaxUnlocked2" id="dilyansTruthCost">Cost: 0</button>
+                        <div class="upgrade-info themed3">
+                          i
+                          <div class="upgrade-tooltip themedLocked" id="dilyansTruthTooltip">
+                            This upgrade increases the multiplier gained by Aura Rush by +0.5x for each upgrade (Having 0 is a 5x multiplier).
                           </div>
                         </div>
                       </div>
@@ -244,6 +333,13 @@
             <button id="button1" class="circle-button themed1 freeButtonPersist" onkeydown="return event.key != 'Enter';">
               <div class="circle-image-overlay"></div>
             </button>
+          </div>
+          <div id="timerWrapper">
+            <div class="themedLocked" id="timerBar">
+              <div class="timer-fill themed3"></div>
+              <div class="timer-bonus themedUnlocked"></div>
+            </div>
+            <div id="timerMultiplier">x5</div>
           </div>
       </div>
       <!--
@@ -312,7 +408,7 @@
               <div class="column">
                   <table class="LmCTable" style="width:90%">
                     <tr><th class="LmCCellStuff"><b>Edging Maestro</b></th></tr>
-                    <tr style="height:78px"><td class="LmCCellStuff" id="LMC2D">Rizzmax for at least 1 point without clicking the main button and starting with 1 Automatic Rizzer. Offline Progress is enabled at 50% efficiency. Automatic Rizzers use the formula of clicking in this challenge, and are affected by both random chance upgrades.</td></tr>
+                    <tr style="height:78px"><td class="LmCCellStuff" id="LMC2D">Rizzmax for at least 1 point without clicking the main button and starting with 1 Automatic Rizzer. Offline Progress is enabled at 50% efficiency. Automatic Rizzers use the exact formula of clicking in this challenge, and are affected by both random chance upgrades.</td></tr>
                     <tr><td class="LmCCellStuff" id="LMC2B">Current Bonus: +0% Offline Value</td></tr>
                     <tr><td class="LmCCellStuff" id="LMC2C">Completions: 0/90</td></tr>
                     <tr><th class="LmCCellStuff"><button type="button" class="themed1" id="LMC2Button">Begin</button></th></tr>
@@ -321,7 +417,7 @@
               <div class="column">
                   <table class="LmCTable" style="width:90%">
                     <tr><th class="LmCCellStuff"><b>Stone-Faced Mogging</b></th></tr>
-                    <tr style="height:78px"><td class="LmCCellStuff" id="LMC3D">Rizzmax for at least 50 points without any random chance triggers or Automatic Rizzers.</td></tr>
+                    <tr style="height:78px"><td class="LmCCellStuff" id="LMC3D">Rizzmax for at least 50 points without any random chance triggers, Automatic Rizzers, Blinged Dilyans, or Peeking Dilyans.</td></tr>
                     <tr><td class="LmCCellStuff" id="LMC3B">Current Bonus: +1x On All Random Multipliers</td></tr>
                     <tr><td class="LmCCellStuff" id="LMC3C">Completions: 0/5</td></tr>
                     <tr><th class="LmCCellStuff"><button type="button" class="themed1" id="LMC3Button">Begin</button></th></tr>
@@ -330,7 +426,7 @@
               <div class="column">
                   <table class="LmCTable" style="width:90%">
                     <tr><th class="LmCCellStuff"><b>Rags to Riches</b></th></tr>
-                    <tr style="height:78px"><td class="LmCCellStuff" id="LMC4D">In this challenge, you can use your rizzmax click worth upgrade. Everything is disabled aside from the clicking of the main button. Rizzmax for at least 10 points.</td></tr>
+                    <tr style="height:78px"><td class="LmCCellStuff" id="LMC4D">In this challenge, you can use your rizzmax click worth upgrade. Everything is disabled aside from the clicking of the main button and Blinged Dilyans. Rizzmax for at least 10 points.</td></tr>
                     <tr><td class="LmCCellStuff" id="LMC4B">Current Bonus: +1 Dilyan Point Worth Per Country Club</td></tr>
                     <tr><td class="LmCCellStuff" id="LMC4C">Completions: 0/9</td></tr>
                     <tr><th class="LmCCellStuff"><button type="button" class="themed1" id="LMC4Button">Begin</button></th></tr>
@@ -348,7 +444,7 @@
               <div class="column">
                   <table class="LmCTable" style="width:90%">
                     <tr><th class="LmCCellStuff"><b>Gods Plan</b></th></tr>
-                    <tr style="height:78px"><td class="LmCCellStuff" id="LMC6D">Rizzmax for at least 100 points while consecutively clicking the main button depreciates the value yet Automatic Rizzers are 5x more expensive and the other upgrades are 3x cheaper. The value for clicking can be reset by purchasing an upgrade (besides Automatic Rizzers), and Automatic Rizzers only produce 1 time for each one you own before stopping until you buy another. Offline Progress is enabled at 10% efficiency.</td></tr>
+                    <tr style="height:78px"><td class="LmCCellStuff" id="LMC6D">Rizzmax for at least 100 points while consecutively clicking the main button depreciates the value yet Automatic Rizzers are 5x more expensive and the other upgrades are 3x cheaper. The value for clicking can be reset by purchasing an upgrade (besides Automatic Rizzers), and Automatic Rizzers only produce 1 time for each one you own before stopping until you buy another. Offline Progress is enabled at 10% efficiency and there are no Blinged Dilyans or Peeking Dilyans.</td></tr>
                     <tr><td class="LmCCellStuff" id="LMC6B">Current Bonus: -0.01 From The Logarithm's Base In The Rizzmax Rizz Point Formula</td></tr>
                     <tr><td class="LmCCellStuff" id="LMC6C">Completions: 0/3</td></tr>
                     <tr><th class="LmCCellStuff"><button type="button" class="themed1" id="LMC6Button">Begin</button></th></tr>

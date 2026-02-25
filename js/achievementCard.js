@@ -21,10 +21,14 @@ function unlockAchievementCard(name, tooltip) {
     updateBackgrounds();
 }
 
-async function sendToast(text) {
+async function sendToast(text,type="default") {
     const card = document.createElement("div");
     card.className = "achievementCard";
-    card.classList.add('themed4');
+    if (type=="default"){
+        card.classList.add('themed4');
+    } else if (type=="rizzmaxUnlock") {
+        card.classList.add('themedRizzmaxUnlocked');
+    }
     card.innerHTML = text;
     card.style.opacity = "0";
     card.style.transform = "translateY(-20px)";

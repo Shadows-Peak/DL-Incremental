@@ -200,7 +200,7 @@ button:not(:is(.freeButton, .freeButtonPersist, .MoR)) {
 
 .dropdown-menu {
   position: fixed;
-  top: -700px; /* hidden above */
+  top: -1000px; /* hidden above */
   left: 50%;    /* center horizontally */
   transform: translateX(-50%); /* center exactly */
   width: 250px;
@@ -604,7 +604,7 @@ button:not(:is(.freeButton, .freeButtonPersist, .MoR)) {
     user-select: none;
 
     animation: floatBounce 700ms cubic-bezier(.2,.8,.2,1) forwards;
-    z-index: 750;
+    z-index: 950;
 }
 
 @keyframes floatBounce {
@@ -677,4 +677,148 @@ button:not(:is(.freeButton, .freeButtonPersist, .MoR)) {
     transition:
         opacity 0.15s ease,
         transform 0.15s ease;
+}
+
+.peek-panel {
+    position: fixed;
+    width: 220px;
+    height: 140px;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+
+    opacity: 0;
+    
+    transition:
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.4s ease;
+
+    z-index: 849;
+}
+
+/* LEFT SIDE */
+.peek-left {
+    left: 0;
+    transform: translateX(-110%);
+}
+
+/* RIGHT SIDE */
+.peek-right {
+    right: 0;
+    transform: translateX(110%);
+}
+
+/* Slide into peek position */
+.peek-panel.show.peek-left {
+    transform: translateX(-20%);
+    opacity: 1;
+}
+
+.peek-panel.show.peek-right {
+    transform: translateX(20%);
+    opacity: 1;
+}
+
+/* Overlay (image only) */
+.peek-overlay {
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    pointer-events: none;
+}
+
+.peek-overlay.hidden {
+    opacity: 0;
+}
+
+.peek-panel.expire.peek-left {
+    transform: translateX(-110%);
+    opacity: 0;
+}
+
+.peek-panel.expire.peek-right {
+    transform: translateX(110%);
+    opacity: 0;
+}
+
+/* Clicked animation */
+.peek-panel.clicked {
+    opacity: 0;
+    transform: scale(0.8);
+    transition:
+        transform 0.15s ease,
+        opacity 0.15s ease;
+}
+
+/* Wiggle */
+@keyframes peekWiggleLeft {
+    0% { transform: translateX(-20%) rotate(0deg); }
+    50% { transform: translateX(-18%) rotate(-2deg); }
+    100% { transform: translateX(-20%) rotate(0deg); }
+}
+
+@keyframes peekWiggleRight {
+    0% { transform: translateX(20%) rotate(0deg); }
+    50% { transform: translateX(18%) rotate(2deg); }
+    100% { transform: translateX(20%) rotate(0deg); }
+}
+
+.peek-panel.wiggle.peek-left {
+    animation: peekWiggleLeft 0.6s ease;
+}
+
+.peek-panel.wiggle.peek-right {
+    animation: peekWiggleRight 0.6s ease;
+}
+
+#timerWrapper {
+    position: fixed;
+    width: 220px;
+    top: 70px;     /* below toolbar */
+    left: 50px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    transition: opacity 0.3s ease;
+
+    z-index: 860;
+}
+
+#timerBar {
+    position: relative;
+    width: 100%;
+    height: 28px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: opacity 0.3s ease;
+}
+
+#timerMultiplier {
+    font-weight: bold;
+    font-size: 18px;
+    opacity: 0.9;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.timer-fill {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    transition: width 0.15s linear;
+}
+
+.timer-bonus {
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+    opacity: 0.9;
+    pointer-events: none;
 }

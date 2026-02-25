@@ -28,6 +28,12 @@ var AutomaticRizzers = 0;
 
 var blingedDilyanChance = 0;
 var blingedDilyansObtained = 0;
+var blingKings = 0;
+var proudBlings = 0;
+var exposureTherapys = 0;
+var peekingDilyansObtained = 0;
+var prolongedPresences = 0;
+var dilyansTruths = 0;
 
 var clicksIn6 = 0;
 var runsIn6 = 0;
@@ -57,6 +63,13 @@ var rizzifactsObtained = [0];
 var playerAchievements = {}; // Player Data Side
 
 
+
+// gameplay but dont save
+var rushCounter = 0;
+var fullRushTimer = 0;
+
+
+var initialized = false;
 var gameAchievements = {}; // Game Side
 
 function addAchievement(id,name,tooltip,requirementFunction) {
@@ -144,23 +157,52 @@ function countUnlockedAchievements() {
 
 
 
+function grabSoftCap(Item) {
+    var softCapMult = 1;
+    if (Item == "CountryClubs") {
+        if (CountryClubs >= 80) {
+            softCapMult = Math.ceil(1.5**((CountryClubs-79)*(1.1**(CountryClubs-79))));
+        }
+    }
+    if (Item == "RiceWashers") {
+        if (RiceWashers >= 50) {
+            softCapMult = Math.ceil(1.1**((RiceWashers-49)*(1.05**(RiceWashers-49))));
+        }
+    }
+    if (Item == "Cars") {
+        if (Cars >= 60) {
+            softCapMult = Math.ceil(1.05**((Cars-59)*(1.1**(Cars-59))));
+        }
+    }
+    if (Item == "RizzmaxClickWorth") {
+        if (RizzmaxClickWorth >= 200) {
+            softCapMult = Math.ceil(1.1**((RizzmaxClickWorth-199)*(1.05**(RizzmaxClickWorth-199))));
+        }
+    }
+    return softCapMult;
+}
 
 function grabCost(Item) {
     var allCosts = {
         "RandomValue5xUpgrades": Math.ceil((inLooksmaxxingChallenge != 6 ? 1 : (1/3)) * [2500,5000,15000,50000,150000][RandomValue5xUpgrades]),
         "RandomAuto2xUpgrades": Math.ceil((inLooksmaxxingChallenge != 6 ? 1 : (1/3)) * [15000,35000,75000,150000,500000][RandomAuto2xUpgrades]),
         "AutomaticRizzers": (inLooksmaxxingChallenge != 6 ? 2500 + 500*(AutomaticRizzers) + Math.ceil(50*(Math.log(7*(AutomaticRizzers)+1)**1.4)) : (5) * (2500 + 500*(AutomaticRizzers) + Math.ceil(50*(Math.log(7*(AutomaticRizzers)+1)**1.4)))),
-        "CountryClubs": Math.ceil((inLooksmaxxingChallenge != 6 ? 1 : (1/3)) * Math.floor(1.75 ** CountryClubs) * Math.log(5 * ((CountryClubs + 1) ** 1.5)) * (CountryClubs + 1)),
-        "RiceWashers": Math.ceil((inLooksmaxxingChallenge != 6 ? 1 : (1/3)) * 400*Math.floor(2 ** RiceWashers) * Math.log(7 * ((RiceWashers + 1) ** 1.5)) * (RiceWashers + 1)),
-        "Cars": Math.ceil((inLooksmaxxingChallenge != 6 ? 1 : (1/3)) * (12000 + 10000*Cars + Math.ceil(300*Math.floor(2.3 ** Cars)*Math.ceil(Math.log((Cars*Cars+1)*((Cars+1)**3)))*Math.log(Cars+1)))),
+        "CountryClubs": Math.ceil(grabSoftCap("CountryClubs") * (inLooksmaxxingChallenge != 6 ? 1 : (1/3)) * Math.floor(1.75 ** CountryClubs) * Math.log(5 * ((CountryClubs + 1) ** 1.5)) * (CountryClubs + 1)),
+        "RiceWashers": Math.ceil(grabSoftCap("RiceWashers") * (inLooksmaxxingChallenge != 6 ? 1 : (1/3)) * 400*Math.floor(2 ** RiceWashers) * Math.log(7 * ((RiceWashers + 1) ** 1.5)) * (RiceWashers + 1)),
+        "Cars": Math.ceil(grabSoftCap("Cars") * (inLooksmaxxingChallenge != 6 ? 1 : (1/3)) * (12000 + 10000*Cars + Math.ceil(300*Math.floor(2.3 ** Cars)*Math.ceil(Math.log((Cars*Cars+1)*((Cars+1)**3)))*Math.log(Cars+1)))),
         "OfflineProdHrs": Math.ceil(1.5*((OfflineProdHrs)**3.5))+1,
-        "RizzmaxClickWorth": (2**(Math.floor(RizzmaxClickWorth/50)))*(Math.ceil(Math.ceil(2/3*((RizzmaxClickWorth)**0.5))*(Math.log(RizzmaxClickWorth+1)))+1),
+        "RizzmaxClickWorth": grabSoftCap("RizzmaxClickWorth") * (2**(Math.floor(RizzmaxClickWorth/50)))*(Math.ceil(Math.ceil(2/3*((RizzmaxClickWorth)**0.5))*(Math.log(RizzmaxClickWorth+1)))+1),
         "LooksmaxxingChallengesUpgradeUnlocked": (Boolean(LooksmaxxingChallengesUpgradeUnlocked) ? -1 : 100),
         "RizzmaxExtraChance": (4*Math.floor(2.3**RizzmaxExtraChance)+(2**RizzmaxExtraChance)),
         "MineOfRizzUnlocked": (Boolean(MineOfRizzUnlocked) ? -1 : 250),
         "RizzalurgyUnlocked": (Boolean(RizzalurgyUnlocked) ? -1 : 1),
         "RizzifactUpgrade1": [50,150,500][rizzifactsObtained[0]],
-        "blingedDilyanChance": [1000,5000,15000,50000,150000,500000,1000000,15000000,5000000,25000000][blingedDilyanChance]
+        "blingedDilyanChance": [1000,5000,15000,50000,150000,500000,1000000,15000000,5000000,25000000][blingedDilyanChance],
+        "ProudBling": [10000,25000,50000,100000,250000,500000,1000000,2500000,5000000,1000000000][proudBlings],
+        "BlingKing": [100000, 500000, 1000000, 5000000, 10000000, 50000000, 100000000, 500000000, 1000000000, 5000000000, 10000000000, 50000000000, 100000000000, 500000000000, 1000000000000, 5000000000000, 10000000000000, 50000000000000, 100000000000000, 500000000000000][blingKings],
+        "ExposureTherapy": [500000, 2500000, 7500000, 25000000, 75000000][exposureTherapys],
+        "ProlongedPresence": [1000000, 5000000, 10000000, 50000000, 100000000, 500000000, 1000000000, 5000000000, 10000000000, 50000000000][prolongedPresences],
+        "DilyansTruth": [5000000, 15000000, 35000000, 50000000, 75000000, 100000000, 500000000, 1500000000, 3500000000, 5000000000, 7500000000, 10000000000, 50000000000, 150000000000, 350000000000, 500000000000, 750000000000, 1000000000000, 5000000000000, 15000000000000, 35000000000000, 50000000000000, 75000000000000, 100000000000000, 500000000000000, 1500000000000000, 3500000000000000, 5000000000000000, 7500000000000000, 10000000000000000][dilyansTruths]
     }
     return(allCosts[Item]);
 }
@@ -194,7 +236,7 @@ function grabVisualCost(Item) {
 
 function RizzPointgain() {
     if (clicks >= 25000) {
-      return(Math.floor(Math.log(clicks/25000)/Math.log(1.05-0.01*LooksmaxxingChallengesCompleted[5])));
+      return(Math.floor(Math.log(clicks/25000)/Math.log(1.05-0.01*(Boolean(inLooksmaxxingChallenge) ? 0 : 1)*LooksmaxxingChallengesCompleted[5])));
     } else {
       return(0);
     }
@@ -290,7 +332,7 @@ function setDisplay(object, value, idOrClass="id") {
     } else {
         finalVal = (idOrClass == "id" ? "initial" : "");
     }
-    if (idOrClass=="id") {
+    if (idOrClass=="id" || idOrClass=="special") {
         try{
             if (object != "newToolbar") {
                 document.getElementById(object).style.display = finalVal;
@@ -317,6 +359,8 @@ function setDisplay(object, value, idOrClass="id") {
 function removeAllBonuses() {
     const circles = document.querySelectorAll('.bonus-circle');
     circles.forEach(circle => circle.remove());
+    const panels = document.querySelectorAll('.peek-panel');
+    panels.forEach(panel => panel.remove());
 }
 
 function updateBackgrounds() {
@@ -493,20 +537,30 @@ function getTheme(backgroundNum) {
 
 function updateTempBackgrounds() {
     var themeMap = getTheme(chosenBackground);
-    Object.entries(themeMap).forEach(([className, color]) => {
-        const elements = document.getElementsByClassName("bonus-circle");
-        for (const el of elements) {
-            el.style.background = color;
-        }
-    });
+    color = themeMap["themedUnlocked"];
+    const elements = document.getElementsByClassName("bonus-circle");
+    for (const el of elements) {
+        el.style.background = color;
+    }
+    const elements2 = document.getElementsByClassName("peek-panel");
+    for (const el of elements2) {
+        el.style.background = color;
+    }
 
     const greenDilyanOverlays = document.querySelectorAll('.bonus-overlay');
+    const peekingDilyanOverlays = document.querySelectorAll('.peek-overlay');
     if (buttonPictureToggle == 1) {
         greenDilyanOverlays.forEach(function(overlay) {
             overlay.classList.remove("hidden");
         });
+        peekingDilyanOverlays.forEach(function(overlay) {
+            overlay.classList.remove("hidden");
+        });
     } else {
         greenDilyanOverlays.forEach(function(overlay) {
+            overlay.classList.add("hidden");
+        });
+        peekingDilyanOverlays.forEach(function(overlay) {
             overlay.classList.add("hidden");
         });
     }
@@ -546,7 +600,13 @@ function updateVisuals() {
             } else {
                 document.getElementById('currencyCounter').innerHTML = "<b>"+abbrev(clicks)+"</b> Dilyan Points <b>"+abbrev(RizzPoints)+"</b> Rizz Points <b>"+abbrevLiquid(RizziteNRizzium[2])+"</b> Rizzium"+LooksmaxChallengeText;
             }
+
             setDisplay('rizzmaxUnlockable',1,'class');
+            if (Rizzmaxxes < 2) {setDisplay('proudBlingUpgradeCard',0,'special');}
+            if (Rizzmaxxes < 3) {setDisplay('blingKingUpgradeCard',0,'special');}
+            if (Rizzmaxxes < 4) {setDisplay('exposureTherapyUpgradeCard',0,'special');}
+            if (listSum(LooksmaxxingChallengesCompleted) < 30) {setDisplay('prolongedPresenceUpgradeCard',0,'special');}
+            if (listSum(LooksmaxxingChallengesCompleted) < 70) {setDisplay('dilyansTruthUpgradeCard',0,'special');}
         } else if (Rizzmaxxes > 0) {
             var LooksmaxChallengeText = [""," <b><em>Bye Bye!</em></b>"," <b><em>Edging Maestro</em></b>"," <b><em>Stone-Faced Mogging</em></b>"," <b><em>Rags to Riches</em></b>"," <b><em>Ad Hominem</em></b>", " <b><em>Gods Plan</em></b>"][inLooksmaxxingChallenge];
             
@@ -556,6 +616,11 @@ function updateVisuals() {
                 document.getElementById('currencyCounter').innerHTML = "<b>"+abbrev(clicks)+"</b> Dilyan Points <b>"+abbrev(RizzPoints)+"</b> Rizz Points"+LooksmaxChallengeText;
             }
             setDisplay('rizzmaxUnlockable',1,'class');
+            if (Rizzmaxxes < 2) {setDisplay('proudBlingUpgradeCard',0,'special');}
+            if (Rizzmaxxes < 3) {setDisplay('blingKingUpgradeCard',0,'special');}
+            if (Rizzmaxxes < 4) {setDisplay('exposureTherapyUpgradeCard',0,'special');}
+            if (listSum(LooksmaxxingChallengesCompleted) < 30) {setDisplay('prolongedPresenceUpgradeCard',0,'special');}
+            if (listSum(LooksmaxxingChallengesCompleted) < 70) {setDisplay('dilyansTruthUpgradeCard',0,'special');}
         } else {
             document.getElementById('currencyCounter').innerHTML = "<b>"+abbrev(clicks)+"</b> Dilyan Points";
             setDisplay('rizzmaxUnlockable',0,'class');
@@ -578,16 +643,26 @@ function updateVisuals() {
         
         if (inLooksmaxxingChallenge != 5) {
             document.getElementById('countryClubsOwned').innerHTML = "<b>"+abbrev(CountryClubs)+"</b>";
-            document.getElementById('countryClubCost').innerHTML = "Cost: <b>"+grabVisualCost('CountryClubs')+"</b>";
+            document.getElementById('countryClubCost').innerHTML = (inLooksmaxxingChallenge == 4 ? "Cannot Purchase" : (CountryClubs < 100 ? "Cost: <b>"+grabVisualCost('CountryClubs')+"</b>" : "Cannot Upgrade Further"));
             document.getElementById('riceWashersOwned').innerHTML = "<b>"+abbrev(RiceWashers)+"</b>";
-            document.getElementById('riceWasherCost').innerHTML = "Cost: <b>"+grabVisualCost('RiceWashers')+"</b>";
+            document.getElementById('riceWasherCost').innerHTML = (inLooksmaxxingChallenge == 4 ? "Cannot Purchase" : (RiceWashers < 100 ? "Cost: <b>"+grabVisualCost('RiceWashers')+"</b>" : "Cannot Upgrade Further"));
             document.getElementById('carTitle').innerHTML = (Cars>0 ? "Another " : "")+"Car";
             document.getElementById('carsOwned').innerHTML = "<b>"+abbrev(Cars)+"</b>";
-            document.getElementById('carCost').innerHTML = "Cost: <b>"+grabVisualCost('Cars')+"</b>";
+            document.getElementById('carCost').innerHTML = (inLooksmaxxingChallenge == 4 ? "Cannot Purchase" : (Cars < 100 ? "Cost: <b>"+grabVisualCost('Cars')+"</b>" : "Cannot Upgrade Further"));
             document.getElementById('automaticRizzersOwned').innerHTML = "<b>"+abbrev(AutomaticRizzers)+"</b>";
-            document.getElementById('automaticRizzerCost').innerHTML = "Cost: <b>"+grabVisualCost('AutomaticRizzers')+"</b>";
+            document.getElementById('automaticRizzerCost').innerHTML = (inLooksmaxxingChallenge == 4 ? "Cannot Purchase" : (AutomaticRizzers < 300 ? "Cost: <b>"+grabVisualCost('AutomaticRizzers')+"</b>" : "Cannot Upgrade Further (Yet)"));
             document.getElementById('moreBlingedDilyansOwned').innerHTML = "<b>"+abbrev(blingedDilyanChance)+"/10</b>"; 
-            document.getElementById('moreBlingedDilyanCost').innerHTML = "Cost: <b>"+((typeof grabCost("blingedDilyanChance") === "undefined" || isNaN(grabCost("blingedDilyanChance"))) ? "MAXED" : grabVisualCost('blingedDilyanChance'))+"</b>";
+            document.getElementById('moreBlingedDilyanCost').innerHTML = (inLooksmaxxingChallenge == 4 ? "Cannot Purchase" : "Cost: <b>"+((typeof grabCost("blingedDilyanChance") === "undefined" || isNaN(grabCost("blingedDilyanChance"))) ? "MAXED" : grabVisualCost('blingedDilyanChance'))+"</b>");
+            document.getElementById('proudBlingsOwned').innerHTML = "<b>"+abbrev(proudBlings)+"/10</b>"; 
+            document.getElementById('proudBlingCost').innerHTML = (inLooksmaxxingChallenge == 4 ? "Cannot Purchase" : "Cost: <b>"+((typeof grabCost("ProudBling") === "undefined" || isNaN(grabCost("ProudBling"))) ? "MAXED" : grabVisualCost('ProudBling'))+"</b>");
+            document.getElementById('blingKingsOwned').innerHTML = "<b>"+abbrev(blingKings)+"/20</b>"; 
+            document.getElementById('blingKingCost').innerHTML = (inLooksmaxxingChallenge == 4 ? "Cannot Purchase" : "Cost: <b>"+((typeof grabCost("BlingKing") === "undefined" || isNaN(grabCost("BlingKing"))) ? "MAXED" : grabVisualCost('BlingKing'))+"</b>");
+            document.getElementById('exposureTherapysOwned').innerHTML = "<b>"+abbrev(exposureTherapys)+"/5</b>"; 
+            document.getElementById('exposureTherapyCost').innerHTML = (inLooksmaxxingChallenge == 4 ? "Cannot Purchase" : "Cost: <b>"+((typeof grabCost("ExposureTherapy") === "undefined" || isNaN(grabCost("ExposureTherapy"))) ? "MAXED" : grabVisualCost('ExposureTherapy'))+"</b>");
+            document.getElementById('prolongedPresencesOwned').innerHTML = "<b>"+abbrev(prolongedPresences)+"/10</b>"; 
+            document.getElementById('prolongedPresenceCost').innerHTML = (inLooksmaxxingChallenge == 4 ? "Cannot Purchase" : (prolongedPresences < 3 ? "Cost: <b>"+((typeof grabCost("ProlongedPresence") === "undefined" || isNaN(grabCost("ProlongedPresence"))) ? "MAXED" : grabVisualCost('ProlongedPresence'))+"</b>" : "More Upgrades in Part 3"));
+            document.getElementById('dilyansTruthsOwned').innerHTML = "<b>"+abbrev(dilyansTruths)+"/30</b>"; 
+            document.getElementById('dilyansTruthCost').innerHTML = (inLooksmaxxingChallenge == 4 ? "Cannot Purchase" : (dilyansTruths < 10 ? "Cost: <b>"+((typeof grabCost("DilyansTruth") === "undefined" || isNaN(grabCost("DilyansTruth"))) ? "MAXED" : grabVisualCost('DilyansTruth'))+"</b>" : "More Upgrades in Part 3"));
         } else {
             document.getElementById('countryClubsOwned').innerHTML = "<b>???</b>";
             document.getElementById('countryClubCost').innerHTML = "Cost: <b>???</b>";
@@ -600,6 +675,16 @@ function updateVisuals() {
             document.getElementById('automaticRizzerCost').innerHTML = "Cost: <b>???</b>";
             document.getElementById('moreBlingedDilyansOwned').innerHTML = "<b>???</b>";
             document.getElementById('moreBlingedDilyanCost').innerHTML = "Cost: <b>???</b>";
+            document.getElementById('proudBlingsOwned').innerHTML = "<b>???</b>";
+            document.getElementById('proudBlingCost').innerHTML = "Cost: <b>???</b>";
+            document.getElementById('blingKingsOwned').innerHTML = "<b>???</b>";
+            document.getElementById('blingKingCost').innerHTML = "Cost: <b>???</b>";
+            document.getElementById('exposureTherapysOwned').innerHTML = "<b>???</b>";
+            document.getElementById('exposureTherapyCost').innerHTML = "Cost: <b>???</b>";
+            document.getElementById('prolongedPresencesOwned').innerHTML = "<b>???</b>";
+            document.getElementById('prolongedPresenceCost').innerHTML = "Cost: <b>???</b>";
+            document.getElementById('dilyansTruthsOwned').innerHTML = "<b>???</b>";
+            document.getElementById('dilyansTruthCost').innerHTML = "Cost: <b>???</b>";
         }
         if (inLooksmaxxingChallenge == 0) {
             document.getElementById('serendipitousClickersOwned').innerHTML = "<b>"+abbrev(RandomValue5xUpgrades)+"/5</b>";
@@ -612,11 +697,11 @@ function updateVisuals() {
         } else {
             if (inLooksmaxxingChallenge != 5) {
                 document.getElementById('serendipitousClickersOwned').innerHTML = "<b>"+abbrev(RandomValue5xUpgrades)+"</b>";
-                document.getElementById('serendipitousClickerCost').innerHTML = "Cost: <b>"+((typeof grabCost("RandomValue5xUpgrades") === "undefined" || isNaN(grabCost("RandomValue5xUpgrades"))) ? "MAXED" : grabVisualCost('RandomValue5xUpgrades'))+"</b>";
+                document.getElementById('serendipitousClickerCost').innerHTML = (inLooksmaxxingChallenge == 4 ? "Cannot Purchase" : "Cost: <b>"+((typeof grabCost("RandomValue5xUpgrades") === "undefined" || isNaN(grabCost("RandomValue5xUpgrades"))) ? "MAXED" : grabVisualCost('RandomValue5xUpgrades'))+"</b>");
                 document.getElementById('serendipitousClickerTooltip').innerHTML = "This upgrade increases your chance to randomly gain "+abbrev(LooksmaxxingChallengesCompleted[2])+"x the Dilyan Point value on a click by +10% for each upgrade (Having 0 is 0% chance).";
                 
                 document.getElementById('luckyRizzersOwned').innerHTML = "<b>"+abbrev(RandomAuto2xUpgrades)+"</b>";
-                document.getElementById('luckyRizzerCost').innerHTML = "Cost: <b>"+((typeof grabCost("RandomAuto2xUpgrades") === "undefined" || isNaN(grabCost("RandomAuto2xUpgrades"))) ? "MAXED" : grabVisualCost('RandomAuto2xUpgrades'))+"</b>";
+                document.getElementById('luckyRizzerCost').innerHTML = (inLooksmaxxingChallenge == 4 ? "Cannot Purchase" : "Cost: <b>"+((typeof grabCost("RandomAuto2xUpgrades") === "undefined" || isNaN(grabCost("RandomAuto2xUpgrades"))) ? "MAXED" : grabVisualCost('RandomAuto2xUpgrades'))+"</b>");
                 document.getElementById('luckyRizzerTooltip').innerHTML = "This upgrade increases your chance to randomly gain "+abbrev(LooksmaxxingChallengesCompleted[2])+"x the Dilyan Point value on an Automatic Rizzer run by +10% for each upgrade (Having 0 is 0% chance).";
             } else {
                 document.getElementById('serendipitousClickersOwned').innerHTML = "<b>???</b>";
@@ -640,7 +725,7 @@ function updateVisuals() {
             document.getElementById('RizzmaxButton').innerHTML = "Rizzmax: <b>+0 Points</b>";    
         }
         document.getElementById('OfflineProduction1Button').innerHTML = "Offline Production (+"+abbrev(OfflineProdHrs)+" hr(s)): Cost: <b>"+grabVisualCost('OfflineProdHrs')+"</b> RP";
-        document.getElementById('RizzClickWorthButton').innerHTML = "Click Worth (+"+abbrev(RizzmaxClickWorth*5)+"%): Cost: <b>"+grabVisualCost('RizzmaxClickWorth')+"</b> RP";
+        document.getElementById('RizzClickWorthButton').innerHTML = (RizzmaxClickWorth < 2000 ? "Click Worth (+"+abbrev(RizzmaxClickWorth*5)+"%): Cost: <b>"+grabVisualCost('RizzmaxClickWorth')+"</b> RP" : "Cannot Upgrade Further");
         if (grabCost('LooksmaxxingChallengesUpgradeUnlocked') == -1) {
             document.getElementById('UnlockLooksmaxxingButton').innerHTML = "Looksmaxxing Challenges: <b>Unlocked</b>";
         } else {
@@ -666,19 +751,19 @@ function updateVisuals() {
         document.getElementById('LMC1D').innerHTML = "Rizzmax for at least "+abbrev(LooksmaxCosts(1))+" points without using any Rice Washers or Cars.";
         document.getElementById('LMC1B').innerHTML = "Current Bonus: +"+abbrev(10*LooksmaxxingChallengesCompleted[0])+"% Dilyan Point Multiplier";
         document.getElementById('LMC1C').innerHTML = "Completions: "+abbrev(LooksmaxxingChallengesCompleted[0])+"/10";
-        document.getElementById('LMC2D').innerHTML = "Rizzmax for at least "+abbrev(LooksmaxCosts(2))+" point without clicking the main button and starting with 1 Automatic Rizzer.  Offline Progress is enabled at 50% efficiency. Automatic Rizzers use the formula of clicking in this challenge, and are affected by both random chance upgrades.";
+        document.getElementById('LMC2D').innerHTML = "Rizzmax for at least "+abbrev(LooksmaxCosts(2))+" point without clicking the main button and starting with 1 Automatic Rizzer.  Offline Progress is enabled at 50% efficiency. Automatic Rizzers use the exact formula of clicking in this challenge, and are affected by both random chance upgrades.";
         document.getElementById('LMC2B').innerHTML = "Current Bonus: +"+abbrev(LooksmaxxingChallengesCompleted[1])+"% Offline Value";
         document.getElementById('LMC2C').innerHTML = "Completions: "+abbrev(LooksmaxxingChallengesCompleted[1])+"/40";
-        document.getElementById('LMC3D').innerHTML = "Rizzmax for at least "+abbrev(LooksmaxCosts(3))+" points without any random chance triggers or Automatic Rizzers.";
+        document.getElementById('LMC3D').innerHTML = "Rizzmax for at least "+abbrev(LooksmaxCosts(3))+" points without any random chance triggers, Automatic Rizzers, Blinged Dilyans, or Peeking Dilyans.";
         document.getElementById('LMC3B').innerHTML = "Current Bonus: +"+abbrev(LooksmaxxingChallengesCompleted[2])+"x On All Random Multipliers";
         document.getElementById('LMC3C').innerHTML = "Completions: "+abbrev(LooksmaxxingChallengesCompleted[2])+"/5";
-        document.getElementById('LMC4D').innerHTML = "In this challenge, you can use your rizzmax click worth upgrade. Everything is disabled aside from the clicking of the main button. Rizzmax for at least "+abbrev(LooksmaxCosts(4))+" points.";
+        document.getElementById('LMC4D').innerHTML = "In this challenge, you can use your rizzmax click worth upgrade. Everything is disabled aside from the clicking of the main button and Blinged Dilyans. Rizzmax for at least "+abbrev(LooksmaxCosts(4))+" points.";
         document.getElementById('LMC4B').innerHTML = "Current Bonus: +"+abbrev(LooksmaxxingChallengesCompleted[3])+" Dilyan Point Worth Per Country Club";
         document.getElementById('LMC4C').innerHTML = "Completions: "+abbrev(LooksmaxxingChallengesCompleted[3])+"/9";
         document.getElementById('LMC5D').innerHTML = "Rizzmax for at least "+abbrev(LooksmaxCosts(5))+" points while being unable to see any points, upgrades, prices, or multipliers.";
         document.getElementById('LMC5B').innerHTML = "Current Bonus: -"+abbrev(3*LooksmaxxingChallengesCompleted[4])+"% Rizz Point Requirement for Looksmaxxing Challenge Completion";
         document.getElementById('LMC5C').innerHTML = "Completions: "+abbrev(LooksmaxxingChallengesCompleted[4])+"/10";
-        document.getElementById('LMC6D').innerHTML = "Rizzmax for at least "+abbrev(LooksmaxCosts(6))+" points while consecutively clicking the main button depreciates the value yet Automatic Rizzers are 5x more expensive and the other upgrades are 3x cheaper. The value for clicking can be reset by purchasing an upgrade (besides Automatic Rizzers), and Automatic Rizzers only produce 1 time for each one you own before stopping until you buy another. Offline Progress is enabled at 10% efficiency.";
+        document.getElementById('LMC6D').innerHTML = "Rizzmax for at least "+abbrev(LooksmaxCosts(6))+" points while consecutively clicking the main button depreciates the value yet Automatic Rizzers are 5x more expensive and the other upgrades are 3x cheaper. The value for clicking can be reset by purchasing an upgrade (besides Automatic Rizzers), and Automatic Rizzers only produce 1 time for each one you own before stopping until you buy another. Offline Progress is enabled at 10% efficiency and there are no Blinged Dilyans or Peeking Dilyans.";
         document.getElementById('LMC6B').innerHTML = "Current Bonus: -"+0.01*LooksmaxxingChallengesCompleted[5]+" From The Logarithm's Base In The Rizzmax Rizz Point Formula";
         document.getElementById('LMC6C').innerHTML = "Completions: "+abbrev(LooksmaxxingChallengesCompleted[5])+"/3";
 
@@ -724,6 +809,7 @@ function updateVisuals() {
 }
 
 function offlineProgress() {
+    clicksGaining = 0;
     if (OfflineProdHrs > 0 && inLooksmaxxingChallenge == 0) {
         var currentTime = Date.now();
         var timeDifference = currentTime - lastOfflineTime;
@@ -736,9 +822,9 @@ function offlineProgress() {
         
         var multiplier = (0.1*RandomValue5xUpgrades+0.05*RizzmaxExtraChance)*5+(1-(0.1*RandomValue5xUpgrades+0.05*RizzmaxExtraChance));
         
-        clicks += Math.floor((1+(countUnlockedAchievements()/100))* ((10+Number(LooksmaxxingChallengesCompleted[1]))/100)*(Math.floor(timeDifferenceSeconds) * (gameTick) * (multiplier) * (AutomaticRizzers) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) * (1+(Number(LooksmaxxingChallengesCompleted[0])/10)) ));
+        clicksGaining = Math.floor((1+(countUnlockedAchievements()/100))*Math.floor(timeDifferenceSeconds)*(gameTick)*(multiplier)*(AutomaticRizzers)*(1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100)*(1+(Number(LooksmaxxingChallengesCompleted[0])/10))*(1 + Math.ceil(((1+Number(LooksmaxxingChallengesCompleted[3]))* (CountryClubs*0.10 >= 1 ? Math.floor(CountryClubs * 0.10) : 1) )**(1+Cars/10))*(1 + RiceWashers)));
+        clicks += clicksGaining;
 
-        sendToast("You gained "+abbrev(Math.floor((1+(countUnlockedAchievements()/100))* ((10+Number(LooksmaxxingChallengesCompleted[1]))/100)*(Math.floor(timeDifferenceSeconds) * (gameTick) * (multiplier) * (AutomaticRizzers) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) * (1+(Number(LooksmaxxingChallengesCompleted[0])/10)) )))+" clicks while you were gone!");
         updateVisuals();
     } else if (inLooksmaxxingChallenge == 2 && OfflineProdHrs > 0) {
         var currentTime = Date.now();
@@ -752,9 +838,9 @@ function offlineProgress() {
 
         var multiplier = 0.01*RandomValue5xUpgrades*RandomAuto2xUpgrades*10+(0.1*RandomAuto2xUpgrades-0.01*RandomAuto2xUpgrades*RandomValue5xUpgrades)*2+(0.1*RandomValue5xUpgrades-0.01*RandomAuto2xUpgrades*RandomValue5xUpgrades)*5+(1-0.1*RandomValue5xUpgrades-0.1*RandomAuto2xUpgrades+0.01*RandomValue5xUpgrades*RandomAuto2xUpgrades);
         
-        clicks += Math.floor((1+(countUnlockedAchievements()/100)) * 0.5*Math.floor(timeDifferenceSeconds)*Math.floor((multiplier) * (AutomaticRizzers) * (1+Math.ceil((CountryClubs)**(1+Cars/10))) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100)));
+        clicksGaining = Math.floor((1+(countUnlockedAchievements()/100)) * 0.5*Math.floor(timeDifferenceSeconds) * (gameTick) * (multiplier) * (AutomaticRizzers) * (1+Math.ceil((CountryClubs)**(1+Cars/10))) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100) );
+        clicks += clicksGaining;
 
-        sendToast("You gained "+abbrev(Math.floor((1+(countUnlockedAchievements()/100)) * 0.5*Math.floor(timeDifferenceSeconds)*Math.floor((multiplier) * (AutomaticRizzers) * (1+Math.ceil((CountryClubs)**(1+Cars/10))) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100))))+" clicks while you were gone!");
         updateVisuals(); 
     } else if (inLooksmaxxingChallenge == 6 && OfflineProdHrs > 0) {
         var currentTime = Date.now();
@@ -772,10 +858,15 @@ function offlineProgress() {
         }
 
         var multiplier = (0.1*RandomValue5xUpgrades+0.05*RizzmaxExtraChance)*5+(1-0.1*RandomValue5xUpgrades-0.05*RizzmaxExtraChance);
-        clicks += Math.floor((1+(countUnlockedAchievements()/100)) * 0.1*(Math.floor(timeDifferenceSeconds) * (multiplier) * (AutomaticRizzers) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) ));
 
-        sendToast("You gained "+abbrev(Math.floor((1+(countUnlockedAchievements()/100)) * 0.1*(Math.floor(timeDifferenceSeconds) * (multiplier) * (AutomaticRizzers) * (1 + RiceWashers) * (1+(5*Number(listSum(LooksmaxxingChallengesCompleted))/100)) )))+" clicks while you were gone!");
+        clicksGaining = Math.floor((1+(countUnlockedAchievements()/100))*0.1*Math.floor(timeDifferenceSeconds)*(multiplier)*(AutomaticRizzers)*(1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100)*(1 + Math.ceil(((CountryClubs*0.10 >= 1 ? Math.floor(CountryClubs * 0.10) : 1) )**(1+Cars/10))*(1 + RiceWashers)));
+        clicks += clicksGaining;
+
         updateVisuals();
+    }
+
+    if (OfflineProdHrs > 0 && clicksGaining > 0) {
+        sendToast("You gained "+abbrev(clicksGaining)+" clicks while you were gone!");
     }
 
     if (OfflineProdHrs > 0) {
@@ -909,6 +1000,17 @@ async function allInitialize() {
     await loadData(USERNAME, PASSWORD);
 
     offlineProgress();
+    initialized = true;
+
+    // Grab the container
+    const timerContainer = document.getElementById('timerWrapper');
+
+    timerContainer.style.opacity = "0"; // or whatever the starting opacity should be
+
+    // Force a reflow so the browser registers the styles
+    timerContainer.offsetHeight; // reading a layout property forces reflow
+
+    requestAnimationFrame(updateTimer);
 
     setClickProcessesFirst();
     setClickProcesses0();

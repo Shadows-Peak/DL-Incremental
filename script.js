@@ -432,7 +432,7 @@ function setClickProcessesFirst() {
     });
 
     addAchievement(4223,"Oh So This Does Have A Use.","Unlock the Rizzalurgy.",function() {
-        if (RizzalurgyUnlocked == 1) {return true};
+        if (RizzalurgyUnlocked >= 1) {return true};
     });
     addAchievement(4224,"Pure Unbridled Rizz.","Smelt down your first Rizzite.",function() {
         if (RizziteNRizzium[2] >= 1) {return true};

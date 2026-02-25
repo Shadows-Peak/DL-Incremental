@@ -16,7 +16,7 @@ function updateVisuals() {
 function setClickProcesses2() {
     // Country Clubs
     document.getElementById('countryClubCost').onclick = function() {
-        if (clicks >= grabCost('CountryClubs') && inLooksmaxxingChallenge != 4) {
+        if (clicks >= grabCost('CountryClubs') && inLooksmaxxingChallenge != 4 && CountryClubs != 100) {
             clicks -= grabCost('CountryClubs');
             CountryClubs++;
             const ranChance = Math.floor(Math.random() * 100);
@@ -29,7 +29,7 @@ function setClickProcesses2() {
     };
     // Rice Washers
     document.getElementById('riceWasherCost').onclick = function() {
-        if (clicks >= grabCost('RiceWashers') && inLooksmaxxingChallenge != 1 && inLooksmaxxingChallenge != 4) {
+        if (clicks >= grabCost('RiceWashers') && inLooksmaxxingChallenge != 1 && inLooksmaxxingChallenge != 4 && RiceWashers != 100) {
             clicks -= grabCost('RiceWashers');
             RiceWashers++;
             const ranChance = Math.floor(Math.random() * 100);
@@ -42,7 +42,7 @@ function setClickProcesses2() {
     }
     // Cars
     document.getElementById('carCost').onclick = function() {
-        if (clicks >= grabCost('Cars') && inLooksmaxxingChallenge != 1 && inLooksmaxxingChallenge != 4) {
+        if (clicks >= grabCost('Cars') && inLooksmaxxingChallenge != 1 && inLooksmaxxingChallenge != 4 && Cars != 100) {
             clicks -= grabCost('Cars');
             Cars++
             const ranChance = Math.floor(Math.random() * 100);
@@ -70,7 +70,7 @@ function setClickProcesses2() {
     }
     // Automatic Rizzers
     document.getElementById('automaticRizzerCost').onclick = function() {
-        if (clicks >= grabCost('AutomaticRizzers') && inLooksmaxxingChallenge != 3 && inLooksmaxxingChallenge != 4) {
+        if (clicks >= grabCost('AutomaticRizzers') && inLooksmaxxingChallenge != 3 && inLooksmaxxingChallenge != 4 && AutomaticRizzers != 300) {
             clicks -= grabCost('AutomaticRizzers');
             AutomaticRizzers++;
             const ranChance = Math.floor(Math.random() * 100);
@@ -111,6 +111,82 @@ function setClickProcesses2() {
             }
         }
     }
+    // Proud Bling Upgrade
+    document.getElementById('proudBlingCost').onclick = function() {
+        if (proudBlings < 10 && inLooksmaxxingChallenge == 0) {
+            if (clicks >= grabCost('ProudBling')) {
+                clicks -= grabCost('ProudBling');
+                proudBlings++
+                const ranChance = Math.floor(Math.random() * 100);
+                if (ranChance >= 100 - 5*rizzifactsObtained[0]*(1-Boolean(inLooksmaxxingChallenge))  && proudBlings < 10) {
+                    proudBlings++;
+                }
+                if (inLooksmaxxingChallenge == 6) {clicksIn6 = 0;}
+                updateVisuals();
+            }
+        }
+    }
+    // Bling King Upgrade
+    document.getElementById('blingKingCost').onclick = function() {
+        if (blingKings < 20 && inLooksmaxxingChallenge == 0) {
+            if (clicks >= grabCost('BlingKing')) {
+                clicks -= grabCost('BlingKing');
+                blingKings++
+                const ranChance = Math.floor(Math.random() * 100);
+                if (ranChance >= 100 - 5*rizzifactsObtained[0]*(1-Boolean(inLooksmaxxingChallenge))  && blingKings < 20) {
+                    blingKings++;
+                }
+                if (inLooksmaxxingChallenge == 6) {clicksIn6 = 0;}
+                updateVisuals();
+            }
+        }
+    }
+    // Exposure Therapy Upgrade
+    document.getElementById('exposureTherapyCost').onclick = function() {
+        if (exposureTherapys < 5 && inLooksmaxxingChallenge == 0) {
+            if (clicks >= grabCost('ExposureTherapy')) {
+                clicks -= grabCost('ExposureTherapy');
+                exposureTherapys++
+                const ranChance = Math.floor(Math.random() * 100);
+                if (ranChance >= 100 - 5*rizzifactsObtained[0]*(1-Boolean(inLooksmaxxingChallenge))  && exposureTherapys < 5) {
+                    exposureTherapys++;
+                }
+                if (inLooksmaxxingChallenge == 6) {clicksIn6 = 0;}
+                updateVisuals();
+            }
+        }
+    }
+    // Prolonged Presence Upgrade
+    document.getElementById('prolongedPresenceCost').onclick = function() {
+        if (prolongedPresences < 10 && inLooksmaxxingChallenge == 0 && prolongedPresences < 3) { // REMOVE THE <3
+            if (clicks >= grabCost('ProlongedPresence')) {
+                clicks -= grabCost('ProlongedPresence');
+                prolongedPresences++
+                const ranChance = Math.floor(Math.random() * 100);
+                if (ranChance >= 100 - 5*rizzifactsObtained[0]*(1-Boolean(inLooksmaxxingChallenge))  && prolongedPresences < 10) {
+                    prolongedPresences++;
+                }
+                if (inLooksmaxxingChallenge == 6) {clicksIn6 = 0;}
+                updateVisuals();
+            }
+        }
+    }
+    // Dilyan's Truth Upgrade
+    document.getElementById('dilyansTruthCost').onclick = function() {
+        if (dilyansTruths < 30 && inLooksmaxxingChallenge == 0 && dilyansTruths < 10) { // REMOVE THE <10
+            if (clicks >= grabCost('DilyansTruth')) {
+                clicks -= grabCost('DilyansTruth');
+                dilyansTruths++
+                const ranChance = Math.floor(Math.random() * 100);
+                if (ranChance >= 100 - 5*rizzifactsObtained[0]*(1-Boolean(inLooksmaxxingChallenge))  && dilyansTruths < 30) {
+                    dilyansTruths++;
+                }
+                if (inLooksmaxxingChallenge == 6) {clicksIn6 = 0;}
+                setMultiplierText("x"+(5+0.5*dilyansTruths));
+                updateVisuals();
+            }
+        }
+    }
     // Offline Progress +1 Hr Upgrade
     document.getElementById('OfflineProduction1Button').onclick = function() {
         if (RizzPoints >= grabCost('OfflineProdHrs') && inLooksmaxxingChallenge == 0) {
@@ -125,7 +201,7 @@ function setClickProcesses2() {
     }
     // Extra Click Worth Upgrade
     document.getElementById('RizzClickWorthButton').onclick = function() {
-        if (RizzPoints >= grabCost('RizzmaxClickWorth') && inLooksmaxxingChallenge == 0) {
+        if (RizzPoints >= grabCost('RizzmaxClickWorth') && inLooksmaxxingChallenge == 0 && RizzmaxClickWorth != 2000) {
             RizzPoints -= grabCost('RizzmaxClickWorth');
             RizzmaxClickWorth++;
             const ranChance = Math.floor(Math.random() * 100);

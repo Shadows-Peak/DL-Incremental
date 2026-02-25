@@ -64,6 +64,12 @@ function setClickProcesses1() {
             }
           }
           Rizzmaxxes++;
+          if (Rizzmaxxes == 1) {sendToast("You can now encounter <b>Peeking Dilyans</b> and purchase <b>Bling Detectors</b>!",'rizzmaxUnlock');}
+          if (Rizzmaxxes == 2) {sendToast("You can now purchase <b>Proud Blings</b>!",'rizzmaxUnlock');}
+          if (Rizzmaxxes == 3) {sendToast("You can now purchase <b>Bling Kings</b>!",'rizzmaxUnlock');}
+          if (Rizzmaxxes == 4) {sendToast("You can now purchase <b>Exposure Therapies</b>!",'rizzmaxUnlock');}
+          if (listSum(LooksmaxxingChallengesCompleted) == 30) {sendToast("You can now purchase <b>Prolonged Presences</b>!",'rizzmaxUnlock');}
+          if (listSum(LooksmaxxingChallengesCompleted) == 70) {sendToast("You can now purchase <b>Dilyan's Truths</b>!",'rizzmaxUnlock');}
           removeAllBonuses();
           clicks = 0;
           CountryClubs = 0;
@@ -73,6 +79,11 @@ function setClickProcesses1() {
           RandomAuto2xUpgrades = 0;
           AutomaticRizzers = 0;
           blingedDilyanChance = 0;
+          proudBlings = 0;
+          blingKings = 0;
+          exposureTherapys = 0;
+          prolongedPresences = 0;
+          dilyansTruths = 0;
           clicksIn6 = 0;
           runsIn6 = 0;
           sendToast("Completion: <b>"+['Bye Bye!','Edging Maestro','Stone-Faced Mogging','Rags to Riches','Ad Hominem','Gods Plan'][inLooksmaxxingChallenge-1]+"</b> Challenge!");
@@ -98,6 +109,10 @@ function setClickProcesses1() {
         }
       }
       Rizzmaxxes++;
+      if (Rizzmaxxes == 1) {sendToast("You can now encounter <b>Peeking Dilyans</b> and purchase <b>Bling Detectors</b>!",'rizzmaxUnlock');}
+      if (Rizzmaxxes == 2) {sendToast("You can now purchase <b>Proud Blings</b>!",'rizzmaxUnlock');}
+      if (Rizzmaxxes == 3) {sendToast("You can now purchase <b>Bling Kings</b>!",'rizzmaxUnlock');}
+      if (Rizzmaxxes == 4) {sendToast("You can now purchase <b>Exposure Therapies</b>!",'rizzmaxUnlock');}
       removeAllBonuses();
       clicks = 0;
       CountryClubs = 0;
@@ -107,6 +122,11 @@ function setClickProcesses1() {
       RandomAuto2xUpgrades = 0;
       AutomaticRizzers = 0;
       blingedDilyanChance = 0;
+      proudBlings = 0;
+      blingKings = 0;
+      exposureTherapys = 0;
+      prolongedPresences = 0;
+      dilyansTruths = 0;
       updateVisuals();
     }
   };
@@ -133,8 +153,13 @@ function simulateClick(event,extraMult=1) {
       mult2 = (Boolean(inLooksmaxxingChallenge) ? 0 : 1);
     }
 
+    var rushMult = 1;
+    if (rushCounter > 0) {
+      rushMult = 5+0.5*dilyansTruths;
+    }
+
     if (inLooksmaxxingChallenge != 6) {
-      clicksGaining = Math.floor(extraMult)*Math.floor((1+(countUnlockedAchievements()/100))*(multiplier)*(1+(mult2*RizzmaxClickWorth*5)/100)*(1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100)*(1+mult3*(Number(LooksmaxxingChallengesCompleted[0])/10))*(1 + Math.ceil(((1+mult3*Number(LooksmaxxingChallengesCompleted[3]))*CountryClubs)**(1+Cars/10))*(1 + RiceWashers)))
+      clicksGaining = Math.floor(extraMult)*Math.floor((1+(countUnlockedAchievements()/100))*(rushMult)*(multiplier)*(1+(mult2*RizzmaxClickWorth*5)/100)*(1+(5*Number(listSum(LooksmaxxingChallengesCompleted)))/100)*(1+mult3*(Number(LooksmaxxingChallengesCompleted[0])/10))*(1 + Math.ceil(((1+mult3*Number(LooksmaxxingChallengesCompleted[3]))*CountryClubs)**(1+Cars/10))*(1 + RiceWashers)))
       clicks += clicksGaining;
     } else if (inLooksmaxxingChallenge == 6) {
       var nerfMult = ( 0.8 + ( Math.log(clicksIn6+2) / ( Math.log(2) * ( 1 + ( clicksIn6 + 2 )**2 ) ) ) ) * ( ( 1.1 ) ** ( -1*clicksIn6 ) )
@@ -143,8 +168,10 @@ function simulateClick(event,extraMult=1) {
       clicksIn6++;
     }
 
-    if (event != "BONUS") {
+    if (event != "BONUS" && inLooksmaxxingChallenge != 5) {
       spawnFloatingText(event,"+"+abbrev(clicksGaining),boosted);
+    } else if (event != "BONUS" && inLooksmaxxingChallenge == 5) {
+      spawnFloatingText(event,"+???",boosted);
     }
     
     updateVisuals();
@@ -152,7 +179,7 @@ function simulateClick(event,extraMult=1) {
   return clicksGaining;
 }
 
-function spawnFloatingText(event, value = "+1", boost=1, xy=[0,0]) {
+function spawnFloatingText(event, value = "+1", boost=1, xy=[0,0], time=700) {
     const circle = document.getElementById("button1");
     const rect = circle.getBoundingClientRect();
 
@@ -167,6 +194,16 @@ function spawnFloatingText(event, value = "+1", boost=1, xy=[0,0]) {
     } else if (event == "KEYBIND" || (event.clientX == 0 && event.clientY == 0)) {
       el.style.left = (rect.left + rect.width / 2) + "px";
       el.style.top = (rect.top + rect.height / 2) + "px";
+    } else if (event == "RANDOM") {
+      if (currentRoom != 1) {return;}
+      const maxX = window.innerWidth - 500;
+      const maxY = window.innerHeight - 500;
+      
+      const randomX = Math.random() * maxX;
+      const randomY = 60 + Math.random() * (maxY - 60);
+
+      el.style.left = randomX + "px";
+      el.style.top = randomY + "px";
     } else {
       el.style.left = event.clientX + "px";
       el.style.top = event.clientY + "px";
@@ -187,7 +224,7 @@ function spawnFloatingText(event, value = "+1", boost=1, xy=[0,0]) {
     // Remove after animation
     setTimeout(() => {
         el.remove();
-    }, 700+60*(boost-1));
+    }, time+60*(boost-1));
 }
 
 
@@ -219,7 +256,7 @@ window.addEventListener("visibilitychange", () => {
 
 // Not sure about this one.
 window.addEventListener("load", () => {
-    if (lastOfflineTime != 0 && gameActive) {
+    if (lastOfflineTime != 0 && gameActive && initialized == true) {
         offlineProgress();
         lastOfflineTime = 0;
     }
