@@ -149,7 +149,7 @@ function base64EncodeUtf8(str) {
 }
 
 function base64DecodeUtf8(b64) {
-    if (!"/^[A-Za-z0-9+/=]+$/".test(b64)) {
+    if (!/^[A-Za-z0-9+/=]+$/.test(b64)) {
         throw new Error("Invalid base64 input — wrong key or corrupted ciphertext");
     }
 
